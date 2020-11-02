@@ -5,9 +5,13 @@ Implementation of the "Majorana stars" formalism.
 
 import numpy as np
 
-def c_xyz(c: complex, pole="south") -> np.ndarray:
+def c_xyz(c, pole="south"):
     """
     Stereographic projection of complex point to the unit sphere.
+
+    .. math:: 
+
+        (a +b)^2
 
     Parameters
     ----------
@@ -15,6 +19,11 @@ def c_xyz(c: complex, pole="south") -> np.ndarray:
         Point on the complex plane
     pole : str
         Whether to project from the North or South pole
+
+    Returns
+    -------
+    np.ndarray
+        XYZ coords
     """
     if(pole == "south"):
         if c == float("Inf"):

@@ -1,5 +1,5 @@
 """
-toolbox for higher spin and symmetrization
+toolbox for higher spin and symmetrization!
 
 """
 
