@@ -1,0 +1,8 @@
+cd docs
+make html
+cd ..
+
+python setup.py build
+python setup.py sdist bdist_wheel
+twine upload -r testpypi dist/*
+twine upload dist/*  
