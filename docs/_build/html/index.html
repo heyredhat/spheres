@@ -158,19 +158,22 @@
 <span class="target" id="module-spheres.stars"></span><p>Implementation of the “Majorana stars” formalism.</p>
 <dl class="py function">
 <dt id="spheres.stars.c_xyz">
-<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">c_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#c_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.c_xyz" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stereographic projection of complex point to the unit sphere.</p>
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">c_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">z</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#c_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.c_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Stereographic_projection">Stereographic projection</a>
+from the extended complex plane to the unit sphere.</p>
+<p>Given coordinate <span class="math notranslate nohighlight">\(z=x+iy\)</span> or <span class="math notranslate nohighlight">\(\infty\)</span>,
+returns <span class="math notranslate nohighlight">\((0,0,-1)\)</span> if <span class="math notranslate nohighlight">\(z = \infty\)</span>, otherwise:</p>
 <div class="math notranslate nohighlight">
-\[(a +b)^2\]</div>
+\[(\frac{2x}{1+x^2+y^2}, \frac{2y}{1+x^2+y^2}, \frac{1-x^2-y^2}{1+x^2+y^2})\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>c</strong> (<em>complex</em>) – Point on the complex plane</p></li>
-<li><p><strong>pole</strong> (<em>str</em>) – Whether to project from the North or South pole</p></li>
+<li><p><strong>c</strong> (<em>complex</em><em> or </em><em>inf</em>) – Point on the extended complex plane.</p></li>
+<li><p><strong>pole</strong> (<em>str</em><em>, </em><em>default 'south'</em>) – Whether to project from the North or South pole.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>XYZ coords</p>
+<dd class="field-even"><p>XYZ coordinates.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
@@ -181,13 +184,25 @@
 <dl class="py function">
 <dt id="spheres.stars.xyz_c">
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_c" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reverse stereographic projection from the unit sphere to the complex plane.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="spheres.test">
-<code class="sig-prename descclassname">spheres.</code><code class="sig-name descname">test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres.html#test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.test" title="Permalink to this definition">¶</a></dt>
-<dd><p>great test</p>
+<dd><p>Reverse <a class="reference external" href="https://en.wikipedia.org/wiki/Stereographic_projection">Stereographic projection</a>
+from the unit sphere to the extended complex plane.</p>
+<p>Given <span class="math notranslate nohighlight">\((0,0,-1)\)</span>, returns <span class="math notranslate nohighlight">\(\infty\)</span>. Otherwise:</p>
+<div class="math notranslate nohighlight">
+\[z = (\frac{x}{1+z}) + i(\frac{y}{1+z})\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xyz</strong> (<em>np.ndarray</em>) – Point on the unit sphere.</p></li>
+<li><p><strong>pole</strong> (<em>str</em><em>, </em><em>default 'south'</em>) – Whether to reverse project from the North or South pole.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Extended complex coordinate.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>complex or inf</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

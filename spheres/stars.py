@@ -3,48 +3,71 @@ Implementation of the "Majorana stars" formalism.
 
 """
 
-import numpy as np
-
-def c_xyz(c, pole="south"):
+def c_xyz(z, pole="south"):
     """
-    Stereographic projection of complex point to the unit sphere.
+    `Stereographic projection <https://en.wikipedia.org/wiki/Stereographic_projection>`_ 
+    from the extended complex plane to the unit sphere.
+
+    Given coordinate :math:`z=x+iy` or :math:`\\infty`,
+    returns :math:`(0,0,-1)` if :math:`z = \\infty`, otherwise:
 
     .. math:: 
 
-        (a +b)^2
+        (\\frac{2x}{1+x^2+y^2}, \\frac{2y}{1+x^2+y^2}, \\frac{1-x^2-y^2}{1+x^2+y^2})
 
     Parameters
     ----------
-    c : complex
-        Point on the complex plane
-    pole : str
-        Whether to project from the North or South pole
+    c : complex or inf
+        Point on the extended complex plane.
+    pole : str, default 'south'
+        Whether to project from the North or South pole.
 
     Returns
     -------
     np.ndarray
-        XYZ coords
+        XYZ coordinates.
+
     """
     if(pole == "south"):
-        if c == float("Inf"):
+        if z == float("Inf"):
             return np.array([0,0,-1])
         else:
-            x, y = c.real, c.imag
+            x, y = z.real, z.imag
             return np.array([2*x/(1 + x**2 + y**2),\
                              2*y/(1 + x**2 + y**2),\
                    (1-x**2-y**2)/(1 + x**2 + y**2)])
     elif (pole == "north"):
-        if c == float("Inf"):
+        if z == float("Inf"):
             return np.array([0,0,1])
         else:
-            x, y = c.real, c.imag
+            x, y = z.real, z.imag
             return np.array([2*x/(1 + x**2 + y**2),\
                              2*y/(1 + x**2 + y**2),\
                    (-1+x**2+y**2)/(1 + x**2 + y**2)])
 
 def xyz_c(xyz, pole="south"):
     """
-    Reverse stereographic projection from the unit sphere to the complex plane.
+    Reverse `Stereographic projection <https://en.wikipedia.org/wiki/Stereographic_projection>`_ 
+    from the unit sphere to the extended complex plane.
+
+    Given :math:`(0,0,-1)`, returns :math:`\\infty`. Otherwise: 
+
+    .. math:: 
+
+        z = (\\frac{x}{1+z}) + i(\\frac{y}{1+z})
+
+    Parameters
+    ----------
+    xyz : np.ndarray
+        Point on the unit sphere.
+    pole : str, default 'south'
+        Whether to reverse project from the North or South pole.
+
+    Returns
+    -------
+    complex or inf
+        Extended complex coordinate.
+
     """
     x, y, z = xyz
     if (pole=="south"):

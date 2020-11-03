@@ -129,8 +129,6 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-          <li><a href="../spheres.html">spheres</a> &raquo;</li>
-        
       <li>spheres.stars</li>
     
     
@@ -152,48 +150,71 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<div class="viewcode-block" id="c_xyz"><a class="viewcode-back" href="../../index.html#spheres.stars.c_xyz">[docs]</a><span class="k">def</span> <span class="nf">c_xyz</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="c_xyz"><a class="viewcode-back" href="../../index.html#spheres.stars.c_xyz">[docs]</a><span class="k">def</span> <span class="nf">c_xyz</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Stereographic projection of complex point to the unit sphere.</span>
+<span class="sd">    `Stereographic projection &lt;https://en.wikipedia.org/wiki/Stereographic_projection&gt;`_ </span>
+<span class="sd">    from the extended complex plane to the unit sphere.</span>
+
+<span class="sd">    Given coordinate :math:`z=x+iy` or :math:`\\infty`,</span>
+<span class="sd">    returns :math:`(0,0,-1)` if :math:`z = \\infty`, otherwise:</span>
 
 <span class="sd">    .. math:: </span>
 
-<span class="sd">        (a +b)^2</span>
+<span class="sd">        (\\frac{2x}{1+x^2+y^2}, \\frac{2y}{1+x^2+y^2}, \\frac{1-x^2-y^2}{1+x^2+y^2})</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    c : complex</span>
-<span class="sd">        Point on the complex plane</span>
-<span class="sd">    pole : str</span>
-<span class="sd">        Whether to project from the North or South pole</span>
+<span class="sd">    c : complex or inf</span>
+<span class="sd">        Point on the extended complex plane.</span>
+<span class="sd">    pole : str, default &#39;south&#39;</span>
+<span class="sd">        Whether to project from the North or South pole.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    np.ndarray</span>
-<span class="sd">        XYZ coords</span>
+<span class="sd">        XYZ coordinates.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span><span class="p">(</span><span class="n">pole</span> <span class="o">==</span> <span class="s2">&quot;south&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;Inf&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;Inf&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">imag</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">imag</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>\
                              <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>\
                    <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)])</span>
     <span class="k">elif</span> <span class="p">(</span><span class="n">pole</span> <span class="o">==</span> <span class="s2">&quot;north&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;Inf&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;Inf&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">imag</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">imag</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>\
                              <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>\
                    <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)])</span></div>
 
 <div class="viewcode-block" id="xyz_c"><a class="viewcode-back" href="../../index.html#spheres.stars.xyz_c">[docs]</a><span class="k">def</span> <span class="nf">xyz_c</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Reverse stereographic projection from the unit sphere to the complex plane.</span>
+<span class="sd">    Reverse `Stereographic projection &lt;https://en.wikipedia.org/wiki/Stereographic_projection&gt;`_ </span>
+<span class="sd">    from the unit sphere to the extended complex plane.</span>
+
+<span class="sd">    Given :math:`(0,0,-1)`, returns :math:`\\infty`. Otherwise: </span>
+
+<span class="sd">    .. math:: </span>
+
+<span class="sd">        z = (\\frac{x}{1+z}) + i(\\frac{y}{1+z})</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xyz : np.ndarray</span>
+<span class="sd">        Point on the unit sphere.</span>
+<span class="sd">    pole : str, default &#39;south&#39;</span>
+<span class="sd">        Whether to reverse project from the North or South pole.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    complex or inf</span>
+<span class="sd">        Extended complex coordinate.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">xyz</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">pole</span><span class="o">==</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>

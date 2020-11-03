@@ -9,6 +9,6 @@ toolbox for higher spin and symmetrization
 
 [![codecov](https://codecov.io/gh/heyredhat/spheres/branch/main/graph/badge.svg?token=980CL7KIFL)](https://codecov.io/gh/heyredhat/spheres)
 
-[![Updates](https://pyup.io/repos/github/heyredhat/spheres/shield.svg)](https://pyup.io/repos/github/heyredhat/spheres/)
+<a href="https://pyup.io/repos/github/heyredhat/spheres/"><img src="https://pyup.io/repos/github/heyredhat/spheres/shield.svg" alt="Updates" /></a>
 
-[![Python 3](https://pyup.io/repos/github/heyredhat/spheres/python-3-shield.svg)](https://pyup.io/repos/github/heyredhat/spheres/)
+<a href="https://pyup.io/repos/github/heyredhat/spheres/"><img src="https://pyup.io/repos/github/heyredhat/spheres/shield.svg" alt="Python 3" /></a>
