@@ -6,3 +6,6 @@ python setup.py build
 python setup.py sdist bdist_wheel
 twine upload -r testpypi dist/*
 twine upload dist/*  
+
+pip install -e .
+pytest
