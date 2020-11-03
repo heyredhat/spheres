@@ -1,7 +1,0 @@
-sphinx==3.3.0
-autodoc
-sphinxcontrib-napoleon
-recommonmark
-coverage
-sphinx_rtd_theme
-mathjax

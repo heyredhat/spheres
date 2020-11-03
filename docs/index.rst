@@ -1,8 +1,10 @@
+.. spheres documentation master file, created by
+   sphinx-quickstart on Tue Nov  3 06:57:21 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
 Welcome to spheres's documentation!
 ===================================
-
-.. automodule:: spheres
-    :members:
 
 .. toctree::
    :maxdepth: 2
