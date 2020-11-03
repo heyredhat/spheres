@@ -3,6 +3,9 @@ Implementation of the "Majorana stars" formalism.
 
 """
 
+import numpy as np
+
+
 def c_xyz(z, pole="south"):
     """
     `Stereographic projection <https://en.wikipedia.org/wiki/Stereographic_projection>`_ 
