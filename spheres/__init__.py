@@ -1,6 +1,8 @@
 """
 toolbox for higher spin and symmetrization!
 
+..  automodule:: spheres.stars
+	:members:
 """
 
 from spheres import stars
