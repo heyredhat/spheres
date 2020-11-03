@@ -12,9 +12,4 @@ pytest
 
 pytest --cov=spheres
 
-codecov:
-
-CODECOV_TOKEN="23bcbdc7-5328-4087-8736-7fcb1245f122"
-bash <(curl -s https://codecov.io/bash)
-
 bash <(curl -s https://codecov.io/bash) -t '23bcbdc7-5328-4087-8736-7fcb1245f122'
