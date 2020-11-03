@@ -10,7 +10,11 @@ Welcome to spheres's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. automodule:: spheres
+   :members:
 
+.. automodule:: spheres.stars
+   :members:
 
 Indices and tables
 ==================

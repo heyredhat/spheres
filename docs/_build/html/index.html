@@ -30,6 +30,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -153,6 +154,42 @@
 <h1>Welcome to spheres’s documentation!<a class="headerlink" href="#welcome-to-spheres-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<span class="target" id="module-spheres"></span><p>toolbox for higher spin and symmetrization!</p>
+<dl class="py function">
+<dt id="spheres.test">
+<code class="sig-prename descclassname">spheres.</code><code class="sig-name descname">test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres.html#test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.test" title="Permalink to this definition">¶</a></dt>
+<dd><p>great test</p>
+</dd></dl>
+
+<span class="target" id="module-spheres.stars"></span><p>Implementation of the “Majorana stars” formalism.</p>
+<dl class="py function">
+<dt id="spheres.stars.c_xyz">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">c_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#c_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.c_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stereographic projection of complex point to the unit sphere.</p>
+<div class="math notranslate nohighlight">
+\[(a +b)^2\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> (<em>complex</em>) – Point on the complex plane</p></li>
+<li><p><strong>pole</strong> (<em>str</em>) – Whether to project from the North or South pole</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>XYZ coords</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.xyz_c">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse stereographic projection from the unit sphere to the complex plane.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
