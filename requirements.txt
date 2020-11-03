@@ -1,4 +1,6 @@
 sphinx==3.3.0
 sphinx_rtd_theme==0.4.3
 pytest
+pytest-cov
+pylint
 numpy
