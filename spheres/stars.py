@@ -1,10 +1,9 @@
 """
-Implementation of the "Majorana stars" formalism.
+Implementation of the "Majorana stars" formalism for higher spin.
 
 """
 
 import numpy as np
-
 
 def c_xyz(z, pole="south"):
     """
@@ -32,7 +31,7 @@ def c_xyz(z, pole="south"):
 
     """
     if(pole == "south"):
-        if z == float("Inf"):
+        if z == np.inf:
             return np.array([0,0,-1])
         else:
             x, y = z.real, z.imag
@@ -40,7 +39,7 @@ def c_xyz(z, pole="south"):
                              2*y/(1 + x**2 + y**2),\
                    (1-x**2-y**2)/(1 + x**2 + y**2)])
     elif (pole == "north"):
-        if z == float("Inf"):
+        if z == np.inf:
             return np.array([0,0,1])
         else:
             x, y = z.real, z.imag
@@ -73,13 +72,13 @@ def xyz_c(xyz, pole="south"):
 
     """
     x, y, z = xyz
-    if (pole=="south"):
-        if np.isclose(z,-1):
-            return float("Inf")
+    if pole == "south":
+        if np.isclose(z, -1):
+            return np.inf
         else:
             return x/(1+z) + 1j*y/(1+z)
-    elif (pole=="north"):
-        if np.isclose(z,1):
-            return float("Inf")
+    elif pole == "north":
+        if np.isclose(z, 1):
+            return np.inf
         else:
             return x/(1-z) + 1j*y/(1-z)

@@ -7,6 +7,9 @@ toolbox for higher spin and symmetrization!
 
 import numpy as np
 
+from spheres import utils
+from spheres.utils import *
+
 from spheres import stars
 from spheres.stars import *
 
