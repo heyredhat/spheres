@@ -13,5 +13,3 @@ pip install -e .
 pytest
 
 pytest --cov=spheres
-
-bash <(curl -s https://codecov.io/bash) -t '23bcbdc7-5328-4087-8736-7fcb1245f122'
