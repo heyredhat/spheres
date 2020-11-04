@@ -1,3 +1,5 @@
 sphinx
 sphinx_rtd_theme
 numpy
+qutip
+matplotlib

@@ -83,7 +83,11 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to spheres’s documentation!</a></li>
+<li><a class="reference internal" href="#">Welcome to spheres’s documentation!</a><ul>
+<li><a class="reference internal" href="#majorana-stars">Majorana Stars</a></li>
+<li><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </div>
@@ -155,16 +159,43 @@
 <div class="toctree-wrapper compound">
 </div>
 <span class="target" id="module-spheres"></span><p>toolbox for higher spin and symmetrization!</p>
-<span class="target" id="module-spheres.stars"></span><p>Implementation of the “Majorana stars” formalism.</p>
+<span class="target" id="module-spheres.stars"></span><div class="section" id="majorana-stars">
+<h2>Majorana Stars<a class="headerlink" href="#majorana-stars" title="Permalink to this headline">¶</a></h2>
+<p>Implementation of the “Majorana stars” formalism for higher spin.</p>
+<dl class="py function">
+<dt id="spheres.stars.c_spinor">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">c_spinor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#c_spinor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.c_spinor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts extended complex coordinate to spinor.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">If <span class="math notranslate nohighlight">\(c = \infty\)</span>, returns <span class="math notranslate nohighlight">\(\begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span>.</div>
+<div class="line">Otherwise, returns <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{1+|c|^2}} \begin{pmatrix} 1 \\ c \end{pmatrix}\)</span></div>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>c</strong> (<em>complex</em><em> or </em><em>inf</em>) – Extended complex coordinate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>spinor</strong> – Normalized spinor.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt id="spheres.stars.c_xyz">
-<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">c_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">z</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#c_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.c_xyz" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">c_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#c_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.c_xyz" title="Permalink to this definition">¶</a></dt>
 <dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Stereographic_projection">Stereographic projection</a>
-from the extended complex plane to the unit sphere.</p>
-<p>Given coordinate <span class="math notranslate nohighlight">\(z=x+iy\)</span> or <span class="math notranslate nohighlight">\(\infty\)</span>,
-returns <span class="math notranslate nohighlight">\((0,0,-1)\)</span> if <span class="math notranslate nohighlight">\(z = \infty\)</span>, otherwise:</p>
-<div class="math notranslate nohighlight">
-\[(\frac{2x}{1+x^2+y^2}, \frac{2y}{1+x^2+y^2}, \frac{1-x^2-y^2}{1+x^2+y^2})\]</div>
+from the extended complex plane to the unit sphere. Given coordinate <span class="math notranslate nohighlight">\(c=x+iy\)</span> or <span class="math notranslate nohighlight">\(\infty\)</span>:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">If <span class="math notranslate nohighlight">\(c = \infty\)</span>, returns <span class="math notranslate nohighlight">\((0,0,-1)\)</span>.</div>
+<div class="line">Otherwise, returns <span class="math notranslate nohighlight">\((\frac{2x}{1+x^2+y^2}, \frac{2y}{1+x^2+y^2}, \frac{1-x^2-y^2}{1+x^2+y^2})\)</span>.</div>
+</div>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -173,7 +204,73 @@ returns <span class="math notranslate nohighlight">\((0,0,-1)\)</span> if <span 
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>XYZ coordinates.</p>
+<dd class="field-even"><p>Cartesian coordinates of point on unit sphere.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.sph_xyz">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">sph_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sph</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#sph_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.sph_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts spherical coordinates <span class="math notranslate nohighlight">\((r, \phi, \theta)\)</span> to cartesian coordinates <span class="math notranslate nohighlight">\((x, y, z)\)</span>.
+We use the physicist’s convention: <span class="math notranslate nohighlight">\(r \in [0, \infty)\)</span>, <span class="math notranslate nohighlight">\(\phi \in [0, 2\pi]\)</span>, <span class="math notranslate nohighlight">\(\theta \in [0, \pi]\)</span>.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\(x = r\sin{\theta}\cos(\phi)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y = r\sin{\theta}\sin(\phi)\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(z = r\cos(\theta)\)</span></div>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sph</strong> (<em>np.ndarray</em>) – Spherical coordinates.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>xyz</strong> – Cartesian coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.spinor_c">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">spinor_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spinor</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#spinor_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.spinor_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts spinor <span class="math notranslate nohighlight">\(\begin{pmatrix} a \\ b \end{pmatrix}\)</span> to extended complex coordinate.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">If <span class="math notranslate nohighlight">\(a = 0\)</span>, returns <span class="math notranslate nohighlight">\(\infty\)</span>.</div>
+<div class="line">Otherwise returns <span class="math notranslate nohighlight">\(\frac{b}{a}\)</span>.</div>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spinor</strong> (<em>qt.Qobj</em>) – Normalized spinor.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>c</strong> – Extended complex coordinate.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>complex or inf</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.spinor_xyz">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">spinor_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spinor</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#spinor_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.spinor_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts spinor <span class="math notranslate nohighlight">\(\mid \psi \rangle\)</span> to cartesian coordinates by taking the expectation values
+with the three Pauli matrices: <span class="math notranslate nohighlight">\((\langle \psi \mid X \mid \psi \rangle, \langle \psi \mid Y \mid \psi \rangle, \langle \psi \mid Z \mid \psi \rangle)\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spinor</strong> (<em>qt.Qobj</em>) – Spinor.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>xyz</strong> – Cartesian coordinates.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
@@ -186,13 +283,16 @@ returns <span class="math notranslate nohighlight">\((0,0,-1)\)</span> if <span 
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em>, <em class="sig-param"><span class="n">pole</span><span class="o">=</span><span class="default_value">'south'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_c" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reverse <a class="reference external" href="https://en.wikipedia.org/wiki/Stereographic_projection">Stereographic projection</a>
 from the unit sphere to the extended complex plane.</p>
-<p>Given <span class="math notranslate nohighlight">\((0,0,-1)\)</span>, returns <span class="math notranslate nohighlight">\(\infty\)</span>. Otherwise:</p>
-<div class="math notranslate nohighlight">
-\[z = (\frac{x}{1+z}) + i(\frac{y}{1+z})\]</div>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Given <span class="math notranslate nohighlight">\((0,0,-1)\)</span>, returns <span class="math notranslate nohighlight">\(\infty\)</span>.</div>
+<div class="line">Otherwise returns <span class="math notranslate nohighlight">\(c = (\frac{x}{1+z}) + i(\frac{y}{1+z})\)</span>.</div>
+</div>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>xyz</strong> (<em>np.ndarray</em>) – Point on the unit sphere.</p></li>
+<li><p><strong>xyz</strong> (<em>np.ndarray</em>) – Cartesian coordinates of point on unit sphere.</p></li>
 <li><p><strong>pole</strong> (<em>str</em><em>, </em><em>default 'south'</em>) – Whether to reverse project from the North or South pole.</p></li>
 </ul>
 </dd>
@@ -205,6 +305,86 @@ from the unit sphere to the extended complex plane.</p>
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt id="spheres.stars.xyz_sph">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_sph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_sph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_sph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts cartesian coordinates <span class="math notranslate nohighlight">\((x, y, z)\)</span> to spherical coordinates <span class="math notranslate nohighlight">\((r, \phi, \theta)\)</span>.
+We use the physicist’s convention:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">radius <span class="math notranslate nohighlight">\(r = \sqrt{x^2 + y^2 + z^2} \in [0, \infty)\)</span></div>
+<div class="line">azimuth <span class="math notranslate nohighlight">\(\phi = \arctan{\frac{y}{x}} \in [0, 2\pi]\)</span></div>
+<div class="line">inclination: <span class="math notranslate nohighlight">\(\theta = \arccos{\frac{z}{\sqrt{x^2 + y^2 + z^2}}} \in [0, \pi]\)</span></div>
+</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>xyz</strong> (<em>np.ndarray</em>) – Cartesian coordinates.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sph</strong> – Spherical coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.xyz_spinor">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_spinor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_spinor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_spinor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts cartesian coordinates to spinor by reverse stereographic projection
+to the extended complex plane, and then lifting the latter to a 2-vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>xyz</strong> (<em>np.ndarray</em>) – Cartesian coordinates.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>spinor</strong> – Spinor.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<span class="target" id="module-spheres.utils"></span><div class="section" id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="spheres.utils.components">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">components</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts components of qt.Qobj, whether bra or ket.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.normalize">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#normalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes numpy vector. Simply passes the vector through
+if its norm is 0.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.normalize_phase">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">normalize_phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#normalize_phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.normalize_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes the phase of a complex vector (np.ndarray or qt.Qobj).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.phase">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">phase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts phase of complex vector (np.ndarray or qt.Qobj) by finding
+the first non-zero component and returning its phase.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.rand_c">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">rand_c</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#rand_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.rand_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates random complex number whose real and imaginary parts
+are normally distributed.</p>
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
