@@ -8,4 +8,4 @@ def test_c_xyz():
 
 def test_xyz_c():
 	xyz = normalize(np.random.randn(3))
-	assert np.isclose(c_xyz(xyz_c(xyz)), xyz)
+	assert np.isclose(c_xyz(xyz_c(xyz)), xyz).all()
