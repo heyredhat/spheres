@@ -165,7 +165,7 @@
 <dl class="py function">
 <dt id="spheres.stars.c_spinor">
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">c_spinor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#c_spinor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.c_spinor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts extended complex coordinate to spinor.</p>
+<dd><p>Converts extended complex coordinate to a spinor.</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">If <span class="math notranslate nohighlight">\(c = \infty\)</span>, returns <span class="math notranslate nohighlight">\(\begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span>.</div>
@@ -213,6 +213,63 @@ from the extended complex plane to the unit sphere. Given coordinate <span class
 </dd></dl>
 
 <dl class="py function">
+<dt id="spheres.stars.poly_roots">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">poly_roots</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">poly</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#poly_roots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.poly_roots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a Majorana polynomial to its roots. We use numpy’s polynomial solver.
+The number of initial coefficients which are 0 are intepreted as the number of
+roots at <span class="math notranslate nohighlight">\(\infty\)</span>. In other words, to the extent that the degree of
+a Majorana polynomial corresponding to a spin-j state is less than 2j+1, we add
+that many roots at <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>poly</strong> (<em>np.ndarray</em>) – 2j+1 Majorana polynomial coefficients.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>roots</strong> – Roots on the extended complex plane.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.poly_spin">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">poly_spin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">poly</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#poly_spin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.poly_spin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a Majorana polynomial into a spin-j state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>poly</strong> (<em>np.ndarray</em>) – 2j+1 Majorana polynomial coefficients.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>spin</strong> – Spin-j state.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.roots_poly">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">roots_poly</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">roots</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#roots_poly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.roots_poly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a set of points on the extended complex plane and forms the polynomial
+which has these points as roots. Roots at <span class="math notranslate nohighlight">\(\infty\)</span> turn into initial
+zero coefficients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>roots</strong> (<em>list</em>) – Roots on the extended complex plane.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>poly</strong> – 2j+1 Majorana polynomial coefficients.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="spheres.stars.sph_xyz">
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">sph_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sph</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#sph_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.sph_xyz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts spherical coordinates <span class="math notranslate nohighlight">\((r, \phi, \theta)\)</span> to cartesian coordinates <span class="math notranslate nohighlight">\((x, y, z)\)</span>.
@@ -230,6 +287,45 @@ We use the physicist’s convention: <span class="math notranslate nohighlight">
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>xyz</strong> – Cartesian coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.spin_poly">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">spin_poly</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spin</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#spin_poly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.spin_poly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a spin into its Majorana polynomial, which is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[p(z) = \sum_{m=-j}^{m=j} (-1)^{j+m} \sqrt{\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} z^{j-m}\]</div>
+<p>Here, the <span class="math notranslate nohighlight">\(a\)</span>’s run through the components of the spin in the <span class="math notranslate nohighlight">\(\mid j, m\rangle\)</span> representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spin</strong> (<em>qt.Qobj</em>) – Spin-j state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>poly</strong> – 2j+1 Majorana polynomial coefficients.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.spin_xyz">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">spin_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spin</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#spin_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.spin_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a spin-j state and returns the cartesian coordinates on the unit sphere
+corresponding to its “Majorana stars.” Each contributes a quantum of angular
+momentum <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> to the overal spin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spin</strong> (<em>qt.Qobj</em>) – Spin-j state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>xyz</strong> – A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
@@ -331,9 +427,27 @@ We use the physicist’s convention:</p>
 </dd></dl>
 
 <dl class="py function">
+<dt id="spheres.stars.xyz_spin">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_spin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_spin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_spin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the cartesian coordinates of a set of “Majorana stars,” returns the
+corresponding spin-j state, which is defined only up to complex phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>xyz</strong> (<em>np.ndarray</em>) – A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>spin</strong> – Spin-j state.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="spheres.stars.xyz_spinor">
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_spinor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_spinor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_spinor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts cartesian coordinates to spinor by reverse stereographic projection
+<dd><p>Converts cartesian coordinates to a spinor by reverse stereographic projection
 to the extended complex plane, and then lifting the latter to a 2-vector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -351,6 +465,18 @@ to the extended complex plane, and then lifting the latter to a 2-vector.</p>
 </div>
 <span class="target" id="module-spheres.utils"></span><div class="section" id="utility-functions">
 <h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="spheres.utils.compare_nophase">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">compare_nophase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#compare_nophase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.compare_nophase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares two vectors disregarding their overall complex phase.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.compare_unordered">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">compare_unordered</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">B</span></em>, <em class="sig-param"><span class="n">decimals</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#compare_unordered"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.compare_unordered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares two sets of vectors regardless of their ordering.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt id="spheres.utils.components">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">components</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.components" title="Permalink to this definition">¶</a></dt>
@@ -380,8 +506,14 @@ the first non-zero component and returning its phase.</p>
 <dl class="py function">
 <dt id="spheres.utils.rand_c">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">rand_c</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#rand_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.rand_c" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generates random complex number whose real and imaginary parts
-are normally distributed.</p>
+<dd><p>Generates random extended complex coordinate whose real and imaginary parts
+are normally distributed, and ten percent of the time, we return <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.rand_xyz">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">rand_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#rand_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.rand_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates n random points on the unit sphere in cartesian coordinates.</p>
 </dd></dl>
 
 </div>

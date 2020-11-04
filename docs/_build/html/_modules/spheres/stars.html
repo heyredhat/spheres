@@ -156,6 +156,9 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
 
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<span class="n">factorial</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span>
+
 <span class="kn">from</span> <span class="nn">spheres.utils</span> <span class="kn">import</span> <span class="o">*</span>
 
 <div class="viewcode-block" id="c_xyz"><a class="viewcode-back" href="../../index.html#spheres.stars.c_xyz">[docs]</a><span class="k">def</span> <span class="nf">c_xyz</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
@@ -279,7 +282,7 @@
 
 <div class="viewcode-block" id="c_spinor"><a class="viewcode-back" href="../../index.html#spheres.stars.c_spinor">[docs]</a><span class="k">def</span> <span class="nf">c_spinor</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Converts extended complex coordinate to spinor.</span>
+<span class="sd">    Converts extended complex coordinate to a spinor.</span>
 
 <span class="sd">        | If :math:`c = \\infty`, returns :math:`\\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}`.</span>
 <span class="sd">        | Otherwise, returns :math:`\\frac{1}{\\sqrt{1+|c|^2}} \\begin{pmatrix} 1 \\\\ c \\end{pmatrix}`</span>
@@ -319,7 +322,7 @@
 
 <div class="viewcode-block" id="xyz_spinor"><a class="viewcode-back" href="../../index.html#spheres.stars.xyz_spinor">[docs]</a><span class="k">def</span> <span class="nf">xyz_spinor</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Converts cartesian coordinates to spinor by reverse stereographic projection</span>
+<span class="sd">    Converts cartesian coordinates to a spinor by reverse stereographic projection</span>
 <span class="sd">    to the extended complex plane, and then lifting the latter to a 2-vector. </span>
 
 <span class="sd">    Parameters</span>
@@ -352,6 +355,140 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmax</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">),</span>\
                      <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmay</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">),</span>\
                      <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmaz</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">)])</span></div>
+
+<div class="viewcode-block" id="spin_poly"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_poly">[docs]</a><span class="k">def</span> <span class="nf">spin_poly</span><span class="p">(</span><span class="n">spin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a spin into its Majorana polynomial, which is defined as follows:</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        p(z) = \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} z^{j-m}</span>
+
+<span class="sd">    Here, the :math:`a`&#39;s run through the components of the spin in the :math:`\\mid j, m\\rangle` representation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spin : qt.Qobj</span>
+<span class="sd">        Spin-j state.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    poly : np.ndarray</span>
+<span class="sd">        2j+1 Majorana polynomial coefficients.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>\
+            <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)]</span><span class="o">*</span>\
+                <span class="p">(((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)))</span><span class="o">*</span>\
+                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">factorial</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">m</span><span class="p">))))</span>
+                    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span></div>
+
+<div class="viewcode-block" id="poly_spin"><a class="viewcode-back" href="../../index.html#spheres.stars.poly_spin">[docs]</a><span class="k">def</span> <span class="nf">poly_spin</span><span class="p">(</span><span class="n">poly</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a Majorana polynomial into a spin-j state.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        poly : np.ndarray</span>
+<span class="sd">            2j+1 Majorana polynomial coefficients.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>\
+            <span class="p">[</span><span class="n">poly</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)]</span><span class="o">/</span>\
+                <span class="p">(((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)))</span><span class="o">*</span>\
+                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">factorial</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">m</span><span class="p">))))</span>
+                    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]))</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="poly_roots"><a class="viewcode-back" href="../../index.html#spheres.stars.poly_roots">[docs]</a><span class="k">def</span> <span class="nf">poly_roots</span><span class="p">(</span><span class="n">poly</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a Majorana polynomial to its roots. We use numpy&#39;s polynomial solver. </span>
+<span class="sd">    The number of initial coefficients which are 0 are intepreted as the number of</span>
+<span class="sd">    roots at :math:`\\infty`. In other words, to the extent that the degree of </span>
+<span class="sd">    a Majorana polynomial corresponding to a spin-j state is less than 2j+1, we add</span>
+<span class="sd">    that many roots at :math:`\\infty`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        poly : np.ndarray</span>
+<span class="sd">            2j+1 Majorana polynomial coefficients.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        roots : list</span>
+<span class="sd">            Roots on the extended complex plane.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">poly</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">complex</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">poly</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="roots_poly"><a class="viewcode-back" href="../../index.html#spheres.stars.roots_poly">[docs]</a><span class="k">def</span> <span class="nf">roots_poly</span><span class="p">(</span><span class="n">roots</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a set of points on the extended complex plane and forms the polynomial </span>
+<span class="sd">    which has these points as roots. Roots at :math:`\\infty` turn into initial</span>
+<span class="sd">    zero coefficients.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        roots : list</span>
+<span class="sd">            Roots on the extended complex plane.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        poly : np.ndarray</span>
+<span class="sd">            2j+1 Majorana polynomial coefficients.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">zeros</span> <span class="o">=</span> <span class="n">roots</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">zeros</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">roots</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">roots</span><span class="p">))</span>
+    <span class="n">poles</span> <span class="o">=</span> <span class="n">roots</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">poles</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">roots</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">poles</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span> <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span> <span class="k">if</span> <span class="n">root</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">))</span><span class="o">*</span><span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>\
+                        <span class="k">for</span> <span class="n">terms</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">i</span><span class="p">)])</span>\
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">roots</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">poles</span><span class="p">),</span> <span class="n">coeffs</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="spin_xyz"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_xyz">[docs]</a><span class="k">def</span> <span class="nf">spin_xyz</span><span class="p">(</span><span class="n">spin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a spin-j state and returns the cartesian coordinates on the unit sphere</span>
+<span class="sd">    corresponding to its &quot;Majorana stars.&quot; Each contributes a quantum of angular </span>
+<span class="sd">    momentum :math:`\\frac{1}{2}` to the overal spin.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        xyz : np.ndarray</span>
+<span class="sd">            A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c_xyz</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">poly_roots</span><span class="p">(</span><span class="n">spin_poly</span><span class="p">(</span><span class="n">spin</span><span class="p">))])</span></div>
+
+<div class="viewcode-block" id="xyz_spin"><a class="viewcode-back" href="../../index.html#spheres.stars.xyz_spin">[docs]</a><span class="k">def</span> <span class="nf">xyz_spin</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given the cartesian coordinates of a set of &quot;Majorana stars,&quot; returns the</span>
+<span class="sd">    corresponding spin-j state, which is defined only up to complex phase.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        xyz : np.ndarray</span>
+<span class="sd">            A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">poly_spin</span><span class="p">(</span><span class="n">roots_poly</span><span class="p">([</span><span class="n">xyz_c</span><span class="p">(</span><span class="n">star</span><span class="p">)</span> <span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="n">xyz</span><span class="p">]))</span></div>
 </pre></div>
 
            </div>

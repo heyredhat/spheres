@@ -9,6 +9,9 @@ Implementation of the "Majorana stars" formalism for higher spin.
 import numpy as np
 import qutip as qt
 
+from itertools import combinations
+factorial = np.math.factorial
+
 from spheres.utils import *
 
 def c_xyz(c, pole="south"):
@@ -132,7 +135,7 @@ def sph_xyz(sph):
 
 def c_spinor(c):
     """
-    Converts extended complex coordinate to spinor.
+    Converts extended complex coordinate to a spinor.
 
         | If :math:`c = \\infty`, returns :math:`\\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}`.
         | Otherwise, returns :math:`\\frac{1}{\\sqrt{1+|c|^2}} \\begin{pmatrix} 1 \\\\ c \\end{pmatrix}`
@@ -172,7 +175,7 @@ def spinor_c(spinor):
 
 def xyz_spinor(xyz):
     """
-    Converts cartesian coordinates to spinor by reverse stereographic projection
+    Converts cartesian coordinates to a spinor by reverse stereographic projection
     to the extended complex plane, and then lifting the latter to a 2-vector. 
 
     Parameters
@@ -205,3 +208,137 @@ def spinor_xyz(spinor):
     return np.array([qt.expect(qt.sigmax(), spinor),\
                      qt.expect(qt.sigmay(), spinor),\
                      qt.expect(qt.sigmaz(), spinor)])
+
+def spin_poly(spin):
+    """
+    Converts a spin into its Majorana polynomial, which is defined as follows:
+
+    .. math::
+
+        p(z) = \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} z^{j-m}
+
+    Here, the :math:`a`'s run through the components of the spin in the :math:`\\mid j, m\\rangle` representation.
+
+    Parameters
+    ----------
+    spin : qt.Qobj
+        Spin-j state.
+
+    Returns
+    -------
+    poly : np.ndarray
+        2j+1 Majorana polynomial coefficients.
+    """
+    j = (spin.shape[0]-1)/2
+    v = components(spin)
+    return np.array(\
+            [v[int(m+j)]*\
+                (((-1)**(int(m+j)))*\
+                np.sqrt(factorial(2*j)/(factorial(j-m)*factorial(j+m))))
+                    for m in np.arange(-j, j+1)])
+
+def poly_spin(poly):
+    """
+    Converts a Majorana polynomial into a spin-j state.
+
+    Parameters
+    ----------
+        poly : np.ndarray
+            2j+1 Majorana polynomial coefficients.
+
+    Returns
+    -------
+        spin : qt.Qobj
+            Spin-j state.
+    """
+    j = (len(poly)-1)/2
+    return qt.Qobj(np.array(\
+            [poly[int(m+j)]/\
+                (((-1)**(int(m+j)))*\
+                np.sqrt(factorial(2*j)/(factorial(j-m)*factorial(j+m))))
+                    for m in np.arange(-j, j+1)])).unit()
+
+def poly_roots(poly):
+    """
+    Takes a Majorana polynomial to its roots. We use numpy's polynomial solver. 
+    The number of initial coefficients which are 0 are intepreted as the number of
+    roots at :math:`\\infty`. In other words, to the extent that the degree of 
+    a Majorana polynomial corresponding to a spin-j state is less than 2j+1, we add
+    that many roots at :math:`\\infty`.
+
+    Parameters
+    ----------
+        poly : np.ndarray
+            2j+1 Majorana polynomial coefficients.
+
+    Returns
+    -------
+        roots : list
+            Roots on the extended complex plane.
+
+    """
+    return [np.inf]*np.flatnonzero(poly)[0] + [complex(root) for root in np.roots(poly)]
+
+def roots_poly(roots):
+    """
+    Takes a set of points on the extended complex plane and forms the polynomial 
+    which has these points as roots. Roots at :math:`\\infty` turn into initial
+    zero coefficients.
+
+    Parameters
+    ----------
+        roots : list
+            Roots on the extended complex plane.
+
+    Returns
+    -------
+        poly : np.ndarray
+            2j+1 Majorana polynomial coefficients.
+
+    """
+    zeros = roots.count(0j)
+    if zeros == len(roots):
+        return np.array([1] + [0j]*len(roots))
+    poles = roots.count(np.inf)
+    if poles == len(roots):
+        return np.array([0j]*poles + [1])
+    roots = [root for root in roots if root != np.inf]
+    coeffs = np.array([((-1)**(-i))*sum([np.prod(terms)\
+                        for terms in combinations(roots, i)])\
+                            for i in range(len(roots)+1)])
+    return np.concatenate([np.zeros(poles), coeffs])
+
+def spin_xyz(spin):
+    """
+    Takes a spin-j state and returns the cartesian coordinates on the unit sphere
+    corresponding to its "Majorana stars." Each contributes a quantum of angular 
+    momentum :math:`\\frac{1}{2}` to the overal spin.
+
+    Parameters
+    ----------
+        spin : qt.Qobj
+            Spin-j state.
+
+    Returns
+    -------
+        xyz : np.ndarray
+            A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.
+    """
+    return np.array([c_xyz(root) for root in poly_roots(spin_poly(spin))])
+
+def xyz_spin(xyz):
+    """
+    Given the cartesian coordinates of a set of "Majorana stars," returns the
+    corresponding spin-j state, which is defined only up to complex phase.
+
+    Parameters
+    ----------
+        xyz : np.ndarray
+            A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.
+
+    Returns
+    -------
+        spin : qt.Qobj
+            Spin-j state.
+    """
+    return poly_spin(roots_poly([xyz_c(star) for star in xyz]))

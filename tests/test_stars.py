@@ -6,18 +6,18 @@ def test_c_xyz():
 	assert np.isclose(xyz_c(c_xyz(c)), c)
 
 def test_xyz_c():
-	xyz = normalize(np.random.randn(3))
-	assert np.isclose(c_xyz(xyz_c(xyz)), xyz).all()
+	xyz = rand_xyz()
+	assert np.allclose(c_xyz(xyz_c(xyz)), xyz)
 
 def test_xyz_sph():
 	xyz = np.random.randn(3)
-	assert np.isclose(sph_xyz(xyz_sph(xyz)), xyz).all()
+	assert np.allclose(sph_xyz(xyz_sph(xyz)), xyz)
 
 def test_sph_xyz():
 	sph = np.array([np.random.random(),\
 					2*np.pi*np.random.random(),\
 					np.pi*np.random.random()])
-	assert np.isclose(xyz_sph(sph_xyz(sph)), sph).all()
+	assert np.allclose(xyz_sph(sph_xyz(sph)), sph)
 
 def test_c_spinor():
 	c = rand_c()
@@ -25,12 +25,23 @@ def test_c_spinor():
 
 def test_spinor_c():
 	spinor = qt.rand_ket(2)
-	assert np.isclose(c_spinor(spinor_c(spinor)), normalize_phase(spinor)).all()
+	assert compare_nophase(c_spinor(spinor_c(spinor)), spinor)
 
 def test_xyz_spinor():
 	xyz = normalize(np.random.randn(3))
-	assert np.isclose(spinor_xyz(xyz_spinor(xyz)), xyz).all()
+	assert np.allclose(spinor_xyz(xyz_spinor(xyz)), xyz)
 
 def test_spinor_xyz():
 	spinor = qt.rand_ket(2)
-	assert np.isclose(xyz_spinor(spinor_xyz(spinor)), normalize_phase(spinor)).all()
+	assert compare_nophase(xyz_spinor(spinor_xyz(spinor)), spinor)
+
+def test_spin_xyz():
+	for i in range(5):
+		spin = qt.basis(5, i)
+		assert np.allclose(poly_spin(spin_poly(spin)), spin)
+	spin = qt.rand_ket(5)
+	assert compare_nophase(xyz_spin(spin_xyz(spin)), spin)
+
+def test_xyz_spin():
+	xyz = rand_xyz(4)
+	assert compare_unordered(spin_xyz(xyz_spin(xyz)), xyz)

@@ -1,11 +1,32 @@
 """
 Utility Functions
---------------
-
+-----------------
 """
 
 import numpy as np
 import qutip as qt
+
+def rand_c():
+    """
+    Generates random extended complex coordinate whose real and imaginary parts
+    are normally distributed, and ten percent of the time, we return :math:`\\infty`.
+    """
+    return np.random.randn() + 1j*np.random.randn() if np.random.random() > 0.1 else np.inf
+
+def rand_xyz(n=1):
+    """
+    Generates n random points on the unit sphere in cartesian coordinates.
+    """
+    if n == 1:
+        return normalize(np.random.randn(3))
+    return np.array([normalize(np.random.randn(3)) for i in range(n)])
+
+def components(q):
+    """
+    Extracts components of qt.Qobj, whether bra or ket.
+    """
+    return (q.full().T[0] if q.type == "ket" else q.full()[0])\
+                if type(q) == qt.Qobj else q
 
 def normalize(v):
     """
@@ -14,12 +35,6 @@ def normalize(v):
     """
     n = np.linalg.norm(v)
     return v/n if not np.isclose(n, 0) else v
-
-def components(q):
-    """
-    Extracts components of qt.Qobj, whether bra or ket.
-    """
-    return q.full().T[0] if q.type == "ket" else q.full()[0]
 
 def phase(v):
     """
@@ -35,9 +50,15 @@ def normalize_phase(v):
     """
     return v/phase(v)
 
-def rand_c():
+def compare_unordered(A, B, decimals=5):
     """
-    Generates random complex number whose real and imaginary parts
-    are normally distributed.  
+    Compares two sets of vectors regardless of their ordering.
     """
-    return np.random.randn() + 1j*np.random.randn()
+    A, B = np.around(A), np.around(B)
+    return np.array([a in B for a in A]).all()
+
+def compare_nophase(a, b):
+    """
+    Compares two vectors disregarding their overall complex phase.
+    """
+    return np.allclose(normalize_phase(a), normalize_phase(b))
