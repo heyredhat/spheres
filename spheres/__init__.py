@@ -4,6 +4,9 @@ toolbox for higher spin and symmetrization!
 ..  automodule:: spheres.stars
 	:members:
 
+..  automodule:: spheres.symmetrization
+	:members:
+
 .. automodule:: spheres.utils
 	:members:
 	
@@ -17,6 +20,12 @@ from spheres.utils import *
 
 from spheres import stars
 from spheres.stars import *
+
+from spheres import symmetrization
+from spheres.symmetrization import *
+
+from spheres import visualization
+from spheres.visualization import *
 
 __version__ = "0.0.1"
  

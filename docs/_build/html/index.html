@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to spheres’s documentation! &mdash; spheres 0.0.1 documentation</title>
+  <title>Welcome to the documentation of spheres! &mdash; spheres 0.0.1 documentation</title>
   
 
   
@@ -83,8 +83,9 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to spheres’s documentation!</a><ul>
+<li><a class="reference internal" href="#">Welcome to the documentation of spheres!</a><ul>
 <li><a class="reference internal" href="#majorana-stars">Majorana Stars</a></li>
+<li><a class="reference internal" href="#symmetrization">Symmetrization</a></li>
 <li><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
 </ul>
 </li>
@@ -135,7 +136,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to spheres’s documentation!</li>
+      <li>Welcome to the documentation of spheres!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,8 +155,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-spheres-s-documentation">
-<h1>Welcome to spheres’s documentation!<a class="headerlink" href="#welcome-to-spheres-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="welcome-to-the-documentation-of-spheres">
+<h1>Welcome to the documentation of spheres!<a class="headerlink" href="#welcome-to-the-documentation-of-spheres" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <span class="target" id="module-spheres"></span><p>toolbox for higher spin and symmetrization!</p>
@@ -208,6 +209,38 @@ from the extended complex plane to the unit sphere. Given coordinate <span class
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.mobius">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">mobius</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">abcd</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#mobius"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.mobius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given parameters <span class="math notranslate nohighlight">\(\begin{pmatrix} a &amp; b \\ b &amp; c \end{pmatrix}\)</span>,
+arranged in a 2x2 matrix, returns a function which implements the
+corresponding <a class="reference external" href="https://en.wikipedia.org/wiki/M%C3%B6bius_transformation">Möbius transformation</a></p>
+<div class="math notranslate nohighlight">
+\[f(z) = \frac{az+b}{cz+d}\]</div>
+<p>which acts on the extended complex plane. Note that if <span class="math notranslate nohighlight">\(c \neq 0\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f(-\frac{d}{c}) = \infty\\f(\infty) = \frac{a}{c}\end{aligned}\end{align} \]</div>
+<p>And if <span class="math notranslate nohighlight">\(c = 0\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[f(\infty) = \infty\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>abcd</strong> (<em>np.ndarray</em><em> or </em><em>qt.Qobj</em>) – 2x2 matrix representing Möbius parameters.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mobius</strong> – A function which takes an extended complex coordinate as input,
+and returns an extended complex coordinate as output.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>func</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – If <span class="math notranslate nohighlight">\(ad = bc\)</span>, then <span class="math notranslate nohighlight">\(f(z) = \frac{a}{c}\)</span>, a constant function,
+    which doesn’t qualify as a Möbius transformation.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -315,11 +348,28 @@ We use the physicist’s convention: <span class="math notranslate nohighlight">
 </dd></dl>
 
 <dl class="py function">
+<dt id="spheres.stars.spin_spinors">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">spin_spinors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spin</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#spin_spinors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.spin_spinors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a spin-j state and returns its decomposition into 2j spinors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spin</strong> (<em>qt.Qobj</em>) – Spin-j state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>spinors</strong> – 2j spinors.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="spheres.stars.spin_xyz">
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">spin_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spin</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#spin_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.spin_xyz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes a spin-j state and returns the cartesian coordinates on the unit sphere
 corresponding to its “Majorana stars.” Each contributes a quantum of angular
-momentum <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> to the overal spin.</p>
+momentum <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> to the overall spin.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>spin</strong> (<em>qt.Qobj</em>) – Spin-j state.</p>
@@ -370,6 +420,23 @@ with the three Pauli matrices: <span class="math notranslate nohighlight">\((\la
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.stars.spinors_spin">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">spinors_spin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spinors</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#spinors_spin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.spinors_spin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given 2j spinors constructs corresponding spin-j state (up to phase).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spinors</strong> (<em>list</em>) – 2j spinors.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>spin</strong> – Spin-j state.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
 </dd>
 </dl>
 </dd></dl>
@@ -463,12 +530,69 @@ to the extended complex plane, and then lifting the latter to a 2-vector.</p>
 </dd></dl>
 
 </div>
+<span class="target" id="module-spheres.symmetrization"></span><div class="section" id="symmetrization">
+<h2>Symmetrization<a class="headerlink" href="#symmetrization" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="spheres.symmetrization.spin_sym">
+<code class="sig-prename descclassname">spheres.symmetrization.</code><code class="sig-name descname">spin_sym</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">j</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/symmetrization.html#spin_sym"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.symmetrization.spin_sym" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an isometric linear map from spin-j states to
+permutation symmetric states of 2j spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>’s.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>j</strong> (<em>int</em>) – j value.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S</strong> – Linear map from <span class="math notranslate nohighlight">\(2j+1\)</span> dimensions to <span class="math notranslate nohighlight">\(2^{2j}\)</span> dimensions.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.symmetrization.symmetrize">
+<code class="sig-prename descclassname">spheres.symmetrization.</code><code class="sig-name descname">symmetrize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pieces</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/symmetrization.html#symmetrize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.symmetrization.symmetrize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of quantum states, constructs their symmetrized
+tensor product. If given a multipartite quantum state instead,
+we sum over all permutations on the subsystems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pieces</strong> (<em>list</em><em> or </em><em>qt.Qobj</em>) – List of quantum states or a multipartite state.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sym</strong> – Symmetrized tensor product.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <span class="target" id="module-spheres.utils"></span><div class="section" id="utility-functions">
 <h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="spheres.utils.bitstring_basis">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">bitstring_basis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bitstring</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#bitstring_basis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.bitstring_basis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a basis vector corresponding to a given bitstring,
+which may be a list of integers or a string of integers. The
+dimensionality of each tensor factor is given by dims, which may
+be either an integer (all the same dimensionality) or a list
+(a dimension for each factor).</p>
+</dd></dl>
+
 <dl class="py function">
 <dt id="spheres.utils.compare_nophase">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">compare_nophase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#compare_nophase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.compare_nophase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compares two vectors disregarding their overall complex phase.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.compare_spinors">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">compare_spinors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">B</span></em>, <em class="sig-param"><span class="n">decimals</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#compare_spinors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.compare_spinors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares two lists of spinors, disregarding both their phases,
+as well as their ordering in the list.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -514,6 +638,12 @@ are normally distributed, and ten percent of the time, we return <span class="ma
 <dt id="spheres.utils.rand_xyz">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">rand_xyz</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#rand_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.rand_xyz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates n random points on the unit sphere in cartesian coordinates.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.so3_generators">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">so3_generators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#so3_generators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.so3_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <span class="math notranslate nohighlight">\(SO(3)\)</span> generators <span class="math notranslate nohighlight">\(L_{x}, L_{y}, L_{z}\)</span>.</p>
 </dd></dl>
 
 </div>

@@ -54,7 +54,7 @@ def compare_unordered(A, B, decimals=5):
     """
     Compares two sets of vectors regardless of their ordering.
     """
-    A, B = np.around(A), np.around(B)
+    A, B = np.around(A, decimals=decimals), np.around(B, decimals=decimals)
     return np.array([a in B for a in A]).all()
 
 def compare_nophase(a, b):
@@ -62,3 +62,44 @@ def compare_nophase(a, b):
     Compares two vectors disregarding their overall complex phase.
     """
     return np.allclose(normalize_phase(a), normalize_phase(b))
+
+def compare_spinors(A, B, decimals=5):
+    """
+    Compares two lists of spinors, disregarding both their phases,
+    as well as their ordering in the list.
+    """
+    A = np.array([components(normalize_phase(a)) for a in A])
+    B = np.array([components(normalize_phase(b)) for b in B])
+    return compare_unordered(A, B, decimals=decimals)
+
+def so3_generators():
+    """
+    Returns :math:`SO(3)` generators :math:`L_{x}, L_{y}, L_{z}`.
+    """
+    Lx = np.array([[0,0,0],\
+                   [0,0,-1],\
+                   [0,1,0]])
+    Ly = np.array([[0,0,1],\
+                   [0,0,0],\
+                   [-1,0,0]])
+    Lz = np.array([[0,-1,0],\
+                   [1,0,0],\
+                   [0,0,0]])
+    return Lx, Ly, Lz
+
+def bitstring_basis(bitstring, dims=2):
+    """
+    Generates a basis vector corresponding to a given bitstring, 
+    which may be a list of integers or a string of integers. The
+    dimensionality of each tensor factor is given by dims, which may
+    be either an integer (all the same dimensionality) or a list 
+    (a dimension for each factor).
+    """
+    if type(bitstring) == str:
+        bitstring = [int(s) for s in bitstring]
+    if type(dims) != list:
+        dims = [dims]*len(bitstring)
+    return qt.tensor(*[qt.basis(dims[i], i)\
+                for i in range(len(bitstring))])
+
+

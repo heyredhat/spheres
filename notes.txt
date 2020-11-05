@@ -11,5 +11,4 @@ twine upload dist/*
 
 pip install -e .
 pytest
-
 pytest --cov=spheres

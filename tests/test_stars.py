@@ -45,3 +45,13 @@ def test_spin_xyz():
 def test_xyz_spin():
 	xyz = rand_xyz(4)
 	assert compare_unordered(spin_xyz(xyz_spin(xyz)), xyz)
+
+def test_spin_spinors():
+	spin = qt.rand_ket(5)
+	assert compare_nophase(spinors_spin(spin_spinors(spin)), spin)
+
+def test_spinors_spin():
+	spinors = [qt.rand_ket(2) for i in range(4)]
+	assert compare_spinors(spin_spinors(spinors_spin(spinors)), spinors)
+
+
