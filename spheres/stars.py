@@ -133,11 +133,36 @@ def sph_xyz(sph):
                      r*np.sin(theta)*np.sin(phi),\
                      r*np.cos(theta)])
 
-
 def c_sph(c):
+    """
+    Converts extended complex coordinate to spherical coordinates.
+
+    Parameters
+    ----------
+    c : complex or inf
+        Extended complex coordinate.
+
+    Returns
+    -------
+    sph : np.ndarray
+        Spherical coordinates :math:`r, \\phi, \\theta`.
+    """
     return xyz_sph(c_xyz(c))
 
 def sph_c(sph):
+    """
+    Converts spherical coordinates to extended complex coordinate.
+
+    Parameters
+    ----------
+    sph : np.ndarray
+        Spherical coordinates :math:`r, \\phi, \\theta`.
+
+    Returns
+    -------
+    c : complex or inf
+        Extended complex coordinate.
+    """
     return xyz_c(sph_xyz(sph))
 
 def c_spinor(c):
@@ -216,7 +241,39 @@ def spinor_xyz(spinor):
                      qt.expect(qt.sigmay(), spinor),\
                      qt.expect(qt.sigmaz(), spinor)])
 
-def spin_poly(spin, analytic=False,\
+def spinor_sph(spinor):
+    """
+    Converts spinor to spherical coordinates. 
+
+    Parameters
+    ----------
+    spinor : qt.Qobj
+        Spinor.
+
+    Returns
+    -------
+    sph : np.ndarray
+        Spherical coordinates :math:`r, \\phi, \\theta`.
+    """
+    return xyz_sph(spinor_xyz(spinor))
+
+def sph_spinor(sph):
+    """
+    Converts spherical coordinates to spinor. 
+
+    Parameters
+    ----------
+    sph : np.ndarray
+        Spherical coordinates :math:`r, \\phi, \\theta`.
+
+    Returns
+    -------
+    spinor : qt.Qobj
+        Spinor.
+    """
+    return xyz_spinor(sph_xyz(sph))
+
+def spin_poly(spin, projective=False,\
                     homogeneous=False,\
                     cartesian=False,\
                     spherical=False,\
@@ -230,15 +287,73 @@ def spin_poly(spin, analytic=False,\
 
     Here, the :math:`a`'s run through the components of the spin in the :math:`\\mid j, m\\rangle` representation.
 
+    By default, returns the coefficients of the Majorana polynomial as an np.ndarray.
+
+    If `projective=True`, returns a function which takes an extended complex coordinate
+    as an argument, and which evaluates the polynomial at that point. Note that to evaluate the polynomial
+    at :math:`\\infty`, we flip the stereographic projection axis and evaluate the latter polynomial at 0.
+
+    If `homogeneous=True`, returns a function which takes a spinor (as an nd.array, qt.Qobj, or two separate complex coordinates)
+    and evaluates the homogeneous Majorana polynomial:
+
+     .. math::
+
+        p(z, w) = 2^{j} \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} w^{j-m} z^{j+m}
+
+    If `cartesian=True`, returns a function with takes cartesian coordinates (as an nd.array or three sepaparate real components)
+    and evaluates the Majorana polynomial by first converting the cartesian coordinates to an extended complex coordinate.
+
+    If `spherical=True`, returns a function with takes spherical coordinates (as an nd.array or three sepaparate real components)
+    and evaluates the Majorana polynomial by first converting the spherical coordinates to an extended complex coordinate.
+
+    If `normalized=True`, returns the normalized versions of any of the above functions. Note that the normalized
+    versions are no longer analytic/holomorphic. The normalization factor is :math:`(\\frac{1}{1+|z|^2})^j`, where :math:`z` is
+    the extended complex coordinate. If :math:`z=\\infty`, again since we flip the poles, we use :math:`z=0`,
+    and if we want the homogeneous function, we first convert the spinor to an extended complex coordinate to
+    evaluate the normalization factor. When normalized, the resulting functions are equivalent to:
+
+    .. math::
+        \\langle -xyz \\mid \\psi \\rangle
+
+    Where :math:`\\mid xyz \\rangle` refers to the spin coherent state which has all its "stars" at 
+    cartesian coordinates :math:`x, y, z`, and :math:`\\mid \\psi \\rangle` is the spin in the :math:`\\mid j, m\\rangle`
+    representation. In other words, evaluating a normalized Majorana function at :math:`x, y, z` is equivalent to evaluating:
+
+    .. code-block::
+
+       spin_coherent(j, -xyz).dag()*spin
+
+    Which is the inner product between the spin and the spin coherent state antipodal to :math:`x, y, z`
+    on the sphere. Since the Majorana stars are zeros of this function, we can interpret them
+    as picking out those directions for which there's 0 probability that all the angular momentum is concentrated
+    in the opposite direction. Insofar as we can think of each star as contributing a quantum of angular momentum :math:`\\frac{1}{2}`
+    in that direction, naturally there's no chance that *all* the angular momentum is concentrated opposite to any of those points.
+    By the fundamental theorem of algebra, knowing these points is equivalent to knowing the entire quantum state.
+
     Parameters
     ----------
     spin : qt.Qobj
         Spin-j state.
 
+    projective : bool, optional
+        Whether to return Majorana polynomial as a function of an extended complex coordinate.
+
+    homogeneous : bool, optional
+        Whether to return Majorana polynomial as a function of a spinor.
+
+    cartesian : bool, optional
+        Whether to return Majorana polynomial as a function of cartesian coordinates on unit sphere.
+
+    spherical : bool, optional
+        Whether to return Majorana polynomial as a function of spherical coordinates.
+
+    normalize : bool, optional
+        Whether to normalize the above functions.
+
     Returns
     -------
-    poly : np.ndarray
-        2j+1 Majorana polynomial coefficients.
+    poly : np.ndarray or func
+        Either 2j+1 Majorana polynomial coefficients or else one of the above functions.
     """
     j = (spin.shape[0]-1)/2
     v = components(spin)
@@ -263,7 +378,7 @@ def spin_poly(spin, analytic=False,\
         if spherical:
             def __spherical__(*args):
                 sph = args[0] if len(args) == 1 else np.array(args)
-                return __poly__(xyz_c(sph_xyz(sph)))
+                return __poly__(sph_c(sph))
             return __spherical__
     if homogeneous:
         def __hompoly__(*args):
@@ -403,7 +518,7 @@ def spin_spinors(spin):
 
 def spinors_spin(spinors):
     """
-    Given 2j spinors constructs corresponding spin-j state (up to phase).
+    Given 2j spinors returns the corresponding spin-j state (up to phase).
 
     Parameters
     ----------
@@ -418,18 +533,94 @@ def spinors_spin(spinors):
     return poly_spin(roots_poly([spinor_c(spinor) for spinor in spinors]))
 
 def spin_c(spin):
+    """
+    Takes a spin-j state and returns its decomposition into 2j roots on the extended complex plane.
+
+    Parameters
+    ----------
+        spin : qt.Qobj
+            Spin-j state.
+
+    Returns
+    -------
+        c : list
+            2j extended complex roots.
+    """
     return poly_roots(spin_poly(spin))
 
 def c_spin(c):
+    """
+    Takes 2j roots on the extended complex plane and returns the corresponding spin-j state (up to complex phase).
+
+    Parameters
+    ----------
+        c : list
+            2j extended complex roots.
+
+    Returns
+    -------
+        spin : qt.Qobj
+            Spin-j state.
+    """
     return poly_spin(roots_poly(c))
 
 def spin_sph(spin):
-    return [c_sph(c) for c in poly_roots(spin_poly(spin))]
+    """
+    Takes a spin-j state and returns its decomposition into 2j "stars" given in spherical coordinates.
+
+    Parameters
+    ----------
+        spin : qt.Qobj
+            Spin-j state.
+
+    Returns
+    -------
+        sph : np.array
+            A array with shape (2j, 3) containing the 2j spherical coordinates of the stars.
+    """
+    return np.array([c_sph(c) for c in poly_roots(spin_poly(spin))])
 
 def sph_spin(sph):
+    """
+    Takes 2j "stars" given in spherical coordinates and returns the corresponding spin-j state (up to complex phase).
+
+    Parameters
+    ----------
+        sph : np.array
+            A array with shape (2j, 3) containing the 2j spherical coordinates of the stars.
+
+    Returns
+    -------
+        spin : qt.Qobj
+            Spin-j state.
+    """
     return poly_spin(roots_poly([sph_c(s) for s in sph]))
 
 def antipodal(to_invert):
+    """
+    If given an extended complex coordinate, takes the point to its antipode on the sphere via the map:
+    .. math::
+
+        z \\rightarrow -\\frac{z}{|z|^2}
+
+    If :math:`z=\\infty`, :math:`z \\rightarrow 0` and if :math:`z=0`, :math:`z \\rightarrow \\infty`.
+
+    If given a spin state or polynomial coefficients, inverts the whole sphere.
+    This could be done by inverting the individual roots, or directly on the state/polynomial by
+    reversing the components, complex conjugating, and multiplying every other
+    component by :math:`-1`.
+
+    Parameters
+    ----------
+        to_invert : (complex/inf) or qt.Qobj or np.ndarray
+            Extended complex coordinate or spin state/polynomial to invert.
+
+    Returns
+    -------
+        inverted : (complex/inf) or qt.Qobj or np.ndarray
+            Inverted extended complex coordinate or spin state/polynomial.
+
+    """
     if type(to_invert) != qt.Qobj and type(to_invert) != np.ndarray:
         if np.isclose(to_invert, 0):
             return np.inf
@@ -440,6 +631,35 @@ def antipodal(to_invert):
     return qt.Qobj(inverted) if type(to_invert) == qt.Qobj else inverted
 
 def poleflip(to_flip):
+    """
+    If given an extended complex coordinate, flips the pole of projection. In other words, project
+    to the sphere via a South Pole projection and then project back to the plane via North Pole projection.
+    This amounts to:
+
+    .. math::
+
+        z \\rightarrow \\frac{z}{|z|^2}
+
+    If :math:`z=\\infty`, :math:`z \\rightarrow 0` and if :math:`z=0`, :math:`z \\rightarrow \\infty`.
+
+    If given a spin state or polynomial coefficients, flips the pole of projection for the entire state.
+    This could be done by flipping the individual roots, or directly on the state/polynomial by
+    reversing the components and complex conjugating.
+
+    This is useful for evaluating the Majorana polynomial at :math:`\\infty`. We actually
+    need a second coordinate chart. We flip the projection pole and evaluate at :math:`0` instead.
+
+    Parameters
+    ----------
+        to_flip : (complex/inf) or qt.Qobj or np.ndarray
+            Extended complex coordinate or spin state/polynomial to flip.
+
+    Returns
+    -------
+        flipped : (complex/inf) or qt.Qobj or np.ndarray
+            Flipped extended complex coordinate or spin state/polynomial.
+
+    """
     if type(to_flip) != qt.Qobj and type(to_flip) != np.ndarray:
         if np.isclose(to_flip, 0):
             return np.inf
@@ -453,6 +673,31 @@ def spin_coherent(j, coord, from_cartesian=True,\
                             from_spherical=False,\
                             from_complex=False,\
                             from_spinor=False):
+    """
+    Returns the spin-j coherent state which is defined by having
+    all its Majorana stars located at a single point on the sphere. 
+    This point can be given in terms of cartesian, spherical, extended complex, and spinorial coordinates.
+
+    Parameters
+    ----------
+        j : int
+            j value which indexes the :math:`SU(2)` representation.
+        coord : nd.array or qt.Qobj or complex/inf
+            Coordinates specifying the direction of the spin coherent state.
+        from_cartesian : bool, optional
+            Whether the provided coordinates are cartesian (default).
+        from_spherical : bool, optional
+            Whether the provided coordinates are spherical.
+        from_complex : bool, optional
+            Whether the provided coordinates are extended complex.
+        from_spinor : bool, optional
+            Whether the provided coordinates are spinorial.
+
+    Returns
+    -------
+        spin_coherent : qt.Qobj
+            Spin-j coherent state in the specified direction.
+    """
     if from_cartesian:
         r, phi, theta = xyz_sph(coord)
     if from_spherical:

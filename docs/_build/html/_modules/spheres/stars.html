@@ -280,6 +280,38 @@
                      <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span>\
                      <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span></div>
 
+<div class="viewcode-block" id="c_sph"><a class="viewcode-back" href="../../index.html#spheres.stars.c_sph">[docs]</a><span class="k">def</span> <span class="nf">c_sph</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts extended complex coordinate to spherical coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    c : complex or inf</span>
+<span class="sd">        Extended complex coordinate.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sph : np.ndarray</span>
+<span class="sd">        Spherical coordinates :math:`r, \\phi, \\theta`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">c_xyz</span><span class="p">(</span><span class="n">c</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="sph_c"><a class="viewcode-back" href="../../index.html#spheres.stars.sph_c">[docs]</a><span class="k">def</span> <span class="nf">sph_c</span><span class="p">(</span><span class="n">sph</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spherical coordinates to extended complex coordinate.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sph : np.ndarray</span>
+<span class="sd">        Spherical coordinates :math:`r, \\phi, \\theta`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    c : complex or inf</span>
+<span class="sd">        Extended complex coordinate.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_c</span><span class="p">(</span><span class="n">sph_xyz</span><span class="p">(</span><span class="n">sph</span><span class="p">))</span></div>
+
 <div class="viewcode-block" id="c_spinor"><a class="viewcode-back" href="../../index.html#spheres.stars.c_spinor">[docs]</a><span class="k">def</span> <span class="nf">c_spinor</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts extended complex coordinate to a spinor.</span>
@@ -356,7 +388,43 @@
                      <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmay</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">),</span>\
                      <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmaz</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">)])</span></div>
 
-<div class="viewcode-block" id="spin_poly"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_poly">[docs]</a><span class="k">def</span> <span class="nf">spin_poly</span><span class="p">(</span><span class="n">spin</span><span class="p">):</span>
+<div class="viewcode-block" id="spinor_sph"><a class="viewcode-back" href="../../index.html#spheres.stars.spinor_sph">[docs]</a><span class="k">def</span> <span class="nf">spinor_sph</span><span class="p">(</span><span class="n">spinor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spinor to spherical coordinates. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spinor : qt.Qobj</span>
+<span class="sd">        Spinor.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sph : np.ndarray</span>
+<span class="sd">        Spherical coordinates :math:`r, \\phi, \\theta`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">spinor_xyz</span><span class="p">(</span><span class="n">spinor</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="sph_spinor"><a class="viewcode-back" href="../../index.html#spheres.stars.sph_spinor">[docs]</a><span class="k">def</span> <span class="nf">sph_spinor</span><span class="p">(</span><span class="n">sph</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spherical coordinates to spinor. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sph : np.ndarray</span>
+<span class="sd">        Spherical coordinates :math:`r, \\phi, \\theta`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    spinor : qt.Qobj</span>
+<span class="sd">        Spinor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_spinor</span><span class="p">(</span><span class="n">sph_xyz</span><span class="p">(</span><span class="n">sph</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="spin_poly"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_poly">[docs]</a><span class="k">def</span> <span class="nf">spin_poly</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">projective</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                    <span class="n">homogeneous</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                    <span class="n">cartesian</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                    <span class="n">spherical</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                    <span class="n">normalized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts a spin into its Majorana polynomial, which is defined as follows:</span>
 
@@ -366,23 +434,112 @@
 
 <span class="sd">    Here, the :math:`a`&#39;s run through the components of the spin in the :math:`\\mid j, m\\rangle` representation.</span>
 
+<span class="sd">    By default, returns the coefficients of the Majorana polynomial as an np.ndarray.</span>
+
+<span class="sd">    If `projective=True`, returns a function which takes an extended complex coordinate</span>
+<span class="sd">    as an argument, and which evaluates the polynomial at that point. Note that to evaluate the polynomial</span>
+<span class="sd">    at :math:`\\infty`, we flip the stereographic projection axis and evaluate the latter polynomial at 0.</span>
+
+<span class="sd">    If `homogeneous=True`, returns a function which takes a spinor (as an nd.array, qt.Qobj, or two separate complex coordinates)</span>
+<span class="sd">    and evaluates the homogeneous Majorana polynomial:</span>
+
+<span class="sd">     .. math::</span>
+
+<span class="sd">        p(z, w) = 2^{j} \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} w^{j-m} z^{j+m}</span>
+
+<span class="sd">    If `cartesian=True`, returns a function with takes cartesian coordinates (as an nd.array or three sepaparate real components)</span>
+<span class="sd">    and evaluates the Majorana polynomial by first converting the cartesian coordinates to an extended complex coordinate.</span>
+
+<span class="sd">    If `spherical=True`, returns a function with takes spherical coordinates (as an nd.array or three sepaparate real components)</span>
+<span class="sd">    and evaluates the Majorana polynomial by first converting the spherical coordinates to an extended complex coordinate.</span>
+
+<span class="sd">    If `normalized=True`, returns the normalized versions of any of the above functions. Note that the normalized</span>
+<span class="sd">    versions are no longer analytic/holomorphic. The normalization factor is :math:`(\\frac{1}{1+|z|^2})^j`, where :math:`z` is</span>
+<span class="sd">    the extended complex coordinate. If :math:`z=\\infty`, again since we flip the poles, we use :math:`z=0`,</span>
+<span class="sd">    and if we want the homogeneous function, we first convert the spinor to an extended complex coordinate to</span>
+<span class="sd">    evaluate the normalization factor. When normalized, the resulting functions are equivalent to:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \\langle -xyz \\mid \\psi \\rangle</span>
+
+<span class="sd">    Where :math:`\\mid xyz \\rangle` refers to the spin coherent state which has all its &quot;stars&quot; at </span>
+<span class="sd">    cartesian coordinates :math:`x, y, z`, and :math:`\\mid \\psi \\rangle` is the spin in the :math:`\\mid j, m\\rangle`</span>
+<span class="sd">    representation. In other words, evaluating a normalized Majorana function at :math:`x, y, z` is equivalent to evaluating:</span>
+
+<span class="sd">    .. code-block::</span>
+
+<span class="sd">       spin_coherent(j, -xyz).dag()*spin</span>
+
+<span class="sd">    Which is the inner product between the spin and the spin coherent state antipodal to :math:`x, y, z`</span>
+<span class="sd">    on the sphere. Since the Majorana stars are zeros of this function, we can interpret them</span>
+<span class="sd">    as picking out those directions for which there&#39;s 0 probability that all the angular momentum is concentrated</span>
+<span class="sd">    in the opposite direction. Insofar as we can think of each star as contributing a quantum of angular momentum :math:`\\frac{1}{2}`</span>
+<span class="sd">    in that direction, naturally there&#39;s no chance that *all* the angular momentum is concentrated opposite to any of those points.</span>
+<span class="sd">    By the fundamental theorem of algebra, knowing these points is equivalent to knowing the entire quantum state.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    spin : qt.Qobj</span>
 <span class="sd">        Spin-j state.</span>
 
+<span class="sd">    projective : bool, optional</span>
+<span class="sd">        Whether to return Majorana polynomial as a function of an extended complex coordinate.</span>
+
+<span class="sd">    homogeneous : bool, optional</span>
+<span class="sd">        Whether to return Majorana polynomial as a function of a spinor.</span>
+
+<span class="sd">    cartesian : bool, optional</span>
+<span class="sd">        Whether to return Majorana polynomial as a function of cartesian coordinates on unit sphere.</span>
+
+<span class="sd">    spherical : bool, optional</span>
+<span class="sd">        Whether to return Majorana polynomial as a function of spherical coordinates.</span>
+
+<span class="sd">    normalize : bool, optional</span>
+<span class="sd">        Whether to normalize the above functions.</span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    poly : np.ndarray</span>
-<span class="sd">        2j+1 Majorana polynomial coefficients.</span>
+<span class="sd">    poly : np.ndarray or func</span>
+<span class="sd">        Either 2j+1 Majorana polynomial coefficients or else one of the above functions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>\
+    <span class="n">poly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>\
             <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)]</span><span class="o">*</span>\
                 <span class="p">(((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)))</span><span class="o">*</span>\
                 <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">factorial</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">m</span><span class="p">))))</span>
-                    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span></div>
+                    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="k">if</span> <span class="n">analytic</span> <span class="ow">or</span> <span class="n">cartesian</span> <span class="ow">or</span> <span class="n">spherical</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__poly__</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+            <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span> <span class="k">if</span> <span class="n">z</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">j</span> <span class="k">if</span> <span class="n">normalized</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">prefactor</span><span class="o">*</span><span class="nb">sum</span><span class="p">([</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">z</span> <span class="k">if</span> <span class="n">z</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span><span class="o">**</span><span class="n">i</span>\
+                        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">((</span><span class="n">poly</span> <span class="k">if</span> <span class="n">z</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>\
+                                                <span class="k">else</span> <span class="n">poleflip</span><span class="p">(</span><span class="n">poly</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])])</span>
+        <span class="k">if</span> <span class="n">analytic</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">__poly__</span>
+        <span class="k">if</span> <span class="n">cartesian</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">__cartesian__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+                <span class="n">xyz</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">__poly__</span><span class="p">(</span><span class="n">xyz_c</span><span class="p">(</span><span class="n">xyz</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">__cartesian__</span>
+        <span class="k">if</span> <span class="n">spherical</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">__spherical__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+                <span class="n">sph</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">__poly__</span><span class="p">(</span><span class="n">sph_c</span><span class="p">(</span><span class="n">sph</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">__spherical__</span>
+    <span class="k">if</span> <span class="n">homogeneous</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__hompoly__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">z</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">spinor_c</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">z</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">args</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">spinor_c</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">z</span><span class="p">,</span> <span class="n">w</span><span class="p">])))</span>
+            <span class="n">prefactor</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">r</span> <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">j</span> <span class="k">if</span> <span class="n">normalized</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">prefactor</span><span class="o">*</span><span class="nb">sum</span><span class="p">([</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">w</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">z</span><span class="o">**</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>\
+                        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">poly</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])])</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="n">j</span>
+        <span class="k">return</span> <span class="n">__hompoly__</span>
+    <span class="k">return</span> <span class="n">poly</span></div>
 
 <div class="viewcode-block" id="poly_spin"><a class="viewcode-back" href="../../index.html#spheres.stars.poly_spin">[docs]</a><span class="k">def</span> <span class="nf">poly_spin</span><span class="p">(</span><span class="n">poly</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -508,7 +665,7 @@
 
 <div class="viewcode-block" id="spinors_spin"><a class="viewcode-back" href="../../index.html#spheres.stars.spinors_spin">[docs]</a><span class="k">def</span> <span class="nf">spinors_spin</span><span class="p">(</span><span class="n">spinors</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given 2j spinors constructs corresponding spin-j state (up to phase).</span>
+<span class="sd">    Given 2j spinors returns the corresponding spin-j state (up to phase).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -521,6 +678,182 @@
 <span class="sd">            Spin-j state.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">poly_spin</span><span class="p">(</span><span class="n">roots_poly</span><span class="p">([</span><span class="n">spinor_c</span><span class="p">(</span><span class="n">spinor</span><span class="p">)</span> <span class="k">for</span> <span class="n">spinor</span> <span class="ow">in</span> <span class="n">spinors</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="spin_c"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_c">[docs]</a><span class="k">def</span> <span class="nf">spin_c</span><span class="p">(</span><span class="n">spin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a spin-j state and returns its decomposition into 2j roots on the extended complex plane.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        c : list</span>
+<span class="sd">            2j extended complex roots.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">poly_roots</span><span class="p">(</span><span class="n">spin_poly</span><span class="p">(</span><span class="n">spin</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="c_spin"><a class="viewcode-back" href="../../index.html#spheres.stars.c_spin">[docs]</a><span class="k">def</span> <span class="nf">c_spin</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes 2j roots on the extended complex plane and returns the corresponding spin-j state (up to complex phase).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        c : list</span>
+<span class="sd">            2j extended complex roots.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">poly_spin</span><span class="p">(</span><span class="n">roots_poly</span><span class="p">(</span><span class="n">c</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="spin_sph"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_sph">[docs]</a><span class="k">def</span> <span class="nf">spin_sph</span><span class="p">(</span><span class="n">spin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a spin-j state and returns its decomposition into 2j &quot;stars&quot; given in spherical coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        sph : np.array</span>
+<span class="sd">            A array with shape (2j, 3) containing the 2j spherical coordinates of the stars.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c_sph</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">poly_roots</span><span class="p">(</span><span class="n">spin_poly</span><span class="p">(</span><span class="n">spin</span><span class="p">))])</span></div>
+
+<div class="viewcode-block" id="sph_spin"><a class="viewcode-back" href="../../index.html#spheres.stars.sph_spin">[docs]</a><span class="k">def</span> <span class="nf">sph_spin</span><span class="p">(</span><span class="n">sph</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes 2j &quot;stars&quot; given in spherical coordinates and returns the corresponding spin-j state (up to complex phase).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        sph : np.array</span>
+<span class="sd">            A array with shape (2j, 3) containing the 2j spherical coordinates of the stars.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">poly_spin</span><span class="p">(</span><span class="n">roots_poly</span><span class="p">([</span><span class="n">sph_c</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sph</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="antipodal"><a class="viewcode-back" href="../../index.html#spheres.stars.antipodal">[docs]</a><span class="k">def</span> <span class="nf">antipodal</span><span class="p">(</span><span class="n">to_invert</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If given an extended complex coordinate, takes the point to its antipode on the sphere via the map:</span>
+<span class="sd">    .. math::</span>
+
+<span class="sd">        z \\rightarrow -\\frac{z}{|z|^2}</span>
+
+<span class="sd">    If :math:`z=\\infty`, :math:`z \\rightarrow 0` and if :math:`z=0`, :math:`z \\rightarrow \\infty`.</span>
+
+<span class="sd">    If given a spin state or polynomial coefficients, inverts the whole sphere.</span>
+<span class="sd">    This could be done by inverting the individual roots, or directly on the state/polynomial by</span>
+<span class="sd">    reversing the components, complex conjugating, and multiplying every other</span>
+<span class="sd">    component by :math:`-1`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        to_invert : (complex/inf) or qt.Qobj or np.ndarray</span>
+<span class="sd">            Extended complex coordinate or spin state/polynomial to invert.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        inverted : (complex/inf) or qt.Qobj or np.ndarray</span>
+<span class="sd">            Inverted extended complex coordinate or spin state/polynomial.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to_invert</span><span class="p">)</span> <span class="o">!=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">to_invert</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">to_invert</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">if</span> <span class="n">to_invert</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">to_invert</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">to_invert</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">inverted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">components</span><span class="p">(</span><span class="n">to_invert</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">())])</span>
+    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">inverted</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to_invert</span><span class="p">)</span> <span class="o">==</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span> <span class="k">else</span> <span class="n">inverted</span></div>
+
+<div class="viewcode-block" id="poleflip"><a class="viewcode-back" href="../../index.html#spheres.stars.poleflip">[docs]</a><span class="k">def</span> <span class="nf">poleflip</span><span class="p">(</span><span class="n">to_flip</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If given an extended complex coordinate, flips the pole of projection. In other words, project</span>
+<span class="sd">    to the sphere via a South Pole projection and then project back to the plane via North Pole projection.</span>
+<span class="sd">    This amounts to:</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        z \\rightarrow \\frac{z}{|z|^2}</span>
+
+<span class="sd">    If :math:`z=\\infty`, :math:`z \\rightarrow 0` and if :math:`z=0`, :math:`z \\rightarrow \\infty`.</span>
+
+<span class="sd">    If given a spin state or polynomial coefficients, flips the pole of projection for the entire state.</span>
+<span class="sd">    This could be done by flipping the individual roots, or directly on the state/polynomial by</span>
+<span class="sd">    reversing the components and complex conjugating.</span>
+
+<span class="sd">    This is useful for evaluating the Majorana polynomial at :math:`\\infty`. We actually</span>
+<span class="sd">    need a second coordinate chart. We flip the projection pole and evaluate at :math:`0` instead.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        to_flip : (complex/inf) or qt.Qobj or np.ndarray</span>
+<span class="sd">            Extended complex coordinate or spin state/polynomial to flip.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        flipped : (complex/inf) or qt.Qobj or np.ndarray</span>
+<span class="sd">            Flipped extended complex coordinate or spin state/polynomial.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)</span> <span class="o">!=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">to_flip</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">if</span> <span class="n">to_flip</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">to_flip</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">flipped</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">flipped</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)</span> <span class="o">==</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span> <span class="k">else</span> <span class="n">flipped</span></div>
+
+<div class="viewcode-block" id="spin_coherent"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_coherent">[docs]</a><span class="k">def</span> <span class="nf">spin_coherent</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">coord</span><span class="p">,</span> <span class="n">from_cartesian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>\
+                            <span class="n">from_spherical</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                            <span class="n">from_complex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                            <span class="n">from_spinor</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the spin-j coherent state which is defined by having</span>
+<span class="sd">    all its Majorana stars located at a single point on the sphere. </span>
+<span class="sd">    This point can be given in terms of cartesian, spherical, extended complex, and spinorial coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        j : int</span>
+<span class="sd">            j value which indexes the :math:`SU(2)` representation.</span>
+<span class="sd">        coord : nd.array or qt.Qobj or complex/inf</span>
+<span class="sd">            Coordinates specifying the direction of the spin coherent state.</span>
+<span class="sd">        from_cartesian : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are cartesian (default).</span>
+<span class="sd">        from_spherical : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are spherical.</span>
+<span class="sd">        from_complex : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are extended complex.</span>
+<span class="sd">        from_spinor : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are spinorial.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        spin_coherent : qt.Qobj</span>
+<span class="sd">            Spin-j coherent state in the specified direction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">from_cartesian</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">from_spherical</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">coord</span>
+    <span class="k">if</span> <span class="n">from_complex</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">c_sph</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">from_spinor</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">c_sph</span><span class="p">(</span><span class="n">spinor_c</span><span class="p">(</span><span class="n">coord</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">spin_coherent</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="mobius"><a class="viewcode-back" href="../../index.html#spheres.stars.mobius">[docs]</a><span class="k">def</span> <span class="nf">mobius</span><span class="p">(</span><span class="n">abcd</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
