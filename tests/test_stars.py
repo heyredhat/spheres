@@ -54,4 +54,23 @@ def test_spinors_spin():
 	spinors = [qt.rand_ket(2) for i in range(4)]
 	assert compare_spinors(spin_spinors(spinors_spin(spinors)), spinors)
 
+def test_spin_poly():
+	spin = qt.rand_ket(5)
+	spinors = spin_spinors(spin)
+	poly = spin_poly(spin, homogeneous=True)
+	assert np.allclose(np.array([poly(spinor) for spinor in spinors]), np.zeros(4))
 
+def test_poleflip():
+	spin = qt.rand_ket(5)
+	assert compare_nophase(poleflip(spin),\
+				xyz_spin([c_xyz(c, pole="north")\
+					for c in spin_c(spin)]))
+	assert compare_nophase(poleflip(spin),\
+				c_spin([poleflip(c) for c in spin_c(spin)]))
+
+def test_antipodal():
+	spin = qt.rand_ket(5)
+	assert compare_nophase(antipodal(spin),\
+				xyz_spin([-xyz for xyz in spin_xyz(spin)]))
+	assert compare_nophase(antipodal(spin),\
+				c_spin([antipodal(c) for c in spin_c(spin)]))

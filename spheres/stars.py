@@ -133,6 +133,13 @@ def sph_xyz(sph):
                      r*np.sin(theta)*np.sin(phi),\
                      r*np.cos(theta)])
 
+
+def c_sph(c):
+    return xyz_sph(c_xyz(c))
+
+def sph_c(sph):
+    return xyz_c(sph_xyz(sph))
+
 def c_spinor(c):
     """
     Converts extended complex coordinate to a spinor.
@@ -209,7 +216,11 @@ def spinor_xyz(spinor):
                      qt.expect(qt.sigmay(), spinor),\
                      qt.expect(qt.sigmaz(), spinor)])
 
-def spin_poly(spin):
+def spin_poly(spin, analytic=False,\
+                    homogeneous=False,\
+                    cartesian=False,\
+                    spherical=False,\
+                    normalized=False):
     """
     Converts a spin into its Majorana polynomial, which is defined as follows:
 
@@ -231,11 +242,42 @@ def spin_poly(spin):
     """
     j = (spin.shape[0]-1)/2
     v = components(spin)
-    return np.array(\
+    poly = np.array(\
             [v[int(m+j)]*\
                 (((-1)**(int(m+j)))*\
                 np.sqrt(factorial(2*j)/(factorial(j-m)*factorial(j+m))))
                     for m in np.arange(-j, j+1)])
+    if analytic or cartesian or spherical:
+        def __poly__(z):
+            prefactor = 1/(1+abs(z if z != np.inf else 0)**2)**j if normalized else 1
+            return prefactor*sum([c*(z if z != np.inf else 0)**i\
+                        for i, c in enumerate((poly if z != np.inf\
+                                                else poleflip(poly))[::-1])])
+        if analytic:
+            return __poly__
+        if cartesian:
+            def __cartesian__(*args):
+                xyz = args[0] if len(args) == 1 else np.array(args)
+                return __poly__(xyz_c(xyz))
+            return __cartesian__
+        if spherical:
+            def __spherical__(*args):
+                sph = args[0] if len(args) == 1 else np.array(args)
+                return __poly__(xyz_c(sph_xyz(sph)))
+            return __spherical__
+    if homogeneous:
+        def __hompoly__(*args):
+            if len(args) == 1:
+                z, w = components(args[0])
+                r = spinor_c(args[0])
+            else:
+                z, w = args
+                r = spinor_c(qt.Qobj(np.array([z, w])))
+            prefactor = 1/(1+abs(r if r != np.inf else 0)**2)**j if normalized else 1
+            return prefactor*sum([c*(w**i)*(z**(len(poly)-i-1))\
+                        for i, c in enumerate(poly[::-1])])*2**j
+        return __hompoly__
+    return poly
 
 def poly_spin(poly):
     """
@@ -374,6 +416,52 @@ def spinors_spin(spinors):
             Spin-j state.
     """
     return poly_spin(roots_poly([spinor_c(spinor) for spinor in spinors]))
+
+def spin_c(spin):
+    return poly_roots(spin_poly(spin))
+
+def c_spin(c):
+    return poly_spin(roots_poly(c))
+
+def spin_sph(spin):
+    return [c_sph(c) for c in poly_roots(spin_poly(spin))]
+
+def sph_spin(sph):
+    return poly_spin(roots_poly([sph_c(s) for s in sph]))
+
+def antipodal(to_invert):
+    if type(to_invert) != qt.Qobj and type(to_invert) != np.ndarray:
+        if np.isclose(to_invert, 0):
+            return np.inf
+        if to_invert == np.inf:
+            return 0
+        return -to_invert/np.abs(to_invert)**2
+    inverted = np.array([c*(-1)**i for i, c in enumerate(components(to_invert)[::-1].conj())])
+    return qt.Qobj(inverted) if type(to_invert) == qt.Qobj else inverted
+
+def poleflip(to_flip):
+    if type(to_flip) != qt.Qobj and type(to_flip) != np.ndarray:
+        if np.isclose(to_flip, 0):
+            return np.inf
+        if to_flip == np.inf:
+            return 0
+        return to_flip/np.abs(to_flip)**2
+    flipped = components(to_flip)[::-1].conj()
+    return qt.Qobj(flipped) if type(to_flip) == qt.Qobj else flipped
+
+def spin_coherent(j, coord, from_cartesian=True,\
+                            from_spherical=False,\
+                            from_complex=False,\
+                            from_spinor=False):
+    if from_cartesian:
+        r, phi, theta = xyz_sph(coord)
+    if from_spherical:
+        r, phi, theta = coord
+    if from_complex:
+        r, phi, theta = c_sph(coord)
+    if from_spinor:
+        r, phi, theta = c_sph(spinor_c(coord))
+    return qt.spin_coherent(j, theta, phi)
 
 def mobius(abcd):
     """
