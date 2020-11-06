@@ -12,5 +12,3 @@ toolbox for higher spin and symmetrization
 [![Updates](https://pyup.io/repos/github/heyredhat/spheres/shield.svg)](https://pyup.io/repos/github/heyredhat/spheres/)
 
 [![Python 3](https://pyup.io/repos/github/heyredhat/spheres/python-3-shield.svg)](https://pyup.io/repos/github/heyredhat/spheres/)
-
-# test commit
