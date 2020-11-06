@@ -362,13 +362,13 @@ def spin_poly(spin, projective=False,\
                 (((-1)**(int(m+j)))*\
                 np.sqrt(factorial(2*j)/(factorial(j-m)*factorial(j+m))))
                     for m in np.arange(-j, j+1)])
-    if analytic or cartesian or spherical:
+    if projective or cartesian or spherical:
         def __poly__(z):
             prefactor = 1/(1+abs(z if z != np.inf else 0)**2)**j if normalized else 1
             return prefactor*sum([c*(z if z != np.inf else 0)**i\
                         for i, c in enumerate((poly if z != np.inf\
                                                 else poleflip(poly))[::-1])])
-        if analytic:
+        if projective:
             return __poly__
         if cartesian:
             def __cartesian__(*args):

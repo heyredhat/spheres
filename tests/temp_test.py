@@ -7,7 +7,7 @@ spinors = spin_spinors(spin)
 c = spin_c(spin)
 s = spin_sph(spin)
 
-poly = spin_poly(spin, analytic=True, normalized=True)
+poly = spin_poly(spin, projective=True, normalized=True)
 hom = spin_poly(spin, homogeneous=True, normalized=True)
 cart = spin_poly(spin, cartesian=True, normalized=True)
 sphr = spin_poly(spin, spherical=True, normalized=True)
