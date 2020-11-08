@@ -165,23 +165,26 @@
 <p>Implementation of the “Majorana stars” formalism for higher spin.</p>
 <dl class="py function">
 <dt id="spheres.stars.antipodal">
-<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">antipodal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_invert</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#antipodal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.antipodal" title="Permalink to this definition">¶</a></dt>
-<dd><p>If given an extended complex coordinate, takes the point to its antipode on the sphere via the map:
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> \<span class="n">rightarrow</span> <span class="o">-</span>\<span class="n">frac</span><span class="p">{</span><span class="n">z</span><span class="p">}{</span><span class="o">|</span><span class="n">z</span><span class="o">|^</span><span class="mi">2</span><span class="p">}</span>
-</pre></div>
-</div>
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">antipodal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_invert</span></em>, <em class="sig-param"><span class="n">from_cartesian</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">from_spherical</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#antipodal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.antipodal" title="Permalink to this definition">¶</a></dt>
+<dd><p>If given an extended complex coordinate, takes the point to its antipode on the sphere via the map:</p>
+<div class="math notranslate nohighlight">
+\[z \rightarrow -\frac{z}{|z|^2} = - \frac{1}{z^{*}}\]</div>
 <p>If <span class="math notranslate nohighlight">\(z=\infty\)</span>, <span class="math notranslate nohighlight">\(z \rightarrow 0\)</span> and if <span class="math notranslate nohighlight">\(z=0\)</span>, <span class="math notranslate nohighlight">\(z \rightarrow \infty\)</span>.</p>
 <p>If given a spin state or polynomial coefficients, inverts the whole sphere.
 This could be done by inverting the individual roots, or directly on the state/polynomial by
 reversing the components, complex conjugating, and multiplying every other
 component by <span class="math notranslate nohighlight">\(-1\)</span>.</p>
+<p>If <cite>from_cartesian=True</cite> or <cite>from_spherical=True</cite>, the argument is interpreted
+as a single coordinate in terms of those coordinate systems and the flipped coordinate
+is returned in the same.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>to_invert</strong> (<em>(</em><em>complex/inf</em><em>) or </em><em>qt.Qobj</em><em> or </em><em>np.ndarray</em>) – Extended complex coordinate or spin state/polynomial to invert.</p>
+<dd class="field-odd"><p><strong>to_invert</strong> (<em>(</em><em>complex/inf</em><em>) or </em><em>qt.Qobj</em><em> or </em><em>np.ndarray</em>) – Extended complex coordinate, cartesian coordinate,
+spherical coordinate, or spin state/polynomial to invert.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>inverted</strong> – Inverted extended complex coordinate or spin state/polynomial.</p>
+<dd class="field-even"><p><strong>inverted</strong> – Inverted extended complex coordinate, cartesian coordinate,
+spherical coordinate or spin state/polynomial.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>(complex/inf) or qt.Qobj or np.ndarray</p>
@@ -307,24 +310,34 @@ and returns an extended complex coordinate as output.</p>
 
 <dl class="py function">
 <dt id="spheres.stars.poleflip">
-<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">poleflip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_flip</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#poleflip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.poleflip" title="Permalink to this definition">¶</a></dt>
-<dd><p>If given an extended complex coordinate, flips the pole of projection. In other words, project
-to the sphere via a South Pole projection and then project back to the plane via North Pole projection.
-This amounts to:</p>
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">poleflip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_flip</span></em>, <em class="sig-param"><span class="n">from_cartesian</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">from_spherical</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#poleflip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.poleflip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flips the pole of projection.  If given an extended complex coordinate, this amounts to
+projecting to the sphere via a South Pole projection and then projecting back to the plane
+via a North Pole projection.</p>
+<p>More simply:</p>
 <div class="math notranslate nohighlight">
-\[z \rightarrow \frac{z}{|z|^2}\]</div>
+\[z \rightarrow \frac{z}{|z|^2} = \frac{1}{z^{*}}\]</div>
 <p>If <span class="math notranslate nohighlight">\(z=\infty\)</span>, <span class="math notranslate nohighlight">\(z \rightarrow 0\)</span> and if <span class="math notranslate nohighlight">\(z=0\)</span>, <span class="math notranslate nohighlight">\(z \rightarrow \infty\)</span>.</p>
 <p>If given a spin state or polynomial coefficients, flips the pole of projection for the entire state.
 This could be done by flipping the individual roots, or directly on the state/polynomial by
 reversing the components and complex conjugating.</p>
 <p>This is useful for evaluating the Majorana polynomial at <span class="math notranslate nohighlight">\(\infty\)</span>. We actually
 need a second coordinate chart. We flip the projection pole and evaluate at <span class="math notranslate nohighlight">\(0\)</span> instead.</p>
+<p>If <cite>from_cartesian=True</cite> or <cite>from_spherical=True</cite>, the argument is interpreted
+as a single coordinate in terms of those coordinate systems and the flipped coordinate
+is returned in the same.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>to_flip</strong> (<em>(</em><em>complex/inf</em><em>) or </em><em>qt.Qobj</em><em> or </em><em>np.ndarray</em>) – Extended complex coordinate or spin state/polynomial to flip.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>to_flip</strong> (<em>(</em><em>complex/inf</em><em>) or </em><em>qt.Qobj</em><em> or </em><em>np.ndarray</em>) – Extended complex coordinate, cartesian coordinate,
+spherical coordinate, or spin state/polynomial to flip.</p></li>
+<li><p><strong>from_cartesian</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to interpret argument as cartesian coordinates.</p></li>
+<li><p><strong>from_spherical</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to interpret argument as spherical coordinates.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>flipped</strong> – Flipped extended complex coordinate or spin state/polynomial.</p>
+<dd class="field-even"><p><strong>flipped</strong> – Flipped extended complex coordinate, cartesian coordinate,
+spherical coordinate or spin state/polynomial.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>(complex/inf) or qt.Qobj or np.ndarray</p>
@@ -514,26 +527,32 @@ This point can be given in terms of cartesian, spherical, extended complex, and 
 <dd><p>Converts a spin into its Majorana polynomial, which is defined as follows:</p>
 <div class="math notranslate nohighlight">
 \[p(z) = \sum_{m=-j}^{m=j} (-1)^{j+m} \sqrt{\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} z^{j-m}\]</div>
-<p>Here, the <span class="math notranslate nohighlight">\(a\)</span>’s run through the components of the spin in the <span class="math notranslate nohighlight">\(\mid j, m\rangle\)</span> representation.</p>
+<p>Here, the <span class="math notranslate nohighlight">\(a\)</span>’s run through the components of the spin in the <span class="math notranslate nohighlight">\(\mid j, m\rangle\)</span> representation.
+Note that <span class="math notranslate nohighlight">\(\frac{(2j)!}{(j-m)!(j+m)!}\)</span> amounts to: <span class="math notranslate nohighlight">\(\binom{2j}{j+m}\)</span>, a binomial coefficient.</p>
 <p>By default, returns the coefficients of the Majorana polynomial as an np.ndarray.</p>
 <p>If <cite>projective=True</cite>, returns a function which takes an extended complex coordinate
 as an argument, and which evaluates the polynomial at that point. Note that to evaluate the polynomial
-at <span class="math notranslate nohighlight">\(\infty\)</span>, we flip the stereographic projection axis and evaluate the latter polynomial at 0.</p>
+at <span class="math notranslate nohighlight">\(\infty\)</span>, we flip the stereographic projection axis and evaluate the latter polynomial at 0
+(and then complex conjugate). Insofar as pole flipping causes the highest degree term to become the lowest degree/constant term,
+evaluating at <span class="math notranslate nohighlight">\(\infty\)</span> amounts to returning the first coefficient.</p>
 <p>If <cite>homogeneous=True</cite>, returns a function which takes a spinor (as an nd.array, qt.Qobj, or two separate complex coordinates)
 and evaluates the homogeneous Majorana polynomial:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
-\[p(z, w) = 2^{j} \sum_{m=-j}^{m=j} (-1)^{j+m} \sqrt{\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} w^{j-m} z^{j+m}\]</div>
+\[p(z, w) = \sum_{m=-j}^{m=j} (-1)^{j+m} \sqrt{\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} w^{j-m} z^{j+m}\]</div>
 </div></blockquote>
+<p>(N.b. currently the normalization is off for the homogeneous case, but the correct roots are obtained.)</p>
 <p>If <cite>cartesian=True</cite>, returns a function with takes cartesian coordinates (as an nd.array or three sepaparate real components)
 and evaluates the Majorana polynomial by first converting the cartesian coordinates to an extended complex coordinate.</p>
 <p>If <cite>spherical=True</cite>, returns a function with takes spherical coordinates (as an nd.array or three sepaparate real components)
 and evaluates the Majorana polynomial by first converting the spherical coordinates to an extended complex coordinate.</p>
 <p>If <cite>normalized=True</cite>, returns the normalized versions of any of the above functions. Note that the normalized
-versions are no longer analytic/holomorphic. The normalization factor is <span class="math notranslate nohighlight">\((\frac{1}{1+|z|^2})^j\)</span>, where <span class="math notranslate nohighlight">\(z\)</span> is
-the extended complex coordinate. If <span class="math notranslate nohighlight">\(z=\infty\)</span>, again since we flip the poles, we use <span class="math notranslate nohighlight">\(z=0\)</span>,
-and if we want the homogeneous function, we first convert the spinor to an extended complex coordinate to
-evaluate the normalization factor. When normalized, the resulting functions are equivalent to:</p>
+versions are no longer analytic/holomorphic. Given a extended complex coordinate <span class="math notranslate nohighlight">\(z = re^{i\theta}\)</span> (or <span class="math notranslate nohighlight">\(\infty\)</span>),
+the normalization factor is:</p>
+<div class="math notranslate nohighlight">
+\[\frac{e^{-2ij\theta}}{(1+r^2)^j}\]</div>
+<p>If <span class="math notranslate nohighlight">\(z=\infty\)</span>, again since we flip the poles, we use <span class="math notranslate nohighlight">\(z=0\)</span>.
+When normalized, the resulting functions are equivalent to:</p>
 <div class="math notranslate nohighlight">
 \[\langle -xyz \mid \psi \rangle\]</div>
 <p>Where <span class="math notranslate nohighlight">\(\mid xyz \rangle\)</span> refers to the spin coherent state which has all its “stars” at
@@ -887,6 +906,13 @@ the first non-zero component and returning its phase.</p>
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">rand_c</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#rand_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.rand_c" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates random extended complex coordinate whose real and imaginary parts
 are normally distributed, and ten percent of the time, we return <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.rand_sph">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">rand_sph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#rand_sph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.rand_sph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates random spherical coordinate. If <cite>unit=True</cite>, the point
+lies on the surface of the sphere.</p>
 </dd></dl>
 
 <dl class="py function">

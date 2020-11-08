@@ -21,6 +21,15 @@ def rand_xyz(n=1):
         return normalize(np.random.randn(3))
     return np.array([normalize(np.random.randn(3)) for i in range(n)])
 
+def rand_sph(unit=False):
+    """
+    Generates random spherical coordinate. If `unit=True`, the point
+    lies on the surface of the sphere.
+    """
+    return np.array([1 if unit else np.random.random(),\
+                     2*np.pi*np.random.random(),\
+                     np.pi*np.random.random()])
+
 def components(q):
     """
     Extracts components of qt.Qobj, whether bra or ket.
@@ -101,5 +110,3 @@ def bitstring_basis(bitstring, dims=2):
         dims = [dims]*len(bitstring)
     return qt.tensor(*[qt.basis(dims[i], i)\
                 for i in range(len(bitstring))])
-
-

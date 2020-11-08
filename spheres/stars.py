@@ -285,20 +285,25 @@ def spin_poly(spin, projective=False,\
 
         p(z) = \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} z^{j-m}
 
-    Here, the :math:`a`'s run through the components of the spin in the :math:`\\mid j, m\\rangle` representation.
+    Here, the :math:`a`'s run through the components of the spin in the :math:`\\mid j, m\\rangle` representation. 
+    Note that :math:`\\frac{(2j)!}{(j-m)!(j+m)!}` amounts to: :math:`\\binom{2j}{j+m}`, a binomial coefficient.
 
     By default, returns the coefficients of the Majorana polynomial as an np.ndarray.
 
     If `projective=True`, returns a function which takes an extended complex coordinate
     as an argument, and which evaluates the polynomial at that point. Note that to evaluate the polynomial
-    at :math:`\\infty`, we flip the stereographic projection axis and evaluate the latter polynomial at 0.
+    at :math:`\\infty`, we flip the stereographic projection axis and evaluate the latter polynomial at 0
+    (and then complex conjugate). Insofar as pole flipping causes the highest degree term to become the lowest degree/constant term,
+    evaluating at :math:`\\infty` amounts to returning the first coefficient.
 
     If `homogeneous=True`, returns a function which takes a spinor (as an nd.array, qt.Qobj, or two separate complex coordinates)
     and evaluates the homogeneous Majorana polynomial:
 
      .. math::
 
-        p(z, w) = 2^{j} \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} w^{j-m} z^{j+m}
+        p(z, w) = \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} w^{j-m} z^{j+m}
+
+    (N.b. currently the normalization is off for the homogeneous case, but the correct roots are obtained.)
 
     If `cartesian=True`, returns a function with takes cartesian coordinates (as an nd.array or three sepaparate real components)
     and evaluates the Majorana polynomial by first converting the cartesian coordinates to an extended complex coordinate.
@@ -307,10 +312,15 @@ def spin_poly(spin, projective=False,\
     and evaluates the Majorana polynomial by first converting the spherical coordinates to an extended complex coordinate.
 
     If `normalized=True`, returns the normalized versions of any of the above functions. Note that the normalized
-    versions are no longer analytic/holomorphic. The normalization factor is :math:`(\\frac{1}{1+|z|^2})^j`, where :math:`z` is
-    the extended complex coordinate. If :math:`z=\\infty`, again since we flip the poles, we use :math:`z=0`,
-    and if we want the homogeneous function, we first convert the spinor to an extended complex coordinate to
-    evaluate the normalization factor. When normalized, the resulting functions are equivalent to:
+    versions are no longer analytic/holomorphic. Given a extended complex coordinate :math:`z = re^{i\\theta}` (or :math:`\\infty`),
+    the normalization factor is:
+
+    .. math::
+
+        \\frac{e^{-2ij\\theta}}{(1+r^2)^j}
+
+    If :math:`z=\\infty`, again since we flip the poles, we use :math:`z=0`.
+    When normalized, the resulting functions are equivalent to:
 
     .. math::
         \\langle -xyz \\mid \\psi \\rangle
@@ -364,10 +374,9 @@ def spin_poly(spin, projective=False,\
                     for m in np.arange(-j, j+1)])
     if projective or cartesian or spherical:
         def __poly__(z):
-            prefactor = 1/(1+abs(z if z != np.inf else 0)**2)**j if normalized else 1
-            return prefactor*sum([c*(z if z != np.inf else 0)**i\
-                        for i, c in enumerate((poly if z != np.inf\
-                                                else poleflip(poly))[::-1])])
+            normalization = np.exp(-2j*j*np.angle(z))/(1+abs(z if z != np.inf else 0)**2)**j if normalized else 1
+            return normalization*(poly[0] if z == np.inf else \
+                        sum([poly[int(j+m)]*z**(j-m) for m in np.arange(-j, j+1)]))
         if projective:
             return __poly__
         if cartesian:
@@ -380,17 +389,11 @@ def spin_poly(spin, projective=False,\
                 sph = args[0] if len(args) == 1 else np.array(args)
                 return __poly__(sph_c(sph))
             return __spherical__
-    if homogeneous:
+    if homogeneous: 
         def __hompoly__(*args):
-            if len(args) == 1:
-                z, w = components(args[0])
-                r = spinor_c(args[0])
-            else:
-                z, w = args
-                r = spinor_c(qt.Qobj(np.array([z, w])))
-            prefactor = 1/(1+abs(r if r != np.inf else 0)**2)**j if normalized else 1
-            return prefactor*sum([c*(w**i)*(z**(len(poly)-i-1))\
-                        for i, c in enumerate(poly[::-1])])*2**j
+            z, w = components(args[0]) if len(args) == 1 else args
+            return sum([poly[int(j+m)]*(w**(j-m))*(z**(j+m))\
+                        for m in np.arange(-j, j+1)])
         return __hompoly__
     return poly
 
@@ -596,12 +599,14 @@ def sph_spin(sph):
     """
     return poly_spin(roots_poly([sph_c(s) for s in sph]))
 
-def antipodal(to_invert):
+def antipodal(to_invert, from_cartesian=False,\
+                         from_spherical=False):
     """
     If given an extended complex coordinate, takes the point to its antipode on the sphere via the map:
+    
     .. math::
 
-        z \\rightarrow -\\frac{z}{|z|^2}
+        z \\rightarrow -\\frac{z}{|z|^2} = - \\frac{1}{z^{*}}
 
     If :math:`z=\\infty`, :math:`z \\rightarrow 0` and if :math:`z=0`, :math:`z \\rightarrow \\infty`.
 
@@ -610,35 +615,46 @@ def antipodal(to_invert):
     reversing the components, complex conjugating, and multiplying every other
     component by :math:`-1`.
 
+    If `from_cartesian=True` or `from_spherical=True`, the argument is interpreted
+    as a single coordinate in terms of those coordinate systems and the flipped coordinate 
+    is returned in the same.
+
     Parameters
     ----------
         to_invert : (complex/inf) or qt.Qobj or np.ndarray
-            Extended complex coordinate or spin state/polynomial to invert.
-
+            Extended complex coordinate, cartesian coordinate,
+            spherical coordinate, or spin state/polynomial to invert.
     Returns
     -------
         inverted : (complex/inf) or qt.Qobj or np.ndarray
-            Inverted extended complex coordinate or spin state/polynomial.
-
+            Inverted extended complex coordinate, cartesian coordinate,
+            spherical coordinate or spin state/polynomial.
     """
-    if type(to_invert) != qt.Qobj and type(to_invert) != np.ndarray:
+    if np.isscalar(to_invert):
         if np.isclose(to_invert, 0):
             return np.inf
         if to_invert == np.inf:
             return 0
         return -to_invert/np.abs(to_invert)**2
-    inverted = np.array([c*(-1)**i for i, c in enumerate(components(to_invert)[::-1].conj())])
+    if from_cartesian:
+        return -1*to_invert
+    if from_spherical:
+        return c_sph(antipodal(sph_c(to_invert)))
+    inverted = np.array([c*(-1)**(i) for i, c in enumerate(components(to_invert)[::-1].conj())])
     return qt.Qobj(inverted) if type(to_invert) == qt.Qobj else inverted
 
-def poleflip(to_flip):
+def poleflip(to_flip, from_cartesian=False,\
+                      from_spherical=False):
     """
-    If given an extended complex coordinate, flips the pole of projection. In other words, project
-    to the sphere via a South Pole projection and then project back to the plane via North Pole projection.
-    This amounts to:
+    Flips the pole of projection.  If given an extended complex coordinate, this amounts to
+    projecting to the sphere via a South Pole projection and then projecting back to the plane 
+    via a North Pole projection.
+
+    More simply:
 
     .. math::
 
-        z \\rightarrow \\frac{z}{|z|^2}
+        z \\rightarrow \\frac{z}{|z|^2} = \\frac{1}{z^{*}}
 
     If :math:`z=\\infty`, :math:`z \\rightarrow 0` and if :math:`z=0`, :math:`z \\rightarrow \\infty`.
 
@@ -649,23 +665,37 @@ def poleflip(to_flip):
     This is useful for evaluating the Majorana polynomial at :math:`\\infty`. We actually
     need a second coordinate chart. We flip the projection pole and evaluate at :math:`0` instead.
 
+    If `from_cartesian=True` or `from_spherical=True`, the argument is interpreted
+    as a single coordinate in terms of those coordinate systems and the flipped coordinate 
+    is returned in the same.
+
     Parameters
     ----------
         to_flip : (complex/inf) or qt.Qobj or np.ndarray
-            Extended complex coordinate or spin state/polynomial to flip.
+            Extended complex coordinate, cartesian coordinate,
+            spherical coordinate, or spin state/polynomial to flip.
+        from_cartesian : bool, optional
+            Whether to interpret argument as cartesian coordinates.
+        from_spherical : bool, optional
+            Whether to interpret argument as spherical coordinates.
 
     Returns
     -------
         flipped : (complex/inf) or qt.Qobj or np.ndarray
-            Flipped extended complex coordinate or spin state/polynomial.
-
+            Flipped extended complex coordinate, cartesian coordinate,
+            spherical coordinate or spin state/polynomial.
     """
-    if type(to_flip) != qt.Qobj and type(to_flip) != np.ndarray:
+    if np.isscalar(to_flip):
         if np.isclose(to_flip, 0):
             return np.inf
         if to_flip == np.inf:
             return 0
         return to_flip/np.abs(to_flip)**2
+    if from_cartesian:
+        x, y, z = to_flip
+        return np.array([x, y, -z])
+    if from_spherical:
+        return c_sph(poleflip(sph_c(to_flip)))
     flipped = components(to_flip)[::-1].conj()
     return qt.Qobj(flipped) if type(to_flip) == qt.Qobj else flipped
 
