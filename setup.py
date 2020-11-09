@@ -1,16 +1,16 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="spheres",
-    version="0.3.0.3",
+    version="0.3.0.4",
     author="Matthew Weiss",
     author_email="heyredhat@gmail.com",
     description="toolbox for higher spin and symmetrization",
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     url="https://github.com/heyredhat/spheres",
     packages=setuptools.find_packages(),
     classifiers=[
