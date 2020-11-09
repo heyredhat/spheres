@@ -1,5 +1,7 @@
-Welcome to the documentation of spheres!
-========================================
+Welcome to the documentation for spheres!
+=========================================
+
+.. include:: ../README.rst
 
 .. toctree::
    :maxdepth: -1

@@ -1,10 +1,11 @@
 """
-toolbox for higher spin and symmetrization!
-
 ..  automodule:: spheres.stars
 	:members:
 
 ..  automodule:: spheres.symmetrization
+	:members:
+
+.. automodule:: spheres.visualization
 	:members:
 
 .. automodule:: spheres.utils

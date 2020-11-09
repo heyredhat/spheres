@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to the documentation of spheres! &mdash; spheres 0.0.1 documentation</title>
+  <title>Welcome to the documentation for spheres! &mdash; spheres 0.0.1 documentation</title>
   
 
   
@@ -83,10 +83,14 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to the documentation of spheres!</a><ul>
+<li><a class="reference internal" href="#">Welcome to the documentation for spheres!</a><ul>
+<li><a class="reference internal" href="#spheres">spheres:</a><ul>
 <li><a class="reference internal" href="#majorana-stars">Majorana Stars</a></li>
 <li><a class="reference internal" href="#symmetrization">Symmetrization</a></li>
+<li><a class="reference internal" href="#visualization-tools">Visualization Tools</a></li>
 <li><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
@@ -136,7 +140,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to the documentation of spheres!</li>
+      <li>Welcome to the documentation for spheres!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,13 +159,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-the-documentation-of-spheres">
-<h1>Welcome to the documentation of spheres!<a class="headerlink" href="#welcome-to-the-documentation-of-spheres" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="welcome-to-the-documentation-for-spheres">
+<h1>Welcome to the documentation for spheres!<a class="headerlink" href="#welcome-to-the-documentation-for-spheres" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="spheres">
+<h2>spheres:<a class="headerlink" href="#spheres" title="Permalink to this headline">¶</a></h2>
+<p>toolbox for higher spin and symmetrization</p>
+<img alt="_images/stereographic_projection.jpg" class="align-center" src="_images/stereographic_projection.jpg" />
+<p><cite>spheres</cite> provides tools for dealing with higher spin systems and for symmetrized quantum circuits. Among other things, we provide implementations of:</p>
+<p><span class="math notranslate nohighlight">\(\\psi\)</span></p>
+<ol class="arabic simple">
+<li><p>The “Majorana stars” representation of a spin-j state as a degree-2j complex polynomial defined on the extended complex plane (the Riemann sphere). The eponymous stars are the 2j roots of this polynomial and each can be interpreted as a quantum of angular momentum contributing 1/2 in the specified direction. This polynomial can be defined in terms of the components of a <span class="math notranslate nohighlight">\(\\mid j, m \\rangle\)</span> vector or in terms of a spin coherent wavefunction <span class="math notranslate nohighlight">\(\\langle -xyz \\mid \\psi \\rangle\)</span>, where <span class="math notranslate nohighlight">\(\\mid \\psi \\rangle\)</span> is the spin state and <span class="math notranslate nohighlight">\(\\langle -xyz \\mid\)</span> is a spin coherent state at the point antipodal to xyz.</p></li>
+<li><p>The “symmetrized spinors” representation of a spin-j state as 2j symmetrized spin-1/2 states (aka qubits). Indeed, the basis states of 2j symmetrized qubits are in 1-to-1 relation to the <span class="math notranslate nohighlight">\(\\mid j, m \\rangle\)</span> basis states of a spin-j. Such a representation is naturally useful for simulating spin-j states on a qubit based quantum computer, and we provide circuits for preparing such states.</p></li>
+<li><p>The “Schwinger oscillator” representation of a spin-j state as the total energy 2j subspace of two quantum harmonic oscillators. Indeed, the full space of the two oscillators furnishes a representation of spin with a variable j value: a superposition of j values. This construction can be interpreted as the “second quantization” of qubit, and is appropriate for implementation of photonic quantum computers.</p></li>
+</ol>
+<p>In addition, we provide many useful tools for dealing with oscillators and spin more generally: coherent state polynomials for oscillators, quantum polyhedra, a little spinorial special relativity, and much more. Everything is accompanied by 3D visualizations thanks to <cite>vpython</cite>, and interfaces to popular quantum computing libraries from <cite>qutip</cite> to <cite>StrawberryFields</cite>.</p>
+<p>Finally, we provide tools for implementing a form of quantum error correction or “stablization” by harnessing the power of symmetrization. We provide automatic generation of circuits which perform a given quantum experiment multiple times in parallel while periodically projecting them all jointly into the symmetric subspace, which in principle increases the reliability of the computation under noisy conditions.</p>
+<p><cite>spheres</cite> is a work in progress! Beware!</p>
+<p>Special thanks to the <a class="reference external" href="https://qosf.org/">Quantum Open Source Foundation</a>.</p>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-spheres"></span><p>toolbox for higher spin and symmetrization!</p>
-<span class="target" id="module-spheres.stars"></span><div class="section" id="majorana-stars">
-<h2>Majorana Stars<a class="headerlink" href="#majorana-stars" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-spheres"></span><span class="target" id="module-spheres.stars"></span><div class="section" id="majorana-stars">
+<h3>Majorana Stars<a class="headerlink" href="#majorana-stars" title="Permalink to this headline">¶</a></h3>
 <p>Implementation of the “Majorana stars” formalism for higher spin.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -904,7 +922,7 @@ to the extended complex plane, and then lifting the latter to a 2-vector.</p>
 
 </div>
 <span class="target" id="module-spheres.symmetrization"></span><div class="section" id="symmetrization">
-<h2>Symmetrization<a class="headerlink" href="#symmetrization" title="Permalink to this headline">¶</a></h2>
+<h3>Symmetrization<a class="headerlink" href="#symmetrization" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="spheres.symmetrization.spin_sym">
 <code class="sig-prename descclassname">spheres.symmetrization.</code><code class="sig-name descname">spin_sym</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">j</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/symmetrization.html#spin_sym"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.symmetrization.spin_sym" title="Permalink to this definition">¶</a></dt>
@@ -943,8 +961,216 @@ we sum over all permutations on the subsystems.</p>
 </dd></dl>
 
 </div>
+<span class="target" id="module-spheres.visualization"></span><div class="section" id="visualization-tools">
+<h3>Visualization Tools<a class="headerlink" href="#visualization-tools" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="spheres.visualization.MajoranaSphere">
+<em class="property">class </em><code class="sig-prename descclassname">spheres.visualization.</code><code class="sig-name descname">MajoranaSphere</code><span class="sig-paren">(</span><em class="sig-param">spin</em>, <em class="sig-param">scene=None</em>, <em class="sig-param">position=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">0&gt;</em>, <em class="sig-param">sphere_color=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">1&gt;</em>, <em class="sig-param">sphere_opacity=0.3</em>, <em class="sig-param">star_colors='random'</em>, <em class="sig-param">make_trails=False</em>, <em class="sig-param">sphere_draggable=True</em>, <em class="sig-param">stars_draggable=True</em>, <em class="sig-param">show_rotation_axis=True</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">phase_draggable=True</em>, <em class="sig-param">show_axes=True</em>, <em class="sig-param">show_wavefunction=None</em>, <em class="sig-param">wavefunction_samples=15</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>MajoranaSphere</cite> provides a nice way to visualize (pure) spin-j states using
+vpython for graphics, whether in a jupyter notebook or in a standalone
+environment.</p>
+<p>Create a <cite>MajoranaSphere</cite> by specifying a spin state. The radius of the sphere is
+determined by the j value of the spin. One can
+specify a vpython scene in which to place the MajoranaSphere (if none is provided,
+one is created by default) the position at which to place the sphere,
+the color and opacity of the sphere, the colors of the stars, whether the stars
+leave trails, whether the sphere and the stars
+are draggable by mouse, whether to show the expected rotation axis of the
+spin as a yellow arrow, whether to show reference cartesian axes in red, whether
+to show the complex phase of the spin as a green arrow hovering atop the sphere,
+and whether to additionally visualize the spin as a wavefunction on the sphere:
+both as a coherent state wave function or in terms of the Majorana function.
+One can specify the number of sample points to evaluate at, and the wavefunction
+amplitudes are visualized as arrows tangent to the sphere at these points.</p>
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.spin">
+<code class="sig-name descname">spin</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.spin" title="Permalink to this definition">¶</a></dt>
+<dd><p>The spin-j state represented. If this attribute is set, the visualization
+is automatically updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>qt.Qobj</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.j">
+<code class="sig-name descname">j</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.j" title="Permalink to this definition">¶</a></dt>
+<dd><p>Its j value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.xyz">
+<code class="sig-name descname">xyz</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Majorana points in cartesian coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.phase">
+<code class="sig-name descname">phase</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Complex phase of the spin state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>complex</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.show_rotation_axis">
+<code class="sig-name descname">show_rotation_axis</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.show_rotation_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the expected rotation axis. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_rotation_axis()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.show_phase">
+<code class="sig-name descname">show_phase</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.show_phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the phase. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_phase()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.show_axes">
+<code class="sig-name descname">show_axes</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.show_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show reference cartesian axes. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_axes()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.sphere_draggable">
+<code class="sig-name descname">sphere_draggable</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.sphere_draggable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether one can drag the sphere with the mouse. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_sphere_draggable()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.stars_draggable">
+<code class="sig-name descname">stars_draggable</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.stars_draggable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether one can drag the individual stars with the mouse. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_stars_draggable()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.phase_draggable">
+<code class="sig-name descname">phase_draggable</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.phase_draggable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether one can drag the phase around with the mouse. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_phase_draggable()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.make_trails">
+<code class="sig-name descname">make_trails</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.make_trails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the stars leave trails. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_trails()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.MajoranaSphere.show_wavefunction">
+<code class="sig-name descname">show_wavefunction</code><a class="headerlink" href="#spheres.visualization.MajoranaSphere.show_wavefunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can specify “majorana”, “coherent_state”, or <cite>None/False</cite>. If this attribute is set, the visualization
+is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_wavefunction()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool or str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spheres.visualization.MajoranaSphere.clear_trails">
+<code class="sig-name descname">clear_trails</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.clear_trails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.clear_trails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the star trails.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spheres.visualization.MajoranaSphere.destroy">
+<code class="sig-name descname">destroy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.destroy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroys the MajoranaSphere.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spheres.visualization.MajoranaSphere.evolve">
+<code class="sig-name descname">evolve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.evolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualizes the evolution of the spin state under the specified Hamiltonian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>H</strong> (<em>qt.Qobj</em>) – The Hamiltonian.</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – The time step for each sample of the evolution after which the
+visualization is updated.</p></li>
+<li><p><strong>T</strong> (<em>int</em>) – The total number of time steps to evolve for.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="spheres.visualization.MajoranaSphere.refresh">
+<code class="sig-name descname">refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.refresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refreshes the visualization from the value of <cite>self.spin</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.visualization.tangent_plane_rotation">
+<code class="sig-prename descclassname">spheres.visualization.</code><code class="sig-name descname">tangent_plane_rotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">phi</span></em>, <em class="sig-param"><span class="n">theta</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#tangent_plane_rotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.tangent_plane_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs rotation into the tangent plane to the sphere
+at the given point specified in spherical coordinates. Returns
+a 3x3 np.ndarray representing the linear transformation corresponding
+to the rotation.</p>
+</dd></dl>
+
+</div>
 <span class="target" id="module-spheres.utils"></span><div class="section" id="utility-functions">
-<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
+<h3>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="spheres.utils.bitstring_basis">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">bitstring_basis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bitstring</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#bitstring_basis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.bitstring_basis" title="Permalink to this definition">¶</a></dt>
@@ -1032,13 +1258,7 @@ lies on the surface of the sphere.</p>
 <dd><p>Returns <span class="math notranslate nohighlight">\(SO(3)\)</span> generators <span class="math notranslate nohighlight">\(L_{x}, L_{y}, L_{z}\)</span>.</p>
 </dd></dl>
 
-<dl class="py function">
-<dt id="spheres.utils.tangent_plane_rotation">
-<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">tangent_plane_rotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">phi</span></em>, <em class="sig-param"><span class="n">theta</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#tangent_plane_rotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.tangent_plane_rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct rotation into the tangent plane to the sphere
-at the given point specified in spherical coordinates.</p>
-</dd></dl>
-
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">

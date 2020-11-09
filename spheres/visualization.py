@@ -11,8 +11,11 @@ import vpython as vp
 
 def tangent_plane_rotation(phi, theta):
     """
-    Construct rotation into the tangent plane to the sphere 
-    at the given point specified in spherical coordinates.
+    Constructs rotation into the tangent plane to the sphere 
+    at the given point specified in spherical coordinates. Returns
+    a 3x3 np.ndarray representing the linear transformation corresponding
+    to the rotation.
+
     """
     normal = sph_xyz(np.array([1, phi, theta]))
     tangent = sph_xyz(np.array([1, phi, theta+np.pi/2]))
@@ -20,11 +23,67 @@ def tangent_plane_rotation(phi, theta):
                 np.array([tangent,\
                           normalize(np.cross(tangent, normal)),\
                           normal]))
-    
+
 class MajoranaSphere:
+    """
+    `MajoranaSphere` provides a nice way to visualize (pure) spin-j states using
+    vpython for graphics, whether in a jupyter notebook or in a standalone 
+    environment.
+
+    Create a `MajoranaSphere` by specifying a spin state. The radius of the sphere is
+    determined by the j value of the spin. One can
+    specify a vpython scene in which to place the MajoranaSphere (if none is provided,
+    one is created by default) the position at which to place the sphere, 
+    the color and opacity of the sphere, the colors of the stars, whether the stars 
+    leave trails, whether the sphere and the stars
+    are draggable by mouse, whether to show the expected rotation axis of the
+    spin as a yellow arrow, whether to show reference cartesian axes in red, whether
+    to show the complex phase of the spin as a green arrow hovering atop the sphere, 
+    and whether to additionally visualize the spin as a wavefunction on the sphere:
+    both as a coherent state wave function or in terms of the Majorana function. 
+    One can specify the number of sample points to evaluate at, and the wavefunction
+    amplitudes are visualized as arrows tangent to the sphere at these points.
+
+    Attributes
+    ----------
+    spin : qt.Qobj
+        The spin-j state represented. If this attribute is set, the visualization
+        is automatically updated.
+    j : float
+        Its j value.
+    xyz : np.ndarray
+        Majorana points in cartesian coordinates.
+    phase : complex
+        Complex phase of the spin state.
+    show_rotation_axis : bool
+        Whether to show the expected rotation axis. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_rotation_axis`.
+    show_phase : bool
+        Whether to show the phase. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_phase`.
+    show_axes : bool
+        Whether to show reference cartesian axes. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_axes`.
+    sphere_draggable : bool
+        Whether one can drag the sphere with the mouse. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_sphere_draggable`.
+    stars_draggable : bool
+        Whether one can drag the individual stars with the mouse. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_stars_draggable`.
+    phase_draggable : bool
+        Whether one can drag the phase around with the mouse. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_phase_draggable`.
+    make_trails : bool
+        Whether the stars leave trails. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_trails`.
+    show_wavefunction : bool or str
+        Can specify "majorana", "coherent_state", or `None/False`. If this attribute is set, the visualization
+        is automatically updated. Can also use :py:meth:`toggle_wavefunction`.
+
+    """
     def __init__(self, spin,\
                        scene=None,\
-                       position=[0,0,0],\
+                       position=vp.vector(0,0,0),\
                        sphere_color=vp.color.blue,\
                        sphere_opacity=0.3,\
                        star_colors="random",\
@@ -33,10 +92,63 @@ class MajoranaSphere:
                        stars_draggable=True,\
                        show_rotation_axis=True,\
                        show_phase=True,\
-                       #phase_draggable=True,\
+                       phase_draggable=True,\
                        show_axes=True,\
                        show_wavefunction=None,\
                        wavefunction_samples=15):
+        """
+        Parameters
+        ----------
+        spin : qt.Qobj
+            The spin state to visualize.
+        scene : vp.canvas, optional
+            `vpython` canvas in which to place the sphere. If none is provided,
+            a new canvas is created.
+        position : vp.vector, optional
+            3D `vpython` vector coordinates at which to place the sphere.
+        sphere_color : vp.vector, optional
+            `vpython` vector representing the RGB color values for the sphere. 
+        sphere_opacity : float, optional
+            Specifies the opacity of the sphere. 
+        star_colors : vp.vector or list or str, optional
+            Specifies the color of the stars. If given a `vpython` vector representing
+            RGB color values, all the stars are colored with that color. If given a list
+            of such vectors, the stars are colored with those colors. If given "random",
+            random colors are generated for each star. Note that if the stars are
+            different colors, there is some performance overhead as a little extra work
+            has to be done to keep track of which star is which: in other words, 
+            :py:meth:`spin_xyz`  doesn't nail down the ordering of the stars and so they
+            may "switch places." This is undetectable if the stars are all colored the same,
+            but if they aren't, we use :py:meth:`fix_ordering` to try to keep continuity.
+        make_trails : bool, optional
+            If `True`, the stars leave (colored) trails behind them. Similarly to the above,
+            we must use :py:meth:`fix_ordering` to keep continuity.
+        sphere_draggable : bool, optional
+            If `True`, one can click the sphere to (un)select it (it turns purple), and
+            then drag it around the scene.
+        stars_draggable : bool, optional
+            If `True`, one can click the stars to un(select) them (they turn magenta),
+            and then drag them around the surface of the sphere.
+        show_rotation_axis : bool, optional
+            If `True`, shows the expected spin axis in yellow.
+        show_phase : bool, optional
+            If `True`, shows the complex phase of the wavefunction as a green arrow
+            within a black ring hovering above the sphere like a halo.
+        phase_draggable : bool, optional
+            If `True`, allows the complex phase to be dragged via the mouse.
+        show_axes : bool, optional
+            If `True`, shows reference cartesian axes in red.
+        show_wavefunction : None or str, optional
+            If "majorana", visualizes the normalized Majorana function on the sphere.
+            If "coherent_state", visualizes the coherent state wavefunction on the sphere.
+            The two are antipodal to each other. 
+            The complex amplitudes appear as arrows tangent to the surface of the sphere
+            at each sample point.
+        wavefunction_samples : int, optional
+            Number of sample points :math:`n` at which to evaluate the wavefunction. The total
+            number of points is :math:`n^2`.
+
+        """
         super().__setattr__("spin", spin)
         self.j = (self.spin.shape[0]-1)/2
         self.xyz = spin_xyz(self.spin)
@@ -47,7 +159,7 @@ class MajoranaSphere:
                                     align="center", 
                                     width=600, 
                                     height=600)
-        self.vsphere = vp.sphere(pos=vp.vector(*position),\
+        self.vsphere = vp.sphere(pos=position,\
                                  radius=self.j,\
                                  color=sphere_color,\
                                  opacity=sphere_opacity)
@@ -75,6 +187,7 @@ class MajoranaSphere:
         self.toggle_axes(show_axes)
         self.toggle_sphere_draggable(sphere_draggable)
         self.toggle_stars_draggable(stars_draggable)
+        self.toggle_phase_draggable(phase_draggable)
         self.toggle_trails(make_trails)
 
         self.wavefunction_samples = wavefunction_samples
@@ -82,7 +195,6 @@ class MajoranaSphere:
 
         self.evolving = False
         self.saved_make_trails = None
-        self.selected = None
 
     def __exists__(self, attr):
         return hasattr(self, attr) and getattr(self, attr) != None
@@ -98,6 +210,8 @@ class MajoranaSphere:
             self.toggle_sphere_draggable(value)
         elif name == "stars_draggable":
             self.toggle_stars_draggable(value)
+        elif name == "phase_draggable":
+            self.toggle_phase_draggable(value)
         elif name == "make_trails":
             self.toggle_trails(value)
         elif name == "show_wavefunction":
@@ -132,7 +246,6 @@ class MajoranaSphere:
                                    shaftwidth=0.05,\
                                    opacity=0.3,\
                                    color=vp.color.green)
-            self.phase_dragging = False
         if not self.show_phase and self.__exists__("vphase"):
             self.vphase_ring.visible = False
             self.vphase.visible = False
@@ -175,7 +288,7 @@ class MajoranaSphere:
         if not self.sphere_draggable:
             self.sphere_dragging = None
             self.vsphere.color = vp.color.blue
-            if self.__exists__("clicks_bound") and not self.stars_draggable:
+            if self.__exists__("clicks_bound") and not self.stars_draggable and not self.phase_draggable:
                 self.clicks_bound = None
                 self.scene.unbind('click', self.mouseclick)
                 self.scene.unbind('mousemove', self.mousemove)
@@ -193,8 +306,24 @@ class MajoranaSphere:
             self.star_dragging = -1
             for i, star in enumerate(self.vstars):
                 star.color = self.star_colors[i]
-            if self.__exists__("clicks_bound") and not self.sphere_draggable:
+            if self.__exists__("clicks_bound") and not self.sphere_draggable and not self.phase_draggable:
                 self.clicks_bound = None
+                self.scene.unbind('click', self.mouseclick)
+                self.scene.unbind('mousemove', self.mousemove)
+
+    def toggle_phase_draggable(self, toggle=None):
+        super().__setattr__("phase_draggable", \
+            (True if not self.phase_draggable else False) if toggle == None else toggle)
+        if self.phase_draggable:
+            self.phase_dragging = False
+            if not self.__exists__("clicks_bound"):
+                self.clicks_bound = True 
+                self.scene.bind('click', self.mouseclick)
+                self.scene.bind('mousemove', self.mousemove)
+        if not self.phase_draggable:
+            self.phase_dragging = None
+            if self.__exists__("clicks_bound") and not self.sphere_draggable and not self.stars_draggable:
+                self.clicks_bound = None 
                 self.scene.unbind('click', self.mouseclick)
                 self.scene.unbind('mousemove', self.mousemove)
 
@@ -206,6 +335,9 @@ class MajoranaSphere:
             star.make_trail = self.make_trails
 
     def clear_trails(self):
+        """
+        Clears the star trails.
+        """
         for star in self.vstars:
             star.clear_trail()
 
@@ -249,7 +381,7 @@ class MajoranaSphere:
                                         for j in range(self.wavefunction_samples)]\
                                             for i in range(self.wavefunction_samples)]
     def mouseclick(self):
-        if self.show_phase:
+        if self.phase_draggable:
             if self.scene.mouse.pick == self.vphase:
                 self.phase_dragging = True if not self.phase_dragging else False
             else:
@@ -322,6 +454,9 @@ class MajoranaSphere:
                     self.refresh()
 
     def refresh(self):
+        """
+        Refreshes the visualization from the value of `self.spin`.
+        """
         self.xyz = spin_xyz(self.spin) if not self.fix_stars else fix_stars(self.xyz, spin_xyz(self.spin))
         self.phase = phase(self.spin)
 
@@ -361,6 +496,19 @@ class MajoranaSphere:
                         self.vwavefunction[i][j].pos = self.vsphere.pos+self.vsphere.radius*vp.vector(*sph_xyz([1, self.phi[i][j], self.theta[i][j]]))
 
     def evolve(self, H, dt=0.01, T=1000):
+        """
+        Visualizes the evolution of the spin state under the specified Hamiltonian.
+
+        Parameters
+        ----------
+        H : qt.Qobj
+            The Hamiltonian. 
+        dt : float
+            The time step for each sample of the evolution after which the 
+            visualization is updated.
+        T : int
+            The total number of time steps to evolve for.
+        """
         self.evolving = True
         U = (-1j*H*dt).expm()
         for t in range(T):
@@ -370,6 +518,9 @@ class MajoranaSphere:
         self.evolving = False
 
     def destroy(self):
+        """
+        Destroys the MajoranaSphere.
+        """
         self.vsphere.visible = False
         self.vsphere = None
         for star in self.vstars:

@@ -1,2 +1,18 @@
 Undocumented Python objects
 ===========================
+spheres.visualization
+---------------------
+Classes:
+ * MajoranaSphere -- missing methods:
+
+   - mouseclick
+   - mousemove
+   - toggle_axes
+   - toggle_phase
+   - toggle_phase_draggable
+   - toggle_rotation_axis
+   - toggle_sphere_draggable
+   - toggle_stars_draggable
+   - toggle_trails
+   - toggle_wavefunction
+
