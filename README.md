@@ -8,7 +8,7 @@ toolbox for higher spin and symmetrization
 [![Updates](https://pyup.io/repos/github/heyredhat/spheres/shield.svg)](https://pyup.io/repos/github/heyredhat/spheres/)
 [![Python 3](https://pyup.io/repos/github/heyredhat/spheres/python-3-shield.svg)](https://pyup.io/repos/github/heyredhat/spheres/)
 
-<img align="center" src="stereographic_projection.jpg">
+<p align="center"><img src="stereographic_projection.jpg"></p>
 
 `spheres` provides tools for dealing with higher spin systems and for symmetrized quantum circuits. Among other things, we provide implementations of:
 
