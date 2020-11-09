@@ -9,6 +9,18 @@ from spheres.utils import *
 
 import vpython as vp
 
+def tangent_plane_rotation(phi, theta):
+    """
+    Construct rotation into the tangent plane to the sphere 
+    at the given point specified in spherical coordinates.
+    """
+    normal = sph_xyz(np.array([1, phi, theta]))
+    tangent = sph_xyz(np.array([1, phi, theta+np.pi/2]))
+    return np.linalg.inv(\
+                np.array([tangent,\
+                          normalize(np.cross(tangent, normal)),\
+                          normal]))
+    
 class MajoranaSphere:
     def __init__(self, spin,\
                        scene=None,\
