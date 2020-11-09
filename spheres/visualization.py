@@ -87,7 +87,7 @@ class MajoranaSphere:
                        sphere_color=vp.color.blue,\
                        sphere_opacity=0.3,\
                        star_colors="random",\
-                       make_trails=False,\
+                       make_trails=True,\
                        sphere_draggable=True,\
                        stars_draggable=True,\
                        show_rotation_axis=True,\
