@@ -163,6 +163,105 @@
 <span class="target" id="module-spheres.stars"></span><div class="section" id="majorana-stars">
 <h2>Majorana Stars<a class="headerlink" href="#majorana-stars" title="Permalink to this headline">¶</a></h2>
 <p>Implementation of the “Majorana stars” formalism for higher spin.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.c_xyz" title="spheres.stars.c_xyz"><code class="xref py py-meth docutils literal notranslate"><span class="pre">c_xyz()</span></code></a>
+<a class="reference internal" href="#spheres.stars.xyz_c" title="spheres.stars.xyz_c"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xyz_c()</span></code></a></p></td>
+<td><p>Extended complex to cartesian
+and back.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.xyz_sph" title="spheres.stars.xyz_sph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xyz_sph()</span></code></a>
+<a class="reference internal" href="#spheres.stars.sph_xyz" title="spheres.stars.sph_xyz"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sph_xyz()</span></code></a></p></td>
+<td><p>Cartesian to spherical
+and back.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.c_sph" title="spheres.stars.c_sph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">c_sph()</span></code></a>
+<a class="reference internal" href="#spheres.stars.sph_c" title="spheres.stars.sph_c"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sph_c()</span></code></a></p></td>
+<td><p>Extended complex to spherical
+and back.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.c_spinor" title="spheres.stars.c_spinor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">c_spinor()</span></code></a>
+<a class="reference internal" href="#spheres.stars.spinor_c" title="spheres.stars.spinor_c"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spinor_c()</span></code></a></p></td>
+<td><p>Extended complex to spinor
+and back.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.xyz_spinor" title="spheres.stars.xyz_spinor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xyz_spinor()</span></code></a>
+<a class="reference internal" href="#spheres.stars.spinor_xyz" title="spheres.stars.spinor_xyz"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spinor_xyz()</span></code></a></p></td>
+<td><p>Cartesian to spinor
+and back.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.spinor_sph" title="spheres.stars.spinor_sph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spinor_sph()</span></code></a>
+<a class="reference internal" href="#spheres.stars.sph_spinor" title="spheres.stars.sph_spinor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sph_spinor()</span></code></a></p></td>
+<td><p>Spinor to spherical
+and back.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 49%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.spin_poly" title="spheres.stars.spin_poly"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spin_poly()</span></code></a>
+<a class="reference internal" href="#spheres.stars.poly_spin" title="spheres.stars.poly_spin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poly_spin()</span></code></a></p></td>
+<td><p>Spin to polynomial
+and back.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.poly_roots" title="spheres.stars.poly_roots"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poly_roots()</span></code></a>
+<a class="reference internal" href="#spheres.stars.roots_poly" title="spheres.stars.roots_poly"><code class="xref py py-meth docutils literal notranslate"><span class="pre">roots_poly()</span></code></a></p></td>
+<td><p>Polynomial to extended
+complex roots and back.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.spin_xyz" title="spheres.stars.spin_xyz"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spin_xyz()</span></code></a>
+<a class="reference internal" href="#spheres.stars.xyz_spin" title="spheres.stars.xyz_spin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xyz_spin()</span></code></a></p></td>
+<td><p>Spin to cartesian roots
+and back.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.spin_spinors" title="spheres.stars.spin_spinors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spin_spinors()</span></code></a>
+<a class="reference internal" href="#spheres.stars.spinors_spin" title="spheres.stars.spinors_spin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spinors_spin()</span></code></a></p></td>
+<td><p>Spin to spinorial roots
+and back.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.spin_c" title="spheres.stars.spin_c"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spin_c()</span></code></a>
+<a class="reference internal" href="#spheres.stars.c_spin" title="spheres.stars.c_spin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">c_spin()</span></code></a></p></td>
+<td><p>Spin to extended
+complex roots and back.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.spin_sph" title="spheres.stars.spin_sph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spin_sph()</span></code></a>
+<a class="reference internal" href="#spheres.stars.sph_spin" title="spheres.stars.sph_spin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sph_spin()</span></code></a></p></td>
+<td><p>Spin to spherical roots
+and back.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 49%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.spin_coherent" title="spheres.stars.spin_coherent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spin_coherent()</span></code></a></p></td>
+<td><p>Spin coherent state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.antipodal" title="spheres.stars.antipodal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">antipodal()</span></code></a></p></td>
+<td><p>Invert coordinates
+on sphere.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.stars.poleflip" title="spheres.stars.poleflip"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poleflip()</span></code></a></p></td>
+<td><p>Flip stereographic
+projection pole.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.stars.mobius" title="spheres.stars.mobius"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mobius()</span></code></a></p></td>
+<td><p>Construct Möbius
+transformation.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
 <dt id="spheres.stars.antipodal">
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">antipodal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_invert</span></em>, <em class="sig-param"><span class="n">from_cartesian</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">from_spherical</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#antipodal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.antipodal" title="Permalink to this definition">¶</a></dt>
@@ -882,6 +981,12 @@ as well as their ordering in the list.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt id="spheres.utils.fix_stars">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">fix_stars</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_stars</span></em>, <em class="sig-param"><span class="n">new_stars</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#fix_stars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.fix_stars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to adjust the ordering of a list of stars to keep continuity.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt id="spheres.utils.normalize">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">v</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#normalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.normalize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalizes numpy vector. Simply passes the vector through
@@ -925,6 +1030,13 @@ lies on the surface of the sphere.</p>
 <dt id="spheres.utils.so3_generators">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">so3_generators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#so3_generators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.so3_generators" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <span class="math notranslate nohighlight">\(SO(3)\)</span> generators <span class="math notranslate nohighlight">\(L_{x}, L_{y}, L_{z}\)</span>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.tangent_plane_rotation">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">tangent_plane_rotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">phi</span></em>, <em class="sig-param"><span class="n">theta</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#tangent_plane_rotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.tangent_plane_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct rotation into the tangent plane to the sphere
+at the given point specified in spherical coordinates.</p>
 </dd></dl>
 
 </div>

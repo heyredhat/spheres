@@ -4,6 +4,59 @@ Majorana Stars
 
 Implementation of the "Majorana stars" formalism for higher spin.
 
++-----------------------+-------------------------------+
+| :py:meth:`c_xyz`      | Extended complex to cartesian |
+| :py:meth:`xyz_c`      | and back.                     |
++-----------------------+-------------------------------+
+| :py:meth:`xyz_sph`    | Cartesian to spherical        |
+| :py:meth:`sph_xyz`    | and back.                     |
++-----------------------+-------------------------------+
+| :py:meth:`c_sph`      | Extended complex to spherical |
+| :py:meth:`sph_c`      | and back.                     |
++-----------------------+-------------------------------+
+| :py:meth:`c_spinor`   | Extended complex to spinor    |
+| :py:meth:`spinor_c`   | and back.                     |
++-----------------------+-------------------------------+
+| :py:meth:`xyz_spinor` | Cartesian to spinor           |
+| :py:meth:`spinor_xyz` | and back.                     |
++-----------------------+-------------------------------+
+| :py:meth:`spinor_sph` | Spinor to spherical           |
+| :py:meth:`sph_spinor` | and back.                     |
++-----------------------+-------------------------------+
+
++-------------------------+------------------------+
+| :py:meth:`spin_poly`    | Spin to polynomial     |
+| :py:meth:`poly_spin`    | and back.              |
++-------------------------+------------------------+
+| :py:meth:`poly_roots`   | Polynomial to extended |
+| :py:meth:`roots_poly`   | complex roots and back.|
++-------------------------+------------------------+
+| :py:meth:`spin_xyz`     | Spin to cartesian roots|
+| :py:meth:`xyz_spin`     | and back.              |
++-------------------------+------------------------+
+| :py:meth:`spin_spinors` | Spin to spinorial roots|
+| :py:meth:`spinors_spin` | and back.              |
++-------------------------+------------------------+
+| :py:meth:`spin_c`       | Spin to extended       |
+| :py:meth:`c_spin`       | complex roots and back.|
++-------------------------+------------------------+
+| :py:meth:`spin_sph`     | Spin to spherical roots|
+| :py:meth:`sph_spin`     | and back.              |
++-------------------------+------------------------+
+
++-------------------------+------------------------+
+| :py:meth:`spin_coherent`| Spin coherent state.   |
++-------------------------+------------------------+
+| :py:meth:`antipodal`    | Invert coordinates     |
+|                         | on sphere.             |
++-------------------------+------------------------+
+| :py:meth:`poleflip`     | Flip stereographic     |
+|                         | projection pole.       |
++-------------------------+------------------------+
+| :py:meth:`mobius`       | Construct Möbius       |
+|                         | transformation.        |
++-------------------------+------------------------+
+
 """
 
 import numpy as np
@@ -599,6 +652,45 @@ def sph_spin(sph):
     """
     return poly_spin(roots_poly([sph_c(s) for s in sph]))
 
+def spin_coherent(j, coord, from_cartesian=True,\
+                            from_spherical=False,\
+                            from_complex=False,\
+                            from_spinor=False):
+    """
+    Returns the spin-j coherent state which is defined by having
+    all its Majorana stars located at a single point on the sphere. 
+    This point can be given in terms of cartesian, spherical, extended complex, and spinorial coordinates.
+
+    Parameters
+    ----------
+        j : int
+            j value which indexes the :math:`SU(2)` representation.
+        coord : nd.array or qt.Qobj or complex/inf
+            Coordinates specifying the direction of the spin coherent state.
+        from_cartesian : bool, optional
+            Whether the provided coordinates are cartesian (default).
+        from_spherical : bool, optional
+            Whether the provided coordinates are spherical.
+        from_complex : bool, optional
+            Whether the provided coordinates are extended complex.
+        from_spinor : bool, optional
+            Whether the provided coordinates are spinorial.
+
+    Returns
+    -------
+        spin_coherent : qt.Qobj
+            Spin-j coherent state in the specified direction.
+    """
+    if from_cartesian:
+        r, phi, theta = xyz_sph(coord)
+    if from_spherical:
+        r, phi, theta = coord
+    if from_complex:
+        r, phi, theta = c_sph(coord)
+    if from_spinor:
+        r, phi, theta = c_sph(spinor_c(coord))
+    return qt.spin_coherent(j, theta, phi)
+
 def antipodal(to_invert, from_cartesian=False,\
                          from_spherical=False):
     """
@@ -698,45 +790,6 @@ def poleflip(to_flip, from_cartesian=False,\
         return c_sph(poleflip(sph_c(to_flip)))
     flipped = components(to_flip)[::-1].conj()
     return qt.Qobj(flipped) if type(to_flip) == qt.Qobj else flipped
-
-def spin_coherent(j, coord, from_cartesian=True,\
-                            from_spherical=False,\
-                            from_complex=False,\
-                            from_spinor=False):
-    """
-    Returns the spin-j coherent state which is defined by having
-    all its Majorana stars located at a single point on the sphere. 
-    This point can be given in terms of cartesian, spherical, extended complex, and spinorial coordinates.
-
-    Parameters
-    ----------
-        j : int
-            j value which indexes the :math:`SU(2)` representation.
-        coord : nd.array or qt.Qobj or complex/inf
-            Coordinates specifying the direction of the spin coherent state.
-        from_cartesian : bool, optional
-            Whether the provided coordinates are cartesian (default).
-        from_spherical : bool, optional
-            Whether the provided coordinates are spherical.
-        from_complex : bool, optional
-            Whether the provided coordinates are extended complex.
-        from_spinor : bool, optional
-            Whether the provided coordinates are spinorial.
-
-    Returns
-    -------
-        spin_coherent : qt.Qobj
-            Spin-j coherent state in the specified direction.
-    """
-    if from_cartesian:
-        r, phi, theta = xyz_sph(coord)
-    if from_spherical:
-        r, phi, theta = coord
-    if from_complex:
-        r, phi, theta = c_sph(coord)
-    if from_spinor:
-        r, phi, theta = c_sph(spinor_c(coord))
-    return qt.spin_coherent(j, theta, phi)
 
 def mobius(abcd):
     """

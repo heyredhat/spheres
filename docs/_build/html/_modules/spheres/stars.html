@@ -151,6 +151,59 @@
 
 <span class="sd">Implementation of the &quot;Majorana stars&quot; formalism for higher spin.</span>
 
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`c_xyz`      | Extended complex to cartesian |</span>
+<span class="sd">| :py:meth:`xyz_c`      | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`xyz_sph`    | Cartesian to spherical        |</span>
+<span class="sd">| :py:meth:`sph_xyz`    | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`c_sph`      | Extended complex to spherical |</span>
+<span class="sd">| :py:meth:`sph_c`      | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`c_spinor`   | Extended complex to spinor    |</span>
+<span class="sd">| :py:meth:`spinor_c`   | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`xyz_spinor` | Cartesian to spinor           |</span>
+<span class="sd">| :py:meth:`spinor_xyz` | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`spinor_sph` | Spinor to spherical           |</span>
+<span class="sd">| :py:meth:`sph_spinor` | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`spin_poly`    | Spin to polynomial     |</span>
+<span class="sd">| :py:meth:`poly_spin`    | and back.              |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`poly_roots`   | Polynomial to extended |</span>
+<span class="sd">| :py:meth:`roots_poly`   | complex roots and back.|</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`spin_xyz`     | Spin to cartesian roots|</span>
+<span class="sd">| :py:meth:`xyz_spin`     | and back.              |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`spin_spinors` | Spin to spinorial roots|</span>
+<span class="sd">| :py:meth:`spinors_spin` | and back.              |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`spin_c`       | Spin to extended       |</span>
+<span class="sd">| :py:meth:`c_spin`       | complex roots and back.|</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`spin_sph`     | Spin to spherical roots|</span>
+<span class="sd">| :py:meth:`sph_spin`     | and back.              |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`spin_coherent`| Spin coherent state.   |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`antipodal`    | Invert coordinates     |</span>
+<span class="sd">|                         | on sphere.             |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`poleflip`     | Flip stereographic     |</span>
+<span class="sd">|                         | projection pole.       |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+<span class="sd">| :py:meth:`mobius`       | Construct Möbius       |</span>
+<span class="sd">|                         | transformation.        |</span>
+<span class="sd">+-------------------------+------------------------+</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -746,6 +799,45 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">poly_spin</span><span class="p">(</span><span class="n">roots_poly</span><span class="p">([</span><span class="n">sph_c</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sph</span><span class="p">]))</span></div>
 
+<div class="viewcode-block" id="spin_coherent"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_coherent">[docs]</a><span class="k">def</span> <span class="nf">spin_coherent</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">coord</span><span class="p">,</span> <span class="n">from_cartesian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>\
+                            <span class="n">from_spherical</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                            <span class="n">from_complex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
+                            <span class="n">from_spinor</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the spin-j coherent state which is defined by having</span>
+<span class="sd">    all its Majorana stars located at a single point on the sphere. </span>
+<span class="sd">    This point can be given in terms of cartesian, spherical, extended complex, and spinorial coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        j : int</span>
+<span class="sd">            j value which indexes the :math:`SU(2)` representation.</span>
+<span class="sd">        coord : nd.array or qt.Qobj or complex/inf</span>
+<span class="sd">            Coordinates specifying the direction of the spin coherent state.</span>
+<span class="sd">        from_cartesian : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are cartesian (default).</span>
+<span class="sd">        from_spherical : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are spherical.</span>
+<span class="sd">        from_complex : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are extended complex.</span>
+<span class="sd">        from_spinor : bool, optional</span>
+<span class="sd">            Whether the provided coordinates are spinorial.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        spin_coherent : qt.Qobj</span>
+<span class="sd">            Spin-j coherent state in the specified direction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">from_cartesian</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">from_spherical</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">coord</span>
+    <span class="k">if</span> <span class="n">from_complex</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">c_sph</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">from_spinor</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">c_sph</span><span class="p">(</span><span class="n">spinor_c</span><span class="p">(</span><span class="n">coord</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">spin_coherent</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="antipodal"><a class="viewcode-back" href="../../index.html#spheres.stars.antipodal">[docs]</a><span class="k">def</span> <span class="nf">antipodal</span><span class="p">(</span><span class="n">to_invert</span><span class="p">,</span> <span class="n">from_cartesian</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
                          <span class="n">from_spherical</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -845,45 +937,6 @@
         <span class="k">return</span> <span class="n">c_sph</span><span class="p">(</span><span class="n">poleflip</span><span class="p">(</span><span class="n">sph_c</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)))</span>
     <span class="n">flipped</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">flipped</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">to_flip</span><span class="p">)</span> <span class="o">==</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span> <span class="k">else</span> <span class="n">flipped</span></div>
-
-<div class="viewcode-block" id="spin_coherent"><a class="viewcode-back" href="../../index.html#spheres.stars.spin_coherent">[docs]</a><span class="k">def</span> <span class="nf">spin_coherent</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">coord</span><span class="p">,</span> <span class="n">from_cartesian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>\
-                            <span class="n">from_spherical</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
-                            <span class="n">from_complex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>\
-                            <span class="n">from_spinor</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the spin-j coherent state which is defined by having</span>
-<span class="sd">    all its Majorana stars located at a single point on the sphere. </span>
-<span class="sd">    This point can be given in terms of cartesian, spherical, extended complex, and spinorial coordinates.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        j : int</span>
-<span class="sd">            j value which indexes the :math:`SU(2)` representation.</span>
-<span class="sd">        coord : nd.array or qt.Qobj or complex/inf</span>
-<span class="sd">            Coordinates specifying the direction of the spin coherent state.</span>
-<span class="sd">        from_cartesian : bool, optional</span>
-<span class="sd">            Whether the provided coordinates are cartesian (default).</span>
-<span class="sd">        from_spherical : bool, optional</span>
-<span class="sd">            Whether the provided coordinates are spherical.</span>
-<span class="sd">        from_complex : bool, optional</span>
-<span class="sd">            Whether the provided coordinates are extended complex.</span>
-<span class="sd">        from_spinor : bool, optional</span>
-<span class="sd">            Whether the provided coordinates are spinorial.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        spin_coherent : qt.Qobj</span>
-<span class="sd">            Spin-j coherent state in the specified direction.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">from_cartesian</span><span class="p">:</span>
-        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">from_spherical</span><span class="p">:</span>
-        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">coord</span>
-    <span class="k">if</span> <span class="n">from_complex</span><span class="p">:</span>
-        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">c_sph</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">from_spinor</span><span class="p">:</span>
-        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">c_sph</span><span class="p">(</span><span class="n">spinor_c</span><span class="p">(</span><span class="n">coord</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">spin_coherent</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="mobius"><a class="viewcode-back" href="../../index.html#spheres.stars.mobius">[docs]</a><span class="k">def</span> <span class="nf">mobius</span><span class="p">(</span><span class="n">abcd</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>

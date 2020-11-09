@@ -110,3 +110,31 @@ def bitstring_basis(bitstring, dims=2):
         dims = [dims]*len(bitstring)
     return qt.tensor(*[qt.basis(dims[i], i)\
                 for i in range(len(bitstring))])
+
+def fix_stars(old_stars, new_stars):
+    """
+    Try to adjust the ordering of a list of stars to keep continuity.
+    """
+    if np.all([np.allclose(old_stars[0], old_star) for old_star in old_stars]):
+        return new_stars
+    ordering = [None]*len(old_stars)
+    for i, old_star in enumerate(old_stars):
+        dists = np.array([np.linalg.norm(new_star-old_star) for new_star in new_stars])
+        minim = np.argmin(dists)
+        if np.count_nonzero(dists == dists[minim]) == 1:
+            ordering[i] = new_stars[minim]
+        else:
+            return new_stars
+    return ordering
+
+def tangent_plane_rotation(phi, theta):
+    """
+    Construct rotation into the tangent plane to the sphere 
+    at the given point specified in spherical coordinates.
+    """
+    normal = sph_xyz(np.array([1, phi, theta]))
+    tangent = sph_xyz(np.array([1, phi, theta+np.pi/2]))
+    return np.linalg.inv(\
+                np.array([tangent,\
+                          normalize(np.cross(tangent, normal)),\
+                          normal]))
