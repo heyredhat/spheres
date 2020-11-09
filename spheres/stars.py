@@ -713,12 +713,12 @@ def antipodal(to_invert, from_cartesian=False,\
 
     Parameters
     ----------
-        to_invert : (complex/inf) or qt.Qobj or np.ndarray
+        to_invert : complex/inf or qt.Qobj or np.ndarray
             Extended complex coordinate, cartesian coordinate,
             spherical coordinate, or spin state/polynomial to invert.
     Returns
     -------
-        inverted : (complex/inf) or qt.Qobj or np.ndarray
+        inverted : complex/inf or qt.Qobj or np.ndarray
             Inverted extended complex coordinate, cartesian coordinate,
             spherical coordinate or spin state/polynomial.
     """

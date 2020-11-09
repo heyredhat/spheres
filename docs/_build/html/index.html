@@ -180,6 +180,12 @@
 <p>In addition, we provide many useful tools for dealing with oscillators and spin more generally: coherent state polynomials for oscillators, quantum polyhedra, a little spinorial special relativity, and much more. Everything is accompanied by 3D visualizations thanks to <cite>vpython</cite>, and interfaces to popular quantum computing libraries from <cite>qutip</cite> to <cite>StrawberryFields</cite>.</p>
 <p>Finally, we provide tools for implementing a form of quantum error correction or “stablization” by harnessing the power of symmetrization. We provide automatic generation of circuits which perform a given quantum experiment multiple times in parallel while periodically projecting them all jointly into the symmetric subspace, which in principle increases the reliability of the computation under noisy conditions.</p>
 <p><cite>spheres</cite> is a work in progress! Beware!</p>
+<p>Get started:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">vsphere</span> <span class="o">=</span> <span class="n">MajoranaSphere</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">vsphere</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_herm</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
 <p>Special thanks to the <a class="reference external" href="https://qosf.org/">Quantum Open Source Foundation</a>.</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -301,7 +307,7 @@ as a single coordinate in terms of those coordinate systems and the flipped coor
 is returned in the same.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>to_invert</strong> (<em>(</em><em>complex/inf</em><em>) or </em><em>qt.Qobj</em><em> or </em><em>np.ndarray</em>) – Extended complex coordinate, cartesian coordinate,
+<dd class="field-odd"><p><strong>to_invert</strong> (<em>complex/inf</em><em> or </em><em>qt.Qobj</em><em> or </em><em>np.ndarray</em>) – Extended complex coordinate, cartesian coordinate,
 spherical coordinate, or spin state/polynomial to invert.</p>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -309,7 +315,7 @@ spherical coordinate, or spin state/polynomial to invert.</p>
 spherical coordinate or spin state/polynomial.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(complex/inf) or qt.Qobj or np.ndarray</p>
+<dd class="field-odd"><p>complex/inf or qt.Qobj or np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -970,7 +976,7 @@ we sum over all permutations on the subsystems.</p>
 <h3>Visualization Tools<a class="headerlink" href="#visualization-tools" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="spheres.visualization.MajoranaSphere">
-<em class="property">class </em><code class="sig-prename descclassname">spheres.visualization.</code><code class="sig-name descname">MajoranaSphere</code><span class="sig-paren">(</span><em class="sig-param">spin</em>, <em class="sig-param">scene=None</em>, <em class="sig-param">position=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">0&gt;</em>, <em class="sig-param">sphere_color=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">1&gt;</em>, <em class="sig-param">sphere_opacity=0.3</em>, <em class="sig-param">star_colors='random'</em>, <em class="sig-param">make_trails=False</em>, <em class="sig-param">sphere_draggable=True</em>, <em class="sig-param">stars_draggable=True</em>, <em class="sig-param">show_rotation_axis=True</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">phase_draggable=True</em>, <em class="sig-param">show_axes=True</em>, <em class="sig-param">show_wavefunction=None</em>, <em class="sig-param">wavefunction_samples=15</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">spheres.visualization.</code><code class="sig-name descname">MajoranaSphere</code><span class="sig-paren">(</span><em class="sig-param">spin</em>, <em class="sig-param">scene=None</em>, <em class="sig-param">position=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">0&gt;</em>, <em class="sig-param">sphere_color=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">1&gt;</em>, <em class="sig-param">sphere_opacity=0.3</em>, <em class="sig-param">star_colors='random'</em>, <em class="sig-param">make_trails=True</em>, <em class="sig-param">sphere_draggable=True</em>, <em class="sig-param">stars_draggable=True</em>, <em class="sig-param">show_rotation_axis=True</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">phase_draggable=True</em>, <em class="sig-param">show_axes=True</em>, <em class="sig-param">show_wavefunction=None</em>, <em class="sig-param">wavefunction_samples=15</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere" title="Permalink to this definition">¶</a></dt>
 <dd><p><cite>MajoranaSphere</cite> provides a nice way to visualize (pure) spin-j states using
 vpython for graphics, whether in a jupyter notebook or in a standalone
 environment.</p>

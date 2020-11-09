@@ -40,4 +40,12 @@ Finally, we provide tools for implementing a form of quantum error correction or
 
 `spheres` is a work in progress! Beware!
 
+Get started:
+
+.. code-block:: 
+	
+	from spheres import *
+	vsphere = MajoranaSphere(qt.rand_ket(3))
+	vsphere.evolve(qt.rand_herm(3))
+
 Special thanks to the `Quantum Open Source Foundation <https://qosf.org/>`_.
