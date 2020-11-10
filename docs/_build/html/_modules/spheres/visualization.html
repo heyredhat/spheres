@@ -350,6 +350,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">evolving</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">saved_make_trails</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refreshing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="nf">__exists__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span>
@@ -619,6 +620,43 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">vsphere</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">pos</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">evolving</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshing</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+<div class="viewcode-block" id="MajoranaSphere.snapshot"><a class="viewcode-back" href="../../index.html#spheres.visualization.MajoranaSphere.snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Takes a snapshot of the current locations of the stars</span>
+<span class="sd">        and, if applicable, the phase, rotation axis, and</span>
+<span class="sd">        wavefunction amplitudes. In other words, clones them.</span>
+<span class="sd">        Can take multiple snapshots, which are added to a list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">clone</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vstars&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">star</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vstars</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_phase</span><span class="p">:</span>
+            <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vphase&quot;</span><span class="p">]:</span> <span class="bp">self</span><span class="o">.</span><span class="n">vphase</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_rotation_axis</span><span class="p">:</span>
+            <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vrotation_axis&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vrotation_axis</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_wavefunction</span><span class="p">:</span>
+            <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vwavefunction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">vwavefunction</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wavefunction_samples</span><span class="p">)]</span>\
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wavefunction_samples</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snapshots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clone</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MajoranaSphere.clear_snapshot"><a class="viewcode-back" href="../../index.html#spheres.visualization.MajoranaSphere.clear_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">clear_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears a snapshot. If there&#39;s more than one snapshot,</span>
+<span class="sd">        we clear them first in, first out.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">clone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapshots</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vstars&quot;</span><span class="p">]:</span>
+            <span class="n">star</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s2">&quot;vphase&quot;</span> <span class="ow">in</span> <span class="n">clone</span><span class="p">:</span>
+            <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vphase&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s2">&quot;vrotation_axis&quot;</span> <span class="ow">in</span> <span class="n">clone</span><span class="p">:</span>
+            <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vrotation_axis&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s2">&quot;vwavefunction&quot;</span> <span class="ow">in</span> <span class="n">clone</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wavefunction_samples</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wavefunction_samples</span><span class="p">):</span>
+                    <span class="n">clone</span><span class="p">[</span><span class="s2">&quot;vwavefunction&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">clone</span> <span class="o">=</span> <span class="p">{}</span></div>
 
 <div class="viewcode-block" id="MajoranaSphere.refresh"><a class="viewcode-back" href="../../index.html#spheres.visualization.MajoranaSphere.refresh">[docs]</a>    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

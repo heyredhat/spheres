@@ -63,7 +63,6 @@ import numpy as np
 import qutip as qt
 
 from itertools import combinations
-factorial = np.math.factorial
 
 from spheres.utils import *
 

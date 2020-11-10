@@ -153,6 +153,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
 
+<span class="n">factorial</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span>
+
 <div class="viewcode-block" id="rand_c"><a class="viewcode-back" href="../../index.html#spheres.utils.rand_c">[docs]</a><span class="k">def</span> <span class="nf">rand_c</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates random extended complex coordinate whose real and imaginary parts</span>
@@ -273,6 +275,18 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">new_stars</span>
     <span class="k">return</span> <span class="n">ordering</span></div>
+
+<div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../index.html#spheres.utils.flatten">[docs]</a><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">to_flatten</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Flatten list of lists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">to_flatten</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="binomial"><a class="viewcode-back" href="../../index.html#spheres.utils.binomial">[docs]</a><span class="k">def</span> <span class="nf">binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the binomial coefficient :math:`\\binom{n}{k} = \\frac{n!}{k!(n-k)!}`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)))</span></div>
 </pre></div>
 
            </div>

@@ -203,6 +203,7 @@ class MajoranaSphere:
         self.evolving = False
         self.saved_make_trails = None
         self.refreshing = False
+        self.snapshots = []
 
     def __exists__(self, attr):
         return hasattr(self, attr) and getattr(self, attr) != None
@@ -472,6 +473,43 @@ class MajoranaSphere:
                 self.vsphere.pos = self.scene.mouse.pos
                 if not self.evolving and not self.refreshing:
                     self.refresh()
+
+    def snapshot(self):
+        """
+        Takes a snapshot of the current locations of the stars
+        and, if applicable, the phase, rotation axis, and
+        wavefunction amplitudes. In other words, clones them.
+        Can take multiple snapshots, which are added to a list.
+        """
+        clone = {}
+        clone["vstars"] = [star.clone() for star in self.vstars]
+        if self.show_phase:
+            clone["vphase"]: self.vphase.clone()
+        if self.show_rotation_axis:
+            clone["vrotation_axis"] = self.vrotation_axis.clone()
+        if self.show_wavefunction:
+            clone["vwavefunction"] = [[self.vwavefunction[i][j].clone()
+                        for j in range(self.wavefunction_samples)]\
+                            for i in range(self.wavefunction_samples)]
+        self.snapshots.append(clone)
+
+    def clear_snapshot(self):
+        """
+        Clears a snapshot. If there's more than one snapshot,
+        we clear them first in, first out.
+        """
+        clone = self.snapshots.pop(0)
+        for star in clone["vstars"]:
+            star.visible = False
+        if "vphase" in clone:
+            clone["vphase"].visible = False
+        if "vrotation_axis" in clone:
+            clone["vrotation_axis"].visible = False
+        if "vwavefunction" in clone:
+            for i in range(self.wavefunction_samples):
+                for j in range(self.wavefunction_samples):
+                    clone["vwavefunction"][i][j].visible = False
+        clone = {}
 
     def refresh(self):
         """

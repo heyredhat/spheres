@@ -58,3 +58,59 @@ def spin_sym(j):
                 for i in range(int(2*j+1))]).T)
     S.dims =[[2]*int(2*j), [int(2*j+1)]]
     return S
+
+def symmetrized_basis(n, d=2):
+    """
+    Constructs a symmetrized basis set for n systems in d dimensions.
+
+    Parameters
+    ----------
+        n : int
+            The number of systems to symmetrize.
+
+        d : int or list
+            Either an integer representing the dimensionality
+            of the individual subsystems, in which case, we work 
+            in the computational basis; or else a list of basis
+            states for the individual systems.
+
+    Returns
+    -------
+        sym_basis : dict
+            ``sym_basis["labels"]`` is a list of labels for
+            the symmetrized basis states. Each element of the list
+            is a tuple whose length is the dimensionality of the
+            individual subsystems, with an integer counting the number
+            of subsystems in that basis state.
+
+            ``sym_basis["basis"]`` is a dictionary mapping 
+            labels to symmetrized basis states.
+
+            ``sym_basis["map"]`` is a linear transformation
+            from the permutation symmetric subspace to the
+            full tensor product of the n systems.
+
+            The dimensionality of the symmetric subspace
+            corresponds to the number of ways of distributing
+            :math:`n` elements in :math:`d` boxes, where :math:`n` is the number of
+            systems and :math:`d` is the dimensionality of
+            an individual subsytems. In other words, the dimensionality
+            :math:`s` of the permutation symmetric subspace is :math:`\\binom{d+n-1}{n}`.
+
+            So ``sym_basis["map"]`` is a map from
+            :math:`\\mathbb{C}^{s} \\rightarrow \\mathbb{C}^{d^{n}}`.
+
+    """
+    if type(d) == int:
+        d = [qt.basis(d, i) for i in range(d)]
+    labels = list(filter(lambda b: sum(b) == n,\
+                list(product(range(n+1), repeat=len(d)))[::-1]))
+    sym_basis = dict([(label, symmetrize(flatten([[d[i]]*b \
+                                    for i, b in enumerate(label)])))\
+                                        for label in labels])
+    sym_map = qt.Qobj(np.vstack([components(sym_basis[label])\
+                                        for label in labels]).T)
+    sym_map.dims =[[d[0].shape[0]]*n, [len(sym_basis)]]
+    return {"labels": labels,\
+            "basis": sym_basis,\
+            "map": sym_map}

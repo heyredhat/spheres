@@ -6,6 +6,8 @@ Utility Functions
 import numpy as np
 import qutip as qt
 
+factorial = np.math.factorial
+
 def rand_c():
     """
     Generates random extended complex coordinate whose real and imaginary parts
@@ -126,3 +128,15 @@ def fix_stars(old_stars, new_stars):
         else:
             return new_stars
     return ordering
+
+def flatten(to_flatten):
+    """
+    Flatten list of lists.
+    """
+    return [item for sublist in to_flatten for item in sublist]
+
+def binomial(n, k):
+    """
+    Returns the binomial coefficient :math:`\\binom{n}{k} = \\frac{n!}{k!(n-k)!}`
+    """
+    return int(factorial(n)/(factorial(k)*factorial(n-k)))

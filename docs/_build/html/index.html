@@ -986,6 +986,47 @@ we sum over all permutations on the subsystems.</p>
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt id="spheres.symmetrization.symmetrized_basis">
+<code class="sig-prename descclassname">spheres.symmetrization.</code><code class="sig-name descname">symmetrized_basis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">d</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/symmetrization.html#symmetrized_basis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.symmetrization.symmetrized_basis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a symmetrized basis set for n systems in d dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – The number of systems to symmetrize.</p></li>
+<li><p><strong>d</strong> (<em>int</em><em> or </em><em>list</em>) – Either an integer representing the dimensionality
+of the individual subsystems, in which case, we work
+in the computational basis; or else a list of basis
+states for the individual systems.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><strong>sym_basis</strong> – <code class="docutils literal notranslate"><span class="pre">sym_basis[&quot;labels&quot;]</span></code> is a list of labels for
+the symmetrized basis states. Each element of the list
+is a tuple whose length is the dimensionality of the
+individual subsystems, with an integer counting the number
+of subsystems in that basis state.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sym_basis[&quot;basis&quot;]</span></code> is a dictionary mapping
+labels to symmetrized basis states.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sym_basis[&quot;map&quot;]</span></code> is a linear transformation
+from the permutation symmetric subspace to the
+full tensor product of the n systems.</p>
+<p>The dimensionality of the symmetric subspace
+corresponds to the number of ways of distributing
+<span class="math notranslate nohighlight">\(n\)</span> elements in <span class="math notranslate nohighlight">\(d\)</span> boxes, where <span class="math notranslate nohighlight">\(n\)</span> is the number of
+systems and <span class="math notranslate nohighlight">\(d\)</span> is the dimensionality of
+an individual subsytems. In other words, the dimensionality
+<span class="math notranslate nohighlight">\(s\)</span> of the permutation symmetric subspace is <span class="math notranslate nohighlight">\(\binom{d+n-1}{n}\)</span>.</p>
+<p>So <code class="docutils literal notranslate"><span class="pre">sym_basis[&quot;map&quot;]</span></code> is a map from
+<span class="math notranslate nohighlight">\(\mathbb{C}^{s} \rightarrow \mathbb{C}^{d^{n}}\)</span>.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 <span class="target" id="module-spheres.visualization"></span><div class="section" id="visualization-tools">
 <h3>Visualization Tools<a class="headerlink" href="#visualization-tools" title="Permalink to this headline">¶</a></h3>
@@ -1150,6 +1191,13 @@ is automatically updated. Can also use <code class="xref py py-meth docutils lit
 </dd></dl>
 
 <dl class="py method">
+<dt id="spheres.visualization.MajoranaSphere.clear_snapshot">
+<code class="sig-name descname">clear_snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.clear_snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.clear_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears a snapshot. If there’s more than one snapshot,
+we clear them first in, first out.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="spheres.visualization.MajoranaSphere.clear_trails">
 <code class="sig-name descname">clear_trails</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.clear_trails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.clear_trails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clears the star trails.</p>
@@ -1183,6 +1231,15 @@ visualization is updated.</p></li>
 <dd><p>Refreshes the visualization from the value of <cite>self.spin</cite>.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt id="spheres.visualization.MajoranaSphere.snapshot">
+<code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a snapshot of the current locations of the stars
+and, if applicable, the phase, rotation axis, and
+wavefunction amplitudes. In other words, clones them.
+Can take multiple snapshots, which are added to a list.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
@@ -1197,6 +1254,12 @@ to the rotation.</p>
 </div>
 <span class="target" id="module-spheres.utils"></span><div class="section" id="utility-functions">
 <h3>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt id="spheres.utils.binomial">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">binomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#binomial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.binomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the binomial coefficient <span class="math notranslate nohighlight">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span></p>
+</dd></dl>
+
 <dl class="py function">
 <dt id="spheres.utils.bitstring_basis">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">bitstring_basis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bitstring</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#bitstring_basis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.bitstring_basis" title="Permalink to this definition">¶</a></dt>
@@ -1236,6 +1299,12 @@ as well as their ordering in the list.</p>
 <dt id="spheres.utils.fix_stars">
 <code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">fix_stars</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_stars</span></em>, <em class="sig-param"><span class="n">new_stars</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#fix_stars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.fix_stars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Try to adjust the ordering of a list of stars to keep continuity.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spheres.utils.flatten">
+<code class="sig-prename descclassname">spheres.utils.</code><code class="sig-name descname">flatten</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_flatten</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/utils.html#flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.utils.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flatten list of lists.</p>
 </dd></dl>
 
 <dl class="py function">
