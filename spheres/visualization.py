@@ -195,6 +195,7 @@ class MajoranaSphere:
 
         self.evolving = False
         self.saved_make_trails = None
+        self.refreshing = False
 
     def __exists__(self, attr):
         return hasattr(self, attr) and getattr(self, attr) != None
@@ -218,6 +219,7 @@ class MajoranaSphere:
             self.toggle_wavefunction(value)
         super().__setattr__(name, value)
         if name == "spin":
+            self.clear_trails()
             self.refresh()
 
     def toggle_rotation_axis(self, toggle=None):
@@ -237,13 +239,13 @@ class MajoranaSphere:
         if self.show_phase and not self.__exists__("vphase"):
             self.vphase_ring = vp.ring(pos=self.vsphere.pos+vp.vector(0,self.j+0.1,0),\
                                        radius=self.j,\
-                                       thickness=0.02,\
+                                       thickness=0.03*self.j,\
                                        axis=vp.vector(0,1,0),\
                                        color=vp.color.black,\
                                        opacity=0.4)
             self.vphase = vp.arrow(pos=self.vphase_ring.pos,\
                                    axis=self.j*vp.vector(self.phase.real,0,self.phase.imag),\
-                                   shaftwidth=0.05,\
+                                   shaftwidth=self.j*0.05,\
                                    opacity=0.3,\
                                    color=vp.color.green)
         if not self.show_phase and self.__exists__("vphase"):
@@ -259,13 +261,13 @@ class MajoranaSphere:
             self.vaxes = [vp.arrow(pos=self.vsphere.pos,\
                                    axis=1.5*self.j*axis,\
                                    color=vp.color.red,\
-                                   shaftwidth=0.01,\
+                                   shaftwidth=0.05*self.j,\
                                    opacity=0.4) for axis in [vp.vector(1,0,0),\
                                                              vp.vector(0,1,0),\
                                                              vp.vector(0,0,1)]]
             self.vaxis_labels = [vp.text(text=label,\
                                          color=vp.color.red,\
-                                         height=0.1,\
+                                         height=self.j*0.2,\
                                          pos=self.vsphere.pos+self.vaxes[i].axis)\
                                             for i, label in enumerate(["X", "Y", "Z"])]
         if not self.show_axes and self.__exists__("vaxes"):
@@ -373,13 +375,19 @@ class MajoranaSphere:
                 amps = [[self.poly(np.array([1, self.phi[i][j], self.theta[i][j]]))\
                                 for j in range(self.wavefunction_samples)]\
                                     for i in range(self.wavefunction_samples)]
-            self.vwavefunction = [[\
-                            vp.arrow(pos=self.vsphere.pos+self.vsphere.radius*vp.vector(*sph_xyz([1, self.phi[i][j], self.theta[i][j]])),\
-                                     axis=self.j*0.5*vp.vector(*(self.tangent_plane_rotations[i][j] @ \
-                                                np.array([amps[i][j].real, amps[i][j].imag,0]))),\
+            self.vwavefunction = []
+            for i in range(self.wavefunction_samples):
+                row = []
+                for j in range(self.wavefunction_samples):
+                    arrow = vp.arrow(pos=self.vsphere.pos+self.vsphere.radius*vp.vector(*sph_xyz([1, self.phi[i][j], self.theta[i][j]])),\
                                      opacity=0.4)
-                                        for j in range(self.wavefunction_samples)]\
-                                            for i in range(self.wavefunction_samples)]
+                    axis = self.j*0.5*(self.tangent_plane_rotations[i][j] @ np.array([amps[i][j].real, amps[i][j].imag,0]))
+                    if np.isclose(np.linalg.norm(axis), 0):
+                        arrow.visible = False
+                    arrow.axis = vp.vector(*axis)
+                    row.append(arrow)
+                self.vwavefunction.append(row)
+
     def mouseclick(self):
         if self.phase_draggable:
             if self.scene.mouse.pick == self.vphase:
@@ -433,7 +441,7 @@ class MajoranaSphere:
                 phase = x + 1j*z
                 new_spin = phase*normalize_phase(self.spin)
                 super().__setattr__("spin", new_spin)
-                if not self.evolving:
+                if not self.evolving and not self.refreshing:
                     self.refresh()
                 return
 
@@ -443,20 +451,21 @@ class MajoranaSphere:
                 self.xyz[self.star_dragging] = xyz
                 new_spin = self.phase*xyz_spin(self.xyz)
                 super().__setattr__("spin", new_spin)
-                if not self.evolving:
+                if not self.evolving and not self.refreshing:
                     self.refresh()
                 return
 
         if self.sphere_draggable:
             if self.sphere_dragging:
                 self.vsphere.pos = self.scene.mouse.pos
-                if not self.evolving:
+                if not self.evolving and not self.refreshing:
                     self.refresh()
 
     def refresh(self):
         """
         Refreshes the visualization from the value of `self.spin`.
         """
+        self.refreshing = True
         self.xyz = spin_xyz(self.spin) if not self.fix_stars else fix_stars(self.xyz, spin_xyz(self.spin))
         self.phase = phase(self.spin)
 
@@ -487,15 +496,17 @@ class MajoranaSphere:
                 amps = [[self.poly(np.array([1, self.phi[i][j], self.theta[i][j]]))\
                                 for j in range(self.wavefunction_samples)]\
                                     for i in range(self.wavefunction_samples)]                   
+
             for i in range(self.wavefunction_samples):
                 for j in range(self.wavefunction_samples):
-                    self.vwavefunction[i][j].axis = \
-                        self.j*0.5*vp.vector(*(self.tangent_plane_rotations[i][j] @ \
-                                    np.array([amps[i][j].real, amps[i][j].imag, 0])))
+                    axis = self.j*0.5*(self.tangent_plane_rotations[i][j] @ np.array([amps[i][j].real, amps[i][j].imag, 0]))
+                    self.vwavefunction[i][j].visible = False if np.isclose(np.linalg.norm(axis),0) else True
+                    self.vwavefunction[i][j].axis = vp.vector(*axis)
                     if self.sphere_dragging:
                         self.vwavefunction[i][j].pos = self.vsphere.pos+self.vsphere.radius*vp.vector(*sph_xyz([1, self.phi[i][j], self.theta[i][j]]))
+        self.refreshing = False
 
-    def evolve(self, H, dt=0.01, T=1000):
+    def evolve(self, H, dt=0.01, T=10):
         """
         Visualizes the evolution of the spin state under the specified Hamiltonian.
 
@@ -511,8 +522,8 @@ class MajoranaSphere:
         """
         self.evolving = True
         U = (-1j*H*dt).expm()
-        for t in range(T):
-            self.spin = U*self.spin
+        for t in np.linspace(0, T, int(T/dt)):
+            super().__setattr__("spin", U*self.spin)
             self.refresh()
             vp.rate(50)
         self.evolving = False

@@ -848,3 +848,31 @@ def mobius(abcd):
                 return np.inf
         return (a*z + b)/(c*z + d)
     return __mobius__
+
+def xyz_eigenstates(j, m, direction):
+    """
+    Returns eigenstates of Pauli operators.
+
+    Parameters
+    ----------
+        j : float
+            j value of representation.
+        m : float
+            m value of representation.
+        direction : str
+            "x", "y", or "z".
+    """
+    if direction == "x":
+        up = np.array([1,0,0])
+        down = np.array([-1,0,0])
+    elif direction == "y":
+        up = np.array([0,1,0])
+        down = np.array([0,-1,0])
+    elif direction == "z":
+        up = np.array([0,0,1])
+        down = np.array([0,0,-1])
+    nup, ndown = [(int(2*j-i), i)\
+                    for i in range(int(2*j+1))]\
+                        [list(np.arange(j, -j-1, -1)).index(m)]
+    return xyz_spin([up]*nup + [down]*ndown)
+
