@@ -8,6 +8,7 @@ from spheres.stars import *
 from spheres.utils import *
 
 import vpython as vp
+global_scene = None
 
 def tangent_plane_rotation(phi, theta):
     """
@@ -96,6 +97,7 @@ class MajoranaSphere:
                        show_axes=True,\
                        show_wavefunction=None,\
                        wavefunction_samples=15):
+        global global_scene
         """
         Parameters
         ----------
@@ -154,11 +156,16 @@ class MajoranaSphere:
         self.xyz = spin_xyz(self.spin)
         self.phase = phase(self.spin)
         
-        self.scene = scene if scene != None else \
-                        vp.canvas(background=vp.color.white,\
-                                    align="center", 
-                                    width=600, 
-                                    height=600)
+        if scene != None:
+            self.scene = None
+        else:
+            if global_scene == None:
+                global_scene = vp.canvas(background=vp.color.white,\
+                                         align="center", 
+                                         width=600, 
+                                         height=600)
+            self.scene = global_scene 
+                        
         self.vsphere = vp.sphere(pos=position,\
                                  radius=self.j,\
                                  color=sphere_color,\
@@ -424,6 +431,8 @@ class MajoranaSphere:
                 self.star_dragging = -1
 
             if self.star_dragging != -1:
+                self.saved_make_trails = self.make_trails
+                self.toggle_trails(False)
                 for i, vstar in enumerate(self.vstars):
                     if i == self.star_dragging:
                         vstar.color = vp.color.magenta
@@ -432,6 +441,9 @@ class MajoranaSphere:
             else:
                 for i, vstar in enumerate(self.vstars):
                     vstar.color = self.star_colors[i]
+                if self.saved_make_trails != None:
+                    self.toggle_trails(self.saved_make_trails)
+                    self.saved_make_trails = None
 
     def mousemove(self):
         if self.show_phase:
@@ -506,7 +518,7 @@ class MajoranaSphere:
                         self.vwavefunction[i][j].pos = self.vsphere.pos+self.vsphere.radius*vp.vector(*sph_xyz([1, self.phi[i][j], self.theta[i][j]]))
         self.refreshing = False
 
-    def evolve(self, H, dt=0.01, T=10):
+    def evolve(self, H, dt=0.05, T=2*np.pi):
         """
         Visualizes the evolution of the spin state under the specified Hamiltonian.
 

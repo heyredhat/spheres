@@ -871,6 +871,21 @@ from the unit sphere to the extended complex plane.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt id="spheres.stars.xyz_eigenstates">
+<code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_eigenstates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">j</span></em>, <em class="sig-param"><span class="n">m</span></em>, <em class="sig-param"><span class="n">direction</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_eigenstates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_eigenstates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns eigenstates of Pauli operators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>j</strong> (<em>float</em>) – j value of representation.</p></li>
+<li><p><strong>m</strong> (<em>float</em>) – m value of representation.</p></li>
+<li><p><strong>direction</strong> (<em>str</em>) – “x”, “y”, or “z”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="spheres.stars.xyz_sph">
 <code class="sig-prename descclassname">spheres.stars.</code><code class="sig-name descname">xyz_sph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xyz</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/stars.html#xyz_sph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.stars.xyz_sph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts cartesian coordinates <span class="math notranslate nohighlight">\((x, y, z)\)</span> to spherical coordinates <span class="math notranslate nohighlight">\((r, \phi, \theta)\)</span>.
@@ -1148,7 +1163,7 @@ is automatically updated. Can also use <code class="xref py py-meth docutils lit
 
 <dl class="py method">
 <dt id="spheres.visualization.MajoranaSphere.evolve">
-<code class="sig-name descname">evolve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.evolve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evolve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">6.283185307179586</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spheres/visualization.html#MajoranaSphere.evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.MajoranaSphere.evolve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Visualizes the evolution of the spin state under the specified Hamiltonian.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
