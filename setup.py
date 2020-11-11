@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="spheres",
-    version="0.3.0.4",
+    version="0.3.0.5",
     author="Matthew Weiss",
     author_email="heyredhat@gmail.com",
     description="toolbox for higher spin and symmetrization",
