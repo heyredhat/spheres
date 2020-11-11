@@ -44,18 +44,21 @@ Implementation of the "Majorana stars" formalism for higher spin.
 | :py:meth:`sph_spin`     | and back.              |
 +-------------------------+------------------------+
 
-+-------------------------+------------------------+
-| :py:meth:`spin_coherent`| Spin coherent state.   |
-+-------------------------+------------------------+
-| :py:meth:`antipodal`    | Invert coordinates     |
-|                         | on sphere.             |
-+-------------------------+------------------------+
-| :py:meth:`poleflip`     | Flip stereographic     |
-|                         | projection pole.       |
-+-------------------------+------------------------+
-| :py:meth:`mobius`       | Construct Möbius       |
-|                         | transformation.        |
-+-------------------------+------------------------+
++--------------------------+------------------------+
+| :py:meth:`spin_coherent` | Spin coherent state.   |
++--------------------------+------------------------+
+| :py:meth:`antipodal`     | Invert coordinates     |
+|                          | on sphere.             |
++--------------------------+------------------------+
+| :py:meth:`poleflip`      | Flip stereographic     |
+|                          | projection pole.       |
++--------------------------+------------------------+
+| :py:meth:`mobius`        | Construct Möbius       |
+|                          | transformation.        |
++--------------------------+------------------------+
+|:py:meth:`xyz_eigenstates`| Construct XYZ          |
+|                          | eigenstates.           |
++--------------------------+------------------------+
 
 """
 

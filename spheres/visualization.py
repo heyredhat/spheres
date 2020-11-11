@@ -484,7 +484,7 @@ class MajoranaSphere:
         clone = {}
         clone["vstars"] = [star.clone() for star in self.vstars]
         if self.show_phase:
-            clone["vphase"]: self.vphase.clone()
+            clone["vphase"] = self.vphase.clone()
         if self.show_rotation_axis:
             clone["vrotation_axis"] = self.vrotation_axis.clone()
         if self.show_wavefunction:
@@ -607,5 +607,6 @@ class MajoranaSphere:
                 for j in range(self.wavefunction_samples):
                     self.vwavefunction[i][j].visible = False
             self.vwavefunction = None
-
+        while len(self.snapshots) > 0:
+            self.clear_snapshot()
 
