@@ -28,5 +28,5 @@ from spheres.symmetrization import *
 from spheres import visualization
 from spheres.visualization import *
 
-__version__ = "0.3.0.5"
+__version__ = "0.3.0.6"
  

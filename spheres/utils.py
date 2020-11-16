@@ -7,6 +7,7 @@ import numpy as np
 import qutip as qt
 
 factorial = np.math.factorial
+from itertools import product
 
 def rand_c():
     """
@@ -140,3 +141,39 @@ def binomial(n, k):
     Returns the binomial coefficient :math:`\\binom{n}{k} = \\frac{n!}{k!(n-k)!}`
     """
     return int(factorial(n)/(factorial(k)*factorial(n-k)))
+
+def qubit_state_xyz(state):
+    """
+    Qutip tensor state of qubits to their XYZ expectation values.
+    """
+    xyzs = []
+    for i in range(len(state.dims[0])):
+        dm = state.ptrace(i)
+        xyz = np.array([qt.expect(qt.sigmax(), dm),\
+                        qt.expect(qt.sigmay(), dm),\
+                        qt.expect(qt.sigmaz(), dm)])
+        xyzs.append(xyz)
+    return np.array(xyzs)
+
+def pauli_basis(n):
+    IXYZ = {"I": qt.identity(2),\
+            "X": qt.sigmax(),\
+            "Y": qt.sigmay(),\
+            "Z": qt.sigmaz()}
+    return dict([("".join(pauli_str),\
+                qt.tensor(*[IXYZ[o] for o in pauli_str]))\
+                    for pauli_str in product(IXYZ.keys(), repeat=n)])
+
+def to_pauli_expectations(qobj, basis=None):
+    if basis == None:
+        basis = pauli_basis(len(qobj.dims[0]))
+    return dict([(pauli_str, qt.expect(pauli_op, qobj))\
+                    for pauli_str, pauli_op in basis.items()])
+
+def from_pauli_expectations(exps, basis=None):
+    if basis == None:
+        basis = pauli_basis(len(qobj.dims[0]))
+    n = len(list(basis.values())[0].dims[0])
+    return sum([exps[pauli_str]*pauli_op/(2**n)
+                    for pauli_str, pauli_op in basis.items()])
+

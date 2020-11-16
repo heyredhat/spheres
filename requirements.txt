@@ -4,3 +4,7 @@ numpy
 qutip
 matplotlib
 vpython
+pytket
+pytket-qiskit
+pytket-braket
+graphviz
