@@ -5,6 +5,10 @@
 ..  automodule:: spheres.symmetrization
 	:members:
 
+..  automodule:: spheres.circuits
+	:members:
+
+
 .. automodule:: spheres.visualization
 	:members:
 
@@ -24,6 +28,9 @@ from spheres.stars import *
 
 from spheres import symmetrization
 from spheres.symmetrization import *
+
+from spheres import circuits
+from spheres.circuits import *
 
 from spheres import visualization
 from spheres.visualization import *

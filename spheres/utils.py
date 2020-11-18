@@ -142,7 +142,7 @@ def binomial(n, k):
     """
     return int(factorial(n)/(factorial(k)*factorial(n-k)))
 
-def qubit_state_xyz(state):
+def qubits_xyz(state):
     """
     Qutip tensor state of qubits to their XYZ expectation values.
     """
@@ -164,15 +164,15 @@ def pauli_basis(n):
                 qt.tensor(*[IXYZ[o] for o in pauli_str]))\
                     for pauli_str in product(IXYZ.keys(), repeat=n)])
 
-def to_pauli_expectations(qobj, basis=None):
+def to_pauli_basis(qobj, basis=None):
     if basis == None:
         basis = pauli_basis(len(qobj.dims[0]))
     return dict([(pauli_str, qt.expect(pauli_op, qobj))\
                     for pauli_str, pauli_op in basis.items()])
 
-def from_pauli_expectations(exps, basis=None):
+def from_pauli_basis(exps, basis=None):
     if basis == None:
-        basis = pauli_basis(len(qobj.dims[0]))
+        basis = pauli_basis(len(list(exps.keys())[0]))
     n = len(list(basis.values())[0].dims[0])
     return sum([exps[pauli_str]*pauli_op/(2**n)
                     for pauli_str, pauli_op in basis.items()])
