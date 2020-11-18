@@ -20,6 +20,5 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires = ['numpy', 'qutip', 'matplotlib', 'vpython',\
-                        'pytket', 'pytket-qiskit', 'pytket-braket',\
-                        'graphviz']
+                        'pytket', 'pytket-qiskit']
 )

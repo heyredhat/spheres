@@ -1,18 +1,8 @@
-import numpy as np
-from itertools import combinations
-
 from spheres import *
 
 from pytket import Circuit
 from pytket.utils import counts_from_shot_table, probs_from_counts
-
-#import boto3
-#from pytket.backends.braket import BraketBackend
-
 from pytket.backends.ibm import AerBackend, AerStateBackend
-from pytket.backends.ibm import IBMQBackend
-from qiskit.providers.aer.noise import NoiseModel
-from qiskit import IBMQ
 
 def random_pairs(of):
     pairs = list(combinations(of, 2)) 
@@ -113,25 +103,23 @@ def symmetrize_circuit(circuit_info, n_copies=2, every=1, measure=True):
 
 #####################################################################
 
-n_qubits = 3
-depth = 10
-n_copies = 3 
+n_qubits = 2
+depth = 5
+n_copies = 3
 every = 1
 n_shots = 8000
 calc_state = False
 
-backend = AerBackend()
-#provider = IBMQ.load_account()
-#noise_model = NoiseModel.from_backend(provider.get_backend('ibmq_16_melbourne'))
-#backend = AerBackend(noise_model)
-#backend = IBMQBackend("ibmq_qasm_simulator")
+tiny_backend = AerBackend()
 
-#aws_account_id = boto3.client("sts").get_caller_identity()["Account"]
-#backend = BraketBackend(\
-#    s3_bucket="amazon-braket-4462aa97a5a2",\
-#    s3_folder="Output",\
-#    device_type="quantum-simulator",\
-#    provider="amazon")
+#from qiskit.providers.aer.noise import NoiseModel
+#from qiskit import IBMQ
+#IBMQ.load_account()
+
+#big_backend = AerBackend(NoiseModel.from_backend(\
+#                IBMQ.providers()[0].get_backend('ibmq_16_melbourne')))
+
+big_backend = AerBackend()
 
 #####################################################################
 
@@ -147,18 +135,18 @@ print("%d total qubits" % len(sym_circ["circuit"].qubits))
 
 #####################################################################
 
-backend.compile_circuit(circ)
-circ_handle = backend.process_circuit(circ, n_shots=n_shots)
-circ_result = backend.get_result(circ_handle)
+tiny_backend.compile_circuit(circ)
+circ_handle = tiny_backend.process_circuit(circ, n_shots=n_shots)
+circ_result = tiny_backend.get_result(circ_handle)
 print("original dist:")
 for bitstr, prob in circ_result.get_distribution().items():
     print("  %s: %f" % (bitstr, prob))
 
 #####################################################################
 
-backend.compile_circuit(sym_circ["circuit"])
-sym_circ_handle = backend.process_circuit(sym_circ["circuit"], n_shots=n_shots)
-sym_circ_result = backend.get_result(sym_circ_handle)
+big_backend.compile_circuit(sym_circ["circuit"])
+sym_circ_handle = big_backend.process_circuit(sym_circ["circuit"], n_shots=n_shots)
+sym_circ_result = big_backend.get_result(sym_circ_handle)
 sym_circ_shots = np.flip(sym_circ_result.get_shots(), axis=1)
 
 r = sum([len(group) for group in sym_circ["cntrl_bits"]])
@@ -176,6 +164,19 @@ for i, dist in enumerate(postselected_dists):
     print("  experiment %d" % i)
     for bitstr, prob in dist.items():
         print("    %s: %f" % (bitstr, prob))
+averaged = {}
+for dist in postselected_dists:
+    for bitstr, prob in dist.items():
+        if bitstr not in averaged:
+            averaged[bitstr] = prob
+        else:
+            averaged[bitstr] += prob
+total = sum(averaged.values())
+print("averaged dists:")
+for bitstr, prob in averaged.items():
+    averaged[bitstr] = prob/total
+    print("  %s: %f" % (bitstr, averaged[bitstr]))
+
 
 #####################################################################
 
