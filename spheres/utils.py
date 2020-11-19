@@ -7,7 +7,7 @@ import numpy as np
 import qutip as qt
 
 factorial = np.math.factorial
-from itertools import product
+from itertools import product, combinations
 
 def rand_c():
     """
@@ -156,6 +156,10 @@ def qubits_xyz(state):
     return np.array(xyzs)
 
 def pauli_basis(n):
+    """
+    Generates the Pauli basis for n qubits. Returns a dictionary associating
+    a Pauli string (e.g., "IXY") to the tensor product of the corresponding Pauli operators.
+    """
     IXYZ = {"I": qt.identity(2),\
             "X": qt.sigmax(),\
             "Y": qt.sigmay(),\
@@ -165,15 +169,58 @@ def pauli_basis(n):
                     for pauli_str in product(IXYZ.keys(), repeat=n)])
 
 def to_pauli_basis(qobj, basis=None):
+    """
+    Expands a state/operator in the Pauli basis. Returns a dictionary associating
+    a Pauli string to the corresponding component.
+    """
     if basis == None:
         basis = pauli_basis(len(qobj.dims[0]))
     return dict([(pauli_str, qt.expect(pauli_op, qobj))\
                     for pauli_str, pauli_op in basis.items()])
 
 def from_pauli_basis(exps, basis=None):
+    """
+    Given a dictionary mapping Pauli strings to components, returns the corresponding
+    density matrix/operator.
+    """
     if basis == None:
         basis = pauli_basis(len(list(exps.keys())[0]))
     n = len(list(basis.values())[0].dims[0])
     return sum([exps[pauli_str]*pauli_op/(2**n)
                     for pauli_str, pauli_op in basis.items()])
 
+def random_pairs(n):
+    """
+    Generates a random list of pairs of n elements. 
+    """
+    pairs = list(combinations(list(range(n)), 2))
+    np.random.shuffle(pairs) 
+    final_pairs = []
+    for p in pairs:
+        pair = np.array(p)
+        np.random.shuffle(pair)
+        final_pairs.append(pair)
+    return final_pairs 
+
+def random_unique_pairs(n):
+    """
+    Generates a random list of pairs of n elements with no pair sharing an element.
+    """
+    pairs = list(combinations(list(range(n)), 2))
+    pick = pairs[np.random.choice(len(pairs))]
+    good_pairs = [pick]
+    used = [*pick]
+    def clean_pairs(pairs, used):
+        to_remove = []
+        for i, pair in enumerate(pairs):
+            for u in used:
+                if u in pair:
+                    to_remove.append(i)
+        return [i for j, i in enumerate(pairs) if j not in to_remove]
+    pairs = clean_pairs(pairs, used)
+    while len(pairs) > 0 and len(pairs) != clean_pairs(pairs, used):
+        pick = pairs[np.random.choice(len(pairs))]
+        good_pairs.append(pick)
+        used.extend(pick)
+        pairs = clean_pairs(pairs, used)
+    return good_pairs
