@@ -182,7 +182,12 @@ def build_circuit(circuit_info):
             circuit_info["gate_map"][gate["gate"]](circ, *gate["to"])
     return circ
 
-def symmetrize_circuit(circuit_info, n_copies=2, measure=True):
+def symmetrize_circuit(circuit_info, 
+                       n_copies=2, 
+                       every=1, 
+                       pairwise=False, 
+                       reuse_cntrls=False, 
+                       measure=True):
     """
     Given a circuit specification, constructs a circuit with `n_copies` of the original circuit
     running in parallel, with symmetrization being performed across the copies after each layer.
@@ -191,81 +196,103 @@ def symmetrize_circuit(circuit_info, n_copies=2, measure=True):
     qubit_registers = [circ.add_q_register("qexp%d" % i, circuit_info["n_qubits"]) for i in range(n_copies)]
     cbit_registers = [circ.add_c_register("cexp%d" % i, circuit_info["n_qubits"]) for i in range(n_copies)]
     
-    r = int(n_copies*(n_copies-1)/2)
-    cntrl_qubits = circ.add_q_register("cntrlqubits", r)
-    cntrl_bits = [circ.add_c_register("cntrlbits%d" % i, r) for i in range(circuit_info["depth"])]
+    n_sym_layers = int(circuit_info["depth"]/every)+1
 
-    for t, moment in enumerate(circuit_info["history"]):
+    if pairwise:
+        n_pairs = len(random_unique_pairs(n_copies))
+        if reuse_cntrls:
+            cntrl_qubits = circ.add_q_register("cntrlqubits", n_pairs)
+        else:
+            cntrl_qubits =  [circ.add_q_register("cntrlqubits%d" % t, n_pairs) for t in range(n_sym_layers)]
+        cntrl_bits = [circ.add_c_register("cntrlbits%d" % t, n_pairs) for t in range(circuit_info["depth"])]
+    else:
+        r = int(n_copies*(n_copies-1)/2)
+        if reuse_cntrls:
+            cntrl_qubits = circ.add_q_register("cntrlqubits", r)
+        else:
+            cntrl_qubits =  [circ.add_q_register("cntrlqubits%d" % t, r) for t in range(n_sym_layers)]
+        cntrl_bits = [circ.add_c_register("cntrlbits%d" % t, r) for t in range(n_sym_layers)]
+
+    t = 0
+    for layer, moment in enumerate(circuit_info["history"]):
         for gate in moment:
             for i in range(n_copies):
                 apply_to = [qubit_registers[i][to] for to in gate["to"]]
                 circuit_info["gate_map"][gate["gate"]](circ, *apply_to)
-        
-        offset = r
-        for k in range(1, n_copies):
-            offset = offset-k
-            circ.add_unitary1qbox(Rk(k),\
-                                  cntrl_qubits[offset])
-            for i in range(k-1):
-                circ.add_unitary2qbox(Tkj(k, i+1),\
-                                      cntrl_qubits[offset+i+1],\
-                                      cntrl_qubits[offset+i])
-            for i in range(k-1, -1, -1):
-                for j in range(circuit_info["n_qubits"]):
-                    circ.CSWAP(cntrl_qubits[offset+i],\
-                               qubit_registers[k][j],\
-                               qubit_registers[i][j])
-            for i in range(k-2, -1, -1):
-                circ.add_unitary2qbox(Tkj(k, i+1, dagger=True),\
-                                      cntrl_qubits[offset+i+1],\
-                                      cntrl_qubits[offset+i])    
-            circ.add_unitary1qbox(Rk(k, dagger=True),\
-                                  cntrl_qubits[offset])
-        if measure:
-            for i in range(r):
-                circ.Measure(cntrl_qubits[i], cntrl_bits[t][i])
-    if measure:
-        for i in range(n_copies):
-            for j in range(circuit_info["n_qubits"]):
-                circ.Measure(qubit_registers[i][j], cbit_registers[i][j])
-    return {"circuit": circ, \
-            "qubit_registers": qubit_registers,\
-            "cbit_registers": cbit_registers,\
-            "cntrl_qubits": cntrl_qubits,\
-            "cntrl_bits": cntrl_bits}
-
-def pairwise_symmetrize_circuit(circuit_info, n_copies=2, measure=True):
-    """
-    Given a circuit specification, constructs a circuit with `n_copies` of the original circuit
-    running in parallel, with symmetrization being performed across the copies after each layer,
-    where the symmetrization is performed on random pairs of circuits at each step. 
-    """
-    circ = Circuit()
-    qubit_registers = [circ.add_q_register("qexp%d" % i, circuit_info["n_qubits"]) for i in range(n_copies)]
-    cbit_registers = [circ.add_c_register("cexp%d" % i, circuit_info["n_qubits"]) for i in range(n_copies)]
-    
-    n_pairs = len(random_unique_pairs(n_copies))
-    cntrl_qubits = circ.add_q_register("cntrlqubits", n_pairs)
-    cntrl_bits = [circ.add_c_register("cntrlbits%d" % i, n_pairs) for i in range(circuit_info["depth"])]
-
-    for t, moment in enumerate(circuit_info["history"]):
-        for gate in moment:
-            for i in range(n_copies):
-                apply_to = [qubit_registers[i][to] for to in gate["to"]]
-                circuit_info["gate_map"][gate["gate"]](circ, *apply_to)
-        
-        pairs = random_unique_pairs(n_copies)
-        for i, pair in enumerate(pairs):
-            circ.add_unitary1qbox(Rk(1),\
-                                  cntrl_qubits[i])
-            for j in range(circuit_info["n_qubits"]):
-                circ.CSWAP(cntrl_qubits[i],\
-                           qubit_registers[pair[0]][j],\
-                           qubit_registers[pair[1]][j])  
-            circ.add_unitary1qbox(Rk(1, dagger=True),\
-                                  cntrl_qubits[i])
-            if measure:
-                circ.Measure(cntrl_qubits[i], cntrl_bits[t][i])
+        if layer % every == 0:
+            if pairwise:
+                pairs = random_unique_pairs(n_copies)
+                for i, pair in enumerate(pairs):
+                    if reuse_cntrls:
+                        circ.add_unitary1qbox(Rk(1), cntrl_qubits[i])
+                    else:
+                        circ.add_unitary1qbox(Rk(1), cntrl_qubits[t][i])
+                    for j in range(circuit_info["n_qubits"]):
+                        if reuse_cntrls:
+                            circ.CSWAP(cntrl_qubits[i],\
+                                       qubit_registers[pair[0]][j],\
+                                       qubit_registers[pair[1]][j])  
+                        else:
+                            circ.CSWAP(cntrl_qubits[t][i],\
+                                       qubit_registers[pair[0]][j],\
+                                       qubit_registers[pair[1]][j])
+                    if reuse_cntrls:  
+                        circ.add_unitary1qbox(Rk(1, dagger=True), cntrl_qubits[i])
+                    else:
+                        circ.add_unitary1qbox(Rk(1, dagger=True), cntrl_qubits[t][i])
+                    if measure:
+                        if reuse_cntrls:
+                            circ.Measure(cntrl_qubits[i], cntrl_bits[t][i])
+                        else:
+                            circ.Measure(cntrl_qubits[t][i], cntrl_bits[t][i])
+            else:
+                offset = r
+                for k in range(1, n_copies):
+                    offset = offset-k
+                    if reuse_cntrls:
+                        circ.add_unitary1qbox(Rk(k), cntrl_qubits[offset])
+                    else:
+                        circ.add_unitary1qbox(Rk(k), cntrl_qubits[t][offset])
+                    for i in range(k-1):
+                        if reuse_cntrls:
+                            circ.add_unitary2qbox(Tkj(k, i+1),\
+                                              cntrl_qubits[offset+i+1],\
+                                              cntrl_qubits[offset+i])
+                        else:
+                            circ.add_unitary2qbox(Tkj(k, i+1),\
+                                              cntrl_qubits[t][offset+i+1],\
+                                              cntrl_qubits[t][offset+i])
+                    for i in range(k-1, -1, -1):
+                        for j in range(circuit_info["n_qubits"]):
+                            if reuse_cntrls:
+                                circ.CSWAP(cntrl_qubits[offset+i],\
+                                           qubit_registers[k][j],\
+                                           qubit_registers[i][j])
+                            else:
+                                circ.CSWAP(cntrl_qubits[t][offset+i],\
+                                           qubit_registers[k][j],\
+                                           qubit_registers[i][j])
+                    for i in range(k-2, -1, -1):
+                        if reuse_cntrls:
+                            circ.add_unitary2qbox(Tkj(k, i+1, dagger=True),\
+                                                  cntrl_qubits[offset+i+1],\
+                                                  cntrl_qubits[offset+i])
+                        else:
+                            circ.add_unitary2qbox(Tkj(k, i+1, dagger=True),\
+                                                  cntrl_qubits[t][offset+i+1],\
+                                                  cntrl_qubits[t][offset+i])
+                    if reuse_cntrls:
+                        circ.add_unitary1qbox(Rk(k, dagger=True), cntrl_qubits[offset])
+                    else:
+                        circ.add_unitary1qbox(Rk(k, dagger=True), cntrl_qubits[t][offset])
+                if measure:
+                    for i in range(r):
+                        if reuse_cntrls:
+                            print("*** %d" % t)
+                            circ.Measure(cntrl_qubits[i], cntrl_bits[t][i])
+                        else:
+                            circ.Measure(cntrl_qubits[t][i], cntrl_bits[t][i])
+            t += 1
     if measure:
         for i in range(n_copies):
             for j in range(circuit_info["n_qubits"]):

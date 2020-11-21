@@ -1,0 +1,10 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{quantikz}
+\begin{document}
+\begin{quantikz}
+\lstick{q[0]} & \gate[1]{\text{$H$}} & \ctrl{1} & \gate[1]{\text{$S$}} & \ctrl{1} & \gate[1]{\text{$T$}} & \targ{} & \gate[1]{\text{$H$}} & \ctrl{1} & \gate[1]{\text{$H$}} & \targ{} & \meter{} \vcw{2} & \qw & \qw \\
+\lstick{q[1]} & \gate[1]{\text{$T$}} & \targ{} & \gate[1]{\text{$H$}} & \targ{} & \gate[1]{\text{$H$}} & \ctrl{-1} & \gate[1]{\text{$S$}} & \targ{} & \gate[1]{\text{$S$}} & \ctrl{-1} & \qw & \meter{} \vcw{2} & \qw \\
+\lstick{c[0]} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \\
+\lstick{c[1]} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \\
+\end{quantikz}
+\end{document}

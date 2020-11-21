@@ -6,12 +6,16 @@ from pytket.backends.ibm import AerBackend, AerStateBackend
 
 n_qubits = 2 # number of qubits in circuit to be symmetrized
 depth = 5 # depth of circuit to be symmetrized
-n_copies = 3 # copies of original circuit to be employed
 n_shots = 8000 
-calc_state = False # also calculate the state using state simulator
+
+n_copies = 4 # copies of original circuit to be employed
+every = 2
+pairwise = True
+reuse_cntrls = False
+
 noise = False # use a noise model
-pairwise = False # symmetrize across random pairs instead of all copies
 latex = False # output latex representation of circuits
+calc_state = False # also calculate the state using state simulator
 
 #####################################################################
 
@@ -37,8 +41,11 @@ if latex:
 
 # Generates the symmetrization of the circuit with specified number of copies, as 
 # well as the latex representation.
-sym_circ = symmetrize_circuit(circ_info, n_copies=n_copies) if not pairwise else \
-                pairwise_symmetrize_circuit(circ_info, n_copies=n_copies) 
+sym_circ = symmetrize_circuit(circ_info,
+                              n_copies=n_copies,
+                              every=every, 
+                              pairwise=pairwise,
+                              reuse_cntrls=reuse_cntrls)
 if latex:
     sym_circ["circuit"].to_latex_file("sym_circ.tex")
 
