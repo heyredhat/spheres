@@ -8,6 +8,8 @@ from spheres import *
 
 from pytket import Circuit
 from pytket.circuit import Unitary1qBox, Unitary2qBox
+from pytket.utils import probs_from_counts
+
 
 def prepare_qubits(xyzs):
     """
@@ -204,7 +206,7 @@ def symmetrize_circuit(circuit_info,
             cntrl_qubits = circ.add_q_register("cntrlqubits", n_pairs)
         else:
             cntrl_qubits =  [circ.add_q_register("cntrlqubits%d" % t, n_pairs) for t in range(n_sym_layers)]
-        cntrl_bits = [circ.add_c_register("cntrlbits%d" % t, n_pairs) for t in range(circuit_info["depth"])]
+        cntrl_bits = [circ.add_c_register("cntrlbits%d" % t, n_pairs) for t in range(n_sym_layers)]
     else:
         r = int(n_copies*(n_copies-1)/2)
         if reuse_cntrls:
@@ -301,4 +303,38 @@ def symmetrize_circuit(circuit_info,
             "qubit_registers": qubit_registers,\
             "cbit_registers": cbit_registers,\
             "cntrl_qubits": cntrl_qubits,\
-            "cntrl_bits": cntrl_bits}
+            "cntrl_bits": cntrl_bits,\
+            "n_copies": n_copies,\
+            "every": every,\
+            "pairwise": False,\
+            "reuse_cntrls": False,\
+            "measure":True,\
+            "n_qubits": circuit_info["n_qubits"]}
+
+def process_sym_counts(sym_circ_info, sym_circ_counts):
+    n_cntrl_qubits = sum([len(group) for group in sym_circ_info["cntrl_bits"]])
+    n_qubits = sym_circ_info["n_qubits"]
+    n_copies = sym_circ_info["n_copies"]
+    n_exp_qubits = n_qubits*n_copies
+
+    postselected_sym_circ_counts = dict(filter(lambda e: e[0][-n_cntrl_qubits:].count(0) == n_cntrl_qubits, sym_circ_counts.items()))
+
+    exp_counts = [dict() for i in range(n_copies)]
+    for bitstr, count in postselected_sym_circ_counts.items():
+        for i in range(0, n_exp_qubits, n_qubits):
+            if bitstr[i:i+n_qubits] in exp_counts[int(i/n_qubits)]:
+                exp_counts[int(i/n_qubits)][bitstr[i:i+n_qubits]] += count
+            else:
+                exp_counts[int(i/n_qubits)][bitstr[i:i+n_qubits]] = count
+    exp_dists = [probs_from_counts(ec) for ec in exp_counts]
+
+    averaged_dist = {}
+    for dist in exp_dists:
+        for bitstr, prob in dist.items():
+            if bitstr not in averaged_dist:
+                averaged_dist[bitstr] = prob
+            else:
+                averaged_dist[bitstr] += prob
+    total = sum(averaged_dist.values())
+    averaged_dist = dict([(bitstr, prob/total) for bitstr, prob in averaged_dist.items()])
+    return {"exp_dists": exp_dists, "avg_dist": averaged_dist}
