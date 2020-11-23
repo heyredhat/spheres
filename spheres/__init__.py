@@ -8,6 +8,8 @@
 ..  automodule:: spheres.circuits
 	:members:
 
+..  automodule:: spheres.oscillators
+	:members:
 
 .. automodule:: spheres.visualization
 	:members:
@@ -31,6 +33,9 @@ from spheres.symmetrization import *
 
 from spheres import circuits
 from spheres.circuits import *
+
+from spheres import oscillators
+from spheres.oscillators import *
 
 from spheres import visualization
 from spheres.visualization import *

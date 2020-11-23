@@ -6,6 +6,7 @@ Visualization Tools
 
 from spheres.stars import *
 from spheres.utils import *
+from spheres.oscillators import *
 
 import vpython as vp
 global_scene = None
@@ -95,6 +96,7 @@ class MajoranaSphere:
                        show_phase=True,\
                        phase_draggable=True,\
                        show_axes=True,\
+                       show_norm=False,\
                        show_wavefunction=None,\
                        wavefunction_samples=15):
         global global_scene
@@ -196,6 +198,7 @@ class MajoranaSphere:
         self.toggle_stars_draggable(stars_draggable)
         self.toggle_phase_draggable(phase_draggable)
         self.toggle_trails(make_trails)
+        self.toggle_norm(show_norm)
 
         self.wavefunction_samples = wavefunction_samples
         self.toggle_wavefunction(show_wavefunction)
@@ -225,6 +228,8 @@ class MajoranaSphere:
             self.toggle_trails(value)
         elif name == "show_wavefunction":
             self.toggle_wavefunction(value)
+        elif name == "show_norm":
+            self.toggle_norm(value)
         super().__setattr__(name, value)
         if name == "spin":
             self.clear_trails()
@@ -285,6 +290,16 @@ class MajoranaSphere:
                 label.visible = False
             self.vaxes = None
             self.vaxis_labels = None
+    
+    def toggle_norm(self, toggle=None):
+        super().__setattr__("show_norm", \
+            (True if not self.show_norm else False) if toggle == None else toggle)
+        if self.show_norm and not self.__exists__("vnorm"):
+            self.vnorm = vp.label(pos=self.vsphere.pos-vp.vector(0, self.j, 0),\
+                                  text='%.3f' % self.spin.norm())
+        if not self.show_axes and self.__exists__("vnorm"):
+            self.vnorm.visible = False
+            self.vnorm = None
 
     def toggle_sphere_draggable(self, toggle=None):
         super().__setattr__("sphere_draggable", \
@@ -535,6 +550,10 @@ class MajoranaSphere:
             for i, axis in enumerate(self.vaxes):
                 axis.pos = self.vsphere.pos
                 self.vaxis_labels[i].pos = self.vsphere.pos + axis.axis
+        
+        if self.show_norm:
+            self.vnorm.pos = self.vsphere.pos-vp.vector(0, self.j, 0)
+            self.vnorm.text = '%.3f' % self.spin.norm()
 
         if self.show_wavefunction:
             if self.show_wavefunction == "coherent_state":
@@ -609,4 +628,43 @@ class MajoranaSphere:
             self.vwavefunction = None
         while len(self.snapshots) > 0:
             self.clear_snapshot()
+        if self.show_norm:
+            self.vnorm.visible = False
+            self.vnorm = None
 
+class SchwingerSpheres:
+    def __init__(self, state=None):
+        self.state = state if state else vacuum()
+        self.n_osc = len(self.state.dims[0])
+        self.max_ex = self.state.dims[0][0]
+        self.a = annihilators(n=self.n_osc, max_ex=self.max_ex)
+        self.P, self.dims = osc_spin_permutation(self.max_ex)
+        self.spins = extract_osc_spinstates(self.state, P=self.P, dims=self.dims)
+        self.n_spins = len(self.spins)
+        self.vspheres = [MajoranaSphere(self.spins[i],\
+                                        position=vp.vector(2*i, 0, 0),\
+                                        show_norm=True) \
+                            for i in range(self.n_spins)]
+    
+    def raise_spin(self, spin):
+        self.state = (second_quantize_spin_state(spin, self.a)*self.state).unit()
+        self.refresh()
+
+    def evolve(self, H, dt=0.05, T=2*np.pi):
+        if H.dims[0] == self.state.dims[0]:
+            U = (-1j*H*dt).expm()
+        else:
+            U = (-1j*second_quantize_operator(H, self.a)*dt).expm()
+        for t in np.linspace(0, T, int(T/dt)):
+            self.state = U*self.state
+            self.refresh()
+            vp.rate(50)
+
+    def refresh(self):
+        self.spins = extract_osc_spinstates(self.state, P=self.P, dims=self.dims)
+        for i, vsphere in enumerate(self.vspheres):
+            vsphere.spin = self.spins[i]
+
+    def destroy(self):
+        for vsphere in self.vspheres:
+            vsphere.destroy()
