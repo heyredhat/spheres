@@ -87,9 +87,10 @@ class MajoranaSphere:
                        scene=None,\
                        position=vp.vector(0,0,0),\
                        sphere_color=vp.color.blue,\
+                       radius=None,
                        sphere_opacity=0.3,\
-                       star_colors="random",\
-                       make_trails=True,\
+                       star_colors=None,\
+                       make_trails=False,\
                        sphere_draggable=True,\
                        stars_draggable=True,\
                        show_rotation_axis=True,\
@@ -164,12 +165,13 @@ class MajoranaSphere:
             if global_scene == None:
                 global_scene = vp.canvas(background=vp.color.white,\
                                          align="center", 
-                                         width=600, 
+                                         width=800, 
                                          height=600)
             self.scene = global_scene 
-                        
+
+        self.radius = self.j if not radius or self.j==0 else radius                
         self.vsphere = vp.sphere(pos=position,\
-                                 radius=self.j,\
+                                 radius=self.radius,\
                                  color=sphere_color,\
                                  opacity=sphere_opacity)
 
@@ -189,6 +191,7 @@ class MajoranaSphere:
                                  color=self.star_colors[i],\
                                  radius=0.2*self.vsphere.radius,\
                                  make_trail=True,
+                                 visible=False if sum(xyz) == 0 else True,
                                  emissive=True) for i, xyz in enumerate(self.xyz)]
 
         self.toggle_rotation_axis(show_rotation_axis)
@@ -236,6 +239,8 @@ class MajoranaSphere:
             self.refresh()
 
     def toggle_rotation_axis(self, toggle=None):
+        if self.j == 0 or self.spin.norm() == 0:
+            toggle = False
         super().__setattr__("show_rotation_axis", \
             (True if not self.show_rotation_axis else False) if toggle == None else toggle)
         if self.show_rotation_axis and not self.__exists__("vrotation_axis"):
@@ -250,15 +255,15 @@ class MajoranaSphere:
         super().__setattr__("show_phase", \
             (True if not self.show_phase else False) if toggle == None else toggle)
         if self.show_phase and not self.__exists__("vphase"):
-            self.vphase_ring = vp.ring(pos=self.vsphere.pos+vp.vector(0,self.j+0.1,0),\
-                                       radius=self.j,\
-                                       thickness=0.03*self.j,\
-                                       axis=vp.vector(0,1,0),\
+            self.vphase_ring = vp.ring(pos=self.vsphere.pos+vp.vector(0,self.radius+0.1,0),\
+                                       radius=(self.radius if self.radius != 0 else 1),\
+                                       thickness=0.03*(self.radius if self.radius != 0 else 1),\
+                                       axis=vp.vector(0,1,0) if self.radius != 0 else vp.vector(0,0,1),\
                                        color=vp.color.black,\
                                        opacity=0.4)
             self.vphase = vp.arrow(pos=self.vphase_ring.pos,\
-                                   axis=self.j*vp.vector(self.phase.real,0,self.phase.imag),\
-                                   shaftwidth=self.j*0.05,\
+                                   axis=self.radius*vp.vector(self.phase.real,0,self.phase.imag) if self.radius != 0 else vp.vector(self.phase.real,self.phase.imag,0),\
+                                   shaftwidth=(self.radius if self.radius != 0 else 1)*0.05,\
                                    opacity=0.3,\
                                    color=vp.color.green)
         if not self.show_phase and self.__exists__("vphase"):
@@ -268,19 +273,21 @@ class MajoranaSphere:
             self.vphase = None
 
     def toggle_axes(self, toggle=None):
+        if self.j == 0 or self.spin.norm() == 0:
+            toggle = False
         super().__setattr__("show_axes", \
             (True if not self.show_axes else False) if toggle == None else toggle)
         if self.show_axes and not self.__exists__("vaxes"):
             self.vaxes = [vp.arrow(pos=self.vsphere.pos,\
-                                   axis=1.5*self.j*axis,\
+                                   axis=1.5*self.radius*axis,\
                                    color=vp.color.red,\
-                                   shaftwidth=0.05*self.j,\
+                                   shaftwidth=0.05*self.radius,\
                                    opacity=0.4) for axis in [vp.vector(1,0,0),\
                                                              vp.vector(0,1,0),\
                                                              vp.vector(0,0,1)]]
             self.vaxis_labels = [vp.text(text=label,\
                                          color=vp.color.red,\
-                                         height=self.j*0.2,\
+                                         height=self.radius*0.2,\
                                          pos=self.vsphere.pos+self.vaxes[i].axis)\
                                             for i, label in enumerate(["X", "Y", "Z"])]
         if not self.show_axes and self.__exists__("vaxes"):
@@ -295,9 +302,9 @@ class MajoranaSphere:
         super().__setattr__("show_norm", \
             (True if not self.show_norm else False) if toggle == None else toggle)
         if self.show_norm and not self.__exists__("vnorm"):
-            self.vnorm = vp.label(pos=self.vsphere.pos-vp.vector(0, self.j, 0),\
+            self.vnorm = vp.label(pos=self.vsphere.pos-vp.vector(0, 0.25+self.radius if self.radius !=0 else 1.25, 0),\
                                   text='%.3f' % self.spin.norm())
-        if not self.show_axes and self.__exists__("vnorm"):
+        if not self.show_norm and self.__exists__("vnorm"):
             self.vnorm.visible = False
             self.vnorm = None
 
@@ -404,7 +411,7 @@ class MajoranaSphere:
                 for j in range(self.wavefunction_samples):
                     arrow = vp.arrow(pos=self.vsphere.pos+self.vsphere.radius*vp.vector(*sph_xyz([1, self.phi[i][j], self.theta[i][j]])),\
                                      opacity=0.4)
-                    axis = self.j*0.5*(self.tangent_plane_rotations[i][j] @ np.array([amps[i][j].real, amps[i][j].imag,0]))
+                    axis = self.radius*0.5*(self.tangent_plane_rotations[i][j] @ np.array([amps[i][j].real, amps[i][j].imag,0]))
                     if np.isclose(np.linalg.norm(axis), 0):
                         arrow.visible = False
                     arrow.axis = vp.vector(*axis)
@@ -535,6 +542,7 @@ class MajoranaSphere:
         self.phase = phase(self.spin)
 
         for i, xyz in enumerate(self.xyz):
+            self.vstars[i].visible = False if sum(xyz) == 0 else True
             self.vstars[i].pos = self.vsphere.pos + self.vsphere.radius*vp.vector(*xyz)
 
         if self.show_rotation_axis:
@@ -542,9 +550,9 @@ class MajoranaSphere:
             self.vrotation_axis.axis = vp.vector(*sum([0.5*xyz for xyz in self.xyz]))
 
         if self.show_phase:
-            self.vphase_ring.pos = self.vsphere.pos + vp.vector(0, self.j+0.1, 0)
+            self.vphase_ring.pos = self.vsphere.pos + vp.vector(0, self.radius+0.1, 0)
             self.vphase.pos = self.vphase_ring.pos
-            self.vphase.axis = self.j*vp.vector(self.phase.real, 0, self.phase.imag)
+            self.vphase.axis = self.radius*vp.vector(self.phase.real, 0, self.phase.imag) if self.radius != 0 else vp.vector(self.phase.real, self.phase.imag, 0)
 
         if self.show_axes:
             for i, axis in enumerate(self.vaxes):
@@ -552,7 +560,7 @@ class MajoranaSphere:
                 self.vaxis_labels[i].pos = self.vsphere.pos + axis.axis
         
         if self.show_norm:
-            self.vnorm.pos = self.vsphere.pos-vp.vector(0, self.j, 0)
+            self.vnorm.pos = self.vsphere.pos-vp.vector(0, 0.25+self.radius if self.radius !=0 else 1.25, 0)
             self.vnorm.text = '%.3f' % self.spin.norm()
 
         if self.show_wavefunction:
@@ -568,7 +576,7 @@ class MajoranaSphere:
 
             for i in range(self.wavefunction_samples):
                 for j in range(self.wavefunction_samples):
-                    axis = self.j*0.5*(self.tangent_plane_rotations[i][j] @ np.array([amps[i][j].real, amps[i][j].imag, 0]))
+                    axis = self.radius*0.5*(self.tangent_plane_rotations[i][j] @ np.array([amps[i][j].real, amps[i][j].imag, 0]))
                     self.vwavefunction[i][j].visible = False if np.isclose(np.linalg.norm(axis),0) else True
                     self.vwavefunction[i][j].axis = vp.vector(*axis)
                     if self.sphere_dragging:
@@ -633,22 +641,85 @@ class MajoranaSphere:
             self.vnorm = None
 
 class SchwingerSpheres:
-    def __init__(self, state=None):
-        self.state = state if state else vacuum()
-        self.n_osc = len(self.state.dims[0])
-        self.max_ex = self.state.dims[0][0]
+    def __init__(self, state=None, max_ex=3, show_plane=True):
+        self.max_ex, self.n_osc = max_ex, 2
+        self.state = state if state else vacuum(n=2, max_ex=max_ex)
         self.a = annihilators(n=self.n_osc, max_ex=self.max_ex)
         self.P, self.dims = osc_spin_permutation(self.max_ex)
         self.spins = extract_osc_spinstates(self.state, P=self.P, dims=self.dims)
         self.n_spins = len(self.spins)
+        positions = [0]
+        for i in range(1, self.n_spins):
+            next_position = positions[-1] + 2.3
+            positions.append(next_position)
+        positions = np.array(positions)-positions[-1]/2
         self.vspheres = [MajoranaSphere(self.spins[i],\
-                                        position=vp.vector(2*i, 0, 0),\
+                                        position=vp.vector(positions[i], 0, 0),\
+                                        radius=1,\
                                         show_norm=True) \
                             for i in range(self.n_spins)]
-    
-    def raise_spin(self, spin):
-        self.state = (second_quantize_spin_state(spin, self.a)*self.state).unit()
+
+
+        self.show_plane = show_plane
+        if self.show_plane:
+            self.Q = [qt.tensor(qt.position(self.max_ex), qt.identity(self.max_ex)),\
+                      qt.tensor(qt.identity(self.max_ex), qt.position(self.max_ex))]
+            QL, QV = qt.position(self.max_ex).eigenstates()
+            self.Qstates = [[qt.tensor(QV[i], QV[j]) for j in range(self.max_ex)] for i in range(self.max_ex)]
+            self.plane_origin = vp.vector(0,-4,0)           
+            pos_amps = [[self.state.overlap(self.Qstates[i][j]) for j in range(self.max_ex)] for i in range(self.max_ex)]
+            self.vplane = vp.box(pos=self.plane_origin, length=QL[-1]*2, height=QL[-1]*2, width=0.01)
+            self.vpositions = [[vp.arrow(pos=self.plane_origin+vp.vector(QL[i], QL[j], 0),\
+                                         color=vp.color.black,\
+                                         axis=2*vp.vector(pos_amps[i][j].real, pos_amps[i][j].imag, 0))\
+                                            for j in range(self.max_ex)] for i in range(self.max_ex)]
+
+            self.vexpected_pos = vp.sphere(pos=self.plane_origin+vp.vector(qt.expect(self.Q[0], self.state).real, qt.expect(self.Q[1], self.state).real, 0),\
+                                           color=vp.color.yellow, radius=0.1)
+
+        self.paulis = {"x": second_quantize_operator(qt.sigmax(), self.a),\
+                       "y": second_quantize_operator(qt.sigmay(), self.a),\
+                       "z": second_quantize_operator(qt.sigmaz(), self.a)}
+        self.pauli_projectors = {}
+        for s, o in self.paulis.items():
+            L, V = o.eigenstates()
+            P = [v*v.dag() for v in V]
+            outcomes = {}
+            for i, l in enumerate(L):
+                if l not in outcomes:
+                    outcomes[l] = P[i]
+                else:
+                    outcomes[l] += P[i]
+            self.pauli_projectors[s] = outcomes
+        
+    def raise_spin(self, spin, replace=False):
+        if replace:
+            self.vacuum()
+        new_state = (second_quantize_spin_state(spin, self.a)*self.state)
+        new_state = new_state.unit() if new_state.norm() != 0 else new_state
+        self.state = new_state
         self.refresh()
+
+    def lower_spin(self, spin):
+        new_state = (second_quantize_spin_state(spin, self.a).dag()*self.state)
+        new_state = new_state.unit() if new_state.norm() != 0 else new_state
+        self.state = new_state
+        self.refresh()
+    
+    def random(self):
+        new_state = qt.rand_ket(self.state.shape[0])
+        new_state.dims = self.state.dims
+        self.state = new_state
+        self.refresh()
+
+    def vacuum(self):
+        self.state = vacuum(n=self.n_osc, max_ex=self.max_ex)
+        self.refresh()
+
+    def randomH(self):
+        H = qt.rand_herm(self.state.shape[0])
+        H.dims = [self.state.dims[0], self.state.dims[0]]
+        return H
 
     def evolve(self, H, dt=0.05, T=2*np.pi):
         if H.dims[0] == self.state.dims[0]:
@@ -660,11 +731,88 @@ class SchwingerSpheres:
             self.refresh()
             vp.rate(50)
 
+    def measure(self, direction):
+        if self.show_plane and direction == 'q':
+            probs = []
+            indices = []
+            for i in range(self.max_ex):
+                for j in range(self.max_ex):
+                    amp = self.state.overlap(self.Qstates[i][j])
+                    probs.append(abs(amp)**2)
+                    indices.append((i, j))
+            probs = np.array(probs)
+            choice = np.random.choice(list(range(len(probs))), p=abs(probs/sum(probs)))
+            i, j = indices[choice]
+            self.state = (self.Qstates[i][j]*self.Qstates[i][j].dag()*self.state).unit()
+        else:        
+            projectors = self.pauli_projectors[direction]
+            eigenvalues = projectors.keys()
+            P = [projectors[eig] for eig in eigenvalues]
+            probs = np.array([qt.expect(P[i], self.state) for i in range(len(P))])
+            choice = np.random.choice(list(range(len(probs))), p=abs(probs/sum(probs)))
+            self.state = (P[choice]*self.state).unit()
+        self.refresh()
+
     def refresh(self):
         self.spins = extract_osc_spinstates(self.state, P=self.P, dims=self.dims)
         for i, vsphere in enumerate(self.vspheres):
             vsphere.spin = self.spins[i]
 
+        if self.show_plane:
+            for i in range(self.max_ex):
+                for j in range(self.max_ex):
+                    amp = self.state.overlap(self.Qstates[i][j]) 
+                    self.vpositions[i][j].axis = 2*vp.vector(amp.real, amp.imag, 0)
+            self.vexpected_pos.pos = self.plane_origin+vp.vector(qt.expect(self.Q[0], self.state).real, qt.expect(self.Q[1], self.state).real, 0)
+
     def destroy(self):
         for vsphere in self.vspheres:
             vsphere.destroy()
+        if self.show_plane:
+            self.vexpected_pos.visible = False
+            self.vexpected_pos = None
+            for i in range(self.max_ex):
+                for j in range(self.max_ex):
+                    self.vpositions[i][j].visible = False
+            self.vpositions = None
+
+import pylab
+import matplotlib.animation as animation
+from mpl_toolkits.mplot3d import Axes3D
+
+def animate_spin(state, H, dt=0.1, T=100, filename=None):
+    U = (-1j*H*dt).expm()
+
+    fig = pylab.figure()
+    ax = Axes3D(fig)
+    
+    n = state.shape[0]-1
+    sphere = qt.Bloch(fig=fig, axes=ax)
+    sphere.point_size=[300]*n
+    
+    sphere.make_sphere()
+    
+    history = [spin_xyz(state)]
+    for t in range(T):
+        state = U*state
+        history.append(spin_xyz(state))
+
+    def anim(i):
+        nonlocal history, sphere
+        sphere.clear()
+        sphere.add_points(history[i].T)
+        sphere.add_vectors(history[i])
+        sphere.make_sphere()
+        return ax
+
+    ani = animation.FuncAnimation(fig,\
+                                  anim,\
+                                  range(T),\
+                                  repeat=False)
+    if filename:
+        ani.save(filename, fps=20)
+    #pylab.show()
+    return ani
+
+#from IPython.display import HTML
+#HTML(ani.to_html5_video())

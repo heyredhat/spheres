@@ -31,14 +31,14 @@ from spheres.stars import *
 from spheres import symmetrization
 from spheres.symmetrization import *
 
-from spheres import circuits
-from spheres.circuits import *
+#from spheres import circuits
+#from spheres.circuits import *
 
 from spheres import oscillators
 from spheres.oscillators import *
 
-from spheres import visualization
-from spheres.visualization import *
+#from spheres import visualization
+#from spheres.visualization import *
 
 __version__ = "0.3.0.6"
  

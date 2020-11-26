@@ -1,10 +1,6 @@
-sphinx
-sphinx_rtd_theme
 numpy
 qutip
 matplotlib
 vpython
 pytket
 pytket-qiskit
-mpld3
-ipympl

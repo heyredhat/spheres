@@ -882,3 +882,7 @@ def xyz_eigenstates(j, m, direction):
                         [list(np.arange(j, -j-1, -1)).index(m)]
     return xyz_spin([up]*nup + [down]*ndown)
 
+def basis(d, i, up='z'):
+    j = (d-1)/2
+    m = np.arange(j, -j-1, -1)[i]
+    return xyz_eigenstates(j, m, up)

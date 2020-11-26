@@ -43,16 +43,18 @@ def second_quantize_spin_state(spin, a):
 
 def osc_spin_permutation(max_ex):    
     tensor_basis_labels = list(product(list(range(max_ex)), repeat=2))
-    total_n_basis_labels = []
+    full_total_n_basis_labels = []
     for i in range(2*max_ex):
-        total_n_basis_labels.extend([(i-j-1, j) for j in range(i)])
-    total_n_basis_labels = [label for label in total_n_basis_labels if label in tensor_basis_labels]
-    P = np.zeros((max_ex**2, max_ex**2))
+        full_total_n_basis_labels.extend([(i-j-1, j) for j in range(i)])
+    #total_n_basis_labels = [label for label in full_total_n_basis_labels if label in tensor_basis_labels]
+    n = len(full_total_n_basis_labels)
+    m = max_ex**2
+    P = np.zeros((n, m))
     for i, label in enumerate(tensor_basis_labels):
-        P[total_n_basis_labels.index(label)][i] = 1
+        P[full_total_n_basis_labels.index(label)][i] = 1
     P = qt.Qobj(P)
-    P.dims = [[max_ex, max_ex], [max_ex, max_ex]]
-    sums = [sum(label) for label in total_n_basis_labels]
+    P.dims = [[n], [max_ex, max_ex]]
+    sums = [sum(label) for label in full_total_n_basis_labels]
     unique_sums = set(sums)
     dims = [sums.count(us) for us in unique_sums]
     return P, dims
