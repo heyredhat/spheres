@@ -160,7 +160,7 @@ class MajoranaSphere:
         self.phase = phase(self.spin)
         
         if scene != None:
-            self.scene = None
+            self.scene = scene
         else:
             if global_scene == None:
                 global_scene = vp.canvas(background=vp.color.white,\
@@ -641,7 +641,7 @@ class MajoranaSphere:
             self.vnorm = None
 
 class SchwingerSpheres:
-    def __init__(self, state=None, max_ex=3, show_plane=True):
+    def __init__(self, scene=None, state=None, max_ex=3, show_plane=True):
         self.max_ex, self.n_osc = max_ex, 2
         self.state = state if state else vacuum(n=2, max_ex=max_ex)
         self.a = annihilators(n=self.n_osc, max_ex=self.max_ex)
@@ -654,6 +654,7 @@ class SchwingerSpheres:
             positions.append(next_position)
         positions = np.array(positions)-positions[-1]/2
         self.vspheres = [MajoranaSphere(self.spins[i],\
+                                        scene=scene,\
                                         position=vp.vector(positions[i], 0, 0),\
                                         radius=1,\
                                         show_norm=True) \
@@ -816,3 +817,17 @@ def animate_spin(state, H, dt=0.1, T=100, filename=None):
 
 #from IPython.display import HTML
 #HTML(ani.to_html5_video())
+
+#import matplotlib.pyplot as plt
+
+def viz_spin(spin):
+    fig = pylab.figure()
+    ax = Axes3D(fig)
+    sphere = qt.Bloch(fig=fig, axes=ax)
+    sphere.point_size=[300]*(spin.shape[0]-1)
+    stars = spin_xyz(spin)
+    sphere.add_points(stars.T)
+    sphere.add_vectors(stars)
+    sphere.make_sphere()
+    pylab.show()
+    return sphere

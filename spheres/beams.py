@@ -6,8 +6,6 @@ from math import factorial
 from cmath import phase
 from scipy.special import eval_genlaguerre
 
-#import mpld3
-#mpld3.enable_notebook()
 import matplotlib.pyplot as plt
 
 from colorsys import hls_to_rgb
@@ -16,12 +14,11 @@ def colorize(z):
     c = np.zeros((n,m,3))
     c[np.isinf(z)] = (1.0, 1.0, 1.0)
     c[np.isnan(z)] = (0.5, 0.5, 0.5)
-
     idx = ~(np.isinf(z) + np.isnan(z))
     A = (np.angle(z[idx]) + np.pi) / (2*np.pi)
     A = (A + 0.5) % 1.0
-    B = 1.0 - 1.0/(1.0+abs(z[idx])**0.3)
-    c[idx] = [hls_to_rgb(a, b, 0.8) for a,b in zip(A,B)]
+    B = 1.0 - 1.0/(1.0+abs(z[idx]))
+    c[idx] = [hls_to_rgb(a, b, 1) for a,b in zip(A,B)]
     return c
 
 # N is an integer.
