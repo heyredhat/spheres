@@ -1,9 +1,9 @@
+import sys
 import random
 from math import pi, asin, atan2, cos, sin, sqrt
-import sys
 
 # https://www.chiark.greenend.org.uk/~sgtatham/polyhedra/
-def make_poly_points(n, verbose=False):
+def equidistribute_points(n, verbose=False):
     points = []
     for i in range(n):
         # Invent a randomly distributed point.
