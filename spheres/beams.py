@@ -63,23 +63,24 @@ def colorize(z):
     c[idx] = [hls_to_rgb(a, b, 1) for a,b in zip(A,B)]
     return c
 
-def viz_beam(beam, size=3.5, n_samples=100):
+def viz_beam(beam, size=3.5, n_samples=200):
     x = np.linspace(-size, size, n_samples)
     y = np.linspace(-size, size, n_samples)
     X, Y = np.meshgrid(x, y)
     plt.imshow(colorize(beam(X, Y, np.zeros(X.shape))), interpolation="none", extent=(-size,size,-size,size))
     plt.show()
 
-def viz_spin_beam(spin, size=3.5, n_samples=100):
+def viz_spin_beam(spin, size=3.5, n_samples=200):
     stars = spin_xyz(spin)
     beam = spin_beam(spin)
     fig = plt.figure(figsize=plt.figaspect(0.5))
 
     bloch_ax = fig.add_subplot(1, 2, 1, projection='3d')
     sphere = qt.Bloch(fig=fig, axes=bloch_ax)
-    sphere.point_size=[300]*(spin.shape[0]-1)
-    sphere.add_points(stars.T)
-    sphere.add_vectors(stars)
+    if spin.shape[0] != 1:
+        sphere.point_size=[300]*(spin.shape[0]-1)
+        sphere.add_points(stars.T)
+        sphere.add_vectors(stars)
     sphere.make_sphere()
 
     beam_ax = fig.add_subplot(1, 2, 2)
@@ -90,7 +91,7 @@ def viz_spin_beam(spin, size=3.5, n_samples=100):
 
     plt.show()
 
-def animate_spin_beam(spin, H, dt=0.1, T=2*np.pi, size=3.5, n_samples=100, filename=None, fps=20):
+def animate_spin_beam(spin, H, dt=0.1, T=2*np.pi, size=3.5, n_samples=200, filename=None, fps=20):
     fig = plt.figure(figsize=plt.figaspect(0.5))
 
     bloch_ax = fig.add_subplot(1, 2, 1, projection='3d')
@@ -109,7 +110,8 @@ def animate_spin_beam(spin, H, dt=0.1, T=2*np.pi, size=3.5, n_samples=100, filen
     beam_history = []
     steps = int(T/dt)
     for t in range(steps):
-        sphere_history.append(spin_xyz(spin))
+        if spin.shape[0] != 1:
+            sphere_history.append(spin_xyz(spin))
         beam = spin_beam(spin)
         beam_history.append(beam(X, Y, Z))
         spin = U*spin
@@ -118,10 +120,11 @@ def animate_spin_beam(spin, H, dt=0.1, T=2*np.pi, size=3.5, n_samples=100, filen
     im = beam_ax.imshow(colorize(beam_history[0]), interpolation="none", extent=(-size,size,-size,size))
     
     def animate(t):
-        sphere.clear()
-        sphere.add_points(sphere_history[t].T)
-        sphere.add_vectors(sphere_history[t])
-        sphere.make_sphere()
+        if spin.shape[0] != 1:
+            sphere.clear()
+            sphere.add_points(sphere_history[t].T)
+            sphere.add_vectors(sphere_history[t])
+            sphere.make_sphere()
 
         im.set_array(colorize(beam_history[t])) 
         return [bloch_ax, im]
@@ -129,4 +132,5 @@ def animate_spin_beam(spin, H, dt=0.1, T=2*np.pi, size=3.5, n_samples=100, filen
     ani = animation.FuncAnimation(fig, animate, range(steps), repeat=False)
     if filename:
         ani.save(filename, fps=fps)
-    return ani
+    plt.close()
+    #return ani

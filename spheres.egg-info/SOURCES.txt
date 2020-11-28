@@ -1,8 +1,10 @@
 README.rst
 setup.py
 spheres/__init__.py
+spheres/beams.py
 spheres/circuits.py
 spheres/oscillators.py
+spheres/polyhedra.py
 spheres/stars.py
 spheres/symmetrization.py
 spheres/utils.py

@@ -540,9 +540,9 @@ def spin_xyz(spin):
             A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.
     """
     if spin.shape[0] == 1:
-        return [np.zeros(3)]
+        return np.array([np.zeros(3)])
     if spin.norm() == 0:
-        return [np.zeros(3) for i in range(int(spin.shape[0]-1))]
+        return np.array([np.zeros(3) for i in range(int(spin.shape[0]-1))])
     return np.array([c_xyz(root) for root in poly_roots(spin_poly(spin))])
 
 def xyz_spin(xyz):
@@ -883,6 +883,8 @@ def xyz_eigenstates(j, m, direction):
     return xyz_spin([up]*nup + [down]*ndown)
 
 def basis(d, i, up='z'):
+    if d == 0:
+        return qt.identity(1)
     j = (d-1)/2
     m = np.arange(j, -j-1, -1)[i]
     return xyz_eigenstates(j, m, up)
