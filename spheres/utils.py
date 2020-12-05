@@ -56,6 +56,9 @@ def phase(v):
     v = components(v) if type(v) == qt.Qobj else v
     return np.exp(1j*np.angle(v[(v!=0).argmax(axis=0)]))
 
+def phase_angle(q):
+    return np.mod(np.angle(phase(q)), 2*np.pi)
+
 def normalize_phase(v):
     """
     Normalizes the phase of a complex vector (np.ndarray or qt.Qobj).
@@ -111,8 +114,8 @@ def bitstring_basis(bitstring, dims=2):
         bitstring = [int(s) for s in bitstring]
     if type(dims) != list:
         dims = [dims]*len(bitstring)
-    return qt.tensor(*[qt.basis(dims[i], i)\
-                for i in range(len(bitstring))])
+    return qt.tensor(*[qt.basis(dims[i], int(b))\
+                for i, b in enumerate(bitstring)])
 
 def fix_stars(old_stars, new_stars):
     """
@@ -154,6 +157,12 @@ def qubits_xyz(state):
                         qt.expect(qt.sigmaz(), dm)])
         xyzs.append(xyz)
     return np.array(xyzs)
+
+def spinj_xyz(state):
+    j = (state.shape[0]-1)/2
+    return np.array([qt.expect(qt.jmat(j, 'x'), state),\
+                     qt.expect(qt.jmat(j, 'y'), state),\
+                     qt.expect(qt.jmat(j, 'z'), state)])
 
 def pauli_basis(n):
     """

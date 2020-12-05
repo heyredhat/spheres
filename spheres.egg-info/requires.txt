@@ -1,6 +1,0 @@
-numpy
-qutip
-matplotlib
-vpython
-pytket
-pytket-qiskit

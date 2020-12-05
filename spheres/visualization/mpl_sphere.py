@@ -1,10 +1,6 @@
-%matplotlib widget
-
 import pylab
 import matplotlib.animation as animation
 from mpl_toolkits.mplot3d import Axes3D
-
-from spheres.stars import *
 
 def animate_spin(state, H, dt=0.1, T=100, filename=None):
     U = (-1j*H*dt).expm()
@@ -40,9 +36,19 @@ def animate_spin(state, H, dt=0.1, T=100, filename=None):
     #pylab.show()
     return ani
 
-spin = qt.rand_ket(3)
-H = qt.jmat(1, 'x')
-ani = animate_spin(spin, H)
-
 #from IPython.display import HTML
 #HTML(ani.to_html5_video())
+
+#import matplotlib.pyplot as plt
+
+def viz_spin(spin):
+    fig = pylab.figure()
+    ax = Axes3D(fig)
+    sphere = qt.Bloch(fig=fig, axes=ax)
+    sphere.point_size=[300]*(spin.shape[0]-1)
+    stars = spin_xyz(spin)
+    sphere.add_points(stars.T)
+    sphere.add_vectors(stars)
+    sphere.make_sphere()
+    pylab.show()
+    return sphere

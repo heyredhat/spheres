@@ -10,7 +10,6 @@ from pytket import Circuit
 from pytket.circuit import Unitary1qBox, Unitary2qBox
 from pytket.utils import probs_from_counts
 
-
 def prepare_qubits(xyzs):
     """
     Given n cartesian points on the sphere, returns a circuit which prepares

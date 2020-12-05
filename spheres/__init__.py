@@ -25,6 +25,9 @@ import qutip as qt
 from spheres import utils
 from spheres.utils import *
 
+from spheres import coordinates
+from spheres.coordinates import *
+
 from spheres import stars
 from spheres.stars import *
 
@@ -40,5 +43,5 @@ from spheres.oscillators import *
 #from spheres import visualization
 #from spheres.visualization import *
 
-__version__ = "0.3.0.6"
+__version__ = "0.3.0.7"
  

@@ -8,3 +8,4 @@ pytket
 pytket-qiskit
 mpld3
 ipympl
+quadpy

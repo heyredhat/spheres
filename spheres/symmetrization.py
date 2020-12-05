@@ -33,7 +33,7 @@ def symmetrize(pieces):
         return sum([pieces.permute(perm)\
                 for perm in permutations(range(len(pieces.dims[0])))]).unit()
                 
-def spin_sym(j):
+def spin_sym_map(j):
     """
     Constructs an isometric linear map from spin-j states to
     permutation symmetric states of 2j spin-:math:`\\frac{1}{2}`'s.
@@ -58,6 +58,18 @@ def spin_sym(j):
                 for i in range(int(2*j+1))]).T)
     S.dims =[[2]*int(2*j), [int(2*j+1)]]
     return S
+
+def spin_sym(spin, map=None):
+    j = (spin.shape[0]-1)/2
+    if not map:
+        map = spin_sym_map(j)
+    return map*spin
+
+def sym_spin(sym, map=None):
+    j = len(sym.dims[0])/2
+    if not map:
+        map = spin_sym_map(j)
+    return map.dag()*sym
 
 def symmetrized_basis(n, d=2):
     """
