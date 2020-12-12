@@ -93,7 +93,7 @@ def test_r(R):
     WR = omega_r(n)
     return np.allclose(R @ WR @ R.T, WR)
 
-def operator_real_symplectic(O, expm=True, theta=1):
+def operator_real_symplectic(O, expm=True, theta=2):
     """
     Converts a first quantized operator into a real symplectic matrix.
     """
@@ -108,6 +108,28 @@ def symplectic_xyz():
     """
     Returns Pauli matrices expressed as real symplectic transformations.
     """
-    return {"X": operator_real_symplectic(qt.sigmax()/2, expm=False)[0],\
-            "Y": operator_real_symplectic(qt.sigmay()/2, expm=False)[0],\
-            "Z": operator_real_symplectic(qt.sigmaz()/2, expm=False)[0]} 
+    return {"X": operator_real_symplectic(qt.sigmax()/8, expm=False)[0],\
+            "Y": operator_real_symplectic(qt.sigmay()/8, expm=False)[0],\
+            "Z": operator_real_symplectic(qt.sigmaz()/8, expm=False)[0]} 
+
+def upgrade_single_mode_operator(O, i, n_modes):
+    """
+    Upgrades a single mode operator O to act on the i'th of n modes.
+    """
+    I = np.eye(2*n_modes)
+    cols = np.zeros((2,2), dtype=np.intp)
+    cols[0,:], cols[1,:] = i, i+n_modes
+    rows = cols.T
+    I[rows,cols] = O[:]
+    return I
+
+def upgrade_two_mode_operator(O, i, j, n_modes):
+    """
+    Upgrade two mode symplectic matrix to act on indices i and j of n_modes.
+    """
+    I = np.zeros((2*n_modes, 2*n_modes))
+    cols = np.zeros((4,4), dtype=np.intp)
+    cols[0,:], cols[1,:], cols[2,:], cols[3,:]  = i, j, i+n_modes, j+n_modes
+    rows = cols.T
+    I[rows,cols] = O[:]
+    return I

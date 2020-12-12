@@ -63,7 +63,7 @@ def sf_state_xyz(state, n_modes=2, XYZ=None):
     if type(XYZ) == type(None):
         XYZ = symplectic_xyz()
     for o, O in XYZ.items():
-        XYZ[o] = sc.linalg.block_diag(O, np.zeros((2*(n_modes-2), 2*(n_modes-2))))
+        XYZ[o] = upgrade_two_mode_operator(O, 0, 1, n_modes)
     return np.array([state.poly_quad_expectation(XYZ["X"])[0],\
                      state.poly_quad_expectation(XYZ["Y"])[0],\
                      state.poly_quad_expectation(XYZ["Z"])[0]]).real
