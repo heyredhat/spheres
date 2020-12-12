@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spheres.symplectic &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>spheres.symplectic</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for spheres.symplectic</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Symplectic Transformations</span>
+<span class="sd">--------------------------</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sc</span>
+
+<div class="viewcode-block" id="make_gaussian_operator"><a class="viewcode-back" href="../../index.html#spheres.symplectic.make_gaussian_operator">[docs]</a><span class="k">def</span> <span class="nf">make_gaussian_operator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a random Gaussian operator in the form of a Hermitian matrix and a vector,</span>
+<span class="sd">    to be second quantized.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">B</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">h</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">],</span>\
+                     <span class="p">[</span><span class="n">B</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">A</span><span class="o">.</span><span class="n">conj</span><span class="p">()]]),</span>\
+           <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">conj</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="random_gaussian_operator"><a class="viewcode-back" href="../../index.html#spheres.symplectic.random_gaussian_operator">[docs]</a><span class="k">def</span> <span class="nf">random_gaussian_operator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns random Gaussian operator in the form of a Hermitian matrix and a vector,</span>
+<span class="sd">    to be second quantized.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_herm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">full</span><span class="p">()</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">B</span> <span class="o">@</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">B</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">make_gaussian_operator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="gaussian_complex_symplectic"><a class="viewcode-back" href="../../index.html#spheres.symplectic.gaussian_complex_symplectic">[docs]</a><span class="k">def</span> <span class="nf">gaussian_complex_symplectic</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">expm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a Gaussian operator (in the form of a Hermitian matrix and a vector)</span>
+<span class="sd">    into a complex symplectic matrix/vector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">omega_c</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">expm</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">omega</span><span class="nd">@H</span><span class="p">)</span> <span class="k">if</span> <span class="n">expm</span> <span class="k">else</span> <span class="n">H</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">((</span><span class="n">S</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">))</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">H</span><span class="p">))</span> <span class="o">@</span> <span class="n">h</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">((</span><span class="n">S</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">))</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">H</span><span class="p">))</span> <span class="o">@</span> <span class="n">h</span>
+    <span class="k">return</span> <span class="n">S</span><span class="p">,</span> <span class="n">s</span></div>
+
+<div class="viewcode-block" id="omega_c"><a class="viewcode-back" href="../../index.html#spheres.symplectic.omega_c">[docs]</a><span class="k">def</span> <span class="nf">omega_c</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Complex symplectic form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sc</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">block_diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="test_c"><a class="viewcode-back" href="../../index.html#spheres.symplectic.test_c">[docs]</a><span class="k">def</span> <span class="nf">test_c</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test if an matrix is complex symplectic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">WC</span> <span class="o">=</span> <span class="n">omega_c</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">S</span> <span class="o">@</span> <span class="n">WC</span> <span class="o">@</span> <span class="n">S</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">WC</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="complex_real_symplectic"><a class="viewcode-back" href="../../index.html#spheres.symplectic.complex_real_symplectic">[docs]</a><span class="k">def</span> <span class="nf">complex_real_symplectic</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a complex symplectic matrix/vector to a real symplectic matrix/vector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)],</span>\
+                             <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)]])</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">L</span> <span class="o">@</span> <span class="n">S</span> <span class="o">@</span> <span class="n">L</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">@</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">real</span></div>
+
+<div class="viewcode-block" id="complex_real_symplectic2"><a class="viewcode-back" href="../../index.html#spheres.symplectic.complex_real_symplectic2">[docs]</a><span class="k">def</span> <span class="nf">complex_real_symplectic2</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a complex symplectic matrix/vector to a real symplectic matrix/vector.</span>
+<span class="sd">    Alternative construction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">E</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">],</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[(</span><span class="n">E</span><span class="o">+</span><span class="n">F</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">E</span><span class="o">-</span><span class="n">F</span><span class="p">)</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span>\
+                     <span class="p">[(</span><span class="n">E</span><span class="o">+</span><span class="n">F</span><span class="p">)</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="p">(</span><span class="n">E</span><span class="o">-</span><span class="n">F</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">]]),</span>\
+           <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>\
+                                      <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="omega_r"><a class="viewcode-back" href="../../index.html#spheres.symplectic.omega_r">[docs]</a><span class="k">def</span> <span class="nf">omega_r</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Real symplectic form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)],</span>\
+                     <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))]])</span></div>
+
+<div class="viewcode-block" id="test_r"><a class="viewcode-back" href="../../index.html#spheres.symplectic.test_r">[docs]</a><span class="k">def</span> <span class="nf">test_r</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test if an matrix is real symplectic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">WR</span> <span class="o">=</span> <span class="n">omega_r</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">R</span> <span class="o">@</span> <span class="n">WR</span> <span class="o">@</span> <span class="n">R</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">WR</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="operator_real_symplectic"><a class="viewcode-back" href="../../index.html#spheres.symplectic.operator_real_symplectic">[docs]</a><span class="k">def</span> <span class="nf">operator_real_symplectic</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="n">expm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a first quantized operator into a real symplectic matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">O</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Op</span> <span class="o">=</span> <span class="n">O</span><span class="o">.</span><span class="n">full</span><span class="p">()</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">O</span><span class="p">)</span> <span class="o">==</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span> <span class="k">else</span> <span class="n">O</span>
+    <span class="n">H</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">make_gaussian_operator</span><span class="p">(</span><span class="n">Op</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">S</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">gaussian_complex_symplectic</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">expm</span><span class="o">=</span><span class="n">expm</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">complex_real_symplectic</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">R</span><span class="p">,</span> <span class="n">r</span></div>
+
+<div class="viewcode-block" id="symplectic_xyz"><a class="viewcode-back" href="../../index.html#spheres.symplectic.symplectic_xyz">[docs]</a><span class="k">def</span> <span class="nf">symplectic_xyz</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns Pauli matrices expressed as real symplectic transformations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">operator_real_symplectic</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmax</span><span class="p">()</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="n">expm</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>\
+            <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="n">operator_real_symplectic</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmay</span><span class="p">()</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="n">expm</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>\
+            <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="n">operator_real_symplectic</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmaz</span><span class="p">()</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="n">expm</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]}</span> </div>
+
+<div class="viewcode-block" id="upgrade_single_mode_operator"><a class="viewcode-back" href="../../index.html#spheres.symplectic.upgrade_single_mode_operator">[docs]</a><span class="k">def</span> <span class="nf">upgrade_single_mode_operator</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n_modes</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Upgrades a single mode operator O to act on the i&#39;th of n modes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n_modes</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)</span>
+    <span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">n_modes</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">I</span><span class="p">[</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">O</span><span class="p">[:]</span>
+    <span class="k">return</span> <span class="n">I</span></div>
+
+<div class="viewcode-block" id="upgrade_two_mode_operator"><a class="viewcode-back" href="../../index.html#spheres.symplectic.upgrade_two_mode_operator">[docs]</a><span class="k">def</span> <span class="nf">upgrade_two_mode_operator</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">n_modes</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Upgrade two mode symplectic matrix to act on indices i and j of n_modes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">n_modes</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">n_modes</span><span class="p">))</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)</span>
+    <span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">cols</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="n">cols</span><span class="p">[</span><span class="mi">3</span><span class="p">,:]</span>  <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">n_modes</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="n">n_modes</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">I</span><span class="p">[</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">O</span><span class="p">[:]</span>
+    <span class="k">return</span> <span class="n">I</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -6,6 +6,9 @@ from spheres.visualization.MajoranaSphere import *
 import vpython as vp
 
 class SchwingerSpheres:
+    """
+    Visualization for two oscillators as a tower of spin-j states.
+    """
     def __init__(self, scene=None, state=None, max_ex=3, show_plane=True):
         self.max_ex, self.n_osc = max_ex, 2
         self.state = state if state else vacuum(n=2, max_ex=max_ex)

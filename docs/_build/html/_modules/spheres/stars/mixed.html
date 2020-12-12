@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spheres.stars.mixed &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../stars.html">spheres.stars</a> &raquo;</li>
+        
+      <li>spheres.stars.mixed</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for spheres.stars.mixed</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Mixed Majorana Stars</span>
+<span class="sd">--------------------</span>
+
+<span class="sd">Implementation of the &quot;Majorana stars&quot; formalism for mixed states (and operators) of higher spin.</span>
+
+<span class="sd">+-----------------------------------------------+------------------------------------------------+</span>
+<span class="sd">| :py:meth:`spherical_tensor`                   | Constructs spherical tensor operator.          |</span>
+<span class="sd">| :py:meth:`spherical_tensor_basis`             | Constructs spherical tensor basis.             |</span>
+<span class="sd">+-----------------------------------------------+------------------------------------------------+</span>
+<span class="sd">| :py:meth:`operator_spherical_decomposition`   | Spherical tensor decomposition.                |</span>
+<span class="sd">| :py:meth:`spherical_decomposition_operator`   | Spherical tensor recomposition.                |</span>
+<span class="sd">+-----------------------------------------------+------------------------------------------------+</span>
+<span class="sd">| :py:meth:`spherical_decomposition_spins`      | Interpret decomposition as collection of spins,|</span>
+<span class="sd">| :py:meth:`spins_spherical_decomposition`      | and back.                                      |</span>
+<span class="sd">+-----------------------------------------------+------------------------------------------------+</span>
+<span class="sd">| :py:meth:`operator_spins`                     | Operator to spins,                             |</span>
+<span class="sd">| :py:meth:`spins_operator`                     | and back.                                      |</span>
+<span class="sd">+-----------------------------------------------+------------------------------------------------+</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
+<span class="kn">from</span> <span class="nn">spheres.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="spherical_tensor"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.spherical_tensor">[docs]</a><span class="k">def</span> <span class="nf">spherical_tensor</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs spherical tensor operator for a given :math:`j, \\sigma, \\mu`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">m1</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m2</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>\
+                <span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m2</span><span class="p">))</span><span class="o">*</span>\
+                <span class="n">qt</span><span class="o">.</span><span class="n">clebsch</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="o">-</span><span class="n">m2</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span><span class="o">*</span>\
+                <span class="n">qt</span><span class="o">.</span><span class="n">spin_state</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">m1</span><span class="p">)</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">spin_state</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="spherical_tensor_basis"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.spherical_tensor_basis">[docs]</a><span class="k">def</span> <span class="nf">spherical_tensor_basis</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs a basis set of spherical tensor operators for a given :math:`j`, for all</span>
+<span class="sd">    :math:`\\sigma` from :math:`0` to :math:`2j`, and :math:`\\mu` from :math:`-\\sigma` to :math:`\\sigma`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_basis</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">T_basis</span><span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)]</span> <span class="o">=</span> <span class="n">spherical_tensor</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">T_basis</span></div>
+
+<div class="viewcode-block" id="operator_spherical_decomposition"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.operator_spherical_decomposition">[docs]</a><span class="k">def</span> <span class="nf">operator_spherical_decomposition</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="n">T_basis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decomposes an operator into a linear combination of spherical tensors. Constructs the latter if not supplied.</span>
+<span class="sd">    Returns the coefficients as a dictionary for each :math:`\\sigma, \\mu`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">O</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">T_basis</span><span class="p">:</span>
+        <span class="n">T_basis</span> <span class="o">=</span> <span class="n">spherical_tensor_basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="n">decomposition</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">decomposition</span><span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">O</span><span class="o">*</span><span class="n">T_basis</span><span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)]</span><span class="o">.</span><span class="n">dag</span><span class="p">())</span><span class="o">.</span><span class="n">tr</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">decomposition</span></div>
+
+<div class="viewcode-block" id="spherical_decomposition_operator"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.spherical_decomposition_operator">[docs]</a><span class="k">def</span> <span class="nf">spherical_decomposition_operator</span><span class="p">(</span><span class="n">decomposition</span><span class="p">,</span> <span class="n">T_basis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recomposes an operator from its spherical tensor decomposition. Constructs the latter if not supplied.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">T_basis</span><span class="p">:</span>
+        <span class="n">T_basis</span> <span class="o">=</span> <span class="n">spherical_tensor_basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decomposition</span><span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)]</span><span class="o">*</span><span class="n">T_basis</span><span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="spherical_decomposition_spins"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.spherical_decomposition_spins">[docs]</a><span class="k">def</span> <span class="nf">spherical_decomposition_spins</span><span class="p">(</span><span class="n">decomposition</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Expresses the spherical tensor decomposition of an operator as a list of unnormalized, integer :math:`j` spin states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_j</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">decomposition</span><span class="p">[(</span><span class="n">j</span><span class="p">,</span> <span class="n">m</span><span class="p">)]</span>\
+                        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]))</span>\
+                            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="spins_spherical_decomposition"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.spins_spherical_decomposition">[docs]</a><span class="k">def</span> <span class="nf">spins_spherical_decomposition</span><span class="p">(</span><span class="n">spins</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a list of spin states back into a dictionary of spherical tensor coefficients.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">decomposition</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_j</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">decomposition</span><span class="p">[(</span><span class="n">j</span><span class="p">,</span> <span class="n">m</span><span class="p">)]</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">spins</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">)])[</span><span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">decomposition</span></div>
+
+<div class="viewcode-block" id="operator_spins"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.operator_spins">[docs]</a><span class="k">def</span> <span class="nf">operator_spins</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="n">T_basis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Expresses an operator as a set of spins. Constructs the spherical tensor basis if not provided.</span>
+<span class="sd">    This is a generalization of the Majorana representation: for an operator, instead of one constellation,</span>
+<span class="sd">    we have several constellations on concentric spheres, whose radii can be interpreted as the norms of the</span>
+<span class="sd">    spin states. They transform nicely under rotations and partial traces. Hermitian operators have constellations</span>
+<span class="sd">    with antipodal symmetry, which is broken by unitary operators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">spherical_decomposition_spins</span><span class="p">(</span><span class="n">operator_spherical_decomposition</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="n">T_basis</span><span class="o">=</span><span class="n">T_basis</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="spins_operator"><a class="viewcode-back" href="../../../index.html#spheres.stars.mixed.spins_operator">[docs]</a><span class="k">def</span> <span class="nf">spins_operator</span><span class="p">(</span><span class="n">spins</span><span class="p">,</span> <span class="n">T_basis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recomposes an operator, given a list of spin states. Constructs the spherical tensor basis if not provided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">spherical_decomposition_operator</span><span class="p">(</span><span class="n">spins_spherical_decomposition</span><span class="p">(</span><span class="n">spins</span><span class="p">),</span> <span class="n">T_basis</span><span class="o">=</span><span class="n">T_basis</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -2,6 +2,15 @@
 Circuits
 --------
 
+..  automodule:: spheres.circuits.qiskit
+	:members:
+
+..  automodule:: spheres.circuits.pytket
+	:members:
+
+..  automodule:: spheres.circuits.strawberryfields
+	:members:
+
 """
 
 import spheres.circuits.qiskit

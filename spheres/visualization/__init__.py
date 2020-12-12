@@ -2,6 +2,18 @@
 Visualization Tools
 -------------------
 
+..  automodule:: spheres.visualization.MajoranaSphere
+	:members:
+
+..  automodule:: spheres.visualization.SchwingerSpheres
+	:members:
+
+..  automodule:: spheres.visualization.OperatorSphere
+	:members:
+
+..  automodule:: spheres.visualization.mpl_sphere
+	:members:
+
 """
 
 global_scene = None

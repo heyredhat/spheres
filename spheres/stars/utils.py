@@ -210,7 +210,7 @@ def poleflip(to_flip, from_cartesian=False,\
 
 def spherical_inner(a, b):
     """
-    :math:`\langle a \mid b \rangle` via an integral over the sphere. 
+    :math:`\\langle a \\mid b \\rangle` via an integral over the sphere. 
     """
     scheme = quadpy.u3.get_good_scheme(19)
     return scheme.integrate_spherical(lambda sph: a(sph).conj()*b(sph))

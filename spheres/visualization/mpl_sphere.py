@@ -3,6 +3,9 @@ import matplotlib.animation as animation
 from mpl_toolkits.mplot3d import Axes3D
 
 def animate_spin(state, H, dt=0.1, T=100, filename=None):
+    """
+    Animate Majorana stars with matplotlib.
+    """
     U = (-1j*H*dt).expm()
 
     fig = pylab.figure()
@@ -42,6 +45,9 @@ def animate_spin(state, H, dt=0.1, T=100, filename=None):
 #import matplotlib.pyplot as plt
 
 def viz_spin(spin):
+    """
+    Visualize Majorana stars with matplotlib.
+    """
     fig = pylab.figure()
     ax = Axes3D(fig)
     sphere = qt.Bloch(fig=fig, axes=ax)

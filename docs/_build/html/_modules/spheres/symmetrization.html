@@ -149,13 +149,27 @@
 <span class="sd">Symmetrization</span>
 <span class="sd">--------------</span>
 
+<span class="sd">+-------------------------+----------------------------------------+</span>
+<span class="sd">| :py:meth:`symmetrize`        | Symmetrizes states.               |</span>
+<span class="sd">| :py:meth:`symmetrized_basis` | Constructs symmetrized basis.     |</span>
+<span class="sd">+------------------------------+-----------------------------------+</span>
+<span class="sd">| :py:meth:`spin_sym_map`      | Map from spin-j to 2j symmetrized |</span>
+<span class="sd">|                              | qubits.                           |</span>
+<span class="sd">+------------------------------+-----------------------------------+</span>
+<span class="sd">| :py:meth:`spin_sym`          | Spin-j to 2j symmetrized qubits,  |</span>
+<span class="sd">| :py:meth:`sym_spin`          | and back.                         |</span>
+<span class="sd">+------------------------------+-----------------------------------+</span>
+<span class="sd">| :py:meth:`perm_parity`       | Parity of a permutation.          |</span>
+<span class="sd">| :py:meth:`antisymmetrize`    | Antisymmetrizes list of states.   |</span>
+<span class="sd">+------------------------------+-----------------------------------+</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span><span class="p">,</span> <span class="n">product</span>
 
-<span class="kn">from</span> <span class="nn">spheres.utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
 
 <div class="viewcode-block" id="symmetrize"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.symmetrize">[docs]</a><span class="k">def</span> <span class="nf">symmetrize</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -179,32 +193,6 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">pieces</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>\
                 <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">])))])</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span></div>
-                
-<div class="viewcode-block" id="spin_sym"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.spin_sym">[docs]</a><span class="k">def</span> <span class="nf">spin_sym</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Constructs an isometric linear map from spin-j states to</span>
-<span class="sd">    permutation symmetric states of 2j spin-:math:`\\frac{1}{2}`&#39;s.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        j : int</span>
-<span class="sd">            j value.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        S : qt.Qobj</span>
-<span class="sd">            Linear map from :math:`2j+1` dimensions to :math:`2^{2j}` dimensions.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">S</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>\
-                    <span class="n">components</span><span class="p">(</span><span class="n">symmetrize</span><span class="p">(</span>\
-                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">+</span>\
-                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>\
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">S</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span><span class="p">[[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]]</span>
-    <span class="k">return</span> <span class="n">S</span></div>
 
 <div class="viewcode-block" id="symmetrized_basis"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.symmetrized_basis">[docs]</a><span class="k">def</span> <span class="nf">symmetrized_basis</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -263,6 +251,76 @@
             <span class="s2">&quot;map&quot;</span><span class="p">:</span> <span class="n">sym_map</span><span class="p">}</span></div>
 
 
+<div class="viewcode-block" id="spin_sym_map"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.spin_sym_map">[docs]</a><span class="k">def</span> <span class="nf">spin_sym_map</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs an isometric linear map from spin-j states to</span>
+<span class="sd">    permutation symmetric states of 2j spin-:math:`\\frac{1}{2}`&#39;s.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        j : int</span>
+<span class="sd">            j value.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        S : qt.Qobj</span>
+<span class="sd">            Linear map from :math:`2j+1` dimensions to :math:`2^{2j}` dimensions.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>\
+                    <span class="n">components</span><span class="p">(</span><span class="n">symmetrize</span><span class="p">(</span>\
+                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">+</span>\
+                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>\
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">S</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span><span class="p">[[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]]</span>
+    <span class="k">return</span> <span class="n">S</span></div>
+
+<div class="viewcode-block" id="spin_sym"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.spin_sym">[docs]</a><span class="k">def</span> <span class="nf">spin_sym</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="nb">map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a spin-j state into a state of 2j symmetrized qubits. Constructs</span>
+<span class="sd">    the linear map if not provided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">map</span><span class="p">:</span>
+        <span class="nb">map</span> <span class="o">=</span> <span class="n">spin_sym_map</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">map</span><span class="o">*</span><span class="n">spin</span></div>
+
+<div class="viewcode-block" id="sym_spin"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.sym_spin">[docs]</a><span class="k">def</span> <span class="nf">sym_spin</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="nb">map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a state of 2j symmetrized qubits into a spin-j state. Constructs</span>
+<span class="sd">    the linear map if not provided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">map</span><span class="p">:</span>
+        <span class="nb">map</span> <span class="o">=</span> <span class="n">spin_sym_map</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">map</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">sym</span></div>
+
+<div class="viewcode-block" id="perm_parity"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.perm_parity">[docs]</a><span class="k">def</span> <span class="nf">perm_parity</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;\</span>
+<span class="sd">    Given a permutation of the digits 0..N in order as a list, </span>
+<span class="sd">    returns its parity (or sign): +1 for even parity; -1 for odd.</span>
+
+<span class="sd">    https://code.activestate.com/recipes/578227-generate-the-parity-or-sign-of-a-permutation/</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+    <span class="n">parity</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">i</span><span class="p">:</span>
+            <span class="n">parity</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">mn</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="n">lst</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">)</span>
+            <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">lst</span><span class="p">[</span><span class="n">mn</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="n">mn</span><span class="p">],</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">parity</span>   </div>
+
+<div class="viewcode-block" id="antisymmetrize"><a class="viewcode-back" href="../../index.html#spheres.symmetrization.antisymmetrize">[docs]</a><span class="k">def</span> <span class="nf">antisymmetrize</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Antisymmetrizes provided list of states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">perms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">permutations</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)))))</span>
+    <span class="n">anti</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">perm_parity</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">perm</span><span class="p">])</span>\
+                <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">perms</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">anti</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span> <span class="k">if</span> <span class="n">anti</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">anti</span></div>
 </pre></div>
 
            </div>

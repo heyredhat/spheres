@@ -11,11 +11,11 @@ Oscillators
 | :py:meth:`second_quantize_state`      | Creation operator for second quantized state.                  |
 | :py:meth:`second_quantize_spin_state` | Creation operator for second quantized spin state.             |
 +---------------------------------------+----------------------------------------------------------------+
-| :py:meth:`osc_spin_permutation        | Permutation operator from tensor basis to direct sum of spins. |
-| :py:meth:`extract_osc_spinblocks      | Extracts spin-j blocks from an operator.                       |
-| :py:meth:`extract_osc_spinstates      | Extracts spin-j states from a state.                           |
+| :py:meth:`osc_spin_permutation`       | Permutation operator from tensor basis to direct sum of spins. |
+| :py:meth:`extract_osc_spinblocks`     | Extracts spin-j blocks from an operator.                       |
+| :py:meth:`extract_osc_spinstates`     | Extracts spin-j states from a state.                           |
 +---------------------------------------+----------------------------------------------------------------+
-| :py:meth:`spin_osc                    | Converts from a spin-j state to a 2D oscillator state.         |
+| :py:meth:`spin_osc`                   | Converts from a spin-j state to a 2D oscillator state.         |
 +---------------------------------------+----------------------------------------------------------------+
 
 """

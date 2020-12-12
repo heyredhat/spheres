@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spheres.circuits.pytket &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>spheres.circuits.pytket</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for spheres.circuits.pytket</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Pytket Circuits</span>
+<span class="sd">---------------</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">spheres.stars.pure</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span> <span class="nn">pytket</span> <span class="kn">import</span> <span class="n">Circuit</span>
+<span class="kn">from</span> <span class="nn">pytket.circuit</span> <span class="kn">import</span> <span class="n">Unitary1qBox</span><span class="p">,</span> <span class="n">Unitary2qBox</span>
+<span class="kn">from</span> <span class="nn">pytket.utils</span> <span class="kn">import</span> <span class="n">probs_from_counts</span>
+
+<div class="viewcode-block" id="prepare_qubits"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.prepare_qubits">[docs]</a><span class="k">def</span> <span class="nf">prepare_qubits</span><span class="p">(</span><span class="n">xyzs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given n cartesian points on the sphere, returns a circuit which prepares</span>
+<span class="sd">    n qubits with spins pointed in those directions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">circ</span> <span class="o">=</span> <span class="n">Circuit</span><span class="p">()</span>
+    <span class="n">spin_qubits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">add_q_register</span><span class="p">(</span><span class="s2">&quot;spinqubits&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">xyzs</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xyz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xyzs</span><span class="p">):</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+        <span class="n">circ</span><span class="o">.</span><span class="n">Ry</span><span class="p">(</span><span class="n">theta</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">spin_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">circ</span><span class="o">.</span><span class="n">Rz</span><span class="p">(</span><span class="n">phi</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">spin_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">circ</span></div>
+
+<div class="viewcode-block" id="Rk"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.Rk">[docs]</a><span class="k">def</span> <span class="nf">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Single qubit operator employed in symmetrization circuit to prepare control qubits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)],</span>\
+                                     <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">Unitary1qBox</span><span class="p">(</span><span class="n">M</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">dagger</span> <span class="k">else</span> <span class="n">M</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Tkj"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.Tkj">[docs]</a><span class="k">def</span> <span class="nf">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Two qubit operator employed in symmetrization circuit to prepare control qubits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>\
+                                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>\
+                                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>\
+                                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]])</span>
+    <span class="k">return</span> <span class="n">Unitary2qBox</span><span class="p">(</span><span class="n">M</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">dagger</span> <span class="k">else</span> <span class="n">M</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="prepare_spin"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.prepare_spin">[docs]</a><span class="k">def</span> <span class="nf">prepare_spin</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">measure_cntrls</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a spin-j state, constructs a circuit which prepares that state as a </span>
+<span class="sd">    permutation symmetric state of 2j qubits. Returns a dictionary containing</span>
+<span class="sd">    the circuit, the spin qubits, the control qubits, the control bits, and</span>
+<span class="sd">    a postselection map. The circuit is probabalistic and depends on the control qubits</span>
+<span class="sd">    being postselected all on the up state (measurements included if `measure_cntrls=True`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">circ</span> <span class="o">=</span> <span class="n">prepare_qubits</span><span class="p">(</span><span class="n">spin_xyz</span><span class="p">(</span><span class="n">spin</span><span class="p">))</span>
+    <span class="n">spin_qubits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">qubits</span>
+    <span class="n">cntrl_qubits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">add_q_register</span><span class="p">(</span><span class="s2">&quot;cntrlqubits&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">cntrl_bits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">add_c_register</span><span class="p">(</span><span class="s2">&quot;cntrlbits&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">qubits</span>
+
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span><span class="o">-</span><span class="n">k</span>
+        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">),</span>\
+                              <span class="n">qubits</span><span class="p">[</span><span class="n">offset</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary2qbox</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>\
+                                  <span class="n">qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>\
+                                  <span class="n">qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">circ</span><span class="o">.</span><span class="n">CSWAP</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">],</span>\
+                       <span class="n">qubits</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="n">k</span><span class="p">],</span>\
+                       <span class="n">qubits</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary2qbox</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>\
+                                  <span class="n">qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>\
+                                  <span class="n">qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>    
+        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>\
+                              <span class="n">qubits</span><span class="p">[</span><span class="n">offset</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">measure_cntrls</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+            <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cntrl_bits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;spin_qubits&quot;</span><span class="p">:</span> <span class="n">spin_qubits</span><span class="p">,</span>\
+            <span class="s2">&quot;cntrl_qubits&quot;</span><span class="p">:</span> <span class="n">cntrl_qubits</span><span class="p">,</span>\
+            <span class="s2">&quot;cntrl_bits&quot;</span><span class="p">:</span> <span class="n">cntrl_bits</span><span class="p">,</span>\
+            <span class="s2">&quot;circuit&quot;</span><span class="p">:</span> <span class="n">circ</span><span class="p">,</span>\
+            <span class="s2">&quot;postselect_on&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">cbit</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">cbit</span> <span class="ow">in</span> <span class="n">cntrl_bits</span><span class="o">.</span><span class="n">values</span><span class="p">()])}</span></div>
+
+<div class="viewcode-block" id="postselect_shots"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.postselect_shots">[docs]</a><span class="k">def</span> <span class="nf">postselect_shots</span><span class="p">(</span><span class="n">original_shots</span><span class="p">,</span> <span class="n">postselect_on</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an array of shots data, postselects on certain qubits being in a certain state,</span>
+<span class="sd">    specified by a dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">postselect_on</span><span class="p">)</span>
+    <span class="n">postselected_shots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">shots</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">original_shots</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+            <span class="n">shots</span> <span class="o">=</span> <span class="n">shots</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">shots</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+            <span class="n">shots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">shots</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">postselected_shots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shots</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">postselected_shots</span></div>
+
+<div class="viewcode-block" id="tomography_circuits"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.tomography_circuits">[docs]</a><span class="k">def</span> <span class="nf">tomography_circuits</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">on_qubits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a circuit and a list of qubits, constructs a set of circuits that</span>
+<span class="sd">    implement tomography on those qubits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">on_qubits</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">qubits</span> <span class="k">if</span> <span class="n">on_qubits</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">on_qubits</span>
+    <span class="n">n_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">on_qubits</span><span class="p">)</span>
+    <span class="n">IXYZ</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">]</span>
+    <span class="n">circuits</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">pauli_str</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">IXYZ</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">n_qubits</span><span class="p">):</span>
+        <span class="n">circ</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">tomog_bits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">add_c_register</span><span class="p">(</span><span class="s2">&quot;tomogbits&quot;</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pauli_str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">o</span> <span class="o">==</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span>
+                <span class="n">circ</span><span class="o">.</span><span class="n">Rx</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">on_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">on_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tomog_bits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">o</span> <span class="o">==</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span>
+                <span class="n">circ</span><span class="o">.</span><span class="n">Ry</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">on_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">on_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tomog_bits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">o</span> <span class="o">==</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span>
+                <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">on_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tomog_bits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">circuits</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;pauli&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pauli_str</span><span class="p">),</span>\
+                         <span class="s2">&quot;circuit&quot;</span><span class="p">:</span> <span class="n">circ</span><span class="p">,</span>\
+                         <span class="s2">&quot;tomog_bits&quot;</span><span class="p">:</span> <span class="n">tomog_bits</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">circuits</span></div>
+
+<div class="viewcode-block" id="tomography_shots_dm"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.tomography_shots_dm">[docs]</a><span class="k">def</span> <span class="nf">tomography_shots_dm</span><span class="p">(</span><span class="n">tomog_circs</span><span class="p">,</span> <span class="n">tomog_shots</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a set of tomography circuits and the results of measurements (shots),</span>
+<span class="sd">    reconstructs the density matrix of the quantum state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">exps</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">shots</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tomog_shots</span><span class="p">):</span>
+        <span class="n">bad_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tomog_circs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;pauli&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s2">&quot;I&quot;</span><span class="p">]</span>
+        <span class="n">shots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">shots</span><span class="p">,</span> <span class="n">bad_indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">shots</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">shots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">shots</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">shots</span><span class="p">)</span>
+            <span class="n">shots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">shots</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">shots</span><span class="p">)</span>
+            <span class="n">shots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shots</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">shots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">exp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">shots</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">shots</span><span class="p">)</span>
+        <span class="n">exps</span><span class="p">[</span><span class="n">tomog_circs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;pauli&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">exp</span>
+    <span class="k">return</span> <span class="n">from_pauli_basis</span><span class="p">(</span><span class="n">exps</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="random_circuit"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.random_circuit">[docs]</a><span class="k">def</span> <span class="nf">random_circuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a random circuit specification with a specified number of qubits and depth.</span>
+<span class="sd">    Returns a dictionary containing a history of gates, divided into layers. </span>
+<span class="sd">    We don&#39;t return a circuit itself so we can continue to manipulate the circuit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">gates_1q</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">H</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>\
+                <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">S</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>\
+                <span class="s2">&quot;T&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="p">(</span><span class="n">i</span><span class="p">)}</span>
+    <span class="n">gates_2q</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;CX&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">CX</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)}</span>
+    <span class="n">circuit_info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[],</span>\
+                    <span class="s2">&quot;gate_map&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">**</span><span class="n">gates_1q</span><span class="p">,</span> <span class="o">**</span><span class="n">gates_2q</span><span class="p">},</span>\
+                    <span class="s2">&quot;n_qubits&quot;</span><span class="p">:</span> <span class="n">n_qubits</span><span class="p">,</span>\
+                    <span class="s2">&quot;depth&quot;</span><span class="p">:</span> <span class="n">depth</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+        <span class="n">moment</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">):</span>
+            <span class="n">rand_gate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">gates_1q</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+            <span class="n">moment</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;gate&quot;</span><span class="p">:</span> <span class="n">rand_gate</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">j</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="n">n_qubits</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">k</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">random_pairs</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">rand_gate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">gates_2q</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+            <span class="n">moment</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;gate&quot;</span><span class="p">:</span> <span class="n">rand_gate</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">]})</span>
+        <span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">moment</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">circuit_info</span></div>
+
+<div class="viewcode-block" id="build_circuit"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.build_circuit">[docs]</a><span class="k">def</span> <span class="nf">build_circuit</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a circuit specification (from `random_circuit()`), constructs the actual circuit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">circ</span> <span class="o">=</span> <span class="n">Circuit</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">moment</span> <span class="ow">in</span> <span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">gate</span> <span class="ow">in</span> <span class="n">moment</span><span class="p">:</span>
+            <span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;gate_map&quot;</span><span class="p">][</span><span class="n">gate</span><span class="p">[</span><span class="s2">&quot;gate&quot;</span><span class="p">]](</span><span class="n">circ</span><span class="p">,</span> <span class="o">*</span><span class="n">gate</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">circ</span></div>
+
+<div class="viewcode-block" id="symmetrize_circuit"><a class="viewcode-back" href="../../../index.html#spheres.circuits.pytket.symmetrize_circuit">[docs]</a><span class="k">def</span> <span class="nf">symmetrize_circuit</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">,</span> 
+                       <span class="n">n_copies</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                       <span class="n">every</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                       <span class="n">pairwise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                       <span class="n">reuse_cntrls</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                       <span class="n">measure</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a circuit specification, constructs a circuit with `n_copies` of the original circuit</span>
+<span class="sd">    running in parallel, with symmetrization being performed across the copies after each layer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">circ</span> <span class="o">=</span> <span class="n">Circuit</span><span class="p">()</span>
+    <span class="n">qubit_registers</span> <span class="o">=</span> <span class="p">[</span><span class="n">circ</span><span class="o">.</span><span class="n">add_q_register</span><span class="p">(</span><span class="s2">&quot;qexp</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span> <span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_copies</span><span class="p">)]</span>
+    <span class="n">cbit_registers</span> <span class="o">=</span> <span class="p">[</span><span class="n">circ</span><span class="o">.</span><span class="n">add_c_register</span><span class="p">(</span><span class="s2">&quot;cexp</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">,</span> <span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_copies</span><span class="p">)]</span>
+    
+    <span class="n">n_sym_layers</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;depth&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">every</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">pairwise</span><span class="p">:</span>
+        <span class="n">n_pairs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">random_unique_pairs</span><span class="p">(</span><span class="n">n_copies</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+            <span class="n">cntrl_qubits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">add_q_register</span><span class="p">(</span><span class="s2">&quot;cntrlqubits&quot;</span><span class="p">,</span> <span class="n">n_pairs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cntrl_qubits</span> <span class="o">=</span>  <span class="p">[</span><span class="n">circ</span><span class="o">.</span><span class="n">add_q_register</span><span class="p">(</span><span class="s2">&quot;cntrlqubits</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="p">,</span> <span class="n">n_pairs</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sym_layers</span><span class="p">)]</span>
+        <span class="n">cntrl_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">circ</span><span class="o">.</span><span class="n">add_c_register</span><span class="p">(</span><span class="s2">&quot;cntrlbits</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="p">,</span> <span class="n">n_pairs</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sym_layers</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_copies</span><span class="o">*</span><span class="p">(</span><span class="n">n_copies</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+            <span class="n">cntrl_qubits</span> <span class="o">=</span> <span class="n">circ</span><span class="o">.</span><span class="n">add_q_register</span><span class="p">(</span><span class="s2">&quot;cntrlqubits&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cntrl_qubits</span> <span class="o">=</span>  <span class="p">[</span><span class="n">circ</span><span class="o">.</span><span class="n">add_q_register</span><span class="p">(</span><span class="s2">&quot;cntrlqubits</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sym_layers</span><span class="p">)]</span>
+        <span class="n">cntrl_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">circ</span><span class="o">.</span><span class="n">add_c_register</span><span class="p">(</span><span class="s2">&quot;cntrlbits</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sym_layers</span><span class="p">)]</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">layer</span><span class="p">,</span> <span class="n">moment</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">gate</span> <span class="ow">in</span> <span class="n">moment</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_copies</span><span class="p">):</span>
+                <span class="n">apply_to</span> <span class="o">=</span> <span class="p">[</span><span class="n">qubit_registers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">to</span><span class="p">]</span> <span class="k">for</span> <span class="n">to</span> <span class="ow">in</span> <span class="n">gate</span><span class="p">[</span><span class="s2">&quot;to&quot;</span><span class="p">]]</span>
+                <span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;gate_map&quot;</span><span class="p">][</span><span class="n">gate</span><span class="p">[</span><span class="s2">&quot;gate&quot;</span><span class="p">]](</span><span class="n">circ</span><span class="p">,</span> <span class="o">*</span><span class="n">apply_to</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">layer</span> <span class="o">%</span> <span class="n">every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pairwise</span><span class="p">:</span>
+                <span class="n">pairs</span> <span class="o">=</span> <span class="n">random_unique_pairs</span><span class="p">(</span><span class="n">n_copies</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pairs</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">]):</span>
+                        <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">CSWAP</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>\
+                                       <span class="n">qubit_registers</span><span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">j</span><span class="p">],</span>\
+                                       <span class="n">qubit_registers</span><span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">j</span><span class="p">])</span>  
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">CSWAP</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>\
+                                       <span class="n">qubit_registers</span><span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">j</span><span class="p">],</span>\
+                                       <span class="n">qubit_registers</span><span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">j</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>  
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">measure</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cntrl_bits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">cntrl_bits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">=</span> <span class="n">r</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_copies</span><span class="p">):</span>
+                    <span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span><span class="o">-</span><span class="n">k</span>
+                    <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">offset</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">offset</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary2qbox</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>\
+                                              <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>\
+                                              <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary2qbox</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>\
+                                              <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>\
+                                              <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">]):</span>
+                            <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                                <span class="n">circ</span><span class="o">.</span><span class="n">CSWAP</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">],</span>\
+                                           <span class="n">qubit_registers</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">],</span>\
+                                           <span class="n">qubit_registers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">circ</span><span class="o">.</span><span class="n">CSWAP</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">],</span>\
+                                           <span class="n">qubit_registers</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">],</span>\
+                                           <span class="n">qubit_registers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary2qbox</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>\
+                                                  <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>\
+                                                  <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary2qbox</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>\
+                                                  <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>\
+                                                  <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">offset</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">circ</span><span class="o">.</span><span class="n">add_unitary1qbox</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dagger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">offset</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">measure</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">reuse_cntrls</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cntrl_bits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">cntrl_qubits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">cntrl_bits</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">measure</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_copies</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">]):</span>
+                <span class="n">circ</span><span class="o">.</span><span class="n">Measure</span><span class="p">(</span><span class="n">qubit_registers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">cbit_registers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;circuit&quot;</span><span class="p">:</span> <span class="n">circ</span><span class="p">,</span> \
+            <span class="s2">&quot;qubit_registers&quot;</span><span class="p">:</span> <span class="n">qubit_registers</span><span class="p">,</span>\
+            <span class="s2">&quot;cbit_registers&quot;</span><span class="p">:</span> <span class="n">cbit_registers</span><span class="p">,</span>\
+            <span class="s2">&quot;cntrl_qubits&quot;</span><span class="p">:</span> <span class="n">cntrl_qubits</span><span class="p">,</span>\
+            <span class="s2">&quot;cntrl_bits&quot;</span><span class="p">:</span> <span class="n">cntrl_bits</span><span class="p">,</span>\
+            <span class="s2">&quot;n_copies&quot;</span><span class="p">:</span> <span class="n">n_copies</span><span class="p">,</span>\
+            <span class="s2">&quot;every&quot;</span><span class="p">:</span> <span class="n">every</span><span class="p">,</span>\
+            <span class="s2">&quot;pairwise&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>\
+            <span class="s2">&quot;reuse_cntrls&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>\
+            <span class="s2">&quot;measure&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>\
+            <span class="s2">&quot;n_qubits&quot;</span><span class="p">:</span> <span class="n">circuit_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">]}</span></div>
+
+<span class="k">def</span> <span class="nf">process_sym_counts</span><span class="p">(</span><span class="n">sym_circ_info</span><span class="p">,</span> <span class="n">sym_circ_counts</span><span class="p">):</span>
+    <span class="n">n_cntrl_qubits</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">sym_circ_info</span><span class="p">[</span><span class="s2">&quot;cntrl_bits&quot;</span><span class="p">]])</span>
+    <span class="n">n_qubits</span> <span class="o">=</span> <span class="n">sym_circ_info</span><span class="p">[</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">]</span>
+    <span class="n">n_copies</span> <span class="o">=</span> <span class="n">sym_circ_info</span><span class="p">[</span><span class="s2">&quot;n_copies&quot;</span><span class="p">]</span>
+    <span class="n">n_exp_qubits</span> <span class="o">=</span> <span class="n">n_qubits</span><span class="o">*</span><span class="n">n_copies</span>
+
+    <span class="n">postselected_sym_circ_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="n">n_cntrl_qubits</span><span class="p">:]</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="n">n_cntrl_qubits</span><span class="p">,</span> <span class="n">sym_circ_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+    <span class="n">exp_counts</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_copies</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">bitstr</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">postselected_sym_circ_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_exp_qubits</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">bitstr</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n_qubits</span><span class="p">]</span> <span class="ow">in</span> <span class="n">exp_counts</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">n_qubits</span><span class="p">)]:</span>
+                <span class="n">exp_counts</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">n_qubits</span><span class="p">)][</span><span class="n">bitstr</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n_qubits</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">count</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">exp_counts</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">n_qubits</span><span class="p">)][</span><span class="n">bitstr</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n_qubits</span><span class="p">]]</span> <span class="o">=</span> <span class="n">count</span>
+    <span class="n">exp_dists</span> <span class="o">=</span> <span class="p">[</span><span class="n">probs_from_counts</span><span class="p">(</span><span class="n">ec</span><span class="p">)</span> <span class="k">for</span> <span class="n">ec</span> <span class="ow">in</span> <span class="n">exp_counts</span><span class="p">]</span>
+
+    <span class="n">averaged_dist</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">dist</span> <span class="ow">in</span> <span class="n">exp_dists</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">bitstr</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">dist</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">bitstr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">averaged_dist</span><span class="p">:</span>
+                <span class="n">averaged_dist</span><span class="p">[</span><span class="n">bitstr</span><span class="p">]</span> <span class="o">=</span> <span class="n">prob</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">averaged_dist</span><span class="p">[</span><span class="n">bitstr</span><span class="p">]</span> <span class="o">+=</span> <span class="n">prob</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">averaged_dist</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">averaged_dist</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">bitstr</span><span class="p">,</span> <span class="n">prob</span><span class="o">/</span><span class="n">total</span><span class="p">)</span> <span class="k">for</span> <span class="n">bitstr</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">averaged_dist</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;exp_dists&quot;</span><span class="p">:</span> <span class="n">exp_dists</span><span class="p">,</span> <span class="s2">&quot;avg_dist&quot;</span><span class="p">:</span> <span class="n">averaged_dist</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">test_prepare_spin_tomography</span><span class="p">():</span>
+	<span class="n">d</span> <span class="o">=</span> <span class="mi">4</span>
+	<span class="n">P</span> <span class="o">=</span> <span class="n">pauli_basis</span><span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="n">S</span> <span class="o">=</span> <span class="n">spin_sym</span><span class="p">((</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+	<span class="n">spin</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+	<span class="n">correct_spin_dm</span> <span class="o">=</span> <span class="n">spin</span><span class="o">*</span><span class="n">spin</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>
+
+	<span class="n">spin_info</span> <span class="o">=</span> <span class="n">prepare_spin</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+	<span class="n">tomog_circs</span> <span class="o">=</span> <span class="n">tomography_circuits</span><span class="p">(</span><span class="n">spin_info</span><span class="p">[</span><span class="s2">&quot;circuit&quot;</span><span class="p">],</span>\
+	                                  <span class="n">on_qubits</span><span class="o">=</span><span class="n">spin_info</span><span class="p">[</span><span class="s2">&quot;spin_qubits&quot;</span><span class="p">])</span>
+
+	<span class="n">backend</span> <span class="o">=</span> <span class="n">AerBackend</span><span class="p">()</span>
+	<span class="n">circs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tc</span><span class="p">[</span><span class="s2">&quot;circuit&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">tc</span> <span class="ow">in</span> <span class="n">tomog_circs</span><span class="p">]</span>
+	<span class="p">[</span><span class="n">backend</span><span class="o">.</span><span class="n">compile_circuit</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span> <span class="k">for</span> <span class="n">circ</span> <span class="ow">in</span> <span class="n">circs</span><span class="p">]</span>
+	<span class="n">handles</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">process_circuits</span><span class="p">(</span><span class="n">circs</span><span class="p">,</span> <span class="n">n_shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+	<span class="n">results</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">get_results</span><span class="p">(</span><span class="n">handles</span><span class="p">)</span>
+	<span class="n">tomog_shots</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">get_shots</span><span class="p">()</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+
+	<span class="n">postselected_tomog_shots</span> <span class="o">=</span> <span class="n">postselect_shots</span><span class="p">(</span><span class="n">tomog_shots</span><span class="p">,</span> <span class="n">spin_info</span><span class="p">[</span><span class="s2">&quot;postselect_on&quot;</span><span class="p">])</span>
+	<span class="n">dm</span> <span class="o">=</span> <span class="n">tomography_shots_dm</span><span class="p">(</span><span class="n">tomog_circs</span><span class="p">,</span> <span class="n">postselected_tomog_shots</span><span class="p">)</span>
+
+	<span class="n">spin_dm</span> <span class="o">=</span> <span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">dm</span><span class="o">*</span><span class="n">S</span><span class="p">)</span>
+	<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">((</span><span class="n">spin_dm</span><span class="o">*</span><span class="n">correct_spin_dm</span><span class="p">)</span><span class="o">.</span><span class="n">tr</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-02</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-04</span><span class="p">)</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

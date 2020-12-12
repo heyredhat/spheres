@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spheres.coordinates &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>spheres.coordinates</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for spheres.coordinates</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Coordinate Transformations</span>
+<span class="sd">--------------------------</span>
+
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`c_xyz`      | Extended complex to cartesian |</span>
+<span class="sd">| :py:meth:`xyz_c`      | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`xyz_sph`    | Cartesian to spherical        |</span>
+<span class="sd">| :py:meth:`sph_xyz`    | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`c_sph`      | Extended complex to spherical |</span>
+<span class="sd">| :py:meth:`sph_c`      | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`c_spinor`   | Extended complex to spinor    |</span>
+<span class="sd">| :py:meth:`spinor_c`   | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`xyz_spinor` | Cartesian to spinor           |</span>
+<span class="sd">| :py:meth:`spinor_xyz` | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+<span class="sd">| :py:meth:`spinor_sph` | Spinor to spherical           |</span>
+<span class="sd">| :py:meth:`sph_spinor` | and back.                     |</span>
+<span class="sd">+-----------------------+-------------------------------+</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+
+<span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
+
+<span class="kn">from</span> <span class="nn">spheres.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">__c_xyz__</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">pole</span> <span class="o">==</span> <span class="s2">&quot;south&quot;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">imag</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>\
+                         <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>\
+                         <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span>\
+                             <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">pole</span> <span class="o">==</span> <span class="s2">&quot;south&quot;</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+
+<div class="viewcode-block" id="c_xyz"><a class="viewcode-back" href="../../index.html#spheres.coordinates.c_xyz">[docs]</a><span class="k">def</span> <span class="nf">c_xyz</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `Stereographic projection &lt;https://en.wikipedia.org/wiki/Stereographic_projection&gt;`_ </span>
+<span class="sd">    from the extended complex plane to the unit sphere. Given coordinate :math:`c=x+iy` or :math:`\\infty`:</span>
+
+<span class="sd">        | If :math:`c = \\infty`, returns :math:`(0,0,-1)`.</span>
+<span class="sd">        | Otherwise, returns :math:`(\\frac{2x}{1+x^2+y^2}, \\frac{2y}{1+x^2+y^2}, \\frac{1-x^2-y^2}{1+x^2+y^2})`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    c : complex/inf or list/np.ndarray</span>
+<span class="sd">        Point(s) on the extended complex plane.</span>
+<span class="sd">    pole : str, default &#39;south&#39;</span>
+<span class="sd">        Whether to project from the North or South pole.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        Cartesian coordinates of point(s) on unit sphere.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">__c_xyz__</span><span class="p">(</span><span class="n">c_</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="n">pole</span><span class="p">)</span> <span class="k">for</span> <span class="n">c_</span> <span class="ow">in</span> <span class="n">c</span><span class="p">])</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="k">else</span> <span class="n">__c_xyz__</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="n">pole</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">__xyz_c__</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">xyz</span>
+    <span class="k">if</span> <span class="n">pole</span> <span class="o">==</span> <span class="s2">&quot;south&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">pole</span> <span class="o">==</span> <span class="s2">&quot;north&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="p">)</span>
+
+<div class="viewcode-block" id="xyz_c"><a class="viewcode-back" href="../../index.html#spheres.coordinates.xyz_c">[docs]</a><span class="k">def</span> <span class="nf">xyz_c</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reverse `Stereographic projection &lt;https://en.wikipedia.org/wiki/Stereographic_projection&gt;`_ </span>
+<span class="sd">    from the unit sphere to the extended complex plane.</span>
+
+<span class="sd">        | Given :math:`(0,0,-1)`, returns :math:`\\infty`.</span>
+<span class="sd">        | Otherwise returns :math:`c = (\\frac{x}{1+z}) + i(\\frac{y}{1+z})`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xyz : list/np.ndarray</span>
+<span class="sd">        Cartesian coordinates of point(s) on unit sphere.</span>
+<span class="sd">    pole : str, default &#39;south&#39;</span>
+<span class="sd">        Whether to reverse project from the North or South pole.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    complex/inf or np.ndarray</span>
+<span class="sd">        Extended complex coordinate(s).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">xyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">__xyz_c__</span><span class="p">(</span><span class="n">xyz_</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="n">pole</span><span class="p">)</span> <span class="k">for</span> <span class="n">xyz_</span> <span class="ow">in</span> <span class="n">xyz</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">__xyz_c__</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">pole</span><span class="o">=</span><span class="n">pole</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="xyz_sph"><a class="viewcode-back" href="../../index.html#spheres.coordinates.xyz_sph">[docs]</a><span class="k">def</span> <span class="nf">xyz_sph</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts cartesian coordinates :math:`(x, y, z)` to spherical coordinates :math:`(\\theta, \\phi)`.</span>
+<span class="sd">    We use the physicist&#39;s convention: </span>
+
+<span class="sd">        | inclination: :math:`\\theta = \\arccos{\\frac{z}{\\sqrt{x^2 + y^2 + z^2}}} \\in [0, \\pi]`</span>
+<span class="sd">        | azimuth :math:`\\phi = \\arctan{\\frac{y}{x}} \\in [0, 2\\pi]`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xyz : list/np.ndarray</span>
+<span class="sd">        (List of) Cartesian coordinates.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sph : np.ndarray</span>
+<span class="sd">        (List of) Spherical coordinates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">xyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">xyz</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">xyz</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span>\
+                     <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span></div>
+
+<div class="viewcode-block" id="sph_xyz"><a class="viewcode-back" href="../../index.html#spheres.coordinates.sph_xyz">[docs]</a><span class="k">def</span> <span class="nf">sph_xyz</span><span class="p">(</span><span class="n">sph</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spherical coordinates :math:`(\\theta, \\phi)` to cartesian coordinates :math:`(x, y, z)`.</span>
+<span class="sd">    We use the physicist&#39;s convention: :math:`\\theta \\in [0, \\pi]`, :math:`\\phi \\in [0, 2\\pi]`.</span>
+<span class="sd">    </span>
+<span class="sd">        | :math:`x = \\sin{\\theta}\\cos(\\phi)`</span>
+<span class="sd">        | :math:`y = \\sin{\\theta}\\sin(\\phi)`</span>
+<span class="sd">        | :math:`z = \\cos(\\theta)`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sph : list/np.ndarray</span>
+<span class="sd">        (List of) Spherical coordinates.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xyz : np.ndarray</span>
+<span class="sd">        (List of) Cartesian coordinates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sph</span><span class="p">)</span>
+    <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">sph</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sph</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">sph</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span>\
+                     <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span>\
+                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span></div>
+
+<div class="viewcode-block" id="c_sph"><a class="viewcode-back" href="../../index.html#spheres.coordinates.c_sph">[docs]</a><span class="k">def</span> <span class="nf">c_sph</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts extended complex coordinate to spherical coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    c : complex/inf or list/np.ndarray</span>
+<span class="sd">        Extended complex coordinate(s).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sph : np.ndarray</span>
+<span class="sd">        (List of) Spherical coordinates :math:`\\theta, \\phi`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">c_xyz</span><span class="p">(</span><span class="n">c</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="sph_c"><a class="viewcode-back" href="../../index.html#spheres.coordinates.sph_c">[docs]</a><span class="k">def</span> <span class="nf">sph_c</span><span class="p">(</span><span class="n">sph</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spherical coordinates to extended complex coordinate.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sph : list/np.ndarray</span>
+<span class="sd">        (List of) Spherical coordinates :math:`\\theta, \\phi`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    c : complex/inf or np.ndarray</span>
+<span class="sd">        Extended complex coordinate(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_c</span><span class="p">(</span><span class="n">sph_xyz</span><span class="p">(</span><span class="n">sph</span><span class="p">))</span></div>
+
+<span class="k">def</span> <span class="nf">__c_spinor__</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span> <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">]))</span>
+
+<div class="viewcode-block" id="c_spinor"><a class="viewcode-back" href="../../index.html#spheres.coordinates.c_spinor">[docs]</a><span class="k">def</span> <span class="nf">c_spinor</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts extended complex coordinate to a spinor.</span>
+
+<span class="sd">        | If :math:`c = \\infty`, returns :math:`\\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}`.</span>
+<span class="sd">        | Otherwise, returns :math:`\\frac{1}{\\sqrt{1+|c|^2}} \\begin{pmatrix} 1 \\\\ c \\end{pmatrix}`</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    c : complex/inf or list/np.ndarray</span>
+<span class="sd">        Extended complex coordinate(s).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    spinor : list or qt.Qobj</span>
+<span class="sd">        (List of) normalized spinor(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">__c_spinor__</span><span class="p">(</span><span class="n">c_</span><span class="p">)</span> <span class="k">for</span> <span class="n">c_</span> <span class="ow">in</span> <span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="k">else</span> <span class="n">__c_spinor__</span><span class="p">(</span><span class="n">c</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">__spinor_c__</span><span class="p">(</span><span class="n">spinor</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">spinor</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">b</span><span class="o">/</span><span class="n">a</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+<div class="viewcode-block" id="spinor_c"><a class="viewcode-back" href="../../index.html#spheres.coordinates.spinor_c">[docs]</a><span class="k">def</span> <span class="nf">spinor_c</span><span class="p">(</span><span class="n">spinor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spinor :math:`\\begin{pmatrix} a \\\\ b \\end{pmatrix}` to extended complex coordinate.</span>
+
+<span class="sd">        | If :math:`a = 0`, returns :math:`\\infty`. </span>
+<span class="sd">        | Otherwise returns :math:`\\frac{b}{a}`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spinor : list or qt.Qobj</span>
+<span class="sd">        Normalized spinor(s).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    c : complex/inf or np.ndarray</span>
+<span class="sd">        Extended complex coordinate(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">__spinor_c__</span><span class="p">(</span><span class="n">spinor_</span><span class="p">)</span> <span class="k">for</span> <span class="n">spinor_</span> <span class="ow">in</span> <span class="n">spinor</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spinor</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="k">else</span> <span class="n">__spinor_c__</span><span class="p">(</span><span class="n">spinor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="xyz_spinor"><a class="viewcode-back" href="../../index.html#spheres.coordinates.xyz_spinor">[docs]</a><span class="k">def</span> <span class="nf">xyz_spinor</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts cartesian coordinates to a spinor by reverse stereographic projection</span>
+<span class="sd">    to the extended complex plane, and then lifting the latter to a 2-vector. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xyz : list/np.ndarray</span>
+<span class="sd">        (List of) cartesian coordinates.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    spinor : qt.Qobj or list</span>
+<span class="sd">        Spinor(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">c_spinor</span><span class="p">(</span><span class="n">xyz_c</span><span class="p">(</span><span class="n">xyz</span><span class="p">))</span></div>
+
+<span class="k">def</span> <span class="nf">__spinor_xyz__</span><span class="p">(</span><span class="n">spinor</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmax</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">),</span>\
+                     <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmay</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">),</span>\
+                     <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmaz</span><span class="p">(),</span> <span class="n">spinor</span><span class="p">)])</span>
+
+<div class="viewcode-block" id="spinor_xyz"><a class="viewcode-back" href="../../index.html#spheres.coordinates.spinor_xyz">[docs]</a><span class="k">def</span> <span class="nf">spinor_xyz</span><span class="p">(</span><span class="n">spinor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spinor :math:`\\mid \\psi \\rangle` to cartesian coordinates by taking the expectation values</span>
+<span class="sd">    with the three Pauli matrices: :math:`(\\langle \\psi \\mid X \\mid \\psi \\rangle, \\langle \\psi \\mid Y \\mid \\psi \\rangle, \\langle \\psi \\mid Z \\mid \\psi \\rangle)`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spinor : list or qt.Qobj</span>
+<span class="sd">        Spinor(s).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xyz : np.ndarray</span>
+<span class="sd">       (List of) cartesian coordinates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">__spinor_xyz__</span><span class="p">(</span><span class="n">spinor_</span><span class="p">)</span> <span class="k">for</span> <span class="n">spinor_</span> <span class="ow">in</span> <span class="n">spinor</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spinor</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="k">else</span> <span class="n">__spinor_xyz__</span><span class="p">(</span><span class="n">spinor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="spinor_sph"><a class="viewcode-back" href="../../index.html#spheres.coordinates.spinor_sph">[docs]</a><span class="k">def</span> <span class="nf">spinor_sph</span><span class="p">(</span><span class="n">spinor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spinor to spherical coordinates. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spinor : list or qt.Qobj</span>
+<span class="sd">        Spinor(s).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sph : np.ndarray</span>
+<span class="sd">        Spherical coordinates :math:`r, \\phi, \\theta`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_sph</span><span class="p">(</span><span class="n">spinor_xyz</span><span class="p">(</span><span class="n">spinor</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="sph_spinor"><a class="viewcode-back" href="../../index.html#spheres.coordinates.sph_spinor">[docs]</a><span class="k">def</span> <span class="nf">sph_spinor</span><span class="p">(</span><span class="n">sph</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts spherical coordinates to spinor. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sph : list or np.ndarray</span>
+<span class="sd">        Spherical coordinates :math:`r, \\phi, \\theta`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    spinor : list or qt.Qobj</span>
+<span class="sd">        Spinor(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">xyz_spinor</span><span class="p">(</span><span class="n">sph_xyz</span><span class="p">(</span><span class="n">sph</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

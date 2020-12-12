@@ -6,6 +6,9 @@ import numpy as np
 import qutip as qt
 
 class OperatorSphere:
+    """
+    Visualization for density matrices and operators.
+    """
     def __init__(self, dm, pos=vp.vector(0,0,0), scene=None):
         if scene != None:
             self.scene = scene

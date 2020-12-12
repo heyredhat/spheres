@@ -1,6 +1,6 @@
 """
 Pure Majorana Stars
---------------
+-------------------
 
 Implementation of the "Majorana stars" formalism for pure states of higher spin.
 
