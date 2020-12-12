@@ -1,10 +1,10 @@
 """
-Circuits
---------
+Pytket Circuits
+---------------
 
 """
-
 from spheres import *
+from spheres.stars.pure import *
 
 from pytket import Circuit
 from pytket.circuit import Unitary1qBox, Unitary2qBox
@@ -337,3 +337,29 @@ def process_sym_counts(sym_circ_info, sym_circ_counts):
     total = sum(averaged_dist.values())
     averaged_dist = dict([(bitstr, prob/total) for bitstr, prob in averaged_dist.items()])
     return {"exp_dists": exp_dists, "avg_dist": averaged_dist}
+
+def test_prepare_spin_tomography():
+	d = 4
+	P = pauli_basis(d-1)
+	S = spin_sym((d-1)/2)
+
+	spin = qt.rand_ket(d)
+	correct_spin_dm = spin*spin.dag()
+
+	spin_info = prepare_spin(spin)
+	tomog_circs = tomography_circuits(spin_info["circuit"],\
+	                                  on_qubits=spin_info["spin_qubits"])
+
+	backend = AerBackend()
+	circs = [tc["circuit"] for tc in tomog_circs]
+	[backend.compile_circuit(circ) for circ in circs]
+	handles = backend.process_circuits(circs, n_shots=10000)
+	results = backend.get_results(handles)
+	tomog_shots = [result.get_shots() for result in results]
+
+	postselected_tomog_shots = postselect_shots(tomog_shots, spin_info["postselect_on"])
+	dm = tomography_shots_dm(tomog_circs, postselected_tomog_shots)
+
+	spin_dm = (S.dag()*dm*S)
+	assert np.isclose((spin_dm*correct_spin_dm).tr(), 1, rtol=1e-02, atol=1e-04)
+

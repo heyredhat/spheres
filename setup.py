@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="spheres",
-    version="0.3.0.6",
+    version="0.3.0.8",
     author="Matthew Weiss",
     author_email="heyredhat@gmail.com",
     description="toolbox for higher spin and symmetrization",
@@ -20,5 +20,5 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires = ['numpy', 'qutip', 'matplotlib', 'vpython',\
-                        'pytket', 'pytket-qiskit', ]
+                        'pytket', 'pytket-qiskit', 'qiskit', 'strawberryfields']
 )

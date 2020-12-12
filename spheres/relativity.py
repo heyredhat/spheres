@@ -1,3 +1,9 @@
+"""
+Special Relativity
+------------------
+
+"""
+
 def mobius(abcd):
     """
     Given parameters :math:`\\begin{pmatrix} a & b \\\\ b & c \\end{pmatrix}`,

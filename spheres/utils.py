@@ -233,3 +233,25 @@ def random_unique_pairs(n):
         used.extend(pick)
         pairs = clean_pairs(pairs, used)
     return good_pairs
+
+def tensor_upgrade(O, i, n):
+    """
+    Upgrades an operator to act on the i'th subspace of n.
+    """
+    return qt.tensor(*[O if i==j else qt.identity(O.shape[0]) for j in range(n)])
+
+def dirac(state):
+    """
+    Prints a pretty representation of a state in Dirac braket notation.
+    """
+    v = components(state)
+    for i, bits in enumerate(product(*[list(range(d)) for d in state.dims[0]])):
+        basis_str = "|%s>" % "".join([str(b) for b in bits])
+        if not np.isclose(v[i], 0):
+            if np.isclose(v[i].imag, 0):
+                print("%.3f %s Pr: %.3f" % (v[i].real, basis_str, abs(v[i])**2))
+            elif np.isclose(v[i].real, 0):
+                print("%.3fi %s Pr: %.3f" % (v[i].imag, basis_str, abs(v[i])**2))
+            else:
+                print("%.3f+%.3fi %s Pr: %.3f" % (v[i].real, v[i].imag, basis_str, abs(v[i])**2))
+

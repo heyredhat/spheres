@@ -2,6 +2,20 @@
 Symmetrization
 --------------
 
++-------------------------+----------------------------------------+
+| :py:meth:`symmetrize`        | Symmetrizes states.               |
+| :py:meth:`symmetrized_basis` | Constructs symmetrized basis.     |
++------------------------------+-----------------------------------+
+| :py:meth:`spin_sym_map`      | Map from spin-j to 2j symmetrized |
+|                              | qubits.                           |
++------------------------------+-----------------------------------+
+| :py:meth:`spin_sym`          | Spin-j to 2j symmetrized qubits,  |
+| :py:meth:`sym_spin`          | and back.                         |
++------------------------------+-----------------------------------+
+| :py:meth:`perm_parity`       | Parity of a permutation.          |
+| :py:meth:`antisymmetrize`    | Antisymmetrizes list of states.   |
++------------------------------+-----------------------------------+
+
 """
 
 import numpy as np
@@ -32,44 +46,6 @@ def symmetrize(pieces):
     else:
         return sum([pieces.permute(perm)\
                 for perm in permutations(range(len(pieces.dims[0])))]).unit()
-                
-def spin_sym_map(j):
-    """
-    Constructs an isometric linear map from spin-j states to
-    permutation symmetric states of 2j spin-:math:`\\frac{1}{2}`'s.
-
-    Parameters
-    ----------
-        j : int
-            j value.
-
-    Returns
-    -------
-        S : qt.Qobj
-            Linear map from :math:`2j+1` dimensions to :math:`2^{2j}` dimensions.
-
-    """
-    if j == 0:
-        return qt.Qobj(1)
-    S = qt.Qobj(np.vstack([\
-                    components(symmetrize(\
-                           [qt.basis(2,0)]*int(2*j-i)+\
-                           [qt.basis(2,1)]*i))\
-                for i in range(int(2*j+1))]).T)
-    S.dims =[[2]*int(2*j), [int(2*j+1)]]
-    return S
-
-def spin_sym(spin, map=None):
-    j = (spin.shape[0]-1)/2
-    if not map:
-        map = spin_sym_map(j)
-    return map*spin
-
-def sym_spin(sym, map=None):
-    j = len(sym.dims[0])/2
-    if not map:
-        map = spin_sym_map(j)
-    return map.dag()*sym
 
 def symmetrized_basis(n, d=2):
     """
@@ -126,3 +102,75 @@ def symmetrized_basis(n, d=2):
     return {"labels": labels,\
             "basis": sym_basis,\
             "map": sym_map}
+
+
+def spin_sym_map(j):
+    """
+    Constructs an isometric linear map from spin-j states to
+    permutation symmetric states of 2j spin-:math:`\\frac{1}{2}`'s.
+
+    Parameters
+    ----------
+        j : int
+            j value.
+
+    Returns
+    -------
+        S : qt.Qobj
+            Linear map from :math:`2j+1` dimensions to :math:`2^{2j}` dimensions.
+
+    """
+    if j == 0:
+        return qt.Qobj(1)
+    S = qt.Qobj(np.vstack([\
+                    components(symmetrize(\
+                           [qt.basis(2,0)]*int(2*j-i)+\
+                           [qt.basis(2,1)]*i))\
+                for i in range(int(2*j+1))]).T)
+    S.dims =[[2]*int(2*j), [int(2*j+1)]]
+    return S
+
+def spin_sym(spin, map=None):
+    """
+    Converts a spin-j state into a state of 2j symmetrized qubits. Constructs
+    the linear map if not provided.
+    """
+    j = (spin.shape[0]-1)/2
+    if not map:
+        map = spin_sym_map(j)
+    return map*spin
+
+def sym_spin(sym, map=None):
+    """
+    Converts a state of 2j symmetrized qubits into a spin-j state. Constructs
+    the linear map if not provided.
+    """
+    j = len(sym.dims[0])/2
+    if not map:
+        map = spin_sym_map(j)
+    return map.dag()*sym
+
+def perm_parity(lst):
+    '''\
+    Given a permutation of the digits 0..N in order as a list, 
+    returns its parity (or sign): +1 for even parity; -1 for odd.
+
+    https://code.activestate.com/recipes/578227-generate-the-parity-or-sign-of-a-permutation/
+    '''
+    lst = list(lst)
+    parity = 1
+    for i in range(0,len(lst)-1):
+        if lst[i] != i:
+            parity *= -1
+            mn = min(range(i,len(lst)), key=lst.__getitem__)
+            lst[i],lst[mn] = lst[mn],lst[i]
+    return parity   
+
+def antisymmetrize(pieces):
+    """
+    Antisymmetrizes provided list of states.
+    """
+    perms = list(permutations(list(range(len(pieces)))))
+    anti = sum([perm_parity(perm)*qt.tensor(*[pieces[i] for i in perm])\
+                for perm in perms])
+    return anti.unit() if anti.norm() != 0 else anti

@@ -52,41 +52,40 @@ def spin_poly(spin, projective=False,\
 
     By default, returns the coefficients of the Majorana polynomial as an np.ndarray.
 
-    If `projective=True`, returns a function which takes an extended complex coordinate
-    as an argument, and which evaluates the polynomial at that point. Note that to evaluate the polynomial
+    If `projective=True`, returns a function which takes an (array of) extended complex coordinate(s)
+    as an argument, and which evaluates the polynomial at that/those point(s). Note that to evaluate the polynomial
     at :math:`\\infty`, we flip the stereographic projection axis and evaluate the latter polynomial at 0
     (and then complex conjugate). Insofar as pole flipping causes the highest degree term to become the lowest degree/constant term,
-    evaluating at :math:`\\infty` amounts to returning the first coefficient.
+    evaluating at :math:`\\infty` amounts to returning the first coefficient. 
 
-    If `homogeneous=True`, returns a function which takes a spinor (as an nd.array, qt.Qobj, or two separate complex coordinates)
-    and evaluates the homogeneous Majorana polynomial:
+    If `homogeneous=True`, returns a function which takes a spinor (as an nd.array or qt.Qobj)
+    and evaluates the (unnormalized) homogeneous Majorana polynomial:
 
      .. math::
 
         p(z, w) = \\sum_{m=-j}^{m=j} (-1)^{j+m} \\sqrt{\\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} w^{j-m} z^{j+m}
 
-    (N.b. currently the normalization is off for the homogeneous case, but the correct roots are obtained.)
+    If `cartesian=True`, returns a function with takes cartesian coordinates
+    and evaluates the Majorana polynomial by first converting the cartesian coordinates to extended complex coordinates.
 
-    If `cartesian=True`, returns a function with takes cartesian coordinates (as an nd.array or three sepaparate real components)
-    and evaluates the Majorana polynomial by first converting the cartesian coordinates to an extended complex coordinate.
-
-    If `spherical=True`, returns a function with takes spherical coordinates (as an nd.array or three sepaparate real components)
-    and evaluates the Majorana polynomial by first converting the spherical coordinates to an extended complex coordinate.
+    If `spherical=True`, returns a function with takes spherical coordinates
+    and evaluates the Majorana polynomial by first converting the spherical coordinates to extended complex coordinates.
 
     If `normalized=True`, returns the normalized versions of any of the above functions. Note that the normalized
     versions are no longer analytic/holomorphic. Given a extended complex coordinate :math:`z = re^{i\\theta}` (or :math:`\\infty`),
     the normalization factor is:
-
-    If `for_integration=True`, returns normalized function that takes spherical coordinates, with an extra normalization
-    factor of :math:`\\sqrt{\\frac{2j+1}{4\\pi}}` so that the integral over the sphere gives a normalized amplitude. 
-    Note that coordinates must be given in the form of [[thetas's], [phi's]].
 
     .. math::
 
         \\frac{e^{-2ij\\theta}}{(1+r^2)^j}
 
     If :math:`z=\\infty`, again since we flip the poles, we use :math:`z=0`.
-    When normalized, the resulting functions are equivalent to:
+
+    If `for_integration=True`, returns normalized function that takes spherical coordinates, with an extra normalization
+    factor of :math:`\\sqrt{\\frac{2j+1}{4\\pi}}` so that the integral over the sphere gives a normalized amplitude. 
+    Note that coordinates must be given in the form of [[:math:`\\theta`'s], [:math:`\\phi`'s]].
+
+    When normalized, evaluating the Majorana polynomial is equivalent to evaluating:
 
     .. math::
         \\langle -xyz \\mid \\psi \\rangle
@@ -133,7 +132,7 @@ def spin_poly(spin, projective=False,\
     -------
     poly : np.ndarray or func
         Either 2j+1 Majorana polynomial coefficients or else one of the above functions.
-    """
+    """        
     j = (spin.shape[0]-1)/2
     v = components(spin)
     poly = np.array(\
@@ -254,10 +253,6 @@ def spin_xyz(spin):
         xyz : np.ndarray
             A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.
     """
-    if spin.shape[0] == 1:
-        return np.array([np.zeros(3)])
-    if spin.norm() == 0:
-        return np.array([np.zeros(3) for i in range(int(spin.shape[0]-1))])
     return np.array([c_xyz(root) for root in poly_roots(spin_poly(spin))])
 
 def xyz_spin(xyz):

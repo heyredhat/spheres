@@ -1,9 +1,18 @@
+"""
+Polyhedra
+---------
+"""
+
 import sys
 import random
 from math import pi, asin, atan2, cos, sin, sqrt
 
-# https://www.chiark.greenend.org.uk/~sgtatham/polyhedra/
 def equidistribute_points(n, verbose=False):
+    """
+    https://www.chiark.greenend.org.uk/~sgtatham/polyhedra/
+
+    Returns n more or less equidistributed points on the sphere.
+    """
     points = []
     for i in range(n):
         # Invent a randomly distributed point.

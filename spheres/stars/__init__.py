@@ -15,3 +15,5 @@ from spheres.stars.mixed import *
 import spheres.stars.utils
 from spheres.stars.utils import *
 
+import spheres.circuits
+from spheres.circuits import *
