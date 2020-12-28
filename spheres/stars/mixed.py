@@ -1,28 +1,10 @@
 """
-Mixed Majorana Stars
---------------------
-
 Implementation of the "Majorana stars" formalism for mixed states (and operators) of higher spin.
-
-+-----------------------------------------------+------------------------------------------------+
-| :py:meth:`spherical_tensor`                   | Constructs spherical tensor operator.          |
-| :py:meth:`spherical_tensor_basis`             | Constructs spherical tensor basis.             |
-+-----------------------------------------------+------------------------------------------------+
-| :py:meth:`operator_spherical_decomposition`   | Spherical tensor decomposition.                |
-| :py:meth:`spherical_decomposition_operator`   | Spherical tensor recomposition.                |
-+-----------------------------------------------+------------------------------------------------+
-| :py:meth:`spherical_decomposition_spins`      | Interpret decomposition as collection of spins,|
-| :py:meth:`spins_spherical_decomposition`      | and back.                                      |
-+-----------------------------------------------+------------------------------------------------+
-| :py:meth:`operator_spins`                     | Operator to spins,                             |
-| :py:meth:`spins_operator`                     | and back.                                      |
-+-----------------------------------------------+------------------------------------------------+
-
 """
 
 import numpy as np
 import qutip as qt
-from spheres.utils import *
+from ..utils import *
 
 def spherical_tensor(j, sigma, mu):
     """

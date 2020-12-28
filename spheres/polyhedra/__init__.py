@@ -1,7 +1,4 @@
 """
-Polyhedra
----------
-
 """
 
 import sys

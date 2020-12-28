@@ -1,12 +1,9 @@
 """
-StrawberryFields Circuits
--------------------------
-
 """
 
-from spheres.stars.pure import *
-from spheres.oscillators import *
-from spheres.symplectic import *
+from ..stars.pure import *
+from ..oscillators import *
+from ..symplectic import *
 
 import strawberryfields as sf
 from strawberryfields.ops import *

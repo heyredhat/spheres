@@ -1,13 +1,11 @@
 """
-Utility Functions
------------------
+Miscellaneous useful functions.
 """
 
 import numpy as np
 import qutip as qt
-
+from itertools import *
 factorial = np.math.factorial
-from itertools import product, combinations
 
 def rand_c():
     """
@@ -240,7 +238,7 @@ def tensor_upgrade(O, i, n):
     """
     return qt.tensor(*[O if i==j else qt.identity(O.shape[0]) for j in range(n)])
 
-def dirac(state):
+def dirac(state, probabilities=True):
     """
     Prints a pretty representation of a state in Dirac braket notation.
     """
@@ -248,10 +246,13 @@ def dirac(state):
     for i, bits in enumerate(product(*[list(range(d)) for d in state.dims[0]])):
         basis_str = "|%s>" % "".join([str(b) for b in bits])
         if not np.isclose(v[i], 0):
-            if np.isclose(v[i].imag, 0):
-                print("%.3f %s Pr: %.3f" % (v[i].real, basis_str, abs(v[i])**2))
-            elif np.isclose(v[i].real, 0):
-                print("%.3fi %s Pr: %.3f" % (v[i].imag, basis_str, abs(v[i])**2))
+            if probabilities:
+                print("%s: %.3f" % (basis_str, abs(v[i])**2))
             else:
-                print("%.3f+%.3fi %s Pr: %.3f" % (v[i].real, v[i].imag, basis_str, abs(v[i])**2))
+                if np.isclose(v[i].imag, 0):
+                    print("%.3f %s Pr: %.3f" % (v[i].real, basis_str, abs(v[i])**2))
+                elif np.isclose(v[i].real, 0):
+                    print("%.3fi %s Pr: %.3f" % (v[i].imag, basis_str, abs(v[i])**2))
+                else:
+                    print("%.3f+%.3fi %s Pr: %.3f" % (v[i].real, v[i].imag, basis_str, abs(v[i])**2))
 

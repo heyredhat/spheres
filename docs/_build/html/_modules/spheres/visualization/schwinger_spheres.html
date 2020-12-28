@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spheres.visualization.schwinger_spheres &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/spheres.html">spheres</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.beams.html">spheres.beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.animate_spin_beam.html">spheres.beams.animate_spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.colorize.html">spheres.beams.colorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.laguerre_gauss_mode.html">spheres.beams.laguerre_gauss_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.spin_beam.html">spheres.beams.spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.viz_beam.html">spheres.beams.viz_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.viz_spin_beam.html">spheres.beams.viz_spin_beam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.circuits.html">spheres.circuits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.html">spheres.circuits.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.Rk.html">spheres.circuits.pytket.Rk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.Tkj.html">spheres.circuits.pytket.Tkj</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.build_circuit.html">spheres.circuits.pytket.build_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.postselect_shots.html">spheres.circuits.pytket.postselect_shots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.prepare_qubits.html">spheres.circuits.pytket.prepare_qubits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.prepare_spin.html">spheres.circuits.pytket.prepare_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.process_sym_counts.html">spheres.circuits.pytket.process_sym_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.random_circuit.html">spheres.circuits.pytket.random_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.symmetrize_circuit.html">spheres.circuits.pytket.symmetrize_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.test_prepare_spin_tomography.html">spheres.circuits.pytket.test_prepare_spin_tomography</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.tomography_circuits.html">spheres.circuits.pytket.tomography_circuits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.pytket.tomography_shots_dm.html">spheres.circuits.pytket.tomography_shots_dm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.html">spheres.circuits.qiskit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.Rk.html">spheres.circuits.qiskit.Rk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.Tkj.html">spheres.circuits.qiskit.Tkj</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.get_cntrl_bits.html">spheres.circuits.qiskit.get_cntrl_bits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.get_cntrl_qubits.html">spheres.circuits.qiskit.get_cntrl_qubits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.get_spin_qubits.html">spheres.circuits.qiskit.get_spin_qubits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.postselect_spin_results.html">spheres.circuits.qiskit.postselect_spin_results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.spin_sym_circ.html">spheres.circuits.qiskit.spin_sym_circ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.spin_tomography.html">spheres.circuits.qiskit.spin_tomography</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.qiskit.xyz_circ.html">spheres.circuits.qiskit.xyz_circ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.circuits.strawberryfields.html">spheres.circuits.strawberryfields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.strawberryfields.sf_state_xyz.html">spheres.circuits.strawberryfields.sf_state_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.strawberryfields.spin_osc_circ.html">spheres.circuits.strawberryfields.spin_osc_circ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.circuits.strawberryfields.test_spin_osc_circ.html">spheres.circuits.strawberryfields.test_spin_osc_circ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.html">spheres.coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.c_sph.html">spheres.coordinates.c_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.c_spinor.html">spheres.coordinates.c_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.c_xyz.html">spheres.coordinates.c_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.sph_c.html">spheres.coordinates.sph_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.sph_spinor.html">spheres.coordinates.sph_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.sph_xyz.html">spheres.coordinates.sph_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.spinor_c.html">spheres.coordinates.spinor_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.spinor_sph.html">spheres.coordinates.spinor_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.spinor_xyz.html">spheres.coordinates.spinor_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.xyz_c.html">spheres.coordinates.xyz_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.xyz_sph.html">spheres.coordinates.xyz_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.html">spheres.oscillators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.extract_osc_spinblocks.html">spheres.oscillators.extract_osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.extract_osc_spinstates.html">spheres.oscillators.extract_osc_spinstates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.osc_spin_permutation.html">spheres.oscillators.osc_spin_permutation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.osc_spinj_xyz.html">spheres.oscillators.osc_spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.polyhedra.html">spheres.polyhedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.polyhedra.equidistribute_points.html">spheres.polyhedra.equidistribute_points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.relativity.html">spheres.relativity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.relativity.mobius.html">spheres.relativity.mobius</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.stars.html">spheres.stars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.html">spheres.stars.mixed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.operator_spherical_decomposition.html">spheres.stars.mixed.operator_spherical_decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.operator_spins.html">spheres.stars.mixed.operator_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_decomposition_operator.html">spheres.stars.mixed.spherical_decomposition_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_decomposition_spins.html">spheres.stars.mixed.spherical_decomposition_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_tensor.html">spheres.stars.mixed.spherical_tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_tensor_basis.html">spheres.stars.mixed.spherical_tensor_basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spins_operator.html">spheres.stars.mixed.spins_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spins_spherical_decomposition.html">spheres.stars.mixed.spins_spherical_decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.html">spheres.stars.pure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.c_spin.html">spheres.stars.pure.c_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.poly_roots.html">spheres.stars.pure.poly_roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.poly_spin.html">spheres.stars.pure.poly_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.roots_poly.html">spheres.stars.pure.roots_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.sph_spin.html">spheres.stars.pure.sph_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_c.html">spheres.stars.pure.spin_c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_poly.html">spheres.stars.pure.spin_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_sph.html">spheres.stars.pure.spin_sph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_spinors.html">spheres.stars.pure.spin_spinors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_xyz.html">spheres.stars.pure.spin_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spinors_spin.html">spheres.stars.pure.spinors_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.xyz_spin.html">spheres.stars.pure.xyz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.basis.html">spheres.stars.star_utils.basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.pauli_eigenstate.html">spheres.stars.star_utils.pauli_eigenstate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.polygon_area.html">spheres.stars.star_utils.polygon_area</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.html">spheres.symmetrization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.antisymmetrize.html">spheres.symmetrization.antisymmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.perm_parity.html">spheres.symmetrization.perm_parity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.symmetrize.html">spheres.symmetrization.symmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.symmetrized_basis.html">spheres.symmetrization.symmetrized_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.html">spheres.symplectic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.test_c.html">spheres.symplectic.test_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.test_r.html">spheres.symplectic.test_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.utils.html">spheres.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.binomial.html">spheres.utils.binomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.compare_spinors.html">spheres.utils.compare_spinors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.compare_unordered.html">spheres.utils.compare_unordered</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.components.html">spheres.utils.components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.dirac.html">spheres.utils.dirac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.flatten.html">spheres.utils.flatten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.normalize.html">spheres.utils.normalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.phase.html">spheres.utils.phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.qubits_xyz.html">spheres.utils.qubits_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.rand_c.html">spheres.utils.rand_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.rand_sph.html">spheres.utils.rand_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.rand_xyz.html">spheres.utils.rand_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.random_pairs.html">spheres.utils.random_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.random_unique_pairs.html">spheres.utils.random_unique_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.so3_generators.html">spheres.utils.so3_generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.spinj_xyz.html">spheres.utils.spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.tensor_upgrade.html">spheres.utils.tensor_upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.to_pauli_basis.html">spheres.utils.to_pauli_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.visualization.html">spheres.visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.majorana_sphere.MajoranaSphere.html">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.mpl_sphere.html">spheres.visualization.mpl_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.mpl_sphere.animate_spin.html">spheres.visualization.mpl_sphere.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.mpl_sphere.viz_spin.html">spheres.visualization.mpl_sphere.viz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.operator_sphere.OperatorSphere.html">spheres.visualization.operator_sphere.OperatorSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>spheres.visualization.schwinger_spheres</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for spheres.visualization.schwinger_spheres</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">vpython</span> <span class="k">as</span> <span class="nn">vp</span>
+
+<span class="kn">from</span> <span class="nn">..oscillators</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..stars</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.majorana_sphere</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.operator_sphere</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="SchwingerSpheres"><a class="viewcode-back" href="../../../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html#spheres.visualization.schwinger_spheres.SchwingerSpheres">[docs]</a><span class="k">class</span> <span class="nc">SchwingerSpheres</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Visualization for two oscillators as a tower of spin-j states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SchwingerSpheres.__init__"><a class="viewcode-back" href="../../../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html#spheres.visualization.schwinger_spheres.SchwingerSpheres.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_ex</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">show_plane</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_osc</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">state</span> <span class="k">else</span> <span class="n">max_ex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="k">if</span> <span class="n">state</span> <span class="k">else</span> <span class="n">vacuum</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_ex</span><span class="o">=</span><span class="n">max_ex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">annihilators</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_osc</span><span class="p">,</span> <span class="n">max_ex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="n">osc_spin_permutation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;oper&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spins</span> <span class="o">=</span> <span class="n">extract_osc_spinblocks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spins</span> <span class="o">=</span> <span class="n">extract_osc_spinstates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_spins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spins</span><span class="p">)</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_spins</span><span class="p">):</span>
+            <span class="n">next_position</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.3</span>
+            <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_position</span><span class="p">)</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span><span class="o">-</span><span class="n">positions</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;oper&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vspheres</span> <span class="o">=</span> <span class="p">[</span><span class="n">OperatorSphere</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>\
+                                            <span class="n">scene</span><span class="o">=</span><span class="n">scene</span><span class="p">,</span>\
+                                            <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> \
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_spins</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vspheres</span> <span class="o">=</span> <span class="p">[</span><span class="n">MajoranaSphere</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>\
+                                        <span class="n">scene</span><span class="o">=</span><span class="n">scene</span><span class="p">,</span>\
+                                        <span class="n">position</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>\
+                                        <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>\
+                                        <span class="n">show_phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>\
+                                        <span class="n">show_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> \
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_spins</span><span class="p">)]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_plane</span> <span class="o">=</span> <span class="n">show_plane</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_plane</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)),</span>\
+                      <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">))]</span>
+            <span class="n">QL</span><span class="p">,</span> <span class="n">QV</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)</span><span class="o">.</span><span class="n">eigenstates</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Qstates</span> <span class="o">=</span> <span class="p">[[</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">QV</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">QV</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plane_origin</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>           
+            <span class="n">pos_amps</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Qstates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vplane</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">plane_origin</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">QL</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">QL</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vpositions</span> <span class="o">=</span> <span class="p">[[</span><span class="n">vp</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">plane_origin</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">QL</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">QL</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span>\
+                                         <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span>\
+                                         <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">pos_amps</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">pos_amps</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>\
+                                            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">vexpected_pos</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">plane_origin</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>\
+                                           <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">yellow</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">paulis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">second_quantize_operator</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmax</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">),</span>\
+                       <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">second_quantize_operator</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmay</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">),</span>\
+                       <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">second_quantize_operator</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">sigmaz</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pauli_projectors</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">paulis</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">L</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">eigenstates</span><span class="p">()</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">V</span><span class="p">]</span>
+            <span class="n">outcomes</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">l</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">outcomes</span><span class="p">:</span>
+                    <span class="n">outcomes</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">outcomes</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">+=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pauli_projectors</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">outcomes</span></div>
+        
+    <span class="k">def</span> <span class="nf">raise_spin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spin</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">replace</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vacuum</span><span class="p">()</span>
+        <span class="n">new_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">second_quantize_spin_state</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+        <span class="n">new_state</span> <span class="o">=</span> <span class="n">new_state</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span> <span class="k">if</span> <span class="n">new_state</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">new_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">new_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">lower_spin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spin</span><span class="p">):</span>
+        <span class="n">new_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">second_quantize_spin_state</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+        <span class="n">new_state</span> <span class="o">=</span> <span class="n">new_state</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span> <span class="k">if</span> <span class="n">new_state</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">new_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">new_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">random</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">new_state</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">new_state</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">dims</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">new_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">vacuum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">vacuum</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_osc</span><span class="p">,</span> <span class="n">max_ex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">randomH</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_herm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">H</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">H</span>
+
+    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">H</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">.</span><span class="n">expm</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">second_quantize_operator</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">.</span><span class="n">expm</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">U</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+            <span class="n">vp</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_plane</span> <span class="ow">and</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">):</span>
+                    <span class="n">amp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Qstates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                    <span class="n">probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">amp</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">probs</span><span class="p">))),</span> <span class="n">p</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">probs</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">probs</span><span class="p">)))</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">choice</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Qstates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Qstates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>        
+            <span class="n">projectors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pauli_projectors</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span>
+            <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">projectors</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">projectors</span><span class="p">[</span><span class="n">eig</span><span class="p">]</span> <span class="k">for</span> <span class="n">eig</span> <span class="ow">in</span> <span class="n">eigenvalues</span><span class="p">]</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">))])</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">probs</span><span class="p">))),</span> <span class="n">p</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">probs</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">probs</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">choice</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;oper&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spins</span> <span class="o">=</span> <span class="n">extract_osc_spinblocks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vsphere</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vspheres</span><span class="p">):</span>
+                <span class="n">vsphere</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spins</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spins</span> <span class="o">=</span> <span class="n">extract_osc_spinstates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vsphere</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vspheres</span><span class="p">):</span>
+                <span class="n">vsphere</span><span class="o">.</span><span class="n">spin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_plane</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">):</span>
+                    <span class="n">amp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Qstates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> 
+                    <span class="bp">self</span><span class="o">.</span><span class="n">vpositions</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">amp</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">amp</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vexpected_pos</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">plane_origin</span><span class="o">+</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">qt</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">vsphere</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vspheres</span><span class="p">:</span>
+            <span class="n">vsphere</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_plane</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vexpected_pos</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vexpected_pos</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_ex</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">vpositions</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vpositions</span> <span class="o">=</span> <span class="kc">None</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

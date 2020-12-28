@@ -1,7 +1,4 @@
 """
-Special Relativity
-------------------
-
 """
 
 def mobius(abcd):

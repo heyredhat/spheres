@@ -1,39 +1,7 @@
 Undocumented Python objects
 ===========================
-spheres.circuits.pytket
------------------------
-Functions:
- * process_sym_counts
- * test_prepare_spin_tomography
-
-spheres.circuits.qiskit
------------------------
-Functions:
- * get_cntrl_bits
- * get_cntrl_qubits
- * get_spin_qubits
- * postselect_spin_results
- * spin_tomography
-
-spheres.circuits.strawberryfields
----------------------------------
-Functions:
- * test_spin_osc_circ
-
-spheres.oscillators
--------------------
-Functions:
- * osc_spinj_xyz
- * second_quantized_paulis
-
-spheres.utils
--------------
-Functions:
- * phase_angle
- * spinj_xyz
-
-spheres.visualization.MajoranaSphere
-------------------------------------
+spheres.visualization.majorana_sphere
+-------------------------------------
 Classes:
  * MajoranaSphere -- missing methods:
 
@@ -49,8 +17,8 @@ Classes:
    - toggle_trails
    - toggle_wavefunction
 
-spheres.visualization.OperatorSphere
-------------------------------------
+spheres.visualization.operator_sphere
+-------------------------------------
 Classes:
  * OperatorSphere -- missing methods:
 
@@ -62,8 +30,8 @@ Classes:
    - refresh
    - set
 
-spheres.visualization.SchwingerSpheres
---------------------------------------
+spheres.visualization.schwinger_spheres
+---------------------------------------
 Classes:
  * SchwingerSpheres -- missing methods:
 
@@ -75,5 +43,6 @@ Classes:
    - random
    - randomH
    - refresh
+   - set
    - vacuum
 

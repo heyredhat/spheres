@@ -2,6 +2,8 @@ import pylab
 import matplotlib.animation as animation
 from mpl_toolkits.mplot3d import Axes3D
 
+from ..stars import *
+
 def animate_spin(state, H, dt=0.1, T=100, filename=None):
     """
     Animate Majorana stars with matplotlib.

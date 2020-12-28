@@ -1,38 +1,13 @@
 """
-Pure Majorana Stars
--------------------
-
 Implementation of the "Majorana stars" formalism for pure states of higher spin.
-
-+-------------------------+------------------------+
-| :py:meth:`spin_poly`    | Spin to polynomial     |
-| :py:meth:`poly_spin`    | and back.              |
-+-------------------------+------------------------+
-| :py:meth:`poly_roots`   | Polynomial to extended |
-| :py:meth:`roots_poly`   | complex roots and back.|
-+-------------------------+------------------------+
-| :py:meth:`spin_xyz`     | Spin to cartesian roots|
-| :py:meth:`xyz_spin`     | and back.              |
-+-------------------------+------------------------+
-| :py:meth:`spin_spinors` | Spin to spinorial roots|
-| :py:meth:`spinors_spin` | and back.              |
-+-------------------------+------------------------+
-| :py:meth:`spin_c`       | Spin to extended       |
-| :py:meth:`c_spin`       | complex roots and back.|
-+-------------------------+------------------------+
-| :py:meth:`spin_sph`     | Spin to spherical roots|
-| :py:meth:`sph_spin`     | and back.              |
-+-------------------------+------------------------+
-
 """
 
 import numpy as np
 import qutip as qt
+from itertools import *
 
-from itertools import combinations
-
-from spheres.utils import *
-from spheres.coordinates import *
+from ..utils import *
+from ..coordinates import *
 
 def spin_poly(spin, projective=False,\
                     homogeneous=False,\
@@ -185,7 +160,7 @@ def poly_spin(poly):
             [poly[int(m+j)]/\
                 (((-1)**(int(m+j)))*\
                 np.sqrt(factorial(2*j)/(factorial(j-m)*factorial(j+m))))
-                    for m in np.arange(-j, j+1)])).unit()
+                    for m in np.arange(-j, j+1)]))#.unit()
 
 def poly_roots(poly):
     """
@@ -253,6 +228,10 @@ def spin_xyz(spin):
         xyz : np.ndarray
             A array with shape (2j, 3) containing the 2j cartesian coordinates of the stars.
     """
+    if spin.shape[0] == 1:
+        return np.array([[0,0,0]])
+    elif spin.norm() == 0:
+        return np.array([[0,0,0] for i in range(spin.shape[0]-1)])
     return np.array([c_xyz(root) for root in poly_roots(spin_poly(spin))])
 
 def xyz_spin(xyz):
@@ -270,7 +249,7 @@ def xyz_spin(xyz):
         spin : qt.Qobj
             Spin-j state.
     """
-    return poly_spin(roots_poly([xyz_c(star) for star in xyz]))
+    return poly_spin(roots_poly([xyz_c(star) for star in xyz])).unit()
 
 def spin_spinors(spin):
     """

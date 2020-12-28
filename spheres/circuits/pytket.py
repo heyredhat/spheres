@@ -1,10 +1,6 @@
 """
-Pytket Circuits
----------------
-
 """
-from spheres import *
-from spheres.stars.pure import *
+from ..stars.pure import *
 
 from pytket import Circuit
 from pytket.circuit import Unitary1qBox, Unitary2qBox
@@ -18,7 +14,7 @@ def prepare_qubits(xyzs):
     circ = Circuit()
     spin_qubits = circ.add_q_register("spinqubits", len(xyzs))
     for i, xyz in enumerate(xyzs):
-        r, phi, theta = xyz_sph(xyz)
+        theta, phi = xyz_sph(xyz)
         circ.Ry(theta/np.pi, spin_qubits[i])
         circ.Rz(phi/np.pi, spin_qubits[i])
     return circ

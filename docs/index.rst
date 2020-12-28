@@ -1,14 +1,14 @@
 Welcome to the documentation for spheres!
 =========================================
 
+.. autosummary::
+   :toctree: _autosummary
+   :template: custom-module-template.rst
+   :recursive:
+
+   spheres
+
 .. include:: ../README.rst
-
-.. toctree::
-   :maxdepth: -1
-   :caption: Contents:
-
-..  automodule:: spheres
-	:members:
 
 Indices and tables
 ==================

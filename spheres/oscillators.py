@@ -1,26 +1,7 @@
 """
-Oscillators
------------
-
-+---------------------------------------+----------------------------------------------------------------+
-| :py:meth:`vacuum`                     | Constructs vacuum state.                                       |
-| :py:meth:`annihilators`               | Constructs oscillator                                          |
-|                                       | annihilators.                                                  |
-+---------------------------------------+----------------------------------------------------------------+
-| :py:meth:`second_quantize_operator`   | Second quantizes operator.                                     |
-| :py:meth:`second_quantize_state`      | Creation operator for second quantized state.                  |
-| :py:meth:`second_quantize_spin_state` | Creation operator for second quantized spin state.             |
-+---------------------------------------+----------------------------------------------------------------+
-| :py:meth:`osc_spin_permutation`       | Permutation operator from tensor basis to direct sum of spins. |
-| :py:meth:`extract_osc_spinblocks`     | Extracts spin-j blocks from an operator.                       |
-| :py:meth:`extract_osc_spinstates`     | Extracts spin-j states from a state.                           |
-+---------------------------------------+----------------------------------------------------------------+
-| :py:meth:`spin_osc`                   | Converts from a spin-j state to a 2D oscillator state.         |
-+---------------------------------------+----------------------------------------------------------------+
-
 """
 
-from spheres import *
+from .utils import *
 
 def vacuum(n=2, max_ex=3):
     """
@@ -127,7 +108,7 @@ def spin_osc(spin, max_ex=None):
     """
     j = (spin.shape[0]-1)/2
     if not max_ex:
-        max_ex = int(2*j)
+        max_ex = int(2*j+1)
     vac = vacuum(n=2, max_ex=max_ex)
     a = annihilators(n=2, max_ex=max_ex)
     return (second_quantize_spin_state(spin, a)*vac).unit()

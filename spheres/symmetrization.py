@@ -1,28 +1,12 @@
 """
-Symmetrization
---------------
-
-+-------------------------+----------------------------------------+
-| :py:meth:`symmetrize`        | Symmetrizes states.               |
-| :py:meth:`symmetrized_basis` | Constructs symmetrized basis.     |
-+------------------------------+-----------------------------------+
-| :py:meth:`spin_sym_map`      | Map from spin-j to 2j symmetrized |
-|                              | qubits.                           |
-+------------------------------+-----------------------------------+
-| :py:meth:`spin_sym`          | Spin-j to 2j symmetrized qubits,  |
-| :py:meth:`sym_spin`          | and back.                         |
-+------------------------------+-----------------------------------+
-| :py:meth:`perm_parity`       | Parity of a permutation.          |
-| :py:meth:`antisymmetrize`    | Antisymmetrizes list of states.   |
-+------------------------------+-----------------------------------+
-
+Symmetrization related functions. 
 """
 
 import numpy as np
 import qutip as qt
-from itertools import permutations, product
+from itertools import *
 
-from spheres import *
+from .utils import *
 
 def symmetrize(pieces):
     """

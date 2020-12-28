@@ -21,9 +21,9 @@ spheres/polyhedra/__init__.py
 spheres/stars/__init__.py
 spheres/stars/mixed.py
 spheres/stars/pure.py
-spheres/stars/utils.py
-spheres/visualization/MajoranaSphere.py
-spheres/visualization/OperatorSphere.py
-spheres/visualization/SchwingerSpheres.py
+spheres/stars/star_utils.py
 spheres/visualization/__init__.py
+spheres/visualization/majorana_sphere.py
 spheres/visualization/mpl_sphere.py
+spheres/visualization/operator_sphere.py
+spheres/visualization/schwinger_spheres.py

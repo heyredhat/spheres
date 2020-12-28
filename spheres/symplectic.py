@@ -1,7 +1,5 @@
 """
-Symplectic Transformations
---------------------------
-
+Functions for converting between Gaussian Hamiltonians, complex symplectic matrices, and real symplectic matrices.
 """
 import numpy as np
 import qutip as qt

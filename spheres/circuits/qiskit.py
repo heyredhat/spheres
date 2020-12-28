@@ -1,11 +1,7 @@
 """
-Qiskit Circuits
----------------
-
 """
 
-from spheres import *
-from spheres.stars.pure import *
+from ..stars.pure import *
 from copy import deepcopy
 
 from qiskit import QuantumCircuit, execute, ClassicalRegister, QuantumRegister

@@ -1,14 +1,13 @@
 """
-Majorana Formalism for Structured Gaussian Beams
-------------------------------------------------
+Majorana formalism for structured Gaussian beams.
 """
-
-from spheres import *
 
 import numpy as np
 from numpy import sqrt, pi, exp, abs, angle
 from math import factorial
 from scipy.special import eval_genlaguerre
+
+from .stars.pure import *
 
 def laguerre_gauss_mode(N, l, coordinates="cartesian"):
     """

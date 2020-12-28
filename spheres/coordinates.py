@@ -1,27 +1,4 @@
 """
-Coordinate Transformations
---------------------------
-
-+-----------------------+-------------------------------+
-| :py:meth:`c_xyz`      | Extended complex to cartesian |
-| :py:meth:`xyz_c`      | and back.                     |
-+-----------------------+-------------------------------+
-| :py:meth:`xyz_sph`    | Cartesian to spherical        |
-| :py:meth:`sph_xyz`    | and back.                     |
-+-----------------------+-------------------------------+
-| :py:meth:`c_sph`      | Extended complex to spherical |
-| :py:meth:`sph_c`      | and back.                     |
-+-----------------------+-------------------------------+
-| :py:meth:`c_spinor`   | Extended complex to spinor    |
-| :py:meth:`spinor_c`   | and back.                     |
-+-----------------------+-------------------------------+
-| :py:meth:`xyz_spinor` | Cartesian to spinor           |
-| :py:meth:`spinor_xyz` | and back.                     |
-+-----------------------+-------------------------------+
-| :py:meth:`spinor_sph` | Spinor to spherical           |
-| :py:meth:`sph_spinor` | and back.                     |
-+-----------------------+-------------------------------+
-
 """
 
 import numpy as np
@@ -30,7 +7,7 @@ from numpy import pi
 import qutip as qt
 from collections.abc import Iterable
 
-from spheres.utils import *
+from .utils import *
 
 def __c_xyz__(c, pole="south"):
     if c == np.inf:
