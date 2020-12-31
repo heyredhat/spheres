@@ -1,4 +1,5 @@
 """
+StrawberryFields circuits for preparing spin-j states.
 """
 
 from ..stars.pure import *
@@ -33,7 +34,7 @@ def spin_osc_circ(spin):
             MeasureFock(select=0) | q[i]
     return prog
 
-def test_spin_osc_circ(spin):
+def spin_osc_circ_test(spin):
     j = (spin.shape[0]-1)/2
     n_modes = 2*int(2*j)
     cutoff_dim = int(2*j+1)
@@ -42,7 +43,7 @@ def test_spin_osc_circ(spin):
     eng = sf.Engine("fock", backend_options={"cutoff_dim": cutoff_dim, "pure": True})
     state = eng.run(prog).state
 
-    correct_state = spin_osc(spin, max_ex=cutoff_dim)
+    correct_state = spin_osc(spin, cutoff_dim=cutoff_dim)
     dirac(correct_state)
 
     fock_probs = {}

@@ -16,7 +16,7 @@ spheres.circuits.strawberryfields
    
       sf_state_xyz
       spin_osc_circ
-      test_spin_osc_circ
+      spin_osc_circ_test
    
    
 

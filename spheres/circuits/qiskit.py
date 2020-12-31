@@ -1,4 +1,5 @@
 """
+Qiskit circuits for preparing spin-j states as permutation symmetric multiqubit states.
 """
 
 from ..stars.pure import *

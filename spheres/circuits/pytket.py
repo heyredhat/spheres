@@ -1,4 +1,5 @@
 """
+Qiskit circuits for preparing spin-j states as permutation symmetric multiqubit states.
 """
 from ..stars.pure import *
 
@@ -334,7 +335,7 @@ def process_sym_counts(sym_circ_info, sym_circ_counts):
     averaged_dist = dict([(bitstr, prob/total) for bitstr, prob in averaged_dist.items()])
     return {"exp_dists": exp_dists, "avg_dist": averaged_dist}
 
-def test_prepare_spin_tomography():
+def prepare_spin_tomography_test():
 	d = 4
 	P = pauli_basis(d-1)
 	S = spin_sym((d-1)/2)

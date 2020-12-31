@@ -1,4 +1,5 @@
 """
+Useful Majorana star related functions.
 """
 
 import quadpy

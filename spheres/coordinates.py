@@ -1,4 +1,5 @@
 """
+Coordinate transformations, mainly sphere related.
 """
 
 import numpy as np

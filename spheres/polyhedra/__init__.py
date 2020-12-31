@@ -1,4 +1,5 @@
 """
+Polyhedra related functions.
 """
 
 import sys

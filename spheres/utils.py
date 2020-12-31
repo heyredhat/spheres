@@ -7,12 +7,14 @@ import qutip as qt
 from itertools import *
 factorial = np.math.factorial
 
-def rand_c():
+def rand_c(n=1):
     """
     Generates random extended complex coordinate whose real and imaginary parts
     are normally distributed, and ten percent of the time, we return :math:`\\infty`.
     """
-    return np.random.randn() + 1j*np.random.randn() if np.random.random() > 0.1 else np.inf
+    if n == 1:
+        return np.random.randn() + 1j*np.random.randn() if np.random.random() > 0.1 else np.inf
+    return np.array([np.random.randn() + 1j*np.random.randn() if np.random.random() > 0.1 else np.inf for i in range(n)])
 
 def rand_xyz(n=1):
     """
@@ -22,14 +24,17 @@ def rand_xyz(n=1):
         return normalize(np.random.randn(3))
     return np.array([normalize(np.random.randn(3)) for i in range(n)])
 
-def rand_sph(unit=False):
+def rand_sph(n=1):
     """
     Generates random spherical coordinate. If `unit=True`, the point
     lies on the surface of the sphere.
     """
-    return np.array([1 if unit else np.random.random(),\
-                     2*np.pi*np.random.random(),\
-                     np.pi*np.random.random()])
+    if n == 1:
+        return np.array([np.pi*np.random.random(),\
+                         2*np.pi*np.random.random()])
+    else:
+        return np.array([[np.pi*np.random.random(),\
+                         2*np.pi*np.random.random()] for i in range(n)])
 
 def components(q):
     """

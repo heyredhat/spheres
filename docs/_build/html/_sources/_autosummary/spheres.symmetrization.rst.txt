@@ -14,8 +14,6 @@ spheres.symmetrization
    .. autosummary::
       :toctree:                                          
    
-      antisymmetrize
-      perm_parity
       spin_sym
       spin_sym_map
       sym_spin

@@ -102,10 +102,10 @@
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.postselect_shots.html">spheres.circuits.pytket.postselect_shots</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.prepare_qubits.html">spheres.circuits.pytket.prepare_qubits</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.prepare_spin.html">spheres.circuits.pytket.prepare_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.prepare_spin_tomography_test.html">spheres.circuits.pytket.prepare_spin_tomography_test</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.process_sym_counts.html">spheres.circuits.pytket.process_sym_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.random_circuit.html">spheres.circuits.pytket.random_circuit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.symmetrize_circuit.html">spheres.circuits.pytket.symmetrize_circuit</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.test_prepare_spin_tomography.html">spheres.circuits.pytket.test_prepare_spin_tomography</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.tomography_circuits.html">spheres.circuits.pytket.tomography_circuits</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.pytket.tomography_shots_dm.html">spheres.circuits.pytket.tomography_shots_dm</a></li>
 </ul>
@@ -125,7 +125,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="spheres.circuits.strawberryfields.html">spheres.circuits.strawberryfields</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">spheres.circuits.strawberryfields.sf_state_xyz</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.circuits.strawberryfields.spin_osc_circ.html">spheres.circuits.strawberryfields.spin_osc_circ</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.circuits.strawberryfields.test_spin_osc_circ.html">spheres.circuits.strawberryfields.test_spin_osc_circ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.circuits.strawberryfields.spin_osc_circ_test.html">spheres.circuits.strawberryfields.spin_osc_circ_test</a></li>
 </ul>
 </li>
 </ul>
@@ -147,15 +147,19 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="spheres.oscillators.html">spheres.oscillators</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.extract_osc_spinblocks.html">spheres.oscillators.extract_osc_spinblocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.extract_osc_spinstates.html">spheres.oscillators.extract_osc_spinstates</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spin_permutation.html">spheres.oscillators.osc_spin_permutation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spinj_xyz.html">spheres.oscillators.osc_spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spinblocks.html">spheres.oscillators.osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spins.html">spheres.oscillators.osc_spins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spintower_map.html">spheres.oscillators.osc_spintower_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_xyz.html">spheres.oscillators.osc_xyz</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spin_osc_map.html">spheres.oscillators.spin_osc_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spin_tower_dimensions.html">spheres.oscillators.spin_tower_dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spins_osc.html">spheres.oscillators.spins_osc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
 </ul>
 </li>
@@ -207,8 +211,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="spheres.symmetrization.html">spheres.symmetrization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.antisymmetrize.html">spheres.symmetrization.antisymmetrize</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.perm_parity.html">spheres.symmetrization.perm_parity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
@@ -220,14 +222,14 @@
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.is_complex_symplectic.html">spheres.symplectic.is_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.is_real_symplectic.html">spheres.symplectic.is_real_symplectic</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.test_c.html">spheres.symplectic.test_c</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.test_r.html">spheres.symplectic.test_r</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
 </ul>

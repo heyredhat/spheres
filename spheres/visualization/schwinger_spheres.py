@@ -10,18 +10,18 @@ class SchwingerSpheres:
     """
     Visualization for two oscillators as a tower of spin-j states.
     """
-    def __init__(self, scene=None, pos=vp.vector(0,0,0), state=None, max_ex=3, show_plane=False):
+    def __init__(self, scene=None, pos=vp.vector(0,0,0), state=None, cutoff_dim=3, show_plane=False):
         self.pos = pos
         self.n_osc = 2
-        self.max_ex = state.dims[0][0] if state else max_ex
-        self.state = state if state else vacuum(n=2, max_ex=max_ex)
-        self.a = annihilators(n=self.n_osc, max_ex=self.max_ex)
-        self.P, self.dims = osc_spin_permutation(self.max_ex)
+        self.cutoff_dim = state.dims[0][0] if state else cutoff_dim
+        self.state = state if state else vacuum(n=2, cutoff_dim=cutoff_dim)
+        self.a = annihilators(n=self.n_osc, cutoff_dim=self.cutoff_dim)
+        self.P = osc_spintower_map(self.cutoff_dim)
 
         if self.state.type == "oper":
-            self.spins = extract_osc_spinblocks(self.state, P=self.P, dims=self.dims)
+            self.spins = osc_spinblocks(self.state, map=self.P)
         else:
-            self.spins = extract_osc_spinstates(self.state, P=self.P, dims=self.dims)
+            self.spins = osc_spins(self.state, map=self.P)
         self.n_spins = len(self.spins)
         positions = [0]
         for i in range(1, self.n_spins):
@@ -44,17 +44,17 @@ class SchwingerSpheres:
 
         self.show_plane = show_plane
         if self.show_plane:
-            self.Q = [qt.tensor(qt.position(self.max_ex), qt.identity(self.max_ex)),\
-                      qt.tensor(qt.identity(self.max_ex), qt.position(self.max_ex))]
-            QL, QV = qt.position(self.max_ex).eigenstates()
-            self.Qstates = [[qt.tensor(QV[i], QV[j]) for j in range(self.max_ex)] for i in range(self.max_ex)]
+            self.Q = [qt.tensor(qt.position(self.cutoff_dim), qt.identity(self.cutoff_dim)),\
+                      qt.tensor(qt.identity(self.cutoff_dim), qt.position(self.cutoff_dim))]
+            QL, QV = qt.position(self.cutoff_dim).eigenstates()
+            self.Qstates = [[qt.tensor(QV[i], QV[j]) for j in range(self.cutoff_dim)] for i in range(self.cutoff_dim)]
             self.plane_origin = vp.vector(0,-4,0)           
-            pos_amps = [[self.state.overlap(self.Qstates[i][j]) for j in range(self.max_ex)] for i in range(self.max_ex)]
+            pos_amps = [[self.state.overlap(self.Qstates[i][j]) for j in range(self.cutoff_dim)] for i in range(self.cutoff_dim)]
             self.vplane = vp.box(pos=self.pos+self.plane_origin, length=QL[-1]*2, height=QL[-1]*2, width=0.01)
             self.vpositions = [[vp.arrow(pos=self.pos+self.plane_origin+vp.vector(QL[i], QL[j], 0),\
                                          color=vp.color.black,\
                                          axis=2*vp.vector(pos_amps[i][j].real, pos_amps[i][j].imag, 0))\
-                                            for j in range(self.max_ex)] for i in range(self.max_ex)]
+                                            for j in range(self.cutoff_dim)] for i in range(self.cutoff_dim)]
 
             self.vexpected_pos = vp.sphere(pos=self.pos+self.plane_origin+vp.vector(qt.expect(self.Q[0], self.state).real, qt.expect(self.Q[1], self.state).real, 0),\
                                            color=vp.color.yellow, radius=0.1)
@@ -95,7 +95,7 @@ class SchwingerSpheres:
         self.refresh()
 
     def vacuum(self):
-        self.state = vacuum(n=self.n_osc, max_ex=self.max_ex)
+        self.state = vacuum(n=self.n_osc, cutoff_dim=self.cutoff_dim)
         self.refresh()
 
     def randomH(self):
@@ -117,8 +117,8 @@ class SchwingerSpheres:
         if self.show_plane and direction == 'q':
             probs = []
             indices = []
-            for i in range(self.max_ex):
-                for j in range(self.max_ex):
+            for i in range(self.cutoff_dim):
+                for j in range(self.cutoff_dim):
                     amp = self.state.overlap(self.Qstates[i][j])
                     probs.append(abs(amp)**2)
                     indices.append((i, j))
@@ -141,17 +141,17 @@ class SchwingerSpheres:
 
     def refresh(self):
         if self.state.type == "oper":
-            self.spins = extract_osc_spinblocks(self.state, P=self.P, dims=self.dims)
+            self.spins = osc_spinblocks(self.state, map=self.P)
             for i, vsphere in enumerate(self.vspheres):
                 vsphere.set(self.spins[i])
         else:
-            self.spins = extract_osc_spinstates(self.state, P=self.P, dims=self.dims)
+            self.spins = osc_spins(self.state, map=self.P)
             for i, vsphere in enumerate(self.vspheres):
                 vsphere.spin = self.spins[i]
 
         if self.show_plane:
-            for i in range(self.max_ex):
-                for j in range(self.max_ex):
+            for i in range(self.cutoff_dim):
+                for j in range(self.cutoff_dim):
                     amp = self.state.overlap(self.Qstates[i][j]) 
                     self.vpositions[i][j].axis = 2*vp.vector(amp.real, amp.imag, 0)
             self.vexpected_pos.pos = self.pos+self.plane_origin+vp.vector(qt.expect(self.Q[0], self.state).real, qt.expect(self.Q[1], self.state).real, 0)
@@ -162,7 +162,7 @@ class SchwingerSpheres:
         if self.show_plane:
             self.vexpected_pos.visible = False
             self.vexpected_pos = None
-            for i in range(self.max_ex):
-                for j in range(self.max_ex):
+            for i in range(self.cutoff_dim):
+                for j in range(self.cutoff_dim):
                     self.vpositions[i][j].visible = False
             self.vpositions = None

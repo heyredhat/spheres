@@ -1,6 +1,8 @@
 from ..stars import *
 from ..utils import *
 
+from . import global_scene
+
 import vpython as vp
 
 def tangent_plane_rotation(phi, theta):
@@ -145,6 +147,7 @@ class MajoranaSphere:
             number of points is :math:`n^2`.
 
         """
+        global global_scene
         super().__setattr__("spin", spin)
         self.j = (self.spin.shape[0]-1)/2
         self.xyz = spin_xyz(self.spin)
@@ -153,12 +156,12 @@ class MajoranaSphere:
         if scene != None:
             self.scene = scene
         else:
-            if spheres.visualization.global_scene == None:
-                spheres.visualization.global_scene = vp.canvas(background=vp.color.white,\
+            if global_scene == None:
+                global_scene = vp.canvas(background=vp.color.white,\
                                          align="center", 
                                          width=800, 
                                          height=600)
-            self.scene = spheres.visualization.global_scene 
+            self.scene = global_scene 
 
         self.radius = self.j if not radius else radius       #or self.j==0           
         self.vsphere = vp.sphere(pos=position,\

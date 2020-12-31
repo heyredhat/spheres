@@ -2,6 +2,7 @@ import vpython as vp
 import numpy as np
 import qutip as qt
 
+from . import global_scene
 from .majorana_sphere import *
 from ..stars import *
 
@@ -10,15 +11,16 @@ class OperatorSphere:
     Visualization for density matrices and operators.
     """
     def __init__(self, dm, pos=vp.vector(0,0,0), scene=None):
+        global global_scene
         if scene != None:
             self.scene = scene
         else:
-            if spheres.visualization.global_scene == None:
-                spheres.visualization.global_scene = vp.canvas(background=vp.color.white,\
+            if global_scene == None:
+                global_scene = vp.canvas(background=vp.color.white,\
                                          align="center", 
                                          width=800, 
                                          height=600)
-            self.scene = spheres.visualization.global_scene 
+            self.scene = global_scene 
         self.pos = pos
 
         self.dm = dm
