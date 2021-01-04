@@ -47,43 +47,6 @@ def spin_coherent(j, coord, from_cartesian=True,\
         theta, phi = xyz_sph(coord)
     return qt.spin_coherent(j, theta, phi)
 
-def pauli_eigenstate(j, m, direction):
-    """
-    Returns eigenstates of Pauli operators.
-
-    Parameters
-    ----------
-        j : float
-            j value of representation.
-        m : float
-            m value of representation.
-        direction : str
-            "x", "y", or "z".
-    """
-    if direction == "x":
-        up = np.array([1,0,0])
-        down = np.array([-1,0,0])
-    elif direction == "y":
-        up = np.array([0,1,0])
-        down = np.array([0,-1,0])
-    elif direction == "z":
-        up = np.array([0,0,1])
-        down = np.array([0,0,-1])
-    nup, ndown = [(int(2*j-i), i)\
-                    for i in range(int(2*j+1))]\
-                        [list(np.arange(j, -j-1, -1)).index(m)]
-    return xyz_spin([up]*nup + [down]*ndown)
-
-def basis(d, i, up='z'):
-    """
-    Similar to `pauli_eigenstate`, only parameterized by dimension.
-    """
-    if d == 0:
-        return qt.identity(1)
-    j = (d-1)/2
-    m = np.arange(j, -j-1, -1)[i]
-    return pauli_eigenstate(j, m, up)
-
 def antipodal(to_invert, from_cartesian=False,\
                          from_spherical=False):
     """
@@ -187,53 +150,18 @@ def poleflip(to_flip, from_cartesian=False,\
 def spherical_inner(a, b):
     """
     :math:`\\langle a \\mid b \\rangle` via an integral over the sphere. 
+
+    Parameters
+    ----------
+        a : func
+            Normalized Majorana function.
+        
+        b : func
+            Normalized Majorana function
+    
+    Returns
+    -------
+        inner_product : complex
     """
     scheme = quadpy.u3.get_good_scheme(19)
     return scheme.integrate_spherical(lambda sph: a(sph).conj()*b(sph))
-
-def polygon_area(phis, thetas, radius = 1):
-    """
-    https://stackoverflow.com/questions/4681737/how-to-calculate-the-area-of-a-polygon-on-the-earths-surface-using-python
-    Computes area of spherical polygon.
-    Returns result in ratio of the sphere's area if the radius is specified.
-    Otherwise, in the units of provided radius.
-    """
-    from numpy import arctan2, cos, sin, sqrt, pi, power, append, diff, deg2rad
-    lats = thetas - np.pi/2
-    lons = phis
-    #lats = np.deg2rad(lats)
-    #lons = np.deg2rad(lons)
-
-    # Line integral based on Green's Theorem, assumes spherical Earth
-
-    #close polygon
-    #if lats[0]!=lats[-1]:
-    #    lats = append(lats, lats[0])
-    #    lons = append(lons, lons[0])
-
-    #colatitudes relative to (0,0)
-    a = sin(lats/2)**2 + cos(lats)* sin(lons/2)**2
-    colat = 2*arctan2( sqrt(a), sqrt(1-a) )
-
-    #azimuths relative to (0,0)
-    az = arctan2(cos(lats) * sin(lons), sin(lats)) % (2*pi)
-
-    # Calculate diffs
-    # daz = diff(az) % (2*pi)
-    daz = diff(az)
-    daz = (daz + pi) % (2 * pi) - pi
-
-    deltas=diff(colat)/2
-    colat=colat[0:-1]+deltas
-
-    # Perform integral
-    integrands = (1-cos(colat)) * daz
-
-    # Integrate 
-    area = abs(sum(integrands))/(4*pi)
-
-    area = min(area,1-area)
-    if radius is not None: #return in units of radius
-        return area * 4*pi*radius**2
-    else: #return in ratio of sphere total area
-        return area

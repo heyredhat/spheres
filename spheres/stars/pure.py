@@ -160,7 +160,7 @@ def poly_spin(poly):
             [poly[int(m+j)]/\
                 (((-1)**(int(m+j)))*\
                 np.sqrt(factorial(2*j)/(factorial(j-m)*factorial(j+m))))
-                    for m in np.arange(-j, j+1)]))#.unit()
+                    for m in np.arange(-j, j+1)])).unit()
 
 def poly_roots(poly):
     """
@@ -217,6 +217,8 @@ def spin_xyz(spin):
     Takes a spin-j state and returns the cartesian coordinates on the unit sphere
     corresponding to its "Majorana stars." Each contributes a quantum of angular 
     momentum :math:`\\frac{1}{2}` to the overall spin.
+
+    Note: If given a spin-0 state, returns [[0,0,0]]. If given a state with 0 norm, returns a list of 2j 0-vectors.
 
     Parameters
     ----------

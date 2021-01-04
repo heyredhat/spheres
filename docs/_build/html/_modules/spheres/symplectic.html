@@ -354,7 +354,7 @@
 <span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sc</span>
 
-<div class="viewcode-block" id="make_gaussian_operator"><a class="viewcode-back" href="../../_autosummary/spheres.symplectic.make_gaussian_operator.html#spheres.symplectic.make_gaussian_operator">[docs]</a><span class="k">def</span> <span class="nf">make_gaussian_operator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_gaussian_operator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Constructs Gaussian transformation in the form of a Hermitian matrix and a displacement vector.</span>
 
@@ -366,7 +366,7 @@
 <span class="sd">    </span>
 <span class="sd">        H = \frac{1}{2}\xi^{\dagger}\textbf{H}\xi + \xi^{\dagger}\textbf{h}</span>
 
-<span class="sd">    Where :math:`\textbf{H} = \begin{pmatrix} A &amp; B^{*} \\ B &amp; A^{*} \end{pmatrix}` is a :math:`2n \times 2n` Hermitian matrix and :math:`\textbf{h} = \begin{pmatrix} h \\ h^{*} \end{pmatrix}` is a :math:`2n` complex column vector. </span>
+<span class="sd">    Where :math:`\textbf{H} = \begin{pmatrix} A &amp; B \\ B^{*} &amp; A^{*} \end{pmatrix}` is a :math:`2n \times 2n` Hermitian matrix and :math:`\textbf{h} = \begin{pmatrix} h \\ h^{*} \end{pmatrix}` is a :math:`2n` complex column vector. </span>
 <span class="sd">    </span>
 <span class="sd">    :math:`A` is a Hermitian matrix and `B` is symmetric.</span>
 <span class="sd">    </span>
@@ -387,10 +387,11 @@
 <span class="sd">            Gaussian displacement.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="make_gaussian_operator"><a class="viewcode-back" href="../../_autosummary/spheres.symplectic.make_gaussian_operator.html#spheres.symplectic.make_gaussian_operator">[docs]</a><span class="k">def</span> <span class="nf">make_gaussian_operator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">B</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">h</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">conj</span><span class="p">()],</span>\
-                     <span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">conj</span><span class="p">()]]),</span>\
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">],</span>\
+                     <span class="p">[</span><span class="n">B</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">A</span><span class="o">.</span><span class="n">conj</span><span class="p">()]]),</span>\
            <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">conj</span><span class="p">()])</span></div>
 
 <div class="viewcode-block" id="random_gaussian_operator"><a class="viewcode-back" href="../../_autosummary/spheres.symplectic.random_gaussian_operator.html#spheres.symplectic.random_gaussian_operator">[docs]</a><span class="k">def</span> <span class="nf">random_gaussian_operator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -411,8 +412,8 @@
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_herm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">full</span><span class="p">()</span>
-    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">B</span> <span class="o">=</span> <span class="n">B</span> <span class="o">@</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">B</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> 
+    <span class="n">B</span> <span class="o">=</span> <span class="n">B</span> <span class="o">+</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">make_gaussian_operator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span></div>
 
@@ -555,7 +556,9 @@
 
 <span class="sd">    .. math::</span>
 <span class="sd">        </span>
-<span class="sd">        \textbf{R} = \begin{pmatrix}\Re(E+F) &amp; -\Im(E-F) \\ \Im(E+F) &amp; \Re(E-F) \end{pmatrix}$$ and $$\textbf{r} = \sqrt{2}\begin{pmatrix} \Re(s) \\ \Im(s) \end{pmatrix}</span>
+<span class="sd">        \textbf{R} = \begin{pmatrix}\Re(E+F) &amp; -\Im(E-F) \\ \Im(E+F) &amp; \Re(E-F) \end{pmatrix}</span>
+<span class="sd">        </span>
+<span class="sd">        \textbf{r} = \sqrt{2}\begin{pmatrix} \Re(s) \\ \Im(s) \end{pmatrix}</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

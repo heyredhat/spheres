@@ -360,8 +360,22 @@
 <dt id="spheres.beams.spin_beam">
 <code class="sig-prename descclassname">spheres.beams.</code><code class="sig-name descname">spin_beam</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spin</span></em>, <em class="sig-param"><span class="n">coordinates</span><span class="o">=</span><span class="default_value">'cartesian'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/beams.html#spin_beam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.beams.spin_beam" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a spin state into a structured Gaussian beam, the latter being function
-over cartesian or cylindrical coordinates, expressing the intensity and phase of the classical light beam
-in the paraxial approximation.</p>
+of cartesian or cylindrical coordinates, expressing the intensity and phase of the classical light beam
+in the paraxial approximation. A spin <span class="math notranslate nohighlight">\(\mid j, m \rangle\)</span> state is identified with LG mode (2j, 2m).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spin</strong> (<em>qt.Qobj</em>) – Spin-j state</p></li>
+<li><p><strong>coordinates</strong> (<em>str</em>) – “cartesian” or “cylindrical</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sgb</strong> – (Vectorized) function of cartesian or cylindrical coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>func</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

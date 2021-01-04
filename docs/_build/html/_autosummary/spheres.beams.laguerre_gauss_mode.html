@@ -359,9 +359,25 @@
 <dl class="py function">
 <dt id="spheres.beams.laguerre_gauss_mode">
 <code class="sig-prename descclassname">spheres.beams.</code><code class="sig-name descname">laguerre_gauss_mode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">l</span></em>, <em class="sig-param"><span class="n">coordinates</span><span class="o">=</span><span class="default_value">'cartesian'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/beams.html#laguerre_gauss_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.beams.laguerre_gauss_mode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a function evaluating a given Laguerre-Gauss mode.
-N is an integer.
-l runs from -N to N in steps of 2.</p>
+<dd><p>Returns a function evaluating a Laguerre-Gauss mode, which may take cartesian/cylindrical coordinates or vectors thereof.</p>
+<div class="math notranslate nohighlight">
+\[LG(r, phi, z) = \frac{i^{|l|-N}}{w}\sqrt{\frac{2^{|l|+1}[\frac{N-l}{2}]!}{\pi[\frac{N+|l|}{2}]!}}e^{-\frac{r^2}{w^2}}(\frac{r}{w})^{|l|}e^{il\phi}L_{\frac{N-|l|}{2}}^{|l|}(\frac{2r^2}{w^2})\]</div>
+<p>Where <span class="math notranslate nohighlight">\(w=\sqrt{1+(\frac{z}{\pi})^2}\)</span> and <span class="math notranslate nohighlight">\(L_{a}^{b}\)</span> is a generalized Laguerre polynomial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> (<em>int</em>) – An integer specifying the Laguerre-Gauss mode (N, l).</p></li>
+<li><p><strong>l</strong> (<em>int</em>) – An integer specifying the Laguerre-Gauss mode (N, l).</p></li>
+<li><p><strong>coodinates</strong> (<em>str</em>) – Whether to return a function of “cartesian” or “cylindrical” coordinates.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>lg</strong> – (Vectorized) function of cartesian or cylindrical coordinates.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>func</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

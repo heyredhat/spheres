@@ -359,7 +359,19 @@
 <dl class="py function">
 <dt id="spheres.beams.colorize">
 <code class="sig-prename descclassname">spheres.beams.</code><code class="sig-name descname">colorize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">z</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/beams.html#colorize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.beams.colorize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts complex values into colors.</p>
+<dd><p>Converts complex values into colors: hue represents phase and brightness magnitude.</p>
+<p>Adapted from <a class="reference external" href="https://stackoverflow.com/questions/17044052/mathplotlib-imshow-complex-2d-array">https://stackoverflow.com/questions/17044052/mathplotlib-imshow-complex-2d-array</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>z</strong> (<em>np.array</em>) – Complex values.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>c</strong> – Color values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

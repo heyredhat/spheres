@@ -9,8 +9,18 @@ factorial = np.math.factorial
 
 def rand_c(n=1):
     """
-    Generates random extended complex coordinate whose real and imaginary parts
+    Generates (n) random extended complex coordinate(s) whose real and imaginary parts
     are normally distributed, and ten percent of the time, we return :math:`\\infty`.
+
+    Parameters
+    ----------
+        n : int
+            Number of coordinates.
+    
+    Returns
+    -------
+        c : complex/inf or np.array
+            n extended complex coordinates.
     """
     if n == 1:
         return np.random.randn() + 1j*np.random.randn() if np.random.random() > 0.1 else np.inf
@@ -18,7 +28,17 @@ def rand_c(n=1):
 
 def rand_xyz(n=1):
     """
-    Generates n random points on the unit sphere in cartesian coordinates.
+    Generates (n) random point(s) on the unit sphere in cartesian coordinates.
+
+    Parameters
+    ----------
+        n : int
+            Number of coordinates.
+    
+    Returns
+    -------
+        xyz : np.array
+            n cartesian coordinates.
     """
     if n == 1:
         return normalize(np.random.randn(3))
@@ -26,8 +46,17 @@ def rand_xyz(n=1):
 
 def rand_sph(n=1):
     """
-    Generates random spherical coordinate. If `unit=True`, the point
-    lies on the surface of the sphere.
+    Generates (n) random point(s) on the unit sphere in spherical coordinates.
+
+    Parameters
+    ----------
+        n : int
+            Number of coordinates.
+    
+    Returns
+    -------
+        xyz : np.array
+            n spherical coordinates.
     """
     if n == 1:
         return np.array([np.pi*np.random.random(),\
@@ -38,46 +67,116 @@ def rand_sph(n=1):
 
 def components(q):
     """
-    Extracts components of qt.Qobj, whether bra or ket.
+    Extracts components of qt.Qobj, whether bra or ket, as a numpy array.
+
+    Parameters
+    ----------
+        q : qt.Qobj 
+            Qutip state.
+
+    Returns
+    -------
+        n : np.array
+            Numpy array.
     """
     return (q.full().T[0] if q.type == "ket" else q.full()[0])\
                 if type(q) == qt.Qobj else q
 
 def normalize(v):
     """
-    Normalizes numpy vector. Simply passes the vector through
-    if its norm is 0.
+    Normalizes numpy vector. Simply passes the vector through if norm is 0.
+
+    Parameters
+    ----------
+        v : np.array
+            Numpy vector.
+
+    Returns
+    -------
+        v : np.array
+            Normalized numpy vector.
     """
     n = np.linalg.norm(v)
     return v/n if not np.isclose(n, 0) else v
 
 def phase(v):
     """
-    Extracts phase of complex vector (np.ndarray or qt.Qobj) by finding
+    Extracts phase of a complex vector (np.ndarray or qt.Qobj) by finding
     the first non-zero component and returning its phase.
+
+    Parameters
+    ----------
+        v : np.array or qt.Qobj
+    
+    Returns
+    -------
+        phase : complex
     """
     v = components(v) if type(v) == qt.Qobj else v
     return np.exp(1j*np.angle(v[(v!=0).argmax(axis=0)]))
 
 def phase_angle(q):
+    """
+    Extracts phase angle of a complex vector (np.ndarray or qt.Qobj) by finding
+    the first non-zero component and returning its phase angle.
+
+    Parameters
+    ----------
+        v : np.array or qt.Qobj
+    
+    Returns
+    -------
+        phase_angle : float
+    """
     return np.mod(np.angle(phase(q)), 2*np.pi)
 
 def normalize_phase(v):
     """
     Normalizes the phase of a complex vector (np.ndarray or qt.Qobj).
+
+     Parameters
+    ----------
+        v : np.array or qt.Qobj
+    
+    Returns
+    -------
+        v : np.array or qt.Qobj
+            Phase normalized state.
     """
     return v/phase(v)
 
 def compare_unordered(A, B, decimals=5):
     """
-    Compares two sets of vectors regardless of their ordering.
+    Compares two sets of vectors regardless of their ordering up to some precision.
+
+    Parameters
+    ----------
+        A : list
+        
+        B : list
+
+        decimals : int
+
+    Returns
+    -------
+        equal : bool
     """
     A, B = np.around(A, decimals=decimals), np.around(B, decimals=decimals)
     return np.array([a in B for a in A]).all()
 
 def compare_nophase(a, b):
     """
-    Compares two vectors disregarding their overall complex phase.
+    Compares two vectors disregarding their overall complex phase. 
+
+    Parameters
+    ----------
+        a : qt.Qobj or np.array
+        
+        b : qt.Qobj or np.array
+
+    Returns
+    -------
+        equal : bool
     """
     return np.allclose(normalize_phase(a), normalize_phase(b))
 
@@ -85,25 +184,36 @@ def compare_spinors(A, B, decimals=5):
     """
     Compares two lists of spinors, disregarding both their phases,
     as well as their ordering in the list.
+
+    Parameters
+    ----------
+        A : list
+        
+        B : list
+
+        decimals : int
+
+    Returns
+    -------
+        equal : bool
     """
     A = np.array([components(normalize_phase(a)) for a in A])
     B = np.array([components(normalize_phase(b)) for b in B])
     return compare_unordered(A, B, decimals=decimals)
 
-def so3_generators():
-    """
-    Returns :math:`SO(3)` generators :math:`L_{x}, L_{y}, L_{z}`.
-    """
-    Lx = np.array([[0,0,0],\
-                   [0,0,-1],\
-                   [0,1,0]])
-    Ly = np.array([[0,0,1],\
-                   [0,0,0],\
-                   [-1,0,0]])
-    Lz = np.array([[0,-1,0],\
-                   [1,0,0],\
-                   [0,0,0]])
-    return Lx, Ly, Lz
+"""
+:math:`SO(3)` generators :math:`L_{x}, L_{y}, L_{z}`.
+"""
+so3_generators = {"x": np.array([[0,0,0],\
+                                 [0,0,-1],\
+                                 [0,1,0]]),\
+                  "y": np.array([[0,0,1],\
+                                 [0,0,0],\
+                                 [-1,0,0]]),\
+                  "z": np.array([[0,-1,0],\
+                                 [1,0,0],\
+                                 [0,0,0]])}
+
 
 def bitstring_basis(bitstring, dims=2):
     """
@@ -112,6 +222,16 @@ def bitstring_basis(bitstring, dims=2):
     dimensionality of each tensor factor is given by dims, which may
     be either an integer (all the same dimensionality) or a list 
     (a dimension for each factor).
+
+    Parameters
+    ----------
+        bitstring : str
+
+        dims : int or list
+
+    Returns
+    -------
+        tensor_state : qt.Qobj
     """
     if type(bitstring) == str:
         bitstring = [int(s) for s in bitstring]
@@ -122,7 +242,21 @@ def bitstring_basis(bitstring, dims=2):
 
 def fix_stars(old_stars, new_stars):
     """
-    Try to adjust the ordering of a list of stars to keep continuity.
+    Try to adjust the ordering of a list of stars to keep continuity, so that they
+    are in the "same order." Not always reliable.
+
+    Parameters
+    ----------
+        old_stars : list
+            List of xyz coordinates.
+
+        new_stars : list
+            List of xyz coordinates.
+
+    Returns
+    -------
+        fixed_stars : list
+            List of xyz coordinates.
     """
     if np.all([np.allclose(old_stars[0], old_star) for old_star in old_stars]):
         return new_stars
@@ -138,19 +272,48 @@ def fix_stars(old_stars, new_stars):
 
 def flatten(to_flatten):
     """
-    Flatten list of lists.
+    Flattens list of lists.
+
+    Parameters
+    ----------
+        to_flatten : list
+            List of lists.
+
+    Returns
+    -------
+        flattened : list
+            Flattened list.
     """
     return [item for sublist in to_flatten for item in sublist]
 
 def binomial(n, k):
     """
-    Returns the binomial coefficient :math:`\\binom{n}{k} = \\frac{n!}{k!(n-k)!}`
+    Binomial coefficient :math:`\\binom{n}{k} = \\frac{n!}{k!(n-k)!}`
+
+    Parameters
+    ----------
+        n : int
+        k : int
+
+    Returns
+    -------
+        binomial_coefficient : int
     """
     return int(factorial(n)/(factorial(k)*factorial(n-k)))
 
 def qubits_xyz(state):
     """
-    Qutip tensor state of qubits to their XYZ expectation values.
+    Returns XYZ expectation values for each qubit in a tensor product.
+
+    Parameters
+    ----------
+        state : qt.Qobj
+            Tensor state of qubits.
+
+    Returns
+    -------
+        xyz : np.array
+            Array of xyz coordinates.
     """
     xyzs = []
     for i in range(len(state.dims[0])):
@@ -162,6 +325,19 @@ def qubits_xyz(state):
     return np.array(xyzs)
 
 def spinj_xyz(state):
+    """
+    Returns XYZ expectation values for a spin-j state.
+
+    Parameters
+    ----------
+        state : qt.Qobj
+            Spin-j state.
+
+    Returns
+    -------
+        xyz : np.array
+            XYZ expectation values.
+    """
     j = (state.shape[0]-1)/2
     return np.array([qt.expect(qt.jmat(j, 'x'), state),\
                      qt.expect(qt.jmat(j, 'y'), state),\
@@ -171,6 +347,15 @@ def pauli_basis(n):
     """
     Generates the Pauli basis for n qubits. Returns a dictionary associating
     a Pauli string (e.g., "IXY") to the tensor product of the corresponding Pauli operators.
+
+    Parameters
+    ----------
+        n : int
+            n qubits.
+
+    Returns
+    -------
+        basis : dict
     """
     IXYZ = {"I": qt.identity(2),\
             "X": qt.sigmax(),\
@@ -184,26 +369,51 @@ def to_pauli_basis(qobj, basis=None):
     """
     Expands a state/operator in the Pauli basis. Returns a dictionary associating
     a Pauli string to the corresponding component.
+
+    Parameters
+    ----------
+        qobj : qt.Qobj
+            State/operator
+    
+    Returns
+    -------
+        coeffs : dict
     """
     if basis == None:
         basis = pauli_basis(len(qobj.dims[0]))
     return dict([(pauli_str, qt.expect(pauli_op, qobj))\
                     for pauli_str, pauli_op in basis.items()])
 
-def from_pauli_basis(exps, basis=None):
+def from_pauli_basis(coeffs, basis=None):
     """
     Given a dictionary mapping Pauli strings to components, returns the corresponding
     density matrix/operator.
+
+    Parameters
+    ----------
+        exps : dict
+
+    Returns
+    -------
+        operator : qt.Qobj
     """
     if basis == None:
-        basis = pauli_basis(len(list(exps.keys())[0]))
+        basis = pauli_basis(len(list(coeffs.keys())[0]))
     n = len(list(basis.values())[0].dims[0])
-    return sum([exps[pauli_str]*pauli_op/(2**n)
+    return sum([coeffs[pauli_str]*pauli_op/(2**n)
                     for pauli_str, pauli_op in basis.items()])
 
 def random_pairs(n):
     """
     Generates a random list of pairs of n elements. 
+
+    Parameters
+    ----------
+        n : int
+
+    Returns
+    -------
+        list : list
     """
     pairs = list(combinations(list(range(n)), 2))
     np.random.shuffle(pairs) 
@@ -217,6 +427,14 @@ def random_pairs(n):
 def random_unique_pairs(n):
     """
     Generates a random list of pairs of n elements with no pair sharing an element.
+
+    Parameters
+    ----------
+        n : int
+
+    Returns
+    -------
+        list : list
     """
     pairs = list(combinations(list(range(n)), 2))
     pick = pairs[np.random.choice(len(pairs))]
@@ -239,13 +457,33 @@ def random_unique_pairs(n):
 
 def tensor_upgrade(O, i, n):
     """
-    Upgrades an operator to act on the i'th subspace of n.
+    Upgrades an operator to act on the i'th subspace of n subsystems.
+
+    Parameters
+    ----------
+        O : qt.Qobj
+            Operator.
+        i : int
+            Which subsytem to act on.
+        n : int
+            Of how many.
+
+    Returns
+    -------
+        upgraded : qt.Qobj
     """
     return qt.tensor(*[O if i==j else qt.identity(O.shape[0]) for j in range(n)])
 
 def dirac(state, probabilities=True):
     """
     Prints a pretty representation of a state in Dirac braket notation.
+
+    Parameters
+    ----------
+        state : qt.Qobj
+        
+        probabilities : bool
+            If True, returns only the probabilities.
     """
     v = components(state)
     for i, bits in enumerate(product(*[list(range(d)) for d in state.dims[0]])):
@@ -261,3 +499,120 @@ def dirac(state, probabilities=True):
                 else:
                     print("%.3f+%.3fi %s Pr: %.3f" % (v[i].real, v[i].imag, basis_str, abs(v[i])**2))
 
+def density_to_purevec(density):
+    """
+    Converts a density matrix to a pure vector if it's rank-1.
+
+    Parameters
+    ----------
+        density : qt.Qobj
+    
+    Returns
+    -------
+        pure_state : qt.Qobj
+
+    """
+    entropy = qt.entropy_vn(density) 
+    if np.isclose(entropy, 0):
+        U, S, V = np.linalg.svd(density.full())
+        s = S.tolist()
+        for i in range(len(s)):
+            if np.isclose(s[i], 1):
+                return qt.Qobj(np.conjugate(V[i]))
+
+def polygon_area(phis, thetas, radius = 1):
+    """
+    Computes area of spherical polygon.
+    Returns result in ratio of the sphere's area if the radius is specified.
+    Otherwise, in the units of provided radius.
+
+    Thanks to https://stackoverflow.com/questions/4681737/how-to-calculate-the-area-of-a-polygon-on-the-earths-surface-using-python
+
+    Parameters
+    ----------
+        phis : list
+
+        thetas : list
+
+        radius : float
+
+    Returns
+    -------
+        area : float
+    """
+    from numpy import arctan2, cos, sin, sqrt, pi, power, append, diff, deg2rad
+    lats = thetas - np.pi/2
+    lons = phis
+    #lats = np.deg2rad(lats)
+    #lons = np.deg2rad(lons)
+
+    # Line integral based on Green's Theorem, assumes spherical Earth
+
+    #close polygon
+    #if lats[0]!=lats[-1]:
+    #    lats = append(lats, lats[0])
+    #    lons = append(lons, lons[0])
+
+    #colatitudes relative to (0,0)
+    a = sin(lats/2)**2 + cos(lats)* sin(lons/2)**2
+    colat = 2*arctan2( sqrt(a), sqrt(1-a) )
+
+    #azimuths relative to (0,0)
+    az = arctan2(cos(lats) * sin(lons), sin(lats)) % (2*pi)
+
+    # Calculate diffs
+    # daz = diff(az) % (2*pi)
+    daz = diff(az)
+    daz = (daz + pi) % (2 * pi) - pi
+
+    deltas=diff(colat)/2
+    colat=colat[0:-1]+deltas
+
+    # Perform integral
+    integrands = (1-cos(colat)) * daz
+
+    # Integrate 
+    area = abs(sum(integrands))/(4*pi)
+
+    area = min(area,1-area)
+    if radius is not None: #return in units of radius
+        return area * 4*pi*radius**2
+    else: #return in ratio of sphere total area
+        return area
+
+def pauli_eigenstate(j, m, direction):
+    """
+    Returns eigenstates of Pauli operators.
+
+    Parameters
+    ----------
+        j : float
+            j value of representation.
+        m : float
+            m value of representation.
+        direction : str
+            "x", "y", or "z".
+    """
+    if direction == "x":
+        up = np.array([1,0,0])
+        down = np.array([-1,0,0])
+    elif direction == "y":
+        up = np.array([0,1,0])
+        down = np.array([0,-1,0])
+    elif direction == "z":
+        up = np.array([0,0,1])
+        down = np.array([0,0,-1])
+    nup, ndown = [(int(2*j-i), i)\
+                    for i in range(int(2*j+1))]\
+                        [list(np.arange(j, -j-1, -1)).index(m)]
+    return xyz_spin([up]*nup + [down]*ndown)
+
+def basis(d, i, up='z'):
+    """
+    Similar to `pauli_eigenstate`, only parameterized by dimension.
+    """
+    if d == 0:
+        return qt.identity(1)
+    j = (d-1)/2
+    m = np.arange(j, -j-1, -1)[i]
+    return pauli_eigenstate(j, m, up)

@@ -8,9 +8,21 @@ from math import pi, asin, atan2, cos, sin, sqrt
 
 def equidistribute_points(n, verbose=False):
     """
-    https://www.chiark.greenend.org.uk/~sgtatham/polyhedra/
-
     Returns n more or less equidistributed points on the sphere.
+
+    Thanks to https://www.chiark.greenend.org.uk/~sgtatham/polyhedra/
+
+    Parameters
+    ----------
+        n : int
+            Number of points.
+
+        verbose : bool
+    
+    Returns
+    -------
+        points : list
+
     """
     points = []
     for i in range(n):

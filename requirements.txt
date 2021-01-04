@@ -11,3 +11,4 @@ strawberryfields
 mpld3
 ipympl
 quadpy
+sympy

@@ -359,7 +359,21 @@
 <dl class="py function">
 <dt id="spheres.beams.animate_spin_beam">
 <code class="sig-prename descclassname">spheres.beams.</code><code class="sig-name descname">animate_spin_beam</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spin</span></em>, <em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">6.283185307179586</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">3.5</span></em>, <em class="sig-param"><span class="n">n_samples</span><span class="o">=</span><span class="default_value">200</span></em>, <em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fps</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/beams.html#animate_spin_beam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.beams.animate_spin_beam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Animates a spin state and its corresponding structured Gaussian beam.</p>
+<dd><p>Animates a spin state and its corresponding structured Gaussian beam side by side with matplotlib.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spin</strong> (<em>qt.Qobj</em>) – Spin-j state.</p></li>
+<li><p><strong>H</strong> (<em>qt.Qobj</em>) – Hamiltonian.</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – Time step.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – How long to evolve for.</p></li>
+<li><p><strong>size</strong> (<em>float</em>) – Size of plot.</p></li>
+<li><p><strong>n_samples</strong> (<em>int</em>) – Number of samples of the beam function.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – Filename at which to save movie.</p></li>
+<li><p><strong>fps</strong> (<em>int</em>) – Frames per second.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

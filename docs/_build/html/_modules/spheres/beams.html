@@ -359,10 +359,28 @@
 <span class="kn">from</span> <span class="nn">.stars.pure</span> <span class="kn">import</span> <span class="o">*</span>
 
 <div class="viewcode-block" id="laguerre_gauss_mode"><a class="viewcode-back" href="../../_autosummary/spheres.beams.laguerre_gauss_mode.html#spheres.beams.laguerre_gauss_mode">[docs]</a><span class="k">def</span> <span class="nf">laguerre_gauss_mode</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="s2">&quot;cartesian&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a function evaluating a given Laguerre-Gauss mode.</span>
-<span class="sd">    N is an integer.</span>
-<span class="sd">    l runs from -N to N in steps of 2.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a function evaluating a Laguerre-Gauss mode, which may take cartesian/cylindrical coordinates or vectors thereof.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        LG(r, phi, z) = \frac{i^{|l|-N}}{w}\sqrt{\frac{2^{|l|+1}[\frac{N-l}{2}]!}{\pi[\frac{N+|l|}{2}]!}}e^{-\frac{r^2}{w^2}}(\frac{r}{w})^{|l|}e^{il\phi}L_{\frac{N-|l|}{2}}^{|l|}(\frac{2r^2}{w^2})</span>
+
+<span class="sd">    Where :math:`w=\sqrt{1+(\frac{z}{\pi})^2}` and :math:`L_{a}^{b}` is a generalized Laguerre polynomial.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        N : int</span>
+<span class="sd">            An integer specifying the Laguerre-Gauss mode (N, l).</span>
+<span class="sd">        l : int</span>
+<span class="sd">            An integer specifying the Laguerre-Gauss mode (N, l).</span>
+<span class="sd">        coodinates : str</span>
+<span class="sd">            Whether to return a function of &quot;cartesian&quot; or &quot;cylindrical&quot; coordinates.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        lg : func</span>
+<span class="sd">            (Vectorized) function of cartesian or cylindrical coordinates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span> <span class="c1"># cylindrical coordinates</span>
         <span class="n">w0</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># waist radius</span>
@@ -388,10 +406,23 @@
         <span class="k">return</span> <span class="n">cartesian</span></div>
 
 <div class="viewcode-block" id="spin_beam"><a class="viewcode-back" href="../../_autosummary/spheres.beams.spin_beam.html#spheres.beams.spin_beam">[docs]</a><span class="k">def</span> <span class="nf">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="s2">&quot;cartesian&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts a spin state into a structured Gaussian beam, the latter being function </span>
-<span class="sd">    over cartesian or cylindrical coordinates, expressing the intensity and phase of the classical light beam</span>
-<span class="sd">    in the paraxial approximation.</span>
+<span class="sd">    of cartesian or cylindrical coordinates, expressing the intensity and phase of the classical light beam</span>
+<span class="sd">    in the paraxial approximation. A spin :math:`\mid j, m \rangle` state is identified with LG mode (2j, 2m).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state</span>
+
+<span class="sd">        coordinates : str</span>
+<span class="sd">            &quot;cartesian&quot; or &quot;cylindrical</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        sgb : func</span>
+<span class="sd">            (Vectorized) function of cartesian or cylindrical coordinates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
@@ -412,7 +443,19 @@
 
 <div class="viewcode-block" id="colorize"><a class="viewcode-back" href="../../_autosummary/spheres.beams.colorize.html#spheres.beams.colorize">[docs]</a><span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Converts complex values into colors. </span>
+<span class="sd">    Converts complex values into colors: hue represents phase and brightness magnitude.</span>
+<span class="sd">    </span>
+<span class="sd">    Adapted from https://stackoverflow.com/questions/17044052/mathplotlib-imshow-complex-2d-array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        z : np.array</span>
+<span class="sd">            Complex values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        c : np.array</span>
+<span class="sd">            Color values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
@@ -427,7 +470,18 @@
 
 <div class="viewcode-block" id="viz_beam"><a class="viewcode-back" href="../../_autosummary/spheres.beams.viz_beam.html#spheres.beams.viz_beam">[docs]</a><span class="k">def</span> <span class="nf">viz_beam</span><span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Visualizes a structured Gaussian beam.</span>
+<span class="sd">    Visualizes a structured Gaussian beam with matplotlib.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        beam : func</span>
+<span class="sd">            Beam function.</span>
+
+<span class="sd">        size : float</span>
+<span class="sd">            Size of plot.</span>
+<span class="sd">        </span>
+<span class="sd">        n_samples : int</span>
+<span class="sd">            Number of samples of the beam function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
@@ -437,7 +491,18 @@
 
 <div class="viewcode-block" id="viz_spin_beam"><a class="viewcode-back" href="../../_autosummary/spheres.beams.viz_spin_beam.html#spheres.beams.viz_spin_beam">[docs]</a><span class="k">def</span> <span class="nf">viz_spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Visualizes a spin state and its corresponding structured Gaussian beam.</span>
+<span class="sd">    Visualizes a spin state and its corresponding structured Gaussian beam side by side with matplotlib.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+
+<span class="sd">        size : float</span>
+<span class="sd">            Size of plot.</span>
+<span class="sd">        </span>
+<span class="sd">        n_samples : int</span>
+<span class="sd">            Number of samples of the beam function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">stars</span> <span class="o">=</span> <span class="n">spin_xyz</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
     <span class="n">beam</span> <span class="o">=</span> <span class="n">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
@@ -461,7 +526,33 @@
 
 <div class="viewcode-block" id="animate_spin_beam"><a class="viewcode-back" href="../../_autosummary/spheres.beams.animate_spin_beam.html#spheres.beams.animate_spin_beam">[docs]</a><span class="k">def</span> <span class="nf">animate_spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Animates a spin state and its corresponding structured Gaussian beam.</span>
+<span class="sd">    Animates a spin state and its corresponding structured Gaussian beam side by side with matplotlib.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        spin : qt.Qobj</span>
+<span class="sd">            Spin-j state.</span>
+
+<span class="sd">        H : qt.Qobj</span>
+<span class="sd">            Hamiltonian.</span>
+
+<span class="sd">        dt : float</span>
+<span class="sd">            Time step.</span>
+
+<span class="sd">        T : float</span>
+<span class="sd">            How long to evolve for.</span>
+
+<span class="sd">        size : float</span>
+<span class="sd">            Size of plot.</span>
+<span class="sd">        </span>
+<span class="sd">        n_samples : int</span>
+<span class="sd">            Number of samples of the beam function.</span>
+
+<span class="sd">        filename : str</span>
+<span class="sd">            Filename at which to save movie.</span>
+
+<span class="sd">        fps : int</span>
+<span class="sd">            Frames per second.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figaspect</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
 

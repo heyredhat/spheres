@@ -10,10 +10,28 @@ from scipy.special import eval_genlaguerre
 from .stars.pure import *
 
 def laguerre_gauss_mode(N, l, coordinates="cartesian"):
-    """
-    Returns a function evaluating a given Laguerre-Gauss mode.
-    N is an integer.
-    l runs from -N to N in steps of 2.
+    r"""
+    Returns a function evaluating a Laguerre-Gauss mode, which may take cartesian/cylindrical coordinates or vectors thereof.
+
+    .. math::
+
+        LG(r, \phi, z) = \frac{i^{|l|-N}}{w}\sqrt{\frac{2^{|l|+1}[\frac{N-l}{2}]!}{\pi[\frac{N+|l|}{2}]!}}e^{-\frac{r^2}{w^2}}(\frac{r}{w})^{|l|}e^{il\phi}L_{\frac{N-|l|}{2}}^{|l|}(\frac{2r^2}{w^2})
+
+    Where :math:`w=\sqrt{1+(\frac{z}{\pi})^2}` and :math:`L_{a}^{b}` is a generalized Laguerre polynomial.
+
+    Parameters
+    ----------
+        N : int
+            An integer specifying the Laguerre-Gauss mode (N, l).
+        l : int
+            An integer specifying the Laguerre-Gauss mode (N, l).
+        coodinates : str
+            Whether to return a function of "cartesian" or "cylindrical" coordinates.
+
+    Returns
+    -------
+        lg : func
+            (Vectorized) function of cartesian or cylindrical coordinates.
     """
     def mode(r, phi, z): # cylindrical coordinates
         w0 = 1 # waist radius
@@ -39,10 +57,23 @@ def laguerre_gauss_mode(N, l, coordinates="cartesian"):
         return cartesian
 
 def spin_beam(spin, coordinates="cartesian"):
-    """
+    r"""
     Converts a spin state into a structured Gaussian beam, the latter being function 
-    over cartesian or cylindrical coordinates, expressing the intensity and phase of the classical light beam
-    in the paraxial approximation.
+    of cartesian or cylindrical coordinates, expressing the intensity and phase of the classical light beam
+    in the paraxial approximation. A spin :math:`\mid j, m \rangle` state is identified with LG mode (2j, 2m).
+
+    Parameters
+    ----------
+        spin : qt.Qobj
+            Spin-j state
+
+        coordinates : str
+            "cartesian" or "cylindrical
+
+    Returns
+    -------
+        sgb : func
+            (Vectorized) function of cartesian or cylindrical coordinates.
     """
     j = (spin.shape[0]-1)/2
     v = components(spin)
@@ -63,7 +94,19 @@ from colorsys import hls_to_rgb
 
 def colorize(z):
     """
-    Converts complex values into colors. 
+    Converts complex values into colors: hue represents phase and brightness magnitude.
+    
+    Adapted from https://stackoverflow.com/questions/17044052/mathplotlib-imshow-complex-2d-array.
+
+    Parameters
+    ----------
+        z : np.array
+            Complex values.
+
+    Returns
+    -------
+        c : np.array
+            Color values.
     """
     n,m = z.shape
     c = np.zeros((n,m,3))
@@ -78,7 +121,18 @@ def colorize(z):
 
 def viz_beam(beam, size=3.5, n_samples=200):
     """
-    Visualizes a structured Gaussian beam.
+    Visualizes a structured Gaussian beam with matplotlib.
+
+    Parameters
+    ----------
+        beam : func
+            Beam function.
+
+        size : float
+            Size of plot.
+        
+        n_samples : int
+            Number of samples of the beam function.
     """
     x = np.linspace(-size, size, n_samples)
     y = np.linspace(-size, size, n_samples)
@@ -88,7 +142,18 @@ def viz_beam(beam, size=3.5, n_samples=200):
 
 def viz_spin_beam(spin, size=3.5, n_samples=200):
     """
-    Visualizes a spin state and its corresponding structured Gaussian beam.
+    Visualizes a spin state and its corresponding structured Gaussian beam side by side with matplotlib.
+
+    Parameters
+    ----------
+        spin : qt.Qobj
+            Spin-j state.
+
+        size : float
+            Size of plot.
+        
+        n_samples : int
+            Number of samples of the beam function.
     """
     stars = spin_xyz(spin)
     beam = spin_beam(spin)
@@ -112,7 +177,33 @@ def viz_spin_beam(spin, size=3.5, n_samples=200):
 
 def animate_spin_beam(spin, H, dt=0.1, T=2*np.pi, size=3.5, n_samples=200, filename=None, fps=20):
     """
-    Animates a spin state and its corresponding structured Gaussian beam.
+    Animates a spin state and its corresponding structured Gaussian beam side by side with matplotlib.
+
+    Parameters
+    ----------
+        spin : qt.Qobj
+            Spin-j state.
+
+        H : qt.Qobj
+            Hamiltonian.
+
+        dt : float
+            Time step.
+
+        T : float
+            How long to evolve for.
+
+        size : float
+            Size of plot.
+        
+        n_samples : int
+            Number of samples of the beam function.
+
+        filename : str
+            Filename at which to save movie.
+
+        fps : int
+            Frames per second.
     """
     fig = plt.figure(figsize=plt.figaspect(0.5))
 
