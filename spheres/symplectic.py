@@ -17,7 +17,7 @@ def make_gaussian_operator(A, B=None, h=None):
     
         H = \frac{1}{2}\xi^{\dagger}\textbf{H}\xi + \xi^{\dagger}\textbf{h}
 
-    Where :math:`\textbf{H} = \begin{pmatrix} A & B^{*} \\ B & A^{*} \end{pmatrix}` is a :math:`2n \times 2n` Hermitian matrix and :math:`\textbf{h} = \begin{pmatrix} h \\ h^{*} \end{pmatrix}` is a :math:`2n` complex column vector. 
+    Where :math:`\textbf{H} = \begin{pmatrix} A & B \\ B^{*} & A^{*} \end{pmatrix}` is a :math:`2n \times 2n` Hermitian matrix and :math:`\textbf{h} = \begin{pmatrix} h \\ h^{*} \end{pmatrix}` is a :math:`2n` complex column vector. 
     
     :math:`A` is a Hermitian matrix and `B` is symmetric.
     
@@ -38,10 +38,11 @@ def make_gaussian_operator(A, B=None, h=None):
             Gaussian displacement.
 
     """
+def make_gaussian_operator(A, B=None, h=None):
     B = np.zeros(A.shape) if type(B) == type(None) else B
     h = np.zeros(A.shape[0]) if type(h) == type(None) else h
-    return np.block([[A, B.conj()],\
-                     [B, A.conj()]]),\
+    return np.block([[A, B],\
+                     [B.conj(), A.conj()]]),\
            np.concatenate([h, h.conj()])
 
 def random_gaussian_operator(n):
@@ -62,8 +63,8 @@ def random_gaussian_operator(n):
     
     """
     A = qt.rand_herm(n).full()
-    B = np.random.randn(n, n) + 1j*np.random.randn(n, n)
-    B = B @ B.T + B.T @ B
+    B = np.random.randn(n, n) + 1j*np.random.randn(n, n) 
+    B = B + B.T
     h = np.random.randn(n) + 1j*np.random.randn(n)
     return make_gaussian_operator(A, B, h)
 
