@@ -207,7 +207,9 @@ def complex_real_symplectic2(S, s):
 
     .. math::
         
-        \textbf{R} = \begin{pmatrix}\Re(E+F) & -\Im(E-F) \\ \Im(E+F) & \Re(E-F) \end{pmatrix}$$ and $$\textbf{r} = \sqrt{2}\begin{pmatrix} \Re(s) \\ \Im(s) \end{pmatrix}
+        \textbf{R} = \begin{pmatrix}\Re(E+F) & -\Im(E-F) \\ \Im(E+F) & \Re(E-F) \end{pmatrix}
+        
+        \textbf{r} = \sqrt{2}\begin{pmatrix} \Re(s) \\ \Im(s) \end{pmatrix}
 
     Parameters
     ----------
