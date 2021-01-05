@@ -19,7 +19,6 @@ spheres.oscillators
       osc_spinblocks
       osc_spins
       osc_spintower_map
-      osc_xyz
       second_quantize_operator
       second_quantize_spin_state
       second_quantize_state
@@ -27,6 +26,7 @@ spheres.oscillators
       spin_osc
       spin_osc_map
       spin_tower_dimensions
+      spinj_xyz_osc
       spins_osc
       vacuum
    

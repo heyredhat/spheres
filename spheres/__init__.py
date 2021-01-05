@@ -13,10 +13,10 @@ from .oscillators import *
 from .coordinates import *
 from .beams import *
 from .visualization import *
-#from .symcirclab import *
+from .error_correction import *
 from .stars import *
 from .polyhedra import *
-from .circuits import *
+from .spin_circuits import *
 
 __version__ = "0.3.0.8"
  

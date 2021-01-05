@@ -15,10 +15,7 @@ spheres.stars.star\_utils
       :toctree:                                          
    
       antipodal
-      basis
-      pauli_eigenstate
       poleflip
-      polygon_area
       spherical_inner
       spin_coherent
    

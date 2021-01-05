@@ -345,7 +345,7 @@ def second_quantized_paulis(cutoff_dim=3):
             "y": second_quantize_operator(qt.sigmay()/2, a),\
             "z": second_quantize_operator(qt.sigmaz()/2, a)}
 
-def osc_xyz(osc, paulis=None):
+def spinj_xyz_osc(osc, paulis=None):
     """
     <X>, <Y>, <Z> expectation values on the given double oscillator state.
 

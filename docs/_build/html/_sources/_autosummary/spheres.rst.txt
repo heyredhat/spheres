@@ -29,11 +29,11 @@
    :recursive:
 
    spheres.beams
-   spheres.circuits
    spheres.coordinates
    spheres.oscillators
    spheres.polyhedra
    spheres.relativity
+   spheres.spin_circuits
    spheres.stars
    spheres.symmetrization
    spheres.symplectic

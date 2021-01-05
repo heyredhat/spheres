@@ -134,7 +134,7 @@ def normalize_phase(v):
     """
     Normalizes the phase of a complex vector (np.ndarray or qt.Qobj).
 
-     Parameters
+    Parameters
     ----------
         v : np.array or qt.Qobj
     

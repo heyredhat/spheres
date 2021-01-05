@@ -5,7 +5,7 @@ def test_spin_osc():
     spin = qt.rand_ket(4)
     osc = spin_osc(spin)
     assert np.allclose(osc_spin(osc), spin)
-    assert np.allclose(spinj_xyz(spin), osc_xyz(osc))
+    assert np.allclose(spinj_xyz(spin), spinj_xyz_osc(osc))
 
 def test_osc_spinblocks():
     cutoff_dim = 4

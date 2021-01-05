@@ -22,7 +22,6 @@ def equidistribute_points(n, verbose=False):
     Returns
     -------
         points : list
-
     """
     points = []
     for i in range(n):
