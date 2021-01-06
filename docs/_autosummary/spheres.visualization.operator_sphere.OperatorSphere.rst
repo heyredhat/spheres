@@ -17,13 +17,12 @@ spheres.visualization.operator\_sphere.OperatorSphere
    .. autosummary::
    
       ~OperatorSphere.__init__
-      ~OperatorSphere.cmp_spin
       ~OperatorSphere.destroy
       ~OperatorSphere.evolve
-      ~OperatorSphere.mouseclick
+      ~OperatorSphere.mousedown
       ~OperatorSphere.mousemove
+      ~OperatorSphere.mouseup
       ~OperatorSphere.refresh
-      ~OperatorSphere.set
    
    
 

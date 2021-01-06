@@ -27,6 +27,7 @@ spheres.visualization.majorana\_sphere
       :template: custom-class-template.rst               
       
          MajoranaSphere
+         SphericalWavefunction
    
    
 

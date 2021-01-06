@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spheres.visualization.vp_object &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/spheres.html">spheres</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.beams.html">spheres.beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.animate_spin_beam.html">spheres.beams.animate_spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.colorize.html">spheres.beams.colorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.laguerre_gauss_mode.html">spheres.beams.laguerre_gauss_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.spin_beam.html">spheres.beams.spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.viz_beam.html">spheres.beams.viz_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.beams.viz_spin_beam.html">spheres.beams.viz_spin_beam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.html">spheres.coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.c_sph.html">spheres.coordinates.c_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.c_spinor.html">spheres.coordinates.c_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.c_xyz.html">spheres.coordinates.c_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.sph_c.html">spheres.coordinates.sph_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.sph_spinor.html">spheres.coordinates.sph_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.sph_xyz.html">spheres.coordinates.sph_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.spinor_c.html">spheres.coordinates.spinor_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.spinor_sph.html">spheres.coordinates.spinor_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.spinor_xyz.html">spheres.coordinates.spinor_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.xyz_c.html">spheres.coordinates.xyz_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.xyz_sph.html">spheres.coordinates.xyz_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.error_correction.html">spheres.error_correction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.error_correction.pytket.html">spheres.error_correction.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.error_correction.pytket.build_circuit.html">spheres.error_correction.pytket.build_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.error_correction.pytket.process_sym_counts.html">spheres.error_correction.pytket.process_sym_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.error_correction.pytket.random_circuit.html">spheres.error_correction.pytket.random_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.error_correction.pytket.symmetrize_circuit.html">spheres.error_correction.pytket.symmetrize_circuit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.html">spheres.oscillators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.osc_spinblocks.html">spheres.oscillators.osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.osc_spins.html">spheres.oscillators.osc_spins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.osc_spintower_map.html">spheres.oscillators.osc_spintower_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.spin_osc_map.html">spheres.oscillators.spin_osc_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.spin_tower_dimensions.html">spheres.oscillators.spin_tower_dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.spinj_xyz_osc.html">spheres.oscillators.spinj_xyz_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.spins_osc.html">spheres.oscillators.spins_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.polyhedra.html">spheres.polyhedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.polyhedra.equidistribute_points.html">spheres.polyhedra.equidistribute_points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.relativity.html">spheres.relativity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.relativity.mobius.html">spheres.relativity.mobius</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.html">spheres.spin_circuits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.html">spheres.spin_circuits.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.Rk_pytket.html">spheres.spin_circuits.pytket.Rk_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.Tkj_pytket.html">spheres.spin_circuits.pytket.Tkj_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.postselect_shots.html">spheres.spin_circuits.pytket.postselect_shots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.spin_sym_pytket.html">spheres.spin_circuits.pytket.spin_sym_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.spin_tomography_pytket.html">spheres.spin_circuits.pytket.spin_tomography_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.tomography_circuits_pytket.html">spheres.spin_circuits.pytket.tomography_circuits_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.pytket.tomography_dm_pytket.html">spheres.spin_circuits.pytket.tomography_dm_pytket</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.qiskit.html">spheres.spin_circuits.qiskit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.qiskit.Rk_qiskit.html">spheres.spin_circuits.qiskit.Rk_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.qiskit.Tkj_qiskit.html">spheres.spin_circuits.qiskit.Tkj_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.qiskit.postselect_results_qiskit.html">spheres.spin_circuits.qiskit.postselect_results_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.qiskit.spin_sym_qiskit.html">spheres.spin_circuits.qiskit.spin_sym_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.qiskit.spin_tomography_qiskit.html">spheres.spin_circuits.qiskit.spin_tomography_qiskit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.strawberryfields.html">spheres.spin_circuits.strawberryfields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields.html">spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields.html">spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.stars.html">spheres.stars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.html">spheres.stars.mixed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.operator_spherical_decomposition.html">spheres.stars.mixed.operator_spherical_decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.operator_spins.html">spheres.stars.mixed.operator_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_decomposition_operator.html">spheres.stars.mixed.spherical_decomposition_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_decomposition_spins.html">spheres.stars.mixed.spherical_decomposition_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_tensor.html">spheres.stars.mixed.spherical_tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spherical_tensor_basis.html">spheres.stars.mixed.spherical_tensor_basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spins_operator.html">spheres.stars.mixed.spins_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.mixed.spins_spherical_decomposition.html">spheres.stars.mixed.spins_spherical_decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.html">spheres.stars.pure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.c_spin.html">spheres.stars.pure.c_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.poly_roots.html">spheres.stars.pure.poly_roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.poly_spin.html">spheres.stars.pure.poly_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.roots_poly.html">spheres.stars.pure.roots_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.sph_spin.html">spheres.stars.pure.sph_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_c.html">spheres.stars.pure.spin_c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_poly.html">spheres.stars.pure.spin_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_sph.html">spheres.stars.pure.spin_sph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_spinors.html">spheres.stars.pure.spin_spinors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spin_xyz.html">spheres.stars.pure.spin_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.spinors_spin.html">spheres.stars.pure.spinors_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.pure.xyz_spin.html">spheres.stars.pure.xyz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.html">spheres.symmetrization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.symmetrize.html">spheres.symmetrization.symmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symmetrization.symmetrized_basis.html">spheres.symmetrization.symmetrized_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.html">spheres.symplectic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.is_complex_symplectic.html">spheres.symplectic.is_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.is_real_symplectic.html">spheres.symplectic.is_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.utils.html">spheres.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.basis.html">spheres.utils.basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.binomial.html">spheres.utils.binomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.compare_spinors.html">spheres.utils.compare_spinors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.compare_unordered.html">spheres.utils.compare_unordered</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.components.html">spheres.utils.components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.density_to_purevec.html">spheres.utils.density_to_purevec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.dirac.html">spheres.utils.dirac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.flatten.html">spheres.utils.flatten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.measure.html">spheres.utils.measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.normalize.html">spheres.utils.normalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.pauli_eigenstate.html">spheres.utils.pauli_eigenstate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.phase.html">spheres.utils.phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.polygon_area.html">spheres.utils.polygon_area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.qubits_xyz.html">spheres.utils.qubits_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.rand_c.html">spheres.utils.rand_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.rand_sph.html">spheres.utils.rand_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.rand_xyz.html">spheres.utils.rand_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.random_pairs.html">spheres.utils.random_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.random_unique_pairs.html">spheres.utils.random_unique_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.spinj_xyz.html">spheres.utils.spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.tensor_upgrade.html">spheres.utils.tensor_upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.utils.to_pauli_basis.html">spheres.utils.to_pauli_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/spheres.visualization.html">spheres.visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.majorana_sphere.MajoranaSphere.html">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.majorana_sphere.SphericalWavefunction.html">spheres.visualization.majorana_sphere.SphericalWavefunction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.matplotlib_spheres.html">spheres.visualization.matplotlib_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.matplotlib_spheres.animate_spin.html">spheres.visualization.matplotlib_spheres.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.matplotlib_spheres.viz_spin.html">spheres.visualization.matplotlib_spheres.viz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.operator_sphere.OperatorSphere.html">spheres.visualization.operator_sphere.OperatorSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.schwinger_spheres.OscillatorPlane.html">spheres.visualization.schwinger_spheres.OscillatorPlane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_autosummary/spheres.visualization.vp_object.html">spheres.visualization.vp_object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_autosummary/spheres.visualization.vp_object.VObject.html">spheres.visualization.vp_object.VObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>spheres.visualization.vp_object</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for spheres.visualization.vp_object</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">vpython</span> <span class="k">as</span> <span class="nn">vp</span>
+
+<div class="viewcode-block" id="VObject"><a class="viewcode-back" href="../../../_autosummary/spheres.visualization.vp_object.VObject.html#spheres.visualization.vp_object.VObject">[docs]</a><span class="k">class</span> <span class="nc">VObject</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parent class for visual objects (using vpython), streamlining the automatic</span>
+<span class="sd">    updating of visuals when attributes are changed, mouse interaction, and keeping track</span>
+<span class="sd">    of sets of visual objects which might be toggled on or off.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="VObject.__init__"><a class="viewcode-back" href="../../../_autosummary/spheres.visualization.vp_object.VObject.html#spheres.visualization.vp_object.VObject.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;auto_refresh_attrs&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;toggles&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">scene</span> <span class="k">if</span> <span class="n">scene</span> <span class="k">else</span> <span class="n">vp</span><span class="o">.</span><span class="n">scene</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">vchildren</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refreshments</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refreshing</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mousedown_callbacks</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mousemove_callbacks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mouseup_callbacks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;mousedown&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mousedown</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;mousemove&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mousemove</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;mouseup&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mouseup</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_refresh_attrs</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">auto_refresh_attrs</span><span class="p">[</span><span class="n">name</span><span class="p">]()</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toggle</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="kc">True</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;exists&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="s2">&quot;vchildren&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;create&quot;</span><span class="p">]()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vchildren</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="s2">&quot;vchildren&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;exists&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;exists&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">destroy_vchildren</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="s2">&quot;vchildren&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="s2">&quot;vchildren&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;exists&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="nf">add_toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">create</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toggles</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;exists&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;create&quot;</span><span class="p">:</span> <span class="n">create</span><span class="p">,</span> <span class="s2">&quot;vchildren&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refreshing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="p">[</span><span class="n">refreshment</span><span class="p">()</span> <span class="k">for</span> <span class="n">refreshment</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshments</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refreshing</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">mousedown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pick</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">pick</span>
+        <span class="k">if</span> <span class="n">pick</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vchildren</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pick</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mousedown_callbacks</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">mousedown_callbacks</span><span class="p">[</span><span class="n">pick</span><span class="p">]()</span>
+
+    <span class="k">def</span> <span class="nf">mousemove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">mousemove_callback</span><span class="p">()</span> <span class="k">for</span> <span class="n">mousemove_callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mousemove_callbacks</span><span class="p">]</span>
+            
+    <span class="k">def</span> <span class="nf">mouseup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">mouseup_callback</span><span class="p">()</span> <span class="k">for</span> <span class="n">mouseup_callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mouseup_callbacks</span><span class="p">]</span>
+            
+    <span class="k">def</span> <span class="nf">destroy_vchildren</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vchildren</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">vchildren</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">vchildren</span> <span class="o">=</span> <span class="p">[</span><span class="n">vchildren</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">vchild</span> <span class="ow">in</span> <span class="n">vchildren</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vchildren</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">vchild</span><span class="p">)</span>
+            <span class="n">vchild</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">del</span> <span class="n">vchild</span>
+
+    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">vchild</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vchildren</span><span class="p">:</span>
+            <span class="n">vchild</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">del</span> <span class="n">vchild</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;mousedown&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mousedown</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;mousemove&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mousemove</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;mouseup&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mouseup</span><span class="p">)</span></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -26,6 +26,7 @@ spheres.utils
       fix_stars
       flatten
       from_pauli_basis
+      measure
       normalize
       normalize_phase
       pauli_basis

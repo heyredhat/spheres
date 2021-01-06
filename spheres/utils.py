@@ -339,6 +339,8 @@ def spinj_xyz(state):
             XYZ expectation values.
     """
     j = (state.shape[0]-1)/2
+    if j == 0:
+        return np.array([0,0,0])
     return np.array([qt.expect(qt.jmat(j, 'x'), state),\
                      qt.expect(qt.jmat(j, 'y'), state),\
                      qt.expect(qt.jmat(j, 'z'), state)])
@@ -610,9 +612,38 @@ def pauli_eigenstate(j, m, direction):
 def basis(d, i, up='z'):
     """
     Similar to `pauli_eigenstate`, only parameterized by dimension.
+
+    Parameters
+    ----------
+        d : int
+            Dimension.
+        
+        i : int
+            Basis state.
+        
+        up : str
+            "x", "y", or "z".
     """
     if d == 0:
         return qt.identity(1)
     j = (d-1)/2
     m = np.arange(j, -j-1, -1)[i]
     return pauli_eigenstate(j, m, up)
+
+def measure(state, projectors):
+    """
+    Given a state and a set of projectors, calculates the probability of each outcome, and returns an outcome index 
+    with that probability.
+
+    Parameters
+    ----------
+        state : qt.Qobj
+
+        projectors : list
+
+    Returns
+    -------
+        index : int
+    """
+    probs = np.array([qt.expect(proj, state) for proj in projectors])
+    return np.random.choice(list(range(len(probs))), p=abs(probs/sum(probs)))

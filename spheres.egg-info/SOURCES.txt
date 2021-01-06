@@ -27,6 +27,7 @@ spheres/stars/pure.py
 spheres/stars/star_utils.py
 spheres/visualization/__init__.py
 spheres/visualization/majorana_sphere.py
-spheres/visualization/mpl_sphere.py
+spheres/visualization/matplotlib_spheres.py
 spheres/visualization/operator_sphere.py
 spheres/visualization/schwinger_spheres.py
+spheres/visualization/vp_object.py

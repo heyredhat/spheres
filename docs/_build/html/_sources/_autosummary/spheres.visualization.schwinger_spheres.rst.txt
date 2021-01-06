@@ -19,6 +19,7 @@ spheres.visualization.schwinger\_spheres
       :toctree:                                          
       :template: custom-class-template.rst               
       
+         OscillatorPlane
          SchwingerSpheres
    
    

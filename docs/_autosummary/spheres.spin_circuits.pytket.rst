@@ -14,13 +14,13 @@ spheres.spin\_circuits.pytket
    .. autosummary::
       :toctree:                                          
    
-      Rk
-      Tkj
+      Rk_pytket
+      Tkj_pytket
       postselect_shots
-      prepare_spin
-      prepare_spin_tomography_test
-      tomography_circuits
-      tomography_shots_dm
+      spin_sym_pytket
+      spin_tomography_pytket
+      tomography_circuits_pytket
+      tomography_dm_pytket
    
    
 

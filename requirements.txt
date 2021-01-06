@@ -8,7 +8,5 @@ pytket
 pytket-qiskit
 qiskit
 strawberryfields
-mpld3
-ipympl
 quadpy
 sympy

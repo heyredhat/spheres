@@ -1,8 +1,8 @@
 """
+Tools for visualizing spin states with vpython and matplotlib.
 """
-
-global_scene = None
-
+from .vp_object import *
 from .majorana_sphere import *
-from .schwinger_spheres import *
 from .operator_sphere import *
+from .schwinger_spheres import *
+from .matplotlib_spheres import *

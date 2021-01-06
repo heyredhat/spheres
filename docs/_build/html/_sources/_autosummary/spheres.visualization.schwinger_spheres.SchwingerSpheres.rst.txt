@@ -23,9 +23,8 @@ spheres.visualization.schwinger\_spheres.SchwingerSpheres
       ~SchwingerSpheres.measure
       ~SchwingerSpheres.raise_spin
       ~SchwingerSpheres.random
-      ~SchwingerSpheres.randomH
+      ~SchwingerSpheres.random_hamiltonian
       ~SchwingerSpheres.refresh
-      ~SchwingerSpheres.set
       ~SchwingerSpheres.vacuum
    
    

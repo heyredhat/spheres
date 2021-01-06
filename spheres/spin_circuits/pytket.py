@@ -58,12 +58,12 @@ def spin_sym_pytket(spin):
     being postselected on the up/0 state.
     
     Returns a dictionary whose elements are:
-    - "circuit": Qiskit circuit
-    - "spin_qubits": Qiskit quantum register for the qubits encoding the spin
-    - "cntrl_qubits": Qiskit quantum register for the control qubits
-    - "cntrl_bits": Qiskit classical register for the control measurements
-    - "postselect_on": "cntrl_bits" (which classical register to control on)
-    - "postselection": [0] x len(cntrl_bits) (postselection state to impose)
+        - "circuit": Qiskit circuit
+        - "spin_qubits": Qiskit quantum register for the qubits encoding the spin
+        - "cntrl_qubits": Qiskit quantum register for the control qubits
+        - "cntrl_bits": Qiskit classical register for the control measurements
+        - "postselect_on": "cntrl_bits" (which classical register to control on)
+        - "postselection": [0] x len(cntrl_bits) (postselection state to impose)
 
     Parameters
     ----------

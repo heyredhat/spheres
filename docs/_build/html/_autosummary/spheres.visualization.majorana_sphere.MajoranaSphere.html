@@ -37,7 +37,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="spheres.visualization.mpl_sphere" href="spheres.visualization.mpl_sphere.html" />
+    <link rel="next" title="spheres.visualization.majorana_sphere.SphericalWavefunction" href="spheres.visualization.majorana_sphere.SphericalWavefunction.html" />
     <link rel="prev" title="spheres.visualization.majorana_sphere.tangent_plane_rotation" href="spheres.visualization.majorana_sphere.tangent_plane_rotation.html" /> 
 </head>
 
@@ -109,6 +109,16 @@
 <li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.error_correction.html">spheres.error_correction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.error_correction.pytket.html">spheres.error_correction.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.error_correction.pytket.build_circuit.html">spheres.error_correction.pytket.build_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.error_correction.pytket.process_sym_counts.html">spheres.error_correction.pytket.process_sym_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.error_correction.pytket.random_circuit.html">spheres.error_correction.pytket.random_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.error_correction.pytket.symmetrize_circuit.html">spheres.error_correction.pytket.symmetrize_circuit</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="spheres.oscillators.html">spheres.oscillators</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
@@ -137,13 +147,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="spheres.spin_circuits.html">spheres.spin_circuits</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="spheres.spin_circuits.pytket.html">spheres.spin_circuits.pytket</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.Rk.html">spheres.spin_circuits.pytket.Rk</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.Tkj.html">spheres.spin_circuits.pytket.Tkj</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.Rk_pytket.html">spheres.spin_circuits.pytket.Rk_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.Tkj_pytket.html">spheres.spin_circuits.pytket.Tkj_pytket</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.postselect_shots.html">spheres.spin_circuits.pytket.postselect_shots</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.prepare_spin.html">spheres.spin_circuits.pytket.prepare_spin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.prepare_spin_tomography_test.html">spheres.spin_circuits.pytket.prepare_spin_tomography_test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.tomography_circuits.html">spheres.spin_circuits.pytket.tomography_circuits</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.tomography_shots_dm.html">spheres.spin_circuits.pytket.tomography_shots_dm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.spin_sym_pytket.html">spheres.spin_circuits.pytket.spin_sym_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.spin_tomography_pytket.html">spheres.spin_circuits.pytket.spin_tomography_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.tomography_circuits_pytket.html">spheres.spin_circuits.pytket.tomography_circuits_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.tomography_dm_pytket.html">spheres.spin_circuits.pytket.tomography_dm_pytket</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.spin_circuits.qiskit.html">spheres.spin_circuits.qiskit</a><ul>
@@ -234,6 +244,7 @@
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.flatten.html">spheres.utils.flatten</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.measure.html">spheres.utils.measure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.normalize.html">spheres.utils.normalize</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
@@ -256,11 +267,12 @@
 <li class="toctree-l3 current"><a class="reference internal" href="spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.majorana_sphere.SphericalWavefunction.html">spheres.visualization.majorana_sphere.SphericalWavefunction</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.mpl_sphere.html">spheres.visualization.mpl_sphere</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.mpl_sphere.animate_spin.html">spheres.visualization.mpl_sphere.animate_spin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.mpl_sphere.viz_spin.html">spheres.visualization.mpl_sphere.viz_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.matplotlib_spheres.html">spheres.visualization.matplotlib_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.matplotlib_spheres.animate_spin.html">spheres.visualization.matplotlib_spheres.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.matplotlib_spheres.viz_spin.html">spheres.visualization.matplotlib_spheres.viz_spin</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
@@ -268,7 +280,12 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.schwinger_spheres.OscillatorPlane.html">spheres.visualization.schwinger_spheres.OscillatorPlane</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.vp_object.html">spheres.visualization.vp_object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.vp_object.VObject.html">spheres.visualization.vp_object.VObject</a></li>
 </ul>
 </li>
 </ul>
@@ -350,24 +367,11 @@
 <h1>spheres.visualization.majorana_sphere.MajoranaSphere<a class="headerlink" href="#spheres-visualization-majorana-sphere-majoranasphere" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere">
-<em class="property">class </em><code class="sig-prename descclassname">spheres.visualization.majorana_sphere.</code><code class="sig-name descname">MajoranaSphere</code><span class="sig-paren">(</span><em class="sig-param">spin</em>, <em class="sig-param">scene=None</em>, <em class="sig-param">position=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">0&gt;</em>, <em class="sig-param">sphere_color=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">1&gt;</em>, <em class="sig-param">radius=None</em>, <em class="sig-param">sphere_opacity=0.3</em>, <em class="sig-param">star_colors=None</em>, <em class="sig-param">make_trails=False</em>, <em class="sig-param">sphere_draggable=True</em>, <em class="sig-param">stars_draggable=True</em>, <em class="sig-param">show_rotation_axis=True</em>, <em class="sig-param">show_phase=False</em>, <em class="sig-param">phase_draggable=False</em>, <em class="sig-param">show_axes=False</em>, <em class="sig-param">show_norm=False</em>, <em class="sig-param">show_wavefunction=None</em>, <em class="sig-param">wavefunction_samples=15</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<em class="property">class </em><code class="sig-prename descclassname">spheres.visualization.majorana_sphere.</code><code class="sig-name descname">MajoranaSphere</code><span class="sig-paren">(</span><em class="sig-param">spin</em>, <em class="sig-param">scene=None</em>, <em class="sig-param">pos=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">0&gt;</em>, <em class="sig-param">radius=None</em>, <em class="sig-param">sphere_color=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">1&gt;</em>, <em class="sig-param">sphere_opacity=0.3</em>, <em class="sig-param">sphere_draggable=True</em>, <em class="sig-param">star_colors=None</em>, <em class="sig-param">make_trails=False</em>, <em class="sig-param">show_rotation_axis=True</em>, <em class="sig-param">show_phase=False</em>, <em class="sig-param">show_reference_axes=False</em>, <em class="sig-param">show_norm=False</em>, <em class="sig-param">show_wavefunction=False</em>, <em class="sig-param">wavefunction_type='coherent'</em>, <em class="sig-param">wavefunction_samples=15</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="spheres.visualization.vp_object.VObject.html#spheres.visualization.vp_object.VObject" title="spheres.visualization.vp_object.VObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">spheres.visualization.vp_object.VObject</span></code></a></p>
 <p><cite>MajoranaSphere</cite> provides a nice way to visualize (pure) spin-j states using
 vpython for graphics, whether in a jupyter notebook or in a standalone
 environment.</p>
-<p>Create a <cite>MajoranaSphere</cite> by specifying a spin state. The radius of the sphere is
-determined by the j value of the spin. One can
-specify a vpython scene in which to place the MajoranaSphere (if none is provided,
-one is created by default) the position at which to place the sphere,
-the color and opacity of the sphere, the colors of the stars, whether the stars
-leave trails, whether the sphere and the stars
-are draggable by mouse, whether to show the expected rotation axis of the
-spin as a yellow arrow, whether to show reference cartesian axes in red, whether
-to show the complex phase of the spin as a green arrow hovering atop the sphere,
-and whether to additionally visualize the spin as a wavefunction on the sphere:
-both as a coherent state wave function or in terms of the Majorana function.
-One can specify the number of sample points to evaluate at, and the wavefunction
-amplitudes are visualized as arrows tangent to the sphere at these points.</p>
 <dl class="py attribute">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.spin">
 <code class="sig-name descname">spin</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.spin" title="Permalink to this definition">¶</a></dt>
@@ -414,10 +418,21 @@ is automatically updated.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.scene">
+<code class="sig-name descname">scene</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.scene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scene in which to place the Majorana sphere. Defaults to a global scene.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>vp.canvas</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.show_rotation_axis">
 <code class="sig-name descname">show_rotation_axis</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.show_rotation_axis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether to show the expected rotation axis. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_rotation_axis()</span></code>.</p>
+is automatically updated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>bool</p>
@@ -429,7 +444,7 @@ is automatically updated. Can also use <code class="xref py py-meth docutils lit
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.show_phase">
 <code class="sig-name descname">show_phase</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.show_phase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether to show the phase. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_phase()</span></code>.</p>
+is automatically updated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>bool</p>
@@ -438,10 +453,22 @@ is automatically updated. Can also use <code class="xref py py-meth docutils lit
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.show_axes">
-<code class="sig-name descname">show_axes</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.show_axes" title="Permalink to this definition">¶</a></dt>
+<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.show_reference_axes">
+<code class="sig-name descname">show_reference_axes</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.show_reference_axes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether to show reference cartesian axes. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_axes()</span></code>.</p>
+is automatically updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.show_norm">
+<code class="sig-name descname">show_norm</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.show_norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the norm of the state as a label. If this attribute is set, the visualization
+is automatically updated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>bool</p>
@@ -453,31 +480,7 @@ is automatically updated. Can also use <code class="xref py py-meth docutils lit
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.sphere_draggable">
 <code class="sig-name descname">sphere_draggable</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.sphere_draggable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether one can drag the sphere with the mouse. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_sphere_draggable()</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.stars_draggable">
-<code class="sig-name descname">stars_draggable</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.stars_draggable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether one can drag the individual stars with the mouse. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_stars_draggable()</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.phase_draggable">
-<code class="sig-name descname">phase_draggable</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.phase_draggable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether one can drag the phase around with the mouse. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_phase_draggable()</span></code>.</p>
+is automatically updated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>bool</p>
@@ -489,7 +492,7 @@ is automatically updated. Can also use <code class="xref py py-meth docutils lit
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.make_trails">
 <code class="sig-name descname">make_trails</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.make_trails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the stars leave trails. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_trails()</span></code>.</p>
+is automatically updated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>bool</p>
@@ -500,57 +503,43 @@ is automatically updated. Can also use <code class="xref py py-meth docutils lit
 <dl class="py attribute">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.show_wavefunction">
 <code class="sig-name descname">show_wavefunction</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.show_wavefunction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Can specify “majorana”, “coherent_state”, or <cite>None/False</cite>. If this attribute is set, the visualization
-is automatically updated. Can also use <code class="xref py py-meth docutils literal notranslate"><span class="pre">toggle_wavefunction()</span></code>.</p>
+<dd><p>Whether to show spin coherent wavefunction. If this attribute is set, the visualization
+is automatically updated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool or str</p>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.wavefunction_type">
+<code class="sig-name descname">wavefunction_type</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.wavefunction_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>“majorana” or “coherent”. The former evaluates the amplitude on a spin coherent state at sample
+points on the sphere. The latter evaluates the normalized Majorana function. The two should be
+antipodal to each other.If this attribute is set, the visualization is automatically updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.wavefunction_samples">
+<code class="sig-name descname">wavefunction_samples</code><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.wavefunction_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sample points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">spin</em>, <em class="sig-param">scene=None</em>, <em class="sig-param">position=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">0&gt;</em>, <em class="sig-param">sphere_color=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">1&gt;</em>, <em class="sig-param">radius=None</em>, <em class="sig-param">sphere_opacity=0.3</em>, <em class="sig-param">star_colors=None</em>, <em class="sig-param">make_trails=False</em>, <em class="sig-param">sphere_draggable=True</em>, <em class="sig-param">stars_draggable=True</em>, <em class="sig-param">show_rotation_axis=True</em>, <em class="sig-param">show_phase=False</em>, <em class="sig-param">phase_draggable=False</em>, <em class="sig-param">show_axes=False</em>, <em class="sig-param">show_norm=False</em>, <em class="sig-param">show_wavefunction=None</em>, <em class="sig-param">wavefunction_samples=15</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>spin</strong> (<em>qt.Qobj</em>) – The spin state to visualize.</p></li>
-<li><p><strong>scene</strong> (<em>vp.canvas</em><em>, </em><em>optional</em>) – <cite>vpython</cite> canvas in which to place the sphere. If none is provided,
-a new canvas is created.</p></li>
-<li><p><strong>position</strong> (<em>vp.vector</em><em>, </em><em>optional</em>) – 3D <cite>vpython</cite> vector coordinates at which to place the sphere.</p></li>
-<li><p><strong>sphere_color</strong> (<em>vp.vector</em><em>, </em><em>optional</em>) – <cite>vpython</cite> vector representing the RGB color values for the sphere.</p></li>
-<li><p><strong>sphere_opacity</strong> (<em>float</em><em>, </em><em>optional</em>) – Specifies the opacity of the sphere.</p></li>
-<li><p><strong>star_colors</strong> (<em>vp.vector</em><em> or </em><em>list</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – Specifies the color of the stars. If given a <cite>vpython</cite> vector representing
-RGB color values, all the stars are colored with that color. If given a list
-of such vectors, the stars are colored with those colors. If given “random”,
-random colors are generated for each star. Note that if the stars are
-different colors, there is some performance overhead as a little extra work
-has to be done to keep track of which star is which: in other words,
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">spin_xyz()</span></code>  doesn’t nail down the ordering of the stars and so they
-may “switch places.” This is undetectable if the stars are all colored the same,
-but if they aren’t, we use <code class="xref py py-meth docutils literal notranslate"><span class="pre">fix_ordering()</span></code> to try to keep continuity.</p></li>
-<li><p><strong>make_trails</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, the stars leave (colored) trails behind them. Similarly to the above,
-we must use <code class="xref py py-meth docutils literal notranslate"><span class="pre">fix_ordering()</span></code> to keep continuity.</p></li>
-<li><p><strong>sphere_draggable</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, one can click the sphere to (un)select it (it turns purple), and
-then drag it around the scene.</p></li>
-<li><p><strong>stars_draggable</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, one can click the stars to un(select) them (they turn magenta),
-and then drag them around the surface of the sphere.</p></li>
-<li><p><strong>show_rotation_axis</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, shows the expected spin axis in yellow.</p></li>
-<li><p><strong>show_phase</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, shows the complex phase of the wavefunction as a green arrow
-within a black ring hovering above the sphere like a halo.</p></li>
-<li><p><strong>phase_draggable</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, allows the complex phase to be dragged via the mouse.</p></li>
-<li><p><strong>show_axes</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, shows reference cartesian axes in red.</p></li>
-<li><p><strong>show_wavefunction</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – If “majorana”, visualizes the normalized Majorana function on the sphere.
-If “coherent_state”, visualizes the coherent state wavefunction on the sphere.
-The two are antipodal to each other.
-The complex amplitudes appear as arrows tangent to the surface of the sphere
-at each sample point.</p></li>
-<li><p><strong>wavefunction_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of sample points <span class="math notranslate nohighlight">\(n\)</span> at which to evaluate the wavefunction. The total
-number of points is <span class="math notranslate nohighlight">\(n^2\)</span>.</p></li>
-</ul>
-</dd>
-</dl>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">spin</em>, <em class="sig-param">scene=None</em>, <em class="sig-param">pos=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">0&gt;</em>, <em class="sig-param">radius=None</em>, <em class="sig-param">sphere_color=&lt;0</em>, <em class="sig-param">0</em>, <em class="sig-param">1&gt;</em>, <em class="sig-param">sphere_opacity=0.3</em>, <em class="sig-param">sphere_draggable=True</em>, <em class="sig-param">star_colors=None</em>, <em class="sig-param">make_trails=False</em>, <em class="sig-param">show_rotation_axis=True</em>, <em class="sig-param">show_phase=False</em>, <em class="sig-param">show_reference_axes=False</em>, <em class="sig-param">show_norm=False</em>, <em class="sig-param">show_wavefunction=False</em>, <em class="sig-param">wavefunction_type='coherent'</em>, <em class="sig-param">wavefunction_samples=15</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
@@ -560,63 +549,94 @@ number of points is <span class="math notranslate nohighlight">\(n^2\)</span>.</
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.__init__" title="spheres.visualization.majorana_sphere.MajoranaSphere.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(spin[, scene, position, …])</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param spin</dt>
-<dd class="field-odd"><p>The spin state to visualize.</p>
-</dd>
-</dl>
-</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.__init__" title="spheres.visualization.majorana_sphere.MajoranaSphere.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(spin[, scene, pos, radius, …])</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_toggle</span></code>(name, create)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_wavefunction_type</span></code>()</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.clear_snapshot" title="spheres.visualization.majorana_sphere.MajoranaSphere.clear_snapshot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_snapshot</span></code></a>()</p></td>
-<td><p>Clears a snapshot.</p></td>
+<td><p>Clears the last snapshot taken.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.clear_trails" title="spheres.visualization.majorana_sphere.MajoranaSphere.clear_trails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_trails</span></code></a>()</p></td>
-<td><p>Clears the star trails.</p></td>
+<td><p>Clear star trails.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.destroy" title="spheres.visualization.majorana_sphere.MajoranaSphere.destroy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">destroy</span></code></a>()</p></td>
-<td><p>Destroys the MajoranaSphere.</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_norm</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_phase</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_reference_axes</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_rotation_axis</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_wavefunction</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.destroy" title="spheres.visualization.majorana_sphere.MajoranaSphere.destroy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">destroy</span></code></a>()</p></td>
+<td><p>Destroys the Majorana sphere.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">destroy_vchildren</span></code>(vchildren)</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.evolve" title="spheres.visualization.majorana_sphere.MajoranaSphere.evolve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evolve</span></code></a>(H[, dt, T])</p></td>
-<td><p>Visualizes the evolution of the spin state under the specified Hamiltonian.</p></td>
+<td><p>Evolves the state, updating the visual in real time.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mouseclick</span></code>()</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mousedown</span></code>()</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mousemove</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.refresh" title="spheres.visualization.majorana_sphere.MajoranaSphere.refresh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh</span></code></a>()</p></td>
-<td><p>Refreshes the visualization from the value of <cite>self.spin</cite>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.snapshot" title="spheres.visualization.majorana_sphere.MajoranaSphere.snapshot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">snapshot</span></code></a>()</p></td>
-<td><p>Takes a snapshot of the current locations of the stars and, if applicable, the phase, rotation axis, and wavefunction amplitudes.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_axes</span></code>([toggle])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mouseup</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_norm</span></code>([toggle])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_phase</span></code>([toggle])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_norm</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_phase_draggable</span></code>([toggle])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_phase</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_rotation_axis</span></code>([toggle])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_reference_axes</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_sphere_draggable</span></code>([toggle])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_rotation_axis</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_stars_draggable</span></code>([toggle])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_spin</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_trails</span></code>([toggle])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_stars</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle_wavefunction</span></code>([toggle])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_trails</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_wavefunction</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#spheres.visualization.majorana_sphere.MajoranaSphere.snapshot" title="spheres.visualization.majorana_sphere.MajoranaSphere.snapshot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">snapshot</span></code></a>()</p></td>
+<td><p>Takes a snaphot of the stars, phase, and rotation axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sphere_drag</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_sphere_dragging</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_sphere_dragging</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">toggle</span></code>(name[, value])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -624,51 +644,40 @@ number of points is <span class="math notranslate nohighlight">\(n^2\)</span>.</
 <dl class="py method">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.clear_snapshot">
 <code class="sig-name descname">clear_snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.clear_snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.clear_snapshot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clears a snapshot. If there’s more than one snapshot,
-we clear them first in, first out.</p>
+<dd><p>Clears the last snapshot taken.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.clear_trails">
 <code class="sig-name descname">clear_trails</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.clear_trails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.clear_trails" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clears the star trails.</p>
+<dd><p>Clear star trails.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.destroy">
 <code class="sig-name descname">destroy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.destroy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.destroy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Destroys the MajoranaSphere.</p>
+<dd><p>Destroys the Majorana sphere.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.evolve">
 <code class="sig-name descname">evolve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">6.283185307179586</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.evolve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Visualizes the evolution of the spin state under the specified Hamiltonian.</p>
+<dd><p>Evolves the state, updating the visual in real time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>H</strong> (<em>qt.Qobj</em>) – The Hamiltonian.</p></li>
-<li><p><strong>dt</strong> (<em>float</em>) – The time step for each sample of the evolution after which the
-visualization is updated.</p></li>
-<li><p><strong>T</strong> (<em>int</em>) – The total number of time steps to evolve for.</p></li>
+<li><p><strong>H</strong> (<em>qt.Qobj</em>) – Hamiltonian.</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – Time step.</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – Time interval.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="spheres.visualization.majorana_sphere.MajoranaSphere.refresh">
-<code class="sig-name descname">refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.refresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.refresh" title="Permalink to this definition">¶</a></dt>
-<dd><p>Refreshes the visualization from the value of <cite>self.spin</cite>.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt id="spheres.visualization.majorana_sphere.MajoranaSphere.snapshot">
 <code class="sig-name descname">snapshot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spheres/visualization/majorana_sphere.html#MajoranaSphere.snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spheres.visualization.majorana_sphere.MajoranaSphere.snapshot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes a snapshot of the current locations of the stars
-and, if applicable, the phase, rotation axis, and
-wavefunction amplitudes. In other words, clones them.
-Can take multiple snapshots, which are added to a list.</p>
+<dd><p>Takes a snaphot of the stars, phase, and rotation axis. In other words, makes a copy of them.</p>
 </dd></dl>
 
 </dd></dl>
@@ -683,7 +692,7 @@ Can take multiple snapshots, which are added to a list.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="spheres.visualization.mpl_sphere.html" class="btn btn-neutral float-right" title="spheres.visualization.mpl_sphere" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="spheres.visualization.majorana_sphere.SphericalWavefunction.html" class="btn btn-neutral float-right" title="spheres.visualization.majorana_sphere.SphericalWavefunction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="spheres.visualization.majorana_sphere.tangent_plane_rotation.html" class="btn btn-neutral float-left" title="spheres.visualization.majorana_sphere.tangent_plane_rotation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

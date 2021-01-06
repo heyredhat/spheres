@@ -5,44 +5,60 @@ spheres.visualization.majorana_sphere
 Classes:
  * MajoranaSphere -- missing methods:
 
-   - mouseclick
-   - mousemove
-   - toggle_axes
-   - toggle_norm
-   - toggle_phase
-   - toggle_phase_draggable
-   - toggle_rotation_axis
-   - toggle_sphere_draggable
-   - toggle_stars_draggable
-   - toggle_trails
-   - toggle_wavefunction
+   - change_wavefunction_type
+   - create_norm
+   - create_phase
+   - create_reference_axes
+   - create_rotation_axis
+   - create_wavefunction
+   - refresh_norm
+   - refresh_phase
+   - refresh_reference_axes
+   - refresh_rotation_axis
+   - refresh_spin
+   - refresh_stars
+   - refresh_trails
+   - refresh_wavefunction
+   - sphere_drag
+   - start_sphere_dragging
+   - stop_sphere_dragging
+ * SphericalWavefunction -- missing methods:
+
+   - create_wavefunction
+   - refresh_wavefunction
 
 spheres.visualization.operator_sphere
 -------------------------------------
 Classes:
  * OperatorSphere -- missing methods:
 
-   - cmp_spin
-   - destroy
-   - evolve
-   - mouseclick
+   - mousedown
    - mousemove
+   - mouseup
    - refresh
-   - set
 
 spheres.visualization.schwinger_spheres
 ---------------------------------------
 Classes:
- * SchwingerSpheres -- missing methods:
+ * OscillatorPlane -- missing methods:
 
    - destroy
-   - evolve
-   - lower_spin
-   - measure
-   - raise_spin
-   - random
-   - randomH
    - refresh
-   - set
-   - vacuum
+ * SchwingerSpheres -- missing methods:
+
+   - refresh
+
+spheres.visualization.vp_object
+-------------------------------
+Classes:
+ * VObject -- missing methods:
+
+   - add_toggle
+   - destroy
+   - destroy_vchildren
+   - mousedown
+   - mousemove
+   - mouseup
+   - refresh
+   - toggle
 

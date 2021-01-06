@@ -17,23 +17,35 @@ spheres.visualization.majorana\_sphere.MajoranaSphere
    .. autosummary::
    
       ~MajoranaSphere.__init__
+      ~MajoranaSphere.add_toggle
+      ~MajoranaSphere.change_wavefunction_type
       ~MajoranaSphere.clear_snapshot
       ~MajoranaSphere.clear_trails
+      ~MajoranaSphere.create_norm
+      ~MajoranaSphere.create_phase
+      ~MajoranaSphere.create_reference_axes
+      ~MajoranaSphere.create_rotation_axis
+      ~MajoranaSphere.create_wavefunction
       ~MajoranaSphere.destroy
+      ~MajoranaSphere.destroy_vchildren
       ~MajoranaSphere.evolve
-      ~MajoranaSphere.mouseclick
+      ~MajoranaSphere.mousedown
       ~MajoranaSphere.mousemove
+      ~MajoranaSphere.mouseup
       ~MajoranaSphere.refresh
+      ~MajoranaSphere.refresh_norm
+      ~MajoranaSphere.refresh_phase
+      ~MajoranaSphere.refresh_reference_axes
+      ~MajoranaSphere.refresh_rotation_axis
+      ~MajoranaSphere.refresh_spin
+      ~MajoranaSphere.refresh_stars
+      ~MajoranaSphere.refresh_trails
+      ~MajoranaSphere.refresh_wavefunction
       ~MajoranaSphere.snapshot
-      ~MajoranaSphere.toggle_axes
-      ~MajoranaSphere.toggle_norm
-      ~MajoranaSphere.toggle_phase
-      ~MajoranaSphere.toggle_phase_draggable
-      ~MajoranaSphere.toggle_rotation_axis
-      ~MajoranaSphere.toggle_sphere_draggable
-      ~MajoranaSphere.toggle_stars_draggable
-      ~MajoranaSphere.toggle_trails
-      ~MajoranaSphere.toggle_wavefunction
+      ~MajoranaSphere.sphere_drag
+      ~MajoranaSphere.start_sphere_dragging
+      ~MajoranaSphere.stop_sphere_dragging
+      ~MajoranaSphere.toggle
    
    
 

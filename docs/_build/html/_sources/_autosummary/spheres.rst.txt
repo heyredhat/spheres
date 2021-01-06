@@ -30,6 +30,7 @@
 
    spheres.beams
    spheres.coordinates
+   spheres.error_correction
    spheres.oscillators
    spheres.polyhedra
    spheres.relativity

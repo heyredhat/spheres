@@ -5,6 +5,8 @@ from pytket import Circuit
 from pytket.circuit import Unitary1qBox, Unitary2qBox
 from pytket.utils import probs_from_counts
 
+from ..spin_circuits.pytket import *
+
 def random_circuit(n_qubits=1, depth=1):
     """
     Generates a random circuit specification with a specified number of qubits and depth.
@@ -83,9 +85,9 @@ def symmetrize_circuit(circuit_info,
                 pairs = random_unique_pairs(n_copies)
                 for i, pair in enumerate(pairs):
                     if reuse_cntrls:
-                        circ.add_unitary1qbox(Rk(1), cntrl_qubits[i])
+                        circ.add_unitary1qbox(Rk_pytket(1), cntrl_qubits[i])
                     else:
-                        circ.add_unitary1qbox(Rk(1), cntrl_qubits[t][i])
+                        circ.add_unitary1qbox(Rk_pytket(1), cntrl_qubits[t][i])
                     for j in range(circuit_info["n_qubits"]):
                         if reuse_cntrls:
                             circ.CSWAP(cntrl_qubits[i],\
@@ -96,9 +98,9 @@ def symmetrize_circuit(circuit_info,
                                        qubit_registers[pair[0]][j],\
                                        qubit_registers[pair[1]][j])
                     if reuse_cntrls:  
-                        circ.add_unitary1qbox(Rk(1, dagger=True), cntrl_qubits[i])
+                        circ.add_unitary1qbox(Rk_pytket(1, dagger=True), cntrl_qubits[i])
                     else:
-                        circ.add_unitary1qbox(Rk(1, dagger=True), cntrl_qubits[t][i])
+                        circ.add_unitary1qbox(Rk_pytket(1, dagger=True), cntrl_qubits[t][i])
                     if measure:
                         if reuse_cntrls:
                             circ.Measure(cntrl_qubits[i], cntrl_bits[t][i])
@@ -109,16 +111,16 @@ def symmetrize_circuit(circuit_info,
                 for k in range(1, n_copies):
                     offset = offset-k
                     if reuse_cntrls:
-                        circ.add_unitary1qbox(Rk(k), cntrl_qubits[offset])
+                        circ.add_unitary1qbox(Rk_pytket(k), cntrl_qubits[offset])
                     else:
-                        circ.add_unitary1qbox(Rk(k), cntrl_qubits[t][offset])
+                        circ.add_unitary1qbox(Rk_pytket(k), cntrl_qubits[t][offset])
                     for i in range(k-1):
                         if reuse_cntrls:
-                            circ.add_unitary2qbox(Tkj(k, i+1),\
+                            circ.add_unitary2qbox(Tkj_pytket(k, i+1),\
                                               cntrl_qubits[offset+i+1],\
                                               cntrl_qubits[offset+i])
                         else:
-                            circ.add_unitary2qbox(Tkj(k, i+1),\
+                            circ.add_unitary2qbox(Tkj_pytket(k, i+1),\
                                               cntrl_qubits[t][offset+i+1],\
                                               cntrl_qubits[t][offset+i])
                     for i in range(k-1, -1, -1):
@@ -133,17 +135,17 @@ def symmetrize_circuit(circuit_info,
                                            qubit_registers[i][j])
                     for i in range(k-2, -1, -1):
                         if reuse_cntrls:
-                            circ.add_unitary2qbox(Tkj(k, i+1, dagger=True),\
+                            circ.add_unitary2qbox(Tkj_pytket(k, i+1, dagger=True),\
                                                   cntrl_qubits[offset+i+1],\
                                                   cntrl_qubits[offset+i])
                         else:
-                            circ.add_unitary2qbox(Tkj(k, i+1, dagger=True),\
+                            circ.add_unitary2qbox(Tkj_pytket(k, i+1, dagger=True),\
                                                   cntrl_qubits[t][offset+i+1],\
                                                   cntrl_qubits[t][offset+i])
                     if reuse_cntrls:
-                        circ.add_unitary1qbox(Rk(k, dagger=True), cntrl_qubits[offset])
+                        circ.add_unitary1qbox(Rk_pytket(k, dagger=True), cntrl_qubits[offset])
                     else:
-                        circ.add_unitary1qbox(Rk(k, dagger=True), cntrl_qubits[t][offset])
+                        circ.add_unitary1qbox(Rk_pytket(k, dagger=True), cntrl_qubits[t][offset])
                 if measure:
                     for i in range(r):
                         if reuse_cntrls:
