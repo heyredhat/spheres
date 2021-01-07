@@ -1,0 +1,842 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Generalizing the Majorana Representation for Mixed States and Operators"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "So one of the biggest limitations of the Majorana representation for spin is that it only works for pure states. But what happens if we want to deal with mixed states (or operators more generally)? Is there some natural generalization, also in terms of constellations that transform nicely under rotations?\n",
+    "\n",
+    "Leboeuf in his \"Phase space approach to quantum dynamics,\" suggests one avenue. We know that we can write the Majorana polynomial for a single spin as $f(z) = \\langle \\tilde{z} \\mid \\psi \\rangle$ where $\\tilde{z}$ is the point antipodal to $z$ on the sphere. For two spins, we could consider the two variable polynomial:\n",
+    "\n",
+    "$f(z_{0}, z_{1}) = \\langle \\tilde{z_{0}} \\tilde{z_{1}} \\mid \\psi \\rangle = \\sum_{m_{0} = -j_{0}}^{j_0} \\sum_{m_{1} = -j_{1}}^{j_{1}} c_{m_{0}, m_{1}}z_{0}^{j_{0}-m_{0}}z_{1}^{j_{1}-m_{1}}$\n",
+    "\n",
+    "And then consider \"cross-sections\" like:\n",
+    "\n",
+    "$s_{m_{1}}(z_{0}) = \\sum_{m_{0}=-j_{0}}^{j_{0}} c_{m_{0}, m_{1}}z_{0}^{j_{0}-m_{0}}$\n",
+    "\n",
+    "for each value of $m_{1}$. There will be $2j_{1} + 1$ such functions and each will have $2j_{0}$ zeros. This set of $(2j_{1} + 1) \\times 2j_{0}$ zeros completely determines the quantum state of the two spins. In other words, given two spins $A$ and $B$, we can consider each of the $m$ values of $B$, and get a set of constellations describing $A$, one for each $m$ value of $B$ (and vice versa)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<hr>\n",
+    "\n",
+    "But that's not entirely satisfying, and we can do better. In what follows, we rely on the very nice recent paper \"Majorana representation for mixed states,\" where they employ the \"Ramachandran-Ravishankar representation\" aka the \"T-rep\".\n",
+    "\n",
+    "The basic tool is a set of tensor operators for a given $j$ value: $\\{T_{\\sigma, \\mu}^{j}\\}_{\\mu=-\\sigma}^{\\sigma}$ : these are sets of matrices which transform nicely under $SU(2)$, and are the matrix analogue of the spherical harmonics $Y_{lm}(\\theta, \\phi)$ which span the space of real valued functions on the sphere.\n",
+    "\n",
+    "They are defined by:\n",
+    "\n",
+    "$T_{\\sigma, \\mu}^{j} = \\sum_{m, m^{\\prime}=-j}^{j} (-1)^{j-m^\\prime} C_{j, m; j, -m'}^{\\sigma, \\mu} \\mid j, m \\rangle \\langle j, m^{\\prime} \\mid$\n",
+    "\n",
+    "For a given value of $j$, $\\sigma$ ranges from $0$ to $2j$, and $\\mu$ from $-\\sigma$ to $\\sigma$. The $C$ refers to the Clebsch-Gordan coefficient $C_{j_{1}, m_{1}; j_{2}, m_{2}}^{j, m}$.\n",
+    "\n",
+    "Recall the latter's meaning in terms of angular momentum coupling theory. We have:\n",
+    "\n",
+    "$\\mid j, m \\rangle = \\sum_{m_{1}=-j_{1}}^{j_{1}} \\sum_{m_{2}=-j_{2}}^{j_{2}} \\mid j_{1}, m_{1}; j_{2}, m_{2} \\rangle \\langle j_{1}, m_{1};j_{2}, m_{2} \\mid j, m \\rangle$\n",
+    "\n",
+    "Then: $C_{j_{1}, m_{1}; j_{2}, m_{2}}^{j, m} = \\langle j_{1}, m_{1};j_{2}, m_{2} \\mid j, m \\rangle$.\n",
+    "\n",
+    "We're imagining that we have the tensor product of two spins with $j_{1}$ and $j_{2}$, and we want to switch to the \"coupled basis\" (in terms of eigenstates of the total angular momentum): the Clebsch-Gordan coefficients tell us how to do that.\n",
+    "\n",
+    "In any case, for a given $j$ value, we can construct a collection of \"spherical tensors\". There will be $2j$ sets of them (for $\\sigma$ from $0$ to $2j)$, each with $2\\sigma+1$ operators in a set. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "scrolled": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div id=\"glowscript\" class=\"glowscript\"></div>"
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "application/javascript": [
+       "if (typeof Jupyter !== \"undefined\") { window.__context = { glowscript_container: $(\"#glowscript\").removeAttr(\"id\")};}else{ element.textContent = ' ';}"
+      ],
+      "text/plain": [
+       "<IPython.core.display.Javascript object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "sigma: 0, mu: 0\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = True\n",
+      "Qobj data =\n",
+      "[[0.5 0.  0.  0. ]\n",
+      " [0.  0.5 0.  0. ]\n",
+      " [0.  0.  0.5 0. ]\n",
+      " [0.  0.  0.  0.5]]\n",
+      "\n",
+      "sigma: 1, mu: -1\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[0.         0.         0.         0.        ]\n",
+      " [0.54772256 0.         0.         0.        ]\n",
+      " [0.         0.63245553 0.         0.        ]\n",
+      " [0.         0.         0.54772256 0.        ]]\n",
+      "\n",
+      "sigma: 1, mu: 0\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = True\n",
+      "Qobj data =\n",
+      "[[ 0.67082039  0.          0.          0.        ]\n",
+      " [ 0.          0.2236068   0.          0.        ]\n",
+      " [ 0.          0.         -0.2236068   0.        ]\n",
+      " [ 0.          0.          0.         -0.67082039]]\n",
+      "\n",
+      "sigma: 1, mu: 1\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.         -0.54772256  0.          0.        ]\n",
+      " [ 0.          0.         -0.63245553  0.        ]\n",
+      " [ 0.          0.          0.         -0.54772256]\n",
+      " [ 0.          0.          0.          0.        ]]\n",
+      "\n",
+      "sigma: 2, mu: -2\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[0.         0.         0.         0.        ]\n",
+      " [0.         0.         0.         0.        ]\n",
+      " [0.70710678 0.         0.         0.        ]\n",
+      " [0.         0.70710678 0.         0.        ]]\n",
+      "\n",
+      "sigma: 2, mu: -1\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.          0.          0.          0.        ]\n",
+      " [ 0.70710678  0.          0.          0.        ]\n",
+      " [ 0.          0.          0.          0.        ]\n",
+      " [ 0.          0.         -0.70710678  0.        ]]\n",
+      "\n",
+      "sigma: 2, mu: 0\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = True\n",
+      "Qobj data =\n",
+      "[[ 0.5  0.   0.   0. ]\n",
+      " [ 0.  -0.5  0.   0. ]\n",
+      " [ 0.   0.  -0.5  0. ]\n",
+      " [ 0.   0.   0.   0.5]]\n",
+      "\n",
+      "sigma: 2, mu: 1\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.         -0.70710678  0.          0.        ]\n",
+      " [ 0.          0.          0.          0.        ]\n",
+      " [ 0.          0.          0.          0.70710678]\n",
+      " [ 0.          0.          0.          0.        ]]\n",
+      "\n",
+      "sigma: 2, mu: 2\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[0.         0.         0.70710678 0.        ]\n",
+      " [0.         0.         0.         0.70710678]\n",
+      " [0.         0.         0.         0.        ]\n",
+      " [0.         0.         0.         0.        ]]\n",
+      "\n",
+      "sigma: 3, mu: -3\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[0. 0. 0. 0.]\n",
+      " [0. 0. 0. 0.]\n",
+      " [0. 0. 0. 0.]\n",
+      " [1. 0. 0. 0.]]\n",
+      "\n",
+      "sigma: 3, mu: -2\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.          0.          0.          0.        ]\n",
+      " [ 0.          0.          0.          0.        ]\n",
+      " [ 0.70710678  0.          0.          0.        ]\n",
+      " [ 0.         -0.70710678  0.          0.        ]]\n",
+      "\n",
+      "sigma: 3, mu: -1\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.          0.          0.          0.        ]\n",
+      " [ 0.4472136   0.          0.          0.        ]\n",
+      " [ 0.         -0.77459667  0.          0.        ]\n",
+      " [ 0.          0.          0.4472136   0.        ]]\n",
+      "\n",
+      "sigma: 3, mu: 0\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = True\n",
+      "Qobj data =\n",
+      "[[ 0.2236068   0.          0.          0.        ]\n",
+      " [ 0.         -0.67082039  0.          0.        ]\n",
+      " [ 0.          0.          0.67082039  0.        ]\n",
+      " [ 0.          0.          0.         -0.2236068 ]]\n",
+      "\n",
+      "sigma: 3, mu: 1\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.         -0.4472136   0.          0.        ]\n",
+      " [ 0.          0.          0.77459667  0.        ]\n",
+      " [ 0.          0.          0.         -0.4472136 ]\n",
+      " [ 0.          0.          0.          0.        ]]\n",
+      "\n",
+      "sigma: 3, mu: 2\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.          0.          0.70710678  0.        ]\n",
+      " [ 0.          0.          0.         -0.70710678]\n",
+      " [ 0.          0.          0.          0.        ]\n",
+      " [ 0.          0.          0.          0.        ]]\n",
+      "\n",
+      "sigma: 3, mu: 3\n",
+      "Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = False\n",
+      "Qobj data =\n",
+      "[[ 0.  0.  0. -1.]\n",
+      " [ 0.  0.  0.  0.]\n",
+      " [ 0.  0.  0.  0.]\n",
+      " [ 0.  0.  0.  0.]]\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "from spheres import *\n",
+    "\n",
+    "def spherical_tensor(j, sigma, mu):\n",
+    "    terms = []\n",
+    "    for m1 in np.arange(-j, j+1):\n",
+    "        for m2 in np.arange(-j, j+1):\n",
+    "            terms.append(\\\n",
+    "                ((-1)**(j-m2))*\\\n",
+    "                qt.clebsch(j, j, sigma, m1, -m2, mu)*\\\n",
+    "                qt.spin_state(j, m1)*qt.spin_state(j, m2).dag())\n",
+    "    return sum(terms)\n",
+    "\n",
+    "def spherical_tensor_basis(j):\n",
+    "    T_basis = {}\n",
+    "    for sigma in np.arange(0, int(2*j+1)):\n",
+    "        for mu in np.arange(-sigma, sigma+1):\n",
+    "            T_basis[(sigma, mu)] = spherical_tensor(j, sigma, mu)\n",
+    "    return T_basis\n",
+    "\n",
+    "j = 3/2\n",
+    "T = spherical_tensor_basis(j)\n",
+    "for sigma_mu, O in T.items():\n",
+    "    print(\"sigma: %d, mu: %d\\n%s\\n\" % (sigma_mu[0], sigma_mu[1], O))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For a given $j$ value, corresponding to a $2j+1$ dimensional representation, these matrices span the set of all $(2j+1) \\times (2j+1)$ complex square matrices. And so, we decompose any operator (like a Hermitian density matrix) in terms of them. The coefficients in this basis will be generally complex."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "sigma: 0, mu: 0 = 0.500 + 0.000\n",
+      "sigma: 1, mu: -1 = 0.019 + -0.042\n",
+      "sigma: 1, mu: 0 = -0.135 + 0.000\n",
+      "sigma: 1, mu: 1 = -0.019 + -0.042\n",
+      "sigma: 2, mu: -2 = 0.005 + 0.030\n",
+      "sigma: 2, mu: -1 = -0.080 + 0.051\n",
+      "sigma: 2, mu: 0 = 0.044 + 0.000\n",
+      "sigma: 2, mu: 1 = 0.080 + 0.051\n",
+      "sigma: 2, mu: 2 = 0.005 + -0.030\n",
+      "sigma: 3, mu: -3 = -0.006 + 0.036\n",
+      "sigma: 3, mu: -2 = 0.000 + -0.009\n",
+      "sigma: 3, mu: -1 = 0.054 + -0.021\n",
+      "sigma: 3, mu: 0 = -0.216 + 0.000\n",
+      "sigma: 3, mu: 1 = -0.054 + -0.021\n",
+      "sigma: 3, mu: 2 = 0.000 + 0.009\n",
+      "sigma: 3, mu: 3 = 0.006 + 0.036\n"
+     ]
+    }
+   ],
+   "source": [
+    "def operator_spherical_decomposition(O, T_basis=None):\n",
+    "    j = (O.shape[0]-1)/2\n",
+    "    if not T_basis:\n",
+    "        T_basis = spherical_tensor_basis(j)\n",
+    "    decomposition = {}\n",
+    "    for sigma in np.arange(0, int(2*j+1)):\n",
+    "        for mu in np.arange(-sigma, sigma+1):\n",
+    "            decomposition[(sigma, mu)] = (O*T_basis[(sigma, mu)].dag()).tr()\n",
+    "    return decomposition\n",
+    "\n",
+    "O = qt.rand_dm(int(2*j+1))\n",
+    "coeffs = operator_spherical_decomposition(O, T_basis=T)\n",
+    "for sigma_mu, c in coeffs.items():\n",
+    "    print(\"sigma: %d, mu: %d = %.3f + %.3f\" % (sigma_mu[0], sigma_mu[1], c.real, c.imag))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Naturally, we can go in reverse and recover the operator in the standard basis."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "recovered operator? True\n"
+     ]
+    }
+   ],
+   "source": [
+    "def spherical_decomposition_operator(decomposition, T_basis=None):\n",
+    "    j = max([k[0] for k in decomposition.keys()])/2\n",
+    "    if not T_basis:\n",
+    "        T_basis = spherical_tensor_basis(j)\n",
+    "    terms = []\n",
+    "    for sigma in np.arange(0, int(2*j+1)):\n",
+    "        for mu in np.arange(-sigma, sigma+1):\n",
+    "            terms.append(decomposition[(sigma, mu)]*T_basis[(sigma, mu)])\n",
+    "    return sum(terms)\n",
+    "\n",
+    "O2 = spherical_decomposition_operator(coeffs, T_basis=T)\n",
+    "print(\"recovered operator? %s\" % np.allclose(O,O2))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Looking at the decomposition, you might observe that it looks like a tower of spin states with integer values for $j$! We have complex coefficients for $\\mid 0, 0\\rangle$, complex coefficients for $\\mid 1, -1 \\rangle$, $\\mid 1, 0 \\rangle$, $\\mid 1, 1 \\rangle$, and so forth. \n",
+    "\n",
+    "In other words, we could think about this decomposition as giving us a set of spins. Notice however that the spins states are *not* normalized."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Quantum object: dims = [[1], [1]], shape = (1, 1), type = bra\n",
+      "Qobj data =\n",
+      "[[0.5]]\n",
+      "norm: 0.500\n",
+      "\n",
+      "Quantum object: dims = [[3], [1]], shape = (3, 1), type = ket\n",
+      "Qobj data =\n",
+      "[[-0.01936039-0.04194487j]\n",
+      " [-0.13539501+0.j        ]\n",
+      " [ 0.01936039-0.04194487j]]\n",
+      "norm: 0.150\n",
+      "\n",
+      "Quantum object: dims = [[5], [1]], shape = (5, 1), type = ket\n",
+      "Qobj data =\n",
+      "[[ 0.00460639-0.02976287j]\n",
+      " [ 0.08016727+0.05084416j]\n",
+      " [ 0.0437252 +0.j        ]\n",
+      " [-0.08016727+0.05084416j]\n",
+      " [ 0.00460639+0.02976287j]]\n",
+      "norm: 0.147\n",
+      "\n",
+      "Quantum object: dims = [[7], [1]], shape = (7, 1), type = ket\n",
+      "Qobj data =\n",
+      "[[ 6.06155752e-03+0.03594286j]\n",
+      " [ 3.70347881e-06+0.00876762j]\n",
+      " [-5.37232244e-02-0.0206838j ]\n",
+      " [-2.15727197e-01+0.j        ]\n",
+      " [ 5.37232244e-02-0.0206838j ]\n",
+      " [ 3.70347881e-06-0.00876762j]\n",
+      " [-6.06155752e-03+0.03594286j]]\n",
+      "norm: 0.237\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "def spherical_decomposition_spins(decomposition):\n",
+    "    max_j = max([k[0] for k in decomposition.keys()])\n",
+    "    return [qt.Qobj(np.array([decomposition[(j, m)]\\\n",
+    "                        for m in np.arange(j, -j-1, -1)]))\\\n",
+    "                            for j in np.arange(0, max_j+1)]\n",
+    "\n",
+    "spins = spherical_decomposition_spins(coeffs)\n",
+    "\n",
+    "for spin in spins:\n",
+    "    print(spin)\n",
+    "    print(\"norm: %.3f\\n\" % spin.norm())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Naturally, each one of these spins states can be associated to a constellation, and in fact, under rotations of the operator, each constellation in this decomposition rotates as expected. Insofar as the norms are not 1, we could imagine that the radius of each constellation's sphere is given by the norm. Moreover, in the normal Majorana representation, the phase is thrown out: here, however, the relative phases between each constellation does matter, and has to be kept track of.\n",
+    "\n",
+    "Now let's look at what these constellations are actually like:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[0 0 0]]\n",
+      "\n",
+      "[[ 0.18212642 -0.39458236 -0.90063018]\n",
+      " [-0.18212642  0.39458236  0.90063018]]\n",
+      "\n",
+      "[[-0.1231688   0.26507586 -0.95632852]\n",
+      " [ 0.82358651 -0.54967974 -0.13984791]\n",
+      " [-0.82358651  0.54967974  0.13984791]\n",
+      " [ 0.1231688  -0.26507586  0.95632852]]\n",
+      "\n",
+      "[[-0.46595808  0.2707279  -0.84237134]\n",
+      " [ 0.22556578 -0.59001107 -0.77524642]\n",
+      " [ 0.5851247   0.19927765 -0.78607728]\n",
+      " [ 0.46595808 -0.2707279   0.84237134]\n",
+      " [-0.5851247  -0.19927765  0.78607728]\n",
+      " [-0.22556578  0.59001107  0.77524642]]\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "for spin in spins:\n",
+    "    print(spin_xyz(spin))\n",
+    "    print()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We note the important fact that: every star has an antipodal twin on the other side of the sphere. In other words, the stars come in opposite pairs. This is true for any Hermitian matrix. For a unitary matrix, however, this won't be true."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[0 0 0]]\n",
+      "\n",
+      "[[ 0.98758665 -0.11585539 -0.10606663]\n",
+      " [-0.27613644  0.9143209   0.29625321]]\n",
+      "\n",
+      "[[-0.34549435  0.36782828 -0.86332845]\n",
+      " [ 0.6397556  -0.51244146 -0.57281456]\n",
+      " [-0.60489787  0.56602643  0.56010056]\n",
+      " [ 0.18872943 -0.17551787  0.96621668]]\n",
+      "\n",
+      "[[ 0.53098874 -0.25803617 -0.80713585]\n",
+      " [-0.81865014 -0.30552325 -0.48627924]\n",
+      " [-0.33479785  0.93919581 -0.07629956]\n",
+      " [ 0.94633723  0.31718518  0.06196299]\n",
+      " [ 0.23035429 -0.84237714  0.48717312]\n",
+      " [-0.55268807 -0.15410631  0.81901596]]\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "U = qt.rand_unitary(int(2*j+1))\n",
+    "for spin in operator_spins(U, T_basis=T):\n",
+    "    print(spin_xyz(spin))\n",
+    "    print()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's consider a pure state density matrix and compare it to the usual Majorana representation of the pure state."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "pure state stars:\n",
+      "[[-0.96223489 -0.02828809 -0.27074675]\n",
+      " [ 0.49301975 -0.73758066 -0.4614177 ]\n",
+      " [ 0.81000791 -0.00964708  0.58633959]]\n",
+      "\n",
+      "pure dm stars:\n",
+      "[[0 0 0]]\n",
+      "\n",
+      "[[ 0.25301207 -0.95455314 -0.15752207]\n",
+      " [-0.25301207  0.95455314  0.15752207]]\n",
+      "\n",
+      "[[-0.68266881  0.50028548 -0.53261406]\n",
+      " [-0.85132814 -0.51275063 -0.11102786]\n",
+      " [ 0.85132814  0.51275063  0.11102786]\n",
+      " [ 0.68266881 -0.50028548  0.53261406]]\n",
+      "\n",
+      "[[-0.81000791  0.00964708 -0.58633959]\n",
+      " [ 0.49301975 -0.73758066 -0.4614177 ]\n",
+      " [-0.96223489 -0.02828809 -0.27074675]\n",
+      " [-0.49301975  0.73758066  0.4614177 ]\n",
+      " [ 0.96223489  0.02828809  0.27074675]\n",
+      " [ 0.81000791 -0.00964708  0.58633959]]\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "pure_state = qt.rand_ket(int(2*j+1))\n",
+    "pure_dm = pure_state*pure_state.dag()\n",
+    "\n",
+    "print(\"pure state stars:\")\n",
+    "print(spin_xyz(pure_state))\n",
+    "\n",
+    "print(\"\\npure dm stars:\")\n",
+    "for spin in operator_spins(pure_dm, T_basis=T):\n",
+    "    print(spin_xyz(spin))\n",
+    "    print()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Considering the final constellation in the list, we can see that indeed this spherical tensor representation naturally generalizes the Majorana representation. The final constellation in the list with 6 stars corresponds to the 3 stars in the original pure state Majorana constellation, along with the three points opposite to them. In fact, one could ditch half the stars and still have a complete representation (as long as you remember to add them back in). The authors propose doing precisely this as well as a nice, but slightly involved scheme for fixing the phases, which we shall leave to the side.\n",
+    "\n",
+    "And what significance we can ascribe to the other constellations in the decomposition, we shall see!\n",
+    "\n",
+    "But first, let's do some visualization."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from spheres import *\n",
+    "scene = vp.canvas(background=vp.color.white)\n",
+    "\n",
+    "j = 3/2\n",
+    "spin = qt.rand_ket(int(2*j+1))\n",
+    "dm = spin*spin.dag()\n",
+    "\n",
+    "msphere = MajoranaSphere(spin, radius=1/2, pos=vp.vector(-1,0,0), scene=scene)\n",
+    "osphere = OperatorSphere(dm, pos=vp.vector(1,0,0), scene=scene)\n",
+    "\n",
+    "H = qt.jmat(j, 'y')\n",
+    "U = (-1j*H*0.01).expm()\n",
+    "\n",
+    "for t in range(1000):\n",
+    "    spin = U*spin\n",
+    "    dm = U*dm*U.dag()\n",
+    "    msphere.spin = spin\n",
+    "    osphere.dm = dm\n",
+    "    vp.rate(1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "`OperatorSphere` allows one to visualize a mixed state or operator using the spherical tensor decomposition. You see a series of concentric spheres whose radii are the norms of the spins, and the colors of the spheres/stars correspond to the *phase* of the spin states. You can see that the constellation with the highest $j$ value contains the original Majorana constellation (shown on the left), but also includes the antipodal points. And everything transforms nicely under and $SU(2)$ rotation. (And the label gives the value of the spin-$0$ sector).\n",
+    "\n",
+    "We can look at the evolution of a density matrix under some random Hamiltonian. Notice that unlike in the case of simple rotations, the radii of the spheres can change--but the antipodal symmetry is preserved. (It's also interesting to think about states which have antipodal symmetry as being \"time reversal invariant,\" insofar as the operator that inverts the spheres is for spins the time-reversal operator.)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from spheres import *\n",
+    "scene = vp.canvas(background=vp.color.white)\n",
+    "\n",
+    "j = 3/2\n",
+    "dm = qt.rand_dm(int(2*j+1))\n",
+    "osphere = OperatorSphere(dm, scene=scene)\n",
+    "\n",
+    "H = qt.rand_herm(int(2*j+1))\n",
+    "U = (-1j*H*0.01).expm()\n",
+    "osphere.evolve(H, dt=0.01, T=1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also evolve a random unitary operator. Notice that the antipodal symmetry is broken."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from spheres import *\n",
+    "scene = vp.canvas(background=vp.color.white)\n",
+    "\n",
+    "j = 3/2\n",
+    "U = qt.rand_unitary(int(2*j+1))\n",
+    "osphere = OperatorSphere(U, scene=scene)\n",
+    "\n",
+    "H = qt.rand_herm(int(2*j+1))\n",
+    "U = (-1j*H*0.01).expm()\n",
+    "osphere.evolve(H, dt=0.01, T=1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now here's an interesting thing. Let's take a spin state, convert it into a permutation symmetric multiqubit state, and look at the partial traces. In other words, we can look at the partial state of a single one of these qubits, of two of these qubits, three, etc. It doesn't matter which qubits we choose to look at because of the permutation symmetry, and moreover the partial states are themselves permutation symmetric, so we can convert those multiqubit density matrices into spin density matrices."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from spheres import *\n",
+    "scene = vp.canvas(background=vp.color.white)\n",
+    "\n",
+    "j = 3/2\n",
+    "spin = qt.rand_ket(int(2*j+1))\n",
+    "sym = spin_sym(spin)\n",
+    "\n",
+    "o = OperatorSphere(spin*spin.dag(), pos=vp.vector(-1,0,0), scene=scene)\n",
+    "\n",
+    "for i in range(1, int(2*j)):\n",
+    "    partial = sym.ptrace(range(i))\n",
+    "    sym_map = spin_sym_map(i/2)\n",
+    "    OperatorSphere(sym_map.dag()*partial*sym_map, pos=vp.vector(2*j-i,0,0), scene=scene)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If it isn't visually obvious, let's compare the coordinates of the constellations in each of the partial traces with the coordinates of constellations in the overall state:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "ptrace [0]\n",
+      "[[0 0 0]]\n",
+      "\n",
+      "[[ 0.32835324  0.62163863 -0.71116071]\n",
+      " [-0.32835324 -0.62163863  0.71116071]]\n",
+      "\n",
+      "ptrace [0, 1]\n",
+      "[[0 0 0]]\n",
+      "\n",
+      "[[ 0.32835324  0.62163863 -0.71116071]\n",
+      " [-0.32835324 -0.62163863  0.71116071]]\n",
+      "\n",
+      "[[ 0.5884445  -0.40432899 -0.70017937]\n",
+      " [-0.25350994  0.93946215 -0.23052893]\n",
+      " [ 0.25350994 -0.93946215  0.23052893]\n",
+      " [-0.5884445   0.40432899  0.70017937]]\n",
+      "\n",
+      "full state:\n",
+      "[[0 0 0]]\n",
+      "\n",
+      "[[ 0.32835324  0.62163863 -0.71116071]\n",
+      " [-0.32835324 -0.62163863  0.71116071]]\n",
+      "\n",
+      "[[ 0.5884445  -0.40432899 -0.70017937]\n",
+      " [-0.25350994  0.93946215 -0.23052893]\n",
+      " [ 0.25350994 -0.93946215  0.23052893]\n",
+      " [-0.5884445   0.40432899  0.70017937]]\n",
+      "\n",
+      "[[ 0.51627334 -0.75558622 -0.40317651]\n",
+      " [ 0.28301465  0.88758595 -0.36344724]\n",
+      " [ 0.49323214 -0.86951775  0.02570873]\n",
+      " [-0.28301465 -0.88758595  0.36344724]\n",
+      " [-0.49323214  0.86951775 -0.02570873]\n",
+      " [-0.51627334  0.75558622  0.40317651]]\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in range(1, int(2*j)):\n",
+    "    print(\"ptrace %s\" % list(range(i)))\n",
+    "    partial = sym.ptrace(range(i))\n",
+    "    sym_map = spin_sym_map(i/2)\n",
+    "    partial_spin = sym_map.dag()*partial*sym_map\n",
+    "    for s in operator_spins(partial_spin):\n",
+    "        print(\"%s\\n\" % str(spin_xyz(s)))\n",
+    "        \n",
+    "print(\"full state:\")\n",
+    "for s in operator_spins(spin*spin.dag()):\n",
+    "    print(spin_xyz(s))\n",
+    "    print()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In other words, we see a very interesting feature of this representation: the partial states of the permutation symmetric qubits are already hidden inside the representation of the overall state! We get them all at once, \"for free.\"\n",
+    "\n",
+    "And indeed, this allows us to read off entanglement-related information from the spherical representation itself. For example, for three qubits, there are ultimately two different entanglement classes: GHZ-style entanglement and W-style entanglement. States within these classes can be transformed into each other by local quantum operations, but local operations can't convert between the two classes.\n",
+    "\n",
+    "The GHZ state is: $\\frac{1}{\\sqrt{2}}(\\mid \\uparrow \\uparrow \\uparrow \\rangle + \\mid \\downarrow \\downarrow \\downarrow \\rangle)$. Crucially, if we measure one of the subsystems , for example, determining it to be $\\uparrow$ or $\\downarrow$, the other two subsystems will be steered to $\\mid \\uparrow \\uparrow \\rangle$ or $\\mid \\downarrow \\downarrow \\rangle$, which are separable states.\n",
+    "\n",
+    "Now the GHZ state is permutation symmetric, and so we can convert it into a spin-$\\frac{3}{2}$ state. Let's visualize it and its partial traces."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "scene = vp.canvas(background=vp.color.white)\n",
+    "GHZsym = (bitstring_basis(\"111\") + bitstring_basis(\"000\"))/np.sqrt(2)\n",
+    "GHZspin = sym_spin(GHZsym)\n",
+    "\n",
+    "OperatorSphere(GHZspin*GHZspin.dag(), pos=vp.vector(-1,0,0))\n",
+    "for i in range(1, 3):\n",
+    "    partial = GHZsym.ptrace(range(i))\n",
+    "    sym_map = spin_sym_map(i/2)\n",
+    "    OperatorSphere(sym_map.dag()*partial*sym_map, pos=vp.vector(2*j-i,0,0), scene=scene)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The single qubit partial state is maximally mixed, and the two qubit partial trace has a single sphere. \n",
+    "\n",
+    "On the other hand, we can consider the $W$ state: $\\frac{1}{\\sqrt{3}}(\\mid \\uparrow \\uparrow \\downarrow \\rangle + \\mid \\uparrow \\downarrow \\uparrow \\rangle + \\mid \\downarrow \\uparrow \\uparrow \\rangle)$. In terms of entanglement, unlike the GHZ case, if one of the three qubits is lost, then the remaining two qubits will still be entangled. \n",
+    "\n",
+    "The $W$ state is also permutation symmetric, and so we can visualize it similarly:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "scene = vp.canvas(background=vp.color.white)\n",
+    "Wsym = (bitstring_basis(\"100\") + bitstring_basis(\"010\") + bitstring_basis(\"001\"))/np.sqrt(3)\n",
+    "Wspin = sym_spin(Wsym)\n",
+    "\n",
+    "OperatorSphere(Wspin*Wspin.dag(), pos=vp.vector(-1,0,0))\n",
+    "for i in range(1, 3):\n",
+    "    partial = Wsym.ptrace(range(i))\n",
+    "    sym_map = spin_sym_map(i/2)\n",
+    "    OperatorSphere(sym_map.dag()*partial*sym_map, pos=vp.vector(2*j-i,0,0), scene=scene)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can see that the single qubit partial state is *not* maximally mixed, and that the two qubit partial state has two spheres. And from this geometrical difference, we can read off the different entanglement properties of the $GHZ$ state and the $W$ state: if we lose a qubit of the $GHZ$ state, the remaining two qubits are not entangled; but if we lose a qubit of the $W$ state, the remaining two qubits will be."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "<hr>\n",
+    "\n",
+    "This turns out to be the tip of a very interesting iceberg, the details of which we'll have to save for another time, and I refer you again to the excellent paper \"Majorana representation for mixed states.\" In short, a) in the pure state case, one can relate tensor contraction on the multiqubit side to taking *derivatives* of the Majorana polynomial b) one can describe a mixed state (or operator) in terms of a polynomial in four variables, so that partial tracing can be related to taking derivatives with respect to these variables c) formulate things like the multiplication of operators and the evaluation of expectation values in terms of differentiation--indeed, in the latter case, differentiation with respect to the stars! \n",
+    "\n",
+    "And more!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Bibliography\n",
+    "\n",
+    "[Phase space approach to quantum dynamics](https://iopscience.iop.org/article/10.1088/0305-4470/24/19/021)\n",
+    "\n",
+    "[Majorana representation for mixed states](https://arxiv.org/abs/1909.07740)\n",
+    "\n",
+    "[Local Unitary Equivalent Classes of Symmetric N-Qubit Mixed States](https://arxiv.org/abs/1308.3777)\n",
+    "\n",
+    "[Geometric Multiaxial Representation of N-qubit Mixed Symmetric Separable States](https://arxiv.org/abs/1706.01198)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "VPython",
+   "language": "python",
+   "name": "vpython"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

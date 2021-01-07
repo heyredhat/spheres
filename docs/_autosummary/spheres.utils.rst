@@ -14,7 +14,6 @@ spheres.utils
    .. autosummary::
       :toctree:                                          
    
-      basis
       binomial
       bitstring_basis
       compare_nophase
@@ -30,7 +29,6 @@ spheres.utils
       normalize
       normalize_phase
       pauli_basis
-      pauli_eigenstate
       phase
       phase_angle
       polygon_area

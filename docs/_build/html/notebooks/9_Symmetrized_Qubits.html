@@ -1,0 +1,1350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How To Prepare a Spin-j State on a Photonic Quantum Computer" href="9.6_Photonic_SpinJ.html" />
+    <link rel="prev" title="spheres.visualization.vp_object.VObject" href="../_autosummary/spheres.visualization.vp_object.VObject.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/spheres.html">spheres</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.beams.html">spheres.beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.animate_spin_beam.html">spheres.beams.animate_spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.colorize.html">spheres.beams.colorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.laguerre_gauss_mode.html">spheres.beams.laguerre_gauss_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.spin_beam.html">spheres.beams.spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_beam.html">spheres.beams.viz_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_spin_beam.html">spheres.beams.viz_spin_beam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.coordinates.html">spheres.coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_sph.html">spheres.coordinates.c_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_spinor.html">spheres.coordinates.c_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_xyz.html">spheres.coordinates.c_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_c.html">spheres.coordinates.sph_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_spinor.html">spheres.coordinates.sph_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_xyz.html">spheres.coordinates.sph_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_c.html">spheres.coordinates.spinor_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_sph.html">spheres.coordinates.spinor_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_xyz.html">spheres.coordinates.spinor_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_c.html">spheres.coordinates.xyz_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_sph.html">spheres.coordinates.xyz_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.error_correction.html">spheres.error_correction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.html">spheres.error_correction.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.build_circuit.html">spheres.error_correction.pytket.build_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.process_sym_counts.html">spheres.error_correction.pytket.process_sym_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.random_circuit.html">spheres.error_correction.pytket.random_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.symmetrize_circuit.html">spheres.error_correction.pytket.symmetrize_circuit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.oscillators.html">spheres.oscillators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spinblocks.html">spheres.oscillators.osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spins.html">spheres.oscillators.osc_spins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spintower_map.html">spheres.oscillators.osc_spintower_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc_map.html">spheres.oscillators.spin_osc_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_tower_dimensions.html">spheres.oscillators.spin_tower_dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spinj_xyz_osc.html">spheres.oscillators.spinj_xyz_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spins_osc.html">spheres.oscillators.spins_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.polyhedra.html">spheres.polyhedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.polyhedra.equidistribute_points.html">spheres.polyhedra.equidistribute_points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.relativity.html">spheres.relativity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.relativity.mobius.html">spheres.relativity.mobius</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.html">spheres.spin_circuits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.html">spheres.spin_circuits.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Rk_pytket.html">spheres.spin_circuits.pytket.Rk_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Tkj_pytket.html">spheres.spin_circuits.pytket.Tkj_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.postselect_shots.html">spheres.spin_circuits.pytket.postselect_shots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_sym_pytket.html">spheres.spin_circuits.pytket.spin_sym_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_tomography_pytket.html">spheres.spin_circuits.pytket.spin_tomography_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_circuits_pytket.html">spheres.spin_circuits.pytket.tomography_circuits_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_dm_pytket.html">spheres.spin_circuits.pytket.tomography_dm_pytket</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.html">spheres.spin_circuits.qiskit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Rk_qiskit.html">spheres.spin_circuits.qiskit.Rk_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Tkj_qiskit.html">spheres.spin_circuits.qiskit.Tkj_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.postselect_results_qiskit.html">spheres.spin_circuits.qiskit.postselect_results_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_sym_qiskit.html">spheres.spin_circuits.qiskit.spin_sym_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_tomography_qiskit.html">spheres.spin_circuits.qiskit.spin_tomography_qiskit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.html">spheres.spin_circuits.strawberryfields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields.html">spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields.html">spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.stars.html">spheres.stars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.html">spheres.stars.mixed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spherical_decomposition.html">spheres.stars.mixed.operator_spherical_decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spins.html">spheres.stars.mixed.operator_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_operator.html">spheres.stars.mixed.spherical_decomposition_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_spins.html">spheres.stars.mixed.spherical_decomposition_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor.html">spheres.stars.mixed.spherical_tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor_basis.html">spheres.stars.mixed.spherical_tensor_basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_operator.html">spheres.stars.mixed.spins_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_spherical_decomposition.html">spheres.stars.mixed.spins_spherical_decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.pure.html">spheres.stars.pure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.c_spin.html">spheres.stars.pure.c_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_roots.html">spheres.stars.pure.poly_roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_spin.html">spheres.stars.pure.poly_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.roots_poly.html">spheres.stars.pure.roots_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.sph_spin.html">spheres.stars.pure.sph_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_c.html">spheres.stars.pure.spin_c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_poly.html">spheres.stars.pure.spin_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_sph.html">spheres.stars.pure.spin_sph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_spinors.html">spheres.stars.pure.spin_spinors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_xyz.html">spheres.stars.pure.spin_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spinors_spin.html">spheres.stars.pure.spinors_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.xyz_spin.html">spheres.stars.pure.xyz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.basis.html">spheres.stars.star_utils.basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.pauli_eigenstate.html">spheres.stars.star_utils.pauli_eigenstate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symmetrization.html">spheres.symmetrization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrize.html">spheres.symmetrization.symmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrized_basis.html">spheres.symmetrization.symmetrized_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symplectic.html">spheres.symplectic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_complex_symplectic.html">spheres.symplectic.is_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_real_symplectic.html">spheres.symplectic.is_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.utils.html">spheres.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.binomial.html">spheres.utils.binomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_spinors.html">spheres.utils.compare_spinors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_unordered.html">spheres.utils.compare_unordered</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.components.html">spheres.utils.components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.density_to_purevec.html">spheres.utils.density_to_purevec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.dirac.html">spheres.utils.dirac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.flatten.html">spheres.utils.flatten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.measure.html">spheres.utils.measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize.html">spheres.utils.normalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase.html">spheres.utils.phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.polygon_area.html">spheres.utils.polygon_area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.qubits_xyz.html">spheres.utils.qubits_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_c.html">spheres.utils.rand_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_sph.html">spheres.utils.rand_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_xyz.html">spheres.utils.rand_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.random_pairs.html">spheres.utils.random_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.random_unique_pairs.html">spheres.utils.random_unique_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.spinj_xyz.html">spheres.utils.spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.tensor_upgrade.html">spheres.utils.tensor_upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.to_pauli_basis.html">spheres.utils.to_pauli_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.visualization.html">spheres.visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.MajoranaSphere.html">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.SphericalWavefunction.html">spheres.visualization.majorana_sphere.SphericalWavefunction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.html">spheres.visualization.matplotlib_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.animate_spin.html">spheres.visualization.matplotlib_spheres.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.viz_spin.html">spheres.visualization.matplotlib_spheres.viz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.OperatorSphere.html">spheres.visualization.operator_sphere.OperatorSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.OscillatorPlane.html">spheres.visualization.schwinger_spheres.OscillatorPlane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.html">spheres.visualization.vp_object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.VObject.html">spheres.visualization.vp_object.VObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.6_Photonic_SpinJ.html">How To Prepare a Spin-j State on a Photonic Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.2_Majorana_Stars_and_Structured_Gaussian_Beams.html">Majorana Stars and Structured Gaussian Beams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.7_Majorana_for_Mixed_States.html">Generalizing the Majorana Representation for Mixed States and Operators</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/notebooks/9_Symmetrized_Qubits.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="How-to-Prepare-a-Permutation-Symmetric-Multiqubit-State-on-an-Actual-Quantum-Computer">
+<h1>How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer<a class="headerlink" href="#How-to-Prepare-a-Permutation-Symmetric-Multiqubit-State-on-an-Actual-Quantum-Computer" title="Permalink to this headline">¶</a></h1>
+<p>I’ve made a big deal over the fact that one can represent a spin-<span class="math notranslate nohighlight">\(j\)</span> state equivalently as a permutation symmetric state of <span class="math notranslate nohighlight">\(2j\)</span> qubits, not least because given that our quantum computers (mostly) work with qubits, we need a way to represent everything we might care about in terms of them.</p>
+<p>For example, if we have a spin-<span class="math notranslate nohighlight">\(\frac{3}{2}\)</span> state, we could express it in the usual <span class="math notranslate nohighlight">\(\mid j, m \rangle\)</span> basis as:</p>
+<div class="math notranslate nohighlight">
+\[a\mid \frac{3}{2}, \frac{3}{2}\rangle + b\mid \frac{3}{2}, \frac{1}{2}\rangle + c\mid \frac{3}{2}, -\frac{1}{2}\rangle + d\mid \frac{3}{2}, -\frac{3}{2}\rangle\]</div>
+<p>or in terms of symmeterized qubits:</p>
+<div class="math notranslate nohighlight">
+\[a\mid \uparrow \uparrow \uparrow \rangle + b\frac{1}{\sqrt{3}}(\mid \uparrow \uparrow \downarrow \rangle + \mid \uparrow \downarrow \uparrow \rangle + \mid \downarrow \uparrow \uparrow \rangle) + c\frac{1}{\sqrt{3}}(\mid \downarrow \downarrow \uparrow \rangle + \mid \downarrow \uparrow \downarrow \rangle + \mid \uparrow \downarrow \downarrow \rangle) + d\mid \downarrow \downarrow \downarrow \rangle\]</div>
+<p>In other words, there’s a one-to-one correspondence between the four <span class="math notranslate nohighlight">\(\mid j, m \rangle\)</span> basis states and the four symmetric basis states of three qubits. To wit: the states with <span class="math notranslate nohighlight">\(3 \uparrow\)</span>, with <span class="math notranslate nohighlight">\(2 \uparrow, 1 \downarrow\)</span>, with <span class="math notranslate nohighlight">\(2 \downarrow, 1 \uparrow\)</span>, and with <span class="math notranslate nohighlight">\(3 \downarrow\)</span>.</p>
+<p>So we can easily form a linear map that takes us from the one representation to the other:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">symmetrize</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">perm</span><span class="p">])</span> <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)))])</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">spin_sym_map</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>\
+                    <span class="n">components</span><span class="p">(</span><span class="n">symmetrize</span><span class="p">(</span>\
+                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">+</span>\
+                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>\
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">S</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span><span class="p">[[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]]</span>
+    <span class="k">return</span> <span class="n">S</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">spin_sym_map</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+
+<span class="n">spin</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">sym</span> <span class="o">=</span> <span class="n">S</span><span class="o">*</span><span class="n">spin</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spin state:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">spin</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">permutation symmetric qubits:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sym</span><span class="p">)</span>
+
+<span class="n">I</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">S</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">transformation an isometry?: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">I</span> <span class="o">==</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">I</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div id="glowscript" class="glowscript"></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="output_javascript"></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+if (typeof Jupyter !== "undefined") { window.__context = { glowscript_container: $("#glowscript").removeAttr("id")};}else{ element.textContent = ' ';}
+</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+spin state:
+Quantum object: dims = [[4], [1]], shape = (4, 1), type = ket
+Qobj data =
+[[ 0.2680114 -0.33141963j]
+ [-0.06116115+0.26914443j]
+ [-0.54797038-0.31029464j]
+ [-0.58359679-0.07079553j]]
+
+permutation symmetric qubits:
+Quantum object: dims = [[2, 2, 2], [1]], shape = (8, 1), type = ket
+Qobj data =
+[[ 0.2680114 -0.33141963j]
+ [-0.0353114 +0.15539061j]
+ [-0.0353114 +0.15539061j]
+ [-0.31637084-0.17914869j]
+ [-0.0353114 +0.15539061j]
+ [-0.31637084-0.17914869j]
+ [-0.31637084-0.17914869j]
+ [-0.58359679-0.07079553j]]
+
+transformation an isometry?: True
+</pre></div></div>
+</div>
+<hr><p>Another way of obtaining the same result is to find the roots of the Majorana polynomial of the spin, map the complex roots to the sphere, convert each resulting point into a qubit, and then symmeterize those separable qubits. Well, technically, if we do this, we lose the overall phase information of the original spin, but such is life.</p>
+<p>Just for reference, again here’s the Majorana polynomial:</p>
+<div class="math notranslate nohighlight">
+\[p(z) = \sum_{m=-j}^{m=j} (-1)^{j+m} \sqrt{\frac{(2j)!}{(j-m)!(j+m)!}} a_{j+m} z^{j-m}\]</div>
+<p>Where the <span class="math notranslate nohighlight">\(a\)</span>’s run through the components of the spin. Recall that if we have an <span class="math notranslate nohighlight">\(d\)</span> dimensional spin vector, but end up with a less than <span class="math notranslate nohighlight">\(d\)</span> degree polynomial, we add a root at infinity for each missing degree. Having obtained the roots, we stereographically project them to the sphere to get <span class="math notranslate nohighlight">\((x, y, z)\)</span> points, which we enjoy poetically calling “stars.”</p>
+<p>Below we take a spin, finds its stars, convert them into qubits, symmeterize the qubits, then use the inverse of the transformation above to get back the spin state, and find the stars again. We see we recover the original stars exactly. So we get the right result up to phase. (Note we could have converted the complex roots directly to qubits, as we’ve seen, insofar as each complex root is to be the ratio between the two components of the qubit.)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">stars</span> <span class="o">=</span> <span class="n">spin_xyz</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+<span class="n">qubits</span> <span class="o">=</span> <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">xyz_spinor</span><span class="p">(</span><span class="n">star</span><span class="p">))</span> <span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="n">stars</span><span class="p">]</span>
+<span class="n">sym2</span> <span class="o">=</span> <span class="n">symmetrize</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">spin2</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">sym2</span>
+<span class="n">stars2</span> <span class="o">=</span> <span class="n">spin_xyz</span><span class="p">(</span><span class="n">spin2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;initial stars:</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">star</span><span class="p">)</span> <span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="n">stars</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;final stars:</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">star</span><span class="p">)</span> <span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="n">stars2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+initial stars:
+[-0.74108075 -0.2676052  -0.61578144]
+[ 0.32802509  0.85798535 -0.39529822]
+[ 0.63479369 -0.38107314  0.67217574]
+
+final stars:
+[-0.74108075 -0.2676052  -0.61578144]
+[ 0.32802509  0.85798535 -0.39529822]
+[ 0.63479369 -0.38107314  0.67217574]
+
+</pre></div></div>
+</div>
+<hr><p>Another way of saying this is that if we have a state of <span class="math notranslate nohighlight">\(2j\)</span> separable qubits, each with an <span class="math notranslate nohighlight">\((x, y, z)\)</span> point representing its expected rotation axis, if we permute the qubits in all possible orders and add up all these permuted states, then the resulting state is naturally permutation symmetric, but also perhaps remarkably preserves the <span class="math notranslate nohighlight">\((x, y, z)\)</span> points of each of the qubits. Each point is now encoded not individually in the separable qubits, but instead holistically in the
+state of the entangled whole. If we transform from the symmeterized qubits to a spin-<span class="math notranslate nohighlight">\(j\)</span> state and find the roots of the Majorana polynomial, these complex roots, stereographically projected to the sphere, gives us back our original <span class="math notranslate nohighlight">\((x, y, z)\)</span> points. Of course, we have thrown out some information: namely, the phases of the individual qubits we symmeterized.</p>
+<p>That’s all well and good, but a moment’s reflection will convince you that the operation of symmeterizing a bunch of qubits is <em>not</em> a unitary operation. After all, I need to make a separate copy of the qubits, one for each possible permutation, and then add them all up. This of course would violate no-cloning.</p>
+<p>So you might wonder: Suppose I have <span class="math notranslate nohighlight">\(2j\)</span> separable qubits loaded into my quantum computer, and I want to prepare the permutation symmetric state corresponding to them. How do I do it?! Clearly, there can be no deterministic quantum operation that will do the trick.</p>
+<hr><p>Well, in this game, what one can’t do deterministically, one can often do probablistically. And that turns out to be the case here.</p>
+<p>Consider the following circuit:</p>
+<img alt="Two qubit symmetrizer" src="../_images/two_qubit_symmetrizer.png" />
+<p>The heart of this circuit is the “controlled swap” or Fredkin gate. This is a three qubit gate: if the first qubit is <span class="math notranslate nohighlight">\(\uparrow\)</span>, it leaves the second two alone; but if the first qubit is <span class="math notranslate nohighlight">\(\downarrow\)</span>, it swaps/permutes the second two.</p>
+<p>Its matrix representation is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{bmatrix}\end{split}\]</div>
+<p>Which is easily obtained insofar as its just a <span class="math notranslate nohighlight">\(4 \times 4\)</span> identity block concatenated with the usual swap gate:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} 1&amp;0&amp;0&amp;0\\0&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;0&amp;1\end{bmatrix}\end{split}\]</div>
+<p>By the way, that’s a general rule for constructing controlled gates: just take the gate you want to be controlled by the first qubit, and concatenate it with an identity matrix of the same dimensionality.</p>
+<p>So we have our two qubits we want to symmetrize, and the control qubit, with starts in the <span class="math notranslate nohighlight">\(\mid \uparrow \rangle\)</span> state. We apply a Hadamard gate to the control, which takes it to an even superposition <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\mid \uparrow \rangle + \mid \downarrow \rangle\)</span>. So then when we apply the Fredkin, the two qubits to be symmetrized end up in <em>a superposition of being swapped and not being swapped</em>, relative to the control. We then apply a Hadamard again to the control, which
+by the way, is its own inverse (<span class="math notranslate nohighlight">\(H = H^{\dagger}\)</span>), to undo that original rotation, while leaving it entangled with the two qubits.</p>
+<p>We then measure the control qubit: if we get <span class="math notranslate nohighlight">\(\uparrow\)</span>, then our two qubits <span class="math notranslate nohighlight">\(\mid \psi \rangle\)</span> and <span class="math notranslate nohighlight">\(\mid \phi \rangle\)</span> end up in the symmetrized state <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\mid \psi \rangle\mid \phi \rangle + \mid \phi \rangle\mid \psi \rangle)\)</span>. On the other hand, we get <span class="math notranslate nohighlight">\(\downarrow\)</span>, then our two qubits ends up in the antisymmetrized state: <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\mid \psi \rangle\mid \phi \rangle - \mid \phi \rangle\mid \psi \rangle)\)</span>.</p>
+<p>So if we want the symmetrized state, we just keep doing the experiment over and over again until we get the answer we want!</p>
+<p>In the diagram above, you may note there are also two phase rotation gates. We can use those if we want a state of the form <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(\mid \phi \rangle \mid \psi \rangle + e^{i\theta}\mid \psi \rangle \mid \phi \rangle\)</span>. If <span class="math notranslate nohighlight">\(\theta=0\)</span>, we just get the identity matrix for both of them, and everything is as I said above.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">block_diag</span>
+
+<span class="c1"># construct our operators</span>
+<span class="n">H</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>\
+                                     <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+<span class="n">SWAP</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>\
+                         <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>\
+                         <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>\
+                         <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]))</span>
+<span class="n">CSWAP</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">block_diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">SWAP</span><span class="o">.</span><span class="n">full</span><span class="p">()))</span>
+<span class="n">CSWAP</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>\
+                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>\
+                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">)]]))</span>
+
+<span class="n">CIRCUIT</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span>\
+          <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">P2</span><span class="p">,</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span>\
+          <span class="n">CSWAP</span><span class="o">*</span>\
+          <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span>\
+          <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># control</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># to be symmetrized</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">measure_control</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">Zl</span><span class="p">,</span> <span class="n">Zv</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">sigmaz</span><span class="p">()</span><span class="o">.</span><span class="n">eigenstates</span><span class="p">()</span>
+    <span class="n">Zp</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">Zv</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">ptrace</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">full</span><span class="p">()</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">which</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">dm</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p(up): </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p(down): </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;obtained: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;up&quot;</span> <span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;down&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">Zp</span><span class="p">[</span><span class="n">which</span><span class="p">],</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+
+<span class="n">which</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">measure_control</span><span class="p">(</span><span class="n">CIRCUIT</span><span class="o">*</span><span class="n">state</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">ptrace</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># throw out the control</span>
+
+<span class="n">correct_sym</span> <span class="o">=</span> <span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">))</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+<span class="n">correct_sym</span> <span class="o">=</span> <span class="n">correct_sym</span><span class="o">*</span><span class="n">correct_sym</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>
+<span class="n">correct_antisym</span> <span class="o">=</span> <span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">))</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+<span class="n">correct_antisym</span> <span class="o">=</span> <span class="n">correct_antisym</span><span class="o">*</span><span class="n">correct_antisym</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got correct symmetrized state?: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">answer</span> <span class="o">==</span> <span class="n">correct_sym</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got correct antisymmetrized state?: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">answer</span> <span class="o">==</span> <span class="n">correct_antisym</span><span class="p">))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+p(up): 0.6648
+p(down): 0.3352
+obtained: up
+got correct symmetrized state?: True
+</pre></div></div>
+</div>
+<hr><p>Okay, so that’s great, but what if we have multiple qubits we want to symmetrize?</p>
+<p>The simplest thing to do is a direct generalization of the above. If we have <span class="math notranslate nohighlight">\(n\)</span> qubits, there will be <span class="math notranslate nohighlight">\(n!\)</span> possible permutations. So we’ll need a control qudit that lives in <span class="math notranslate nohighlight">\(n!\)</span> dimensions. For example, for <span class="math notranslate nohighlight">\(3\)</span> qubits, there are <span class="math notranslate nohighlight">\(3! = 6\)</span> possible permutations, so we need a control state that is <span class="math notranslate nohighlight">\(6\)</span> dimensional. We start with the control in its <span class="math notranslate nohighlight">\(\mid 0 \rangle\)</span> state, and the apply the Hadamard in <span class="math notranslate nohighlight">\(n!\)</span> dimensions, in other words, the <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_Fourier_transform">Quantum
+Fourier Transform</a>, which takes <span class="math notranslate nohighlight">\(\mid 0 \rangle\)</span> to an even superposition of all its basis states. We then do a controlled operation, which makes performing the <span class="math notranslate nohighlight">\(i^{th}\)</span> permutation on the <span class="math notranslate nohighlight">\(n\)</span> qubits depend on the control being in the <span class="math notranslate nohighlight">\(\mid i \rangle\)</span> basis state. So we end up with the <span class="math notranslate nohighlight">\(n\)</span> qubits being in a superposition of being permuted in all possible ways, relative to the control. Then we apply the
+inverse QFT to the control, and then measure the control: if it ends up back in the <span class="math notranslate nohighlight">\(\mid 0 \rangle\)</span> state, then the <span class="math notranslate nohighlight">\(n\)</span> qubits are in the permutation symmetric state. Sweet!</p>
+<p>You might wonder how to contruct such a controlled permutation gate. In braket notation, you can think of it like:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{p_{i} \in perm} \sum_{j=0}^{2^n} \mid i \rangle P_{i}\mid j \rangle \langle i \mid \langle j \mid\]</div>
+<p>In other words, we sum over all the permutations <span class="math notranslate nohighlight">\(p_{i}\)</span> (where the <span class="math notranslate nohighlight">\(i\)</span> labels both a basis state of the control <span class="math notranslate nohighlight">\(\mid i \rangle\)</span>, and also <span class="math notranslate nohighlight">\(P_{i}\)</span>, the operator which performs that permutation of the qubits), and also over the <span class="math notranslate nohighlight">\(2^n\)</span> basis states of the <span class="math notranslate nohighlight">\(n\)</span> qubits, labeled by <span class="math notranslate nohighlight">\(j\)</span>: <span class="math notranslate nohighlight">\(\mid j \rangle\)</span>. Clearly, if this operator acts on a state coming in on the right, it will perform the <span class="math notranslate nohighlight">\(i^{th}\)</span> permutation to the extent that the control is in
+the <span class="math notranslate nohighlight">\(i^{th}\)</span> state.</p>
+<p>Let’s check it out:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="c1"># constructs a unitary operation that performs</span>
+<span class="c1"># the provided permutation of qubit subsystems</span>
+<span class="k">def</span> <span class="nf">construct_permuter</span><span class="p">(</span><span class="n">perm</span><span class="p">):</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">perm</span><span class="p">))]</span>
+    <span class="n">tensor_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">))</span>
+    <span class="n">pindices</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">perm</span><span class="p">]</span>
+    <span class="n">ptensor_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">pindices</span><span class="p">))</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">tensor_indices</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">tensor_indices</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pind</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ptensor_indices</span><span class="p">):</span>
+        <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="n">tensor_indices</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">pind</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">tensor_indices</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># quantum fourier transform of dimension d</span>
+<span class="k">def</span> <span class="nf">construct_qft</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="p">))</span><span class="o">*</span>\
+                <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">w</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>\
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span>\
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)]))</span>
+
+<span class="c1"># constructs a unitary operator that does each of n!</span>
+<span class="c1"># permutations of n qubits relative to a control of</span>
+<span class="c1"># dimensionality n!</span>
+<span class="k">def</span> <span class="nf">construct_cnrl_permutations</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">perms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">permutations</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))))</span>
+    <span class="n">O</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">construct_permuter</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span><span class="o">*</span>\
+             <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>\
+                 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">perms</span><span class="p">)])</span>
+    <span class="n">O</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="p">[[</span><span class="n">r</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">O</span>
+
+<span class="c1">################################################################################</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">qubits</span> <span class="o">=</span> <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+<span class="n">QFT</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">construct_qft</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="o">*</span><span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+<span class="n">CPERMS</span> <span class="o">=</span> <span class="n">construct_cnrl_permutations</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">PROJ</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dag</span><span class="p">(),</span> <span class="o">*</span><span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">*</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">QFT</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">CPERMS</span><span class="o">*</span><span class="n">QFT</span><span class="o">*</span><span class="n">state</span>
+
+<span class="c1"># We&#39;re lazy, so let&#39;s just project into the right state, regardless of probability</span>
+<span class="n">final_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">PROJ</span><span class="o">*</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span><span class="o">.</span><span class="n">ptrace</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="c1"># throw out the control</span>
+<span class="n">correct_state</span> <span class="o">=</span> <span class="n">symmetrize</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">correct_state</span> <span class="o">=</span> <span class="n">correct_state</span><span class="o">*</span><span class="n">correct_state</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got the right permutation symmetric state?: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">final_state</span> <span class="o">==</span> <span class="n">correct_state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+got the right permutation symmetric state?: True
+</pre></div></div>
+</div>
+<hr><p>Okay, the final concern you might have is that our control system is <span class="math notranslate nohighlight">\(n!\)</span> dimensions, where <span class="math notranslate nohighlight">\(n\)</span> is the number of qubits we want to symmetrize. We, however, want to formulate <em>everything</em> in terms of qubits. Is there a way of using several qubits as controls to get the same effect? Yes! And here’s how, thanks to Barenco, Berthiaume, Deutsch, Ekert, Jozsa, and Macchiavello (see reference at the end!).</p>
+<p>The basic conceptual idea is that permutations can be broken down recursively into a a series of swaps. E.g., suppose we start with an element <span class="math notranslate nohighlight">\(A\)</span>. We pop another element <span class="math notranslate nohighlight">\(B\)</span> to the right, and perform the two possible permutations, the identity and the swap:</p>
+<div class="math notranslate nohighlight">
+\[A(B) \rightarrow AB, BA\]</div>
+<p>.</p>
+<p>These are the two possible permutations of two elements. We could pop another element <span class="math notranslate nohighlight">\(C\)</span> to the right in each case: <span class="math notranslate nohighlight">\(A \rightarrow AB(C), BA(C)\)</span>, and then do all the possible swaps with <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[AB(C) \rightarrow ABC, CBA, ACB\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[BA(C) \rightarrow BAC, CAB, BCA\]</div>
+<p>Indeed, these are the six possible permutations of three elements. We could pop another element <span class="math notranslate nohighlight">\(D\)</span> to the right, and do all the possible swaps with <span class="math notranslate nohighlight">\(D\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ABC(D) \rightarrow ABCD, DBCA, ADCB, ABDC\]</div>
+<div class="math notranslate nohighlight">
+\[CBA(D) \rightarrow CBAD, DBAC, CDAB, CBDA\]</div>
+<div class="math notranslate nohighlight">
+\[ACB(D) \rightarrow ACBD, DCBA, ADBC, ACDB\]</div>
+<div class="math notranslate nohighlight">
+\[BAC(D) \rightarrow BACD, DACB, BDCA, BADC\]</div>
+<div class="math notranslate nohighlight">
+\[CAB(D) \rightarrow CABD, DABC, CDBA, CADB\]</div>
+<div class="math notranslate nohighlight">
+\[BCA(D) \rightarrow BCAD, DCAB, BDAC, BCDA\]</div>
+<p>These are the 24 possible permutations of four elements, and so on. So what we have to do is translate this idea into a quantum circuit, controlling the individual swaps with qubits.</p>
+<p>First off, let’s define:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_{k} = \frac{1}{\sqrt{k+1}} \begin{bmatrix} 1 &amp; -\sqrt{k} \\ \sqrt{k} &amp; 1 \end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}T_{k, j} = \frac{1}{\sqrt{k-j+1}} \begin{bmatrix} \sqrt{k-j+1} &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; \sqrt{k-j} &amp; 0 \\ 0 &amp; -\sqrt{k-j} &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; \sqrt{k-j+1} \end{bmatrix}\end{split}\]</div>
+<p>The point of these guys it to prepare our control qubits. If we have <span class="math notranslate nohighlight">\(k\)</span> control qubits in the <span class="math notranslate nohighlight">\(\mid 0, 0, 0, \dots \rangle\)</span> state, if we apply <span class="math notranslate nohighlight">\(R_{k}\)</span> to the first qubit, and <span class="math notranslate nohighlight">\(T_{k, j}\)</span>’s to adjacent qubits along the line (from <span class="math notranslate nohighlight">\(j=1\)</span> to <span class="math notranslate nohighlight">\(j = k-1\)</span>), then we’ll end up in the state:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt{k+1}}(\mid 00 \dots 0 \rangle + \mid 10 \dots 0 \rangle + \mid 01 \dots 0 \rangle + \mid 00 \dots 1 \rangle)\]</div>
+<p>In other words, a superposition over all the qubits being <span class="math notranslate nohighlight">\(\uparrow\)</span> or just one of the qubits being <span class="math notranslate nohighlight">\(\downarrow\)</span>. (Recall in this notation <span class="math notranslate nohighlight">\(\mid 0 \rangle\)</span> = <span class="math notranslate nohighlight">\(\mid \uparrow \rangle\)</span>, etc.) This is the qubit equivalent of our control qudit from before being prepared in an even superposition of all its basis states. Call this whole procedure <span class="math notranslate nohighlight">\(U_{k}\)</span>.</p>
+<p>So we have <span class="math notranslate nohighlight">\(k\)</span> control qubits prepared. In line with the recursive permutation procedure above, this is in the context of having already symmetrized <span class="math notranslate nohighlight">\(k\)</span> qubits and we want to symmetrize an additional <span class="math notranslate nohighlight">\(k+1^{th}\)</span> qubit. Having prepared the <span class="math notranslate nohighlight">\(k\)</span> control qubits, we apply <span class="math notranslate nohighlight">\(k\)</span> Fredkin gates. If <span class="math notranslate nohighlight">\(j\)</span> runs from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(k\)</span>, then the <span class="math notranslate nohighlight">\(j^{th}\)</span> Fredkin uses the <span class="math notranslate nohighlight">\(j^{th}\)</span> control qubit to condition the swapping of the <span class="math notranslate nohighlight">\(j^{th}\)</span> and
+<span class="math notranslate nohighlight">\(k+1^{th}\)</span> qubits. Then, we as before apply the inverse of the preparation of the control qubits, <span class="math notranslate nohighlight">\(U_{k}^{\dagger}\)</span>.</p>
+<p>The whole construction is “cascaded” for <span class="math notranslate nohighlight">\(k = 1,2,\dots,n-1\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of qubits we want to symmetrize. So we start with <span class="math notranslate nohighlight">\(k=1\)</span>: we’ve “already symmetrized” one qubit and we want to symmetrize the next one, so we introduce <span class="math notranslate nohighlight">\(k=1\)</span> control qubits, preparing them, and then fredkin-ing, and unpreparing. Then we move on to <span class="math notranslate nohighlight">\(k=2\)</span>, and we add two more control qubits, prepare them, fredkin, and unprepare, etc. In the end, we’ll need <span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span>
+control qubits in total: so if <span class="math notranslate nohighlight">\(n=4\)</span>, we have <span class="math notranslate nohighlight">\(\frac{4(4-1)}{2} = 6\)</span> control qubits.</p>
+<p>Finally, we measure all the controls, and if they’re all in the <span class="math notranslate nohighlight">\(0/\uparrow\)</span> state, then our qubits will have been symmetrized!</p>
+<p>Here’s the circuit for the <span class="math notranslate nohighlight">\(n=4\)</span> case:</p>
+<img alt="Four qubit symmetrizer" src="../_images/four_qubit_symmetrizer.png" />
+<p>The key is that, for example, by the third round, the first three qubits have already been symmetrized, so we only need three controlled swaps to symmetrize them with the fourth.</p>
+<p>Let’s check it out! (Note that the indices are offset from the discussion above as we start counting from 0 as opposed to 1.)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">qutip.qip.operations</span> <span class="kn">import</span> <span class="n">fredkin</span>
+
+<span class="k">def</span> <span class="nf">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)],</span>\
+                                              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="mi">1</span><span class="p">]]))</span>
+
+<span class="k">def</span> <span class="nf">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>\
+                                             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>\
+                                             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>\
+                                             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]]))</span>
+    <span class="n">T</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">T</span>
+
+<span class="c1">################################################################################</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qubits</span> <span class="o">=</span> <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span><span class="o">*</span><span class="n">r</span><span class="p">,</span> <span class="o">*</span><span class="n">qubits</span><span class="p">)</span>
+
+<span class="n">offset</span> <span class="o">=</span> <span class="n">r</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span><span class="o">-</span><span class="n">k</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">upgrade</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">offset</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="p">(</span><span class="n">offset</span><span class="o">+</span><span class="n">j</span><span class="p">),</span> <span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="o">*</span><span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="n">offset</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">T</span><span class="o">*</span><span class="n">U</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">U</span><span class="o">*</span><span class="n">state</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">fredkin</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">n</span><span class="o">+</span><span class="n">r</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="n">offset</span><span class="o">+</span><span class="n">j</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="n">j</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="n">k</span><span class="p">])</span><span class="o">*</span><span class="n">state</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span><span class="o">*</span><span class="n">state</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;used </span><span class="si">%d</span><span class="s2"> control qubits for </span><span class="si">%d</span><span class="s2"> qubits to be symmetrized&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="c1"># do our projections</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="p">(</span><span class="n">tensor_upgrade</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dag</span><span class="p">(),</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">*</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+
+<span class="n">final_state</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">ptrace</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="n">n</span><span class="p">)))</span>
+<span class="n">correct_state</span> <span class="o">=</span> <span class="n">symmetrize</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">correct_state</span> <span class="o">=</span> <span class="n">correct_state</span><span class="o">*</span><span class="n">correct_state</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got the right permutation symmetric state?: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">final_state</span> <span class="o">==</span> <span class="n">correct_state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+used 6 control qubits for 4 qubits to be symmetrized
+got the right permutation symmetric state?: True
+</pre></div></div>
+</div>
+<hr><p>Finally, let’s run it on an actual quantum computer! We’ll be using IBM’s qiskit for the job. If you look at the circuit preparation, you’ll notice many of the indices have been flipped due to their convention of treating the tensor product of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> as <span class="math notranslate nohighlight">\(B \otimes A\)</span>. We prepare our qubits, and then use qiskit’s tomography feature to recover the density matrix of the symmetrized qubits, conditioned on the controls all being <span class="math notranslate nohighlight">\(0\)</span>. You can also find the code
+<a class="reference external" href="http://heyredhat.github.io/examples/sym_qubit_tomography.py">here</a>. Give it a whirl.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">qutip</span> <span class="k">as</span> <span class="nn">qt</span>
+
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">factorial</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">execute</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">IBMQ</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="nn">qiskit.providers.ibmq.managed</span> <span class="kn">import</span> <span class="n">IBMQJobManager</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info.operators</span> <span class="kn">import</span> <span class="n">Operator</span>
+<span class="kn">from</span> <span class="nn">qiskit.ignis.verification.tomography</span> <span class="kn">import</span> <span class="n">state_tomography_circuits</span><span class="p">,</span> <span class="n">StateTomographyFitter</span>
+
+<span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1">############################################################################</span>
+
+<span class="c1"># symmetrized tensor product</span>
+<span class="k">def</span> <span class="nf">symmetrize</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">qt</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">perm</span><span class="p">])</span> <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)))])</span><span class="o">.</span><span class="n">unit</span><span class="p">()</span>
+
+<span class="c1"># constructs linear map between spin-j states and the states of</span>
+<span class="c1"># 2j symmetrized qubits</span>
+<span class="k">def</span> <span class="nf">spin_sym_map</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>\
+                    <span class="n">components</span><span class="p">(</span><span class="n">symmetrize</span><span class="p">(</span>\
+                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">+</span>\
+                           <span class="p">[</span><span class="n">qt</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>\
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">S</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span><span class="p">[[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">),</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]]</span>
+    <span class="k">return</span> <span class="n">S</span>
+
+
+<span class="c1">############################################################################</span>
+
+<span class="c1"># convert back and forth from cartesian to spherical coordinates</span>
+<span class="k">def</span> <span class="nf">xyz_sph</span><span class="p">(</span><span class="n">xyz</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">xyz</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)),</span>\
+                     <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)])</span>
+
+<span class="k">def</span> <span class="nf">sph_xyz</span><span class="p">(</span><span class="n">sph</span><span class="p">):</span>
+    <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">sph</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span>\
+                     <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">),</span>\
+                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+
+<span class="c1">############################################################################</span>
+
+<span class="c1"># operators for preparing the control qubits</span>
+<span class="k">def</span> <span class="nf">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Operator</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span>\
+                    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)],</span>\
+                              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="mi">1</span><span class="p">]]))</span>
+
+<span class="k">def</span> <span class="nf">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Operator</span><span class="p">((</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span>\
+                    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>\
+                              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span>\
+                              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>\
+                              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]]))</span>
+
+<span class="c1">############################################################################</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;qasm_simulator&quot;</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1">#backend_name = &quot;ibmq_qasm_simulator&quot;</span>
+<span class="c1">#backend_name = &quot;ibmq_16_melbourne&quot;</span>
+<span class="c1">#backend_name = &quot;ibmq_athens&quot;</span>
+<span class="c1">#shots = 8192</span>
+
+<span class="c1">############################################################################</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># construct a spin state, get the XYZ locations of the stars</span>
+<span class="c1"># and convert to spherical coordinates</span>
+<span class="n">spin_state</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="n">spin_sph</span><span class="p">(</span><span class="n">spin_state</span><span class="p">)</span>
+
+<span class="c1"># the first p qubits are the control qubits</span>
+<span class="c1"># the next n are the qubits to be symmetrized</span>
+<span class="n">circ</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># rotate the n qubits so they&#39;re pointing in the</span>
+<span class="c1"># directions of the stars</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">angles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">circ</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">circ</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># apply the symmetrization algorithm:</span>
+<span class="c1"># iterate over k, working with k control qubits</span>
+<span class="c1"># in each round: apply the preparation to the controls</span>
+<span class="c1"># (the U&#39;s and T&#39;s), then the fredkins, then the inverse</span>
+<span class="c1"># of the control preparation.</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">r</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span><span class="o">-</span><span class="n">k</span>
+    <span class="n">circ</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="p">[</span><span class="n">offset</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">circ</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># because it&#39;s prettier</span>
+        <span class="n">circ</span><span class="o">.</span><span class="n">fredkin</span><span class="p">(</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="n">k</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">circ</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Tkj</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">adjoint</span><span class="p">(),</span> <span class="p">[</span><span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">+</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">circ</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Rk</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">adjoint</span><span class="p">(),</span> <span class="p">[</span><span class="n">offset</span><span class="p">])</span>
+
+<span class="c1"># let&#39;s look at it!</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># create a collection of circuits to do tomography</span>
+<span class="c1"># on just the qubits to be symmetrized</span>
+<span class="n">tomog_circs</span> <span class="o">=</span> <span class="n">state_tomography_circuits</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">+</span><span class="n">n</span><span class="p">)))</span>
+
+<span class="c1"># create a copy for later</span>
+<span class="n">tomog_circs_sans_aux</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">tomog_circs</span><span class="p">)</span>
+
+<span class="c1"># add in the measurements of the controls to</span>
+<span class="c1"># the tomography circuits</span>
+<span class="n">ca</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">tomog_circ</span> <span class="ow">in</span> <span class="n">tomog_circs</span><span class="p">:</span>
+    <span class="n">tomog_circ</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">ca</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+        <span class="n">tomog_circ</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">ca</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="c1"># run on the backend</span>
+<span class="k">if</span> <span class="n">backend_name</span> <span class="o">==</span> <span class="s2">&quot;qasm_simulator&quot;</span><span class="p">:</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;qasm_simulator&quot;</span><span class="p">)</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">tomog_circs</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+    <span class="n">raw_results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">provider</span> <span class="o">=</span> <span class="n">IBMQ</span><span class="o">.</span><span class="n">load_account</span><span class="p">()</span>
+    <span class="n">job_manager</span> <span class="o">=</span> <span class="n">IBMQJobManager</span><span class="p">()</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="n">backend_name</span><span class="p">)</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">job_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">transpile</span><span class="p">(</span><span class="n">tomog_circs</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">),</span>\
+                    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;spin_sym&quot;</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+    <span class="n">raw_results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">results</span><span class="p">()</span><span class="o">.</span><span class="n">combine_results</span><span class="p">()</span>
+
+<span class="c1"># have to hack the results to implement post-selection</span>
+<span class="c1"># on the controls all being 0&#39;s:</span>
+<span class="n">new_result</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">raw_results</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">resultidx</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">raw_results</span><span class="o">.</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">old_counts</span> <span class="o">=</span> <span class="n">raw_results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(</span><span class="n">resultidx</span><span class="p">)</span>
+    <span class="n">new_counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># remove the internal info associated to the control registers</span>
+    <span class="n">new_result</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">resultidx</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">creg_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_result</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">resultidx</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">creg_sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">new_result</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">resultidx</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">clbit_labels</span> <span class="o">=</span> <span class="n">new_result</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">resultidx</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">clbit_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="n">r</span><span class="p">]</span>
+    <span class="n">new_result</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">resultidx</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">memory_slots</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="c1"># go through the results, and only keep the counts associated</span>
+    <span class="c1"># to the desired post-selection of all 0&#39;s on the controls</span>
+    <span class="k">for</span> <span class="n">reg_key</span> <span class="ow">in</span> <span class="n">old_counts</span><span class="p">:</span>
+        <span class="n">reg_bits</span> <span class="o">=</span> <span class="n">reg_key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reg_bits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="o">*</span><span class="n">r</span><span class="p">:</span>
+            <span class="n">new_counts</span><span class="p">[</span><span class="n">reg_bits</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">old_counts</span><span class="p">[</span><span class="n">reg_key</span><span class="p">]</span>
+        <span class="n">new_result</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">resultidx</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">new_counts</span>
+
+<span class="c1"># fit the results (note we use the copy of the tomography circuits</span>
+<span class="c1"># w/o the measurements of the controls) and obtain a density matrix</span>
+<span class="n">tomog_fit</span> <span class="o">=</span> <span class="n">StateTomographyFitter</span><span class="p">(</span><span class="n">new_result</span><span class="p">,</span> <span class="n">tomog_circs_sans_aux</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">tomog_fit</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># downsize the density matrix for the 2j symmerized qubits</span>
+<span class="c1"># to the density matrix of a spin-j system, and compare</span>
+<span class="c1"># to the density matrix of the spin we started out with via the trace</span>
+<span class="n">correct_jrho</span> <span class="o">=</span> <span class="n">spin_state</span><span class="o">*</span><span class="n">spin_state</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>
+<span class="n">our_jrho</span> <span class="o">=</span> <span class="n">sym_spin</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">Qobj</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;overlap between actual and expected: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">correct_jrho</span><span class="o">*</span><span class="n">our_jrho</span><span class="p">)</span><span class="o">.</span><span class="n">tr</span><span class="p">()</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+      ┌─────────┐   ┌──────────┐                     ┌──────────┐┌─────────┐
+q_0: ─┤ unitary ├───┤1         ├───────────────────■─┤1         ├┤ unitary ├
+      └─────────┘   │  unitary │                   │ │  unitary │└─────────┘
+q_1: ───────────────┤0         ├────────────────■──┼─┤0         ├───────────
+      ┌─────────┐   └──────────┘    ┌─────────┐ │  │ └──────────┘
+q_2: ─┤ unitary ├─────────────────■─┤ unitary ├─┼──┼────────────────────────
+     ┌┴─────────┴─┐┌────────────┐ │ └─────────┘ │  │
+q_3: ┤ RY(1.9336) ├┤ RZ(0.9955) ├─X─────────────┼──X────────────────────────
+     ├────────────┤├────────────┤ │             │  │
+q_4: ┤ RY(2.0132) ├┤ RZ(4.5901) ├─X─────────────X──┼────────────────────────
+     ├────────────┤├────────────┤               │  │
+q_5: ┤ RY(1.2433) ├┤ RZ(2.9784) ├───────────────X──X────────────────────────
+     └────────────┘└────────────┘
+overlap between actual and expected: 0.9918
+</pre></div></div>
+</div>
+<hr><p>One can use <code class="docutils literal notranslate"><span class="pre">spheres.spin_circuits.qiskit</span></code> to generate such circuits automatically!</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">spin_sym_qiskit(spin)</span></code> to generate a Qiskit circuit preparing a given spin state (along with some useful information packaged into a dictionary).</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">postselect_results_qiskit(circ_info,</span> <span class="pre">raw_results)</span></code> to do postselection, once you have results.</p>
+<p>And finally, use <code class="docutils literal notranslate"><span class="pre">spin_tomography_qiskit(circ_info,</span> <span class="pre">backend_name=&quot;qasm_simulator&quot;,</span> <span class="pre">shots=8000)</span></code> to run the tomography on a desired backend.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">spin</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">correct_dm</span> <span class="o">=</span> <span class="n">spin</span><span class="o">*</span><span class="n">spin</span><span class="o">.</span><span class="n">dag</span><span class="p">()</span>
+<span class="n">circ_info</span> <span class="o">=</span> <span class="n">spin_sym_qiskit</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+<span class="n">tomog_dm</span> <span class="o">=</span> <span class="n">spin_tomography_qiskit</span><span class="p">(</span><span class="n">circ_info</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;overlap between actual and expected: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">correct_dm</span><span class="o">*</span><span class="n">tomog_dm</span><span class="p">)</span><span class="o">.</span><span class="n">tr</span><span class="p">()</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+overlap between actual and expected: 0.9999
+</pre></div></div>
+</div>
+<div class="section" id="Bibliography">
+<h2>Bibliography<a class="headerlink" href="#Bibliography" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/quant-ph/0212143">Symmetrization and Entanglement of Arbitrary States of Qubits</a></p>
+<p><a class="reference external" href="https://heyredhat.github.io/refs/Stabilization_of_Quantum_Compu.pdf">Stabilization of Quantum Computations By Symmetrization</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="9.6_Photonic_SpinJ.html" class="btn btn-neutral float-right" title="How To Prepare a Spin-j State on a Photonic Quantum Computer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../_autosummary/spheres.visualization.vp_object.VObject.html" class="btn btn-neutral float-left" title="spheres.visualization.vp_object.VObject" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

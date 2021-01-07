@@ -16,7 +16,10 @@ Welcome to the documentation for spheres!
    :caption: Tutorials
    :name: tutorials
 
+   notebooks/9_Symmetrized_Qubits
    notebooks/9.6_Photonic_SpinJ
+   notebooks/9.2_Majorana_Stars_and_Structured_Gaussian_Beams
+   notebooks/9.7_Majorana_for_Mixed_States
 
 Indices and tables
 ==================

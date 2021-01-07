@@ -58,6 +58,7 @@ Description: *******
         
         Special thanks to the `Quantum Open Source Foundation <https://qosf.org/>`_.
         
+        For more information and reference material, including jupyter notebooks, check out `heyredhat.github.io <https://heyredhat.github.io>`_.
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License

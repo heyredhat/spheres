@@ -1,0 +1,1612 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Majorana Stars and Structured Gaussian Beams &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generalizing the Majorana Representation for Mixed States and Operators" href="9.7_Majorana_for_Mixed_States.html" />
+    <link rel="prev" title="How To Prepare a Spin-j State on a Photonic Quantum Computer" href="9.6_Photonic_SpinJ.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/spheres.html">spheres</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.beams.html">spheres.beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.animate_spin_beam.html">spheres.beams.animate_spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.colorize.html">spheres.beams.colorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.laguerre_gauss_mode.html">spheres.beams.laguerre_gauss_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.spin_beam.html">spheres.beams.spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_beam.html">spheres.beams.viz_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_spin_beam.html">spheres.beams.viz_spin_beam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.coordinates.html">spheres.coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_sph.html">spheres.coordinates.c_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_spinor.html">spheres.coordinates.c_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_xyz.html">spheres.coordinates.c_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_c.html">spheres.coordinates.sph_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_spinor.html">spheres.coordinates.sph_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_xyz.html">spheres.coordinates.sph_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_c.html">spheres.coordinates.spinor_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_sph.html">spheres.coordinates.spinor_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_xyz.html">spheres.coordinates.spinor_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_c.html">spheres.coordinates.xyz_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_sph.html">spheres.coordinates.xyz_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.error_correction.html">spheres.error_correction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.html">spheres.error_correction.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.build_circuit.html">spheres.error_correction.pytket.build_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.process_sym_counts.html">spheres.error_correction.pytket.process_sym_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.random_circuit.html">spheres.error_correction.pytket.random_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.symmetrize_circuit.html">spheres.error_correction.pytket.symmetrize_circuit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.oscillators.html">spheres.oscillators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spinblocks.html">spheres.oscillators.osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spins.html">spheres.oscillators.osc_spins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spintower_map.html">spheres.oscillators.osc_spintower_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc_map.html">spheres.oscillators.spin_osc_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_tower_dimensions.html">spheres.oscillators.spin_tower_dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spinj_xyz_osc.html">spheres.oscillators.spinj_xyz_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spins_osc.html">spheres.oscillators.spins_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.polyhedra.html">spheres.polyhedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.polyhedra.equidistribute_points.html">spheres.polyhedra.equidistribute_points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.relativity.html">spheres.relativity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.relativity.mobius.html">spheres.relativity.mobius</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.html">spheres.spin_circuits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.html">spheres.spin_circuits.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Rk_pytket.html">spheres.spin_circuits.pytket.Rk_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Tkj_pytket.html">spheres.spin_circuits.pytket.Tkj_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.postselect_shots.html">spheres.spin_circuits.pytket.postselect_shots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_sym_pytket.html">spheres.spin_circuits.pytket.spin_sym_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_tomography_pytket.html">spheres.spin_circuits.pytket.spin_tomography_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_circuits_pytket.html">spheres.spin_circuits.pytket.tomography_circuits_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_dm_pytket.html">spheres.spin_circuits.pytket.tomography_dm_pytket</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.html">spheres.spin_circuits.qiskit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Rk_qiskit.html">spheres.spin_circuits.qiskit.Rk_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Tkj_qiskit.html">spheres.spin_circuits.qiskit.Tkj_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.postselect_results_qiskit.html">spheres.spin_circuits.qiskit.postselect_results_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_sym_qiskit.html">spheres.spin_circuits.qiskit.spin_sym_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_tomography_qiskit.html">spheres.spin_circuits.qiskit.spin_tomography_qiskit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.html">spheres.spin_circuits.strawberryfields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields.html">spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields.html">spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.stars.html">spheres.stars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.html">spheres.stars.mixed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spherical_decomposition.html">spheres.stars.mixed.operator_spherical_decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spins.html">spheres.stars.mixed.operator_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_operator.html">spheres.stars.mixed.spherical_decomposition_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_spins.html">spheres.stars.mixed.spherical_decomposition_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor.html">spheres.stars.mixed.spherical_tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor_basis.html">spheres.stars.mixed.spherical_tensor_basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_operator.html">spheres.stars.mixed.spins_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_spherical_decomposition.html">spheres.stars.mixed.spins_spherical_decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.pure.html">spheres.stars.pure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.c_spin.html">spheres.stars.pure.c_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_roots.html">spheres.stars.pure.poly_roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_spin.html">spheres.stars.pure.poly_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.roots_poly.html">spheres.stars.pure.roots_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.sph_spin.html">spheres.stars.pure.sph_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_c.html">spheres.stars.pure.spin_c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_poly.html">spheres.stars.pure.spin_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_sph.html">spheres.stars.pure.spin_sph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_spinors.html">spheres.stars.pure.spin_spinors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_xyz.html">spheres.stars.pure.spin_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spinors_spin.html">spheres.stars.pure.spinors_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.xyz_spin.html">spheres.stars.pure.xyz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.basis.html">spheres.stars.star_utils.basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.pauli_eigenstate.html">spheres.stars.star_utils.pauli_eigenstate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symmetrization.html">spheres.symmetrization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrize.html">spheres.symmetrization.symmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrized_basis.html">spheres.symmetrization.symmetrized_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symplectic.html">spheres.symplectic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_complex_symplectic.html">spheres.symplectic.is_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_real_symplectic.html">spheres.symplectic.is_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.utils.html">spheres.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.binomial.html">spheres.utils.binomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_spinors.html">spheres.utils.compare_spinors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_unordered.html">spheres.utils.compare_unordered</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.components.html">spheres.utils.components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.density_to_purevec.html">spheres.utils.density_to_purevec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.dirac.html">spheres.utils.dirac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.flatten.html">spheres.utils.flatten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.measure.html">spheres.utils.measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize.html">spheres.utils.normalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase.html">spheres.utils.phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.polygon_area.html">spheres.utils.polygon_area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.qubits_xyz.html">spheres.utils.qubits_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_c.html">spheres.utils.rand_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_sph.html">spheres.utils.rand_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_xyz.html">spheres.utils.rand_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.random_pairs.html">spheres.utils.random_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.random_unique_pairs.html">spheres.utils.random_unique_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.spinj_xyz.html">spheres.utils.spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.tensor_upgrade.html">spheres.utils.tensor_upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.to_pauli_basis.html">spheres.utils.to_pauli_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.visualization.html">spheres.visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.MajoranaSphere.html">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.SphericalWavefunction.html">spheres.visualization.majorana_sphere.SphericalWavefunction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.html">spheres.visualization.matplotlib_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.animate_spin.html">spheres.visualization.matplotlib_spheres.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.viz_spin.html">spheres.visualization.matplotlib_spheres.viz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.OperatorSphere.html">spheres.visualization.operator_sphere.OperatorSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.OscillatorPlane.html">spheres.visualization.schwinger_spheres.OscillatorPlane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.html">spheres.visualization.vp_object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.VObject.html">spheres.visualization.vp_object.VObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="9_Symmetrized_Qubits.html">How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.6_Photonic_SpinJ.html">How To Prepare a Spin-j State on a Photonic Quantum Computer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Majorana Stars and Structured Gaussian Beams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.7_Majorana_for_Mixed_States.html">Generalizing the Majorana Representation for Mixed States and Operators</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Majorana Stars and Structured Gaussian Beams</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/notebooks/9.2_Majorana_Stars_and_Structured_Gaussian_Beams.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Majorana-Stars-and-Structured-Gaussian-Beams">
+<h1>Majorana Stars and Structured Gaussian Beams<a class="headerlink" href="#Majorana-Stars-and-Structured-Gaussian-Beams" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, we’ll be exploring yet another fascinating application of our favorite construction: the “Majorana stars.”</p>
+<p>We know well how we can view constellations on the 2-sphere as SU(2) representations, in other words, as spin-j states (up to phase). These states represent the intrinsic angular momentum of a massive particle. On the other hand, massless particles also have a form of intrinsic angular momentum: polarization. Indeed, we’ve seen how we can use the sphere to represent polarization states: a trick that was known even to Poincare.</p>
+<p>To refresh your memory:</p>
+<p>Given a qubit quantized along the <span class="math notranslate nohighlight">\(Z\)</span> axis, we can obtain the corresponding polarization ellipse simply by rotating the overall phase of the state, and taking the real part of its two components. If we treat these two real numbers as <span class="math notranslate nohighlight">\((x, y)\)</span> coordinates in the plane, they trace out the correct ellipse.</p>
+<p>In this basis, <span class="math notranslate nohighlight">\(Z+\)</span>/<span class="math notranslate nohighlight">\(Z-\)</span> correspond to horizontal/vertical polarization, <span class="math notranslate nohighlight">\(X+\)</span>/<span class="math notranslate nohighlight">\(X-\)</span> correspond to diagonal/antidiagonal polarization, and <span class="math notranslate nohighlight">\(Y+\)</span>/<span class="math notranslate nohighlight">\(Y-\)</span> correspond to clockwise/counterclockwise circular polarization. Any arbitrary point on the sphere, thus, corresponds to some ellipse in the plane.</p>
+<p>In this case, we’d take the <span class="math notranslate nohighlight">\(Y\)</span> axis to coincide with the linear momentum axis of the massless particle, and consider its polarization state to consist of a possible superposition of clockwise/counterclockwise states, which are sufficient to describe <em>any ellipse</em>. We could imagine that this polarization state is telling us how the photon is “corkscrewing”/oscillating in the plane orthogonal to its motion.</p>
+<p>A photon is of course a spin-1 particle, but since it’s massless, it’s <span class="math notranslate nohighlight">\(m=0\)</span> state, which would correspond to longitudinal polarization (in the direction of its motion), must be 0, and so it reduces down to a two state system. Don’t ask me for the <a class="reference external" href="https://physics.stackexchange.com/questions/46643/why-is-the-s-z-0-state-forbidden-for-photons">details</a>!</p>
+<p>Instead, let’s visualize this correspondence between the sphere and the ellipse:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">vpython</span> <span class="k">as</span> <span class="nn">vp</span>
+
+<span class="n">qubit</span> <span class="o">=</span> <span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">xyz</span> <span class="o">=</span> <span class="n">spinor_xyz</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="n">scene</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">canvas</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">white</span><span class="p">)</span>
+<span class="n">vsphere</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">varrow</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vsphere</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="o">*</span><span class="n">xyz</span><span class="p">))</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+<span class="n">vpt</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">yellow</span><span class="p">,</span> <span class="n">make_trail</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">8000</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">qubit</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">vpt</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">vp</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>More geometrically:</p>
+<p><img alt="629513bcf8ad40d9864fb330be637dab" class="no-scaled-link" src="../_images/polarization_ellipse.jpeg" style="width: 400px;" /></p>
+<p>On the other hand, it’s less well known, but one can interpret a full spin-<span class="math notranslate nohighlight">\(1\)</span> state of two stars geometrically in terms of polarization. According to <a class="reference external" href="https://arxiv.org/abs/1903.01304">Bliokh, Alonso, and Dennis (and Hannay)</a>: the unit vector which bisects the two stars picks out a direction normal to a plane. Projecting the two points onto this plane, one obtains the two foci of the polarization ellipse. In other words, a spin-1 state specifies an ellipse <em>oriented in 3D</em>. The
+direction normal to the plane is taken to be the direction of propagation of the photon. In the degenerate case of the two stars in the same location, we get circular polarization; and beautifully, the <span class="math notranslate nohighlight">\(m=0\)</span> case, when two stars are opposite, never comes up, since the polarization plane rotates along with them, and we get linearly polarized light instead.</p>
+<p><img alt="2f06a29ee9354d60880e040ec0975760" class="no-scaled-link" src="../_images/spin1_polarization.png" style="width: 300px;" /></p>
+<p>(As the paper points out, however, this construction gets the size of ellipse wrong, and they suggest a slight variant as a remedy.)</p>
+<hr><p>So we have this correspondence between <span class="math notranslate nohighlight">\(X, Y, Z\)</span> directions on the sphere and diagonal/antidiagonal, clockwise/counterclockwise, horizontal/vertical polarization states in the plane.</p>
+<p>This manifests as well in the oscillator representation. As we’ve seen, we can “second quantize” a qubit, introducing a quantum harmonic oscillator to each of its two basis states <span class="math notranslate nohighlight">\(\mid \uparrow \rangle\)</span> and <span class="math notranslate nohighlight">\(\mid \downarrow \rangle\)</span>, and interpret the resulting Fock space in terms of a “tower” of spin states of all possible <span class="math notranslate nohighlight">\(j\)</span> values. To wit, the <span class="math notranslate nohighlight">\(\mid 00 \rangle\)</span> state of the two oscillators corresponds to a spin-<span class="math notranslate nohighlight">\(0\)</span> state, the <span class="math notranslate nohighlight">\(\mid 10 \rangle\)</span> and
+<span class="math notranslate nohighlight">\(\mid 01\rangle\)</span> oscillator states correspond to the two states of a spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, the <span class="math notranslate nohighlight">\(\mid 20 \rangle\)</span>, <span class="math notranslate nohighlight">\(\mid 11 \rangle\)</span>, <span class="math notranslate nohighlight">\(\mid 02 \rangle\)</span> states correspond to the three states of a spin-<span class="math notranslate nohighlight">\(1\)</span>, and so on. By a standard construction, we can second quantize qubit operators to act on the whole Fock space, obtaining second quantized versions of the Pauli matrices, which are block diagonal, and generate simultaneous rotations in each of the spin sectors.</p>
+<p>If, however, we consider the position wavefunctions of the two oscillators, which is the same thing as the position wavefunction of a single 2D oscillator in the plane, then we notice something interesting. <span class="math notranslate nohighlight">\(X\)</span> eigenstates correspond to diagonally/antidiagonally symmetric position states, <span class="math notranslate nohighlight">\(Y\)</span> eigenstates correspond to circularly symmetric position states, and <span class="math notranslate nohighlight">\(Z\)</span> eigenstates correspond to horizontally/vertically symmetric position states.</p>
+<p>Below, we look at a random state of the two oscillators and make a spin measurement. Above, you see the tower of spin states from <span class="math notranslate nohighlight">\(0, \frac{1}{2}, 1, \dots\)</span>; and below, a plane where the amplitudes for the positions are depicted as black arrows. They are discretized because we’ve truncated the Fock space. The yellow dot represented the expected position of the 2D quantum oscillator. Try it for <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span>!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">scene</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">canvas</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="n">vp</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">white</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">SchwingerSpheres</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">vacuum</span><span class="p">(</span><span class="n">cutoff_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span> <span class="n">scene</span><span class="o">=</span><span class="n">scene</span><span class="p">,</span> <span class="n">show_plane</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">random</span><span class="p">();</span> <span class="n">s</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Does this have a physical interpretation? Certainly, if you want to analyze a 2D quantum oscillator, it might be useful to exploit this “stellar decomposition.” But are we still talking about polarization, or what?</p>
+<p>It turns out that the correct interpretation isn’t in terms of the polarization of light–in other words, its intrinsic angular momentum–but in terms of the <a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_angular_momentum_of_light">orbital angular momentum of light</a>, its extrinsic angular momentum–with an interesting twist, as we’ll see!</p>
+<p>We’re perhaps more familiar with the case for a massive particle, which has both a spin and orbital angular momentum. The latter given by <span class="math notranslate nohighlight">\(L = Q \times P\)</span> or:</p>
+<div class="math notranslate nohighlight">
+\[L_{x} = Q_{y}P_{z} - Q_{z}P_{y}\]</div>
+<div class="math notranslate nohighlight">
+\[L_{y} = Q_{z}P_{x} - Q_{x}P_{z}\]</div>
+<div class="math notranslate nohighlight">
+\[L_{z} = Q_{x}P_{y} - Q_{y}P_{x}\]</div>
+<p>Here the <span class="math notranslate nohighlight">\(Q\)</span>’s and <span class="math notranslate nohighlight">\(P\)</span>’s are the position and momentum operators. The total angular momentum is the sum of the spin and orbital parts.</p>
+<p>Well, the same goes for light! On the one hand, if a light beam is cylindrically symmetric, and one choses the origin at the beam axis, then the orbital angular momentum will be 0. On the other hand, one can consider helical modes of light, such that the beam’s wavefront is corkscrewing around an “optical vortex” at the center.</p>
+<p><img alt="61c63306da064c30a3f489364e188712" class="no-scaled-link" src="../_images/corkscrew.png" style="width: 200px;" /></p>
+<p>One imagines polarization itself as a kind of corkscrewing, but this is actually a second level kind of corkscrewing. Consider this image:</p>
+<p><img alt="acdfc70541ee41a9a718602e4dcbffee" class="no-scaled-link" src="../_images/polarization_and_wavefront.png" style="width: 400px;" /></p>
+<p>The idea is we’re considering a spatial cross section of a beam, such that the polarization state actually varies across it! In other words, the polarization is a property of “each point” as it were, each photon, but the OAM is a property of the overall beam. This is a great reference.</p>
+<hr><p>Today we’ll be considering “structured Gaussian beams.” They are solutions to the “paraxial wave equation,” in other words, the regime of something like a laser, where pretty much everything that’s going on is going on close to the axis of propagation (the small angle apparoximation). Structured Gaussian beams are “self-similar,” in that their cross-sections all look the same up to scaling. The structured part is going to make things interesting!</p>
+<p>Following <a class="reference external" href="http://events.saip.org.za/getFile.py/access?contribId=365&amp;sessionId=18&amp;resId=0&amp;materialId=paper&amp;confId=7">Bassa and Konrad</a>, we can turn Maxwell’s equations into scalar wave equations for each component of the electric and magnetic fields:</p>
+<div class="math notranslate nohighlight">
+\[\nabla^{2}\Psi - \frac{1}{v^2}\frac{\partial^{2}}{\partial t^{2}}\Psi = 0\]</div>
+<p><span class="math notranslate nohighlight">\(\Psi\)</span> is going to be a complex valued function, assigning “amplitudes” to each point in space and time, whose complex phase corresponds to the phase of the EM wave, and whose amplitude squared corresponds to the intensity.</p>
+<p>We want to consider a laser beam heading in one direction, monochromatic, whose transverse beam profile <span class="math notranslate nohighlight">\(u(x,y,z)\)</span> varies slowly as it zips along in the z direction (the longitudinal direction).</p>
+<p>First, we can separate out the time part <span class="math notranslate nohighlight">\(\Psi(x,y,z,t) = u(x, y, z)e^{-i\omega t}\)</span>, where <span class="math notranslate nohighlight">\(\omega\)</span> is the angular frequency. Thus the spatial part <span class="math notranslate nohighlight">\(u(x, y, z)\)</span> must satisfy:</p>
+<div class="math notranslate nohighlight">
+\[\nabla^{2}u(x, y, z) + k^2 u(x, y, z) = 0\]</div>
+<p>Since the wave number <span class="math notranslate nohighlight">\(k = \frac{\omega}{v}\)</span>.</p>
+<p>Now we engage in some simplification. We want <span class="math notranslate nohighlight">\(u(x, y, z)\)</span> to have the form:</p>
+<div class="math notranslate nohighlight">
+\[u(x, y, z) = u_{0}(x, y, z)e^{ikz}\]</div>
+<p>Which will account for the wave oscillation along the propagation direction.</p>
+<p>Plugging in (and expanding out the <span class="math notranslate nohighlight">\(\nabla^2\)</span>) we obtain:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial^2 u_{0}}{\partial x^2} + \frac{\partial^2 u_{0}}{\partial y^2} + \frac{\partial^2 u_{0}}{\partial z^2} + 2ik\frac{\partial u_{0}}{dz} = 0\]</div>
+<p>To obtain the paraxial approximation we consider <span class="math notranslate nohighlight">\(u_{0}\)</span> to vary slowly with <span class="math notranslate nohighlight">\(z\)</span> (leading to a slow decrease in amplitude as the wave propagates), and thus drop the <span class="math notranslate nohighlight">\(\frac{\partial^2 u_{0}}{\partial z^2}\)</span> term, obtaining:</p>
+<div class="math notranslate nohighlight">
+\[(\frac{\partial^{2}}{\partial x^{2}} + \frac{\partial^2}{\partial y^2})u_{0}(x, y, z) = -2ik\frac{\partial}{\partial z}u_{0}(x, y, z)\]</div>
+<p>Looking at this equation, it might occur to you that it looks exactly like the Schrodinger equation for a two dimensional free particle! Only the <span class="math notranslate nohighlight">\(z\)</span> coordinate is playing the role of time! (And the wave number is acting like Planck’s constant!)</p>
+<p>We’re just talking about a classical EM wave, and yet here we find a quantum equation staring us in the face.</p>
+<p>Solutions to this equation can be interpreted in both a classical and a quantum sense, and one thing that means is that we can use all of our quantum mechanical machinery to deal with this classical “wavefunction.”</p>
+<p>Indeed, we could consider the two dimensional quantum harmonic oscillator, as we did originally, and consider all of its energy states: they form a complete basis for wavefunctions on the plane. And so in principle, we could decompose our <em>classical light beam</em> in terms of the basis states of the <em>quantum 2D oscillator</em>.</p>
+<p>And because of that, we’ll be able to associate to the beam a set of Majorana constellations.</p>
+<p>Indeed, we can employ the whole formalism of creation and annihilation operators, and so forth. And in fact, for structured Gaussian beams specifically, the 2D quantum harmonic oscillator Hamiltonian will describe the propagation of the beam: the z-axis will play the role of time.</p>
+<p>Of course, to actually consider a <em>quantum light beam</em>, we’d have to second quantize: for each mode into which we’ve decomposed the beam, we’d have to introduce a quantum harmonic oscillator to counts the number of photons in that mode, and so on, and so forth.</p>
+<p>But I want to emphasize the bizarre classical/quantum incest that’s going on here. We can represent the classical light beam as a “state vector”, whose cross sections will be the transverse beam profile of the electric field (which is measurable)–but this is different from the wavefunction of a photon in that mode! In the first case, the amplitude squared of the wavefunction represents the intensity of the electric field, whereas in the second case the amplitude squared represents the
+probability for finding a photon in that state.</p>
+<hr><p>The simplest solution to the paraxial Maxwell’s equations is the Gaussian beam.</p>
+<p><img alt="1c63b417111546a88808985828cfce48" class="no-scaled-link" src="../_images/gaussian.png" style="width: 500px;" /></p>
+<p>Here, <span class="math notranslate nohighlight">\(A\)</span> is some normalization.</p>
+<p><span class="math notranslate nohighlight">\(w_{0}\)</span> is the “waist radius” or “beam waist”, which measures the size of the beam at the point of focus <span class="math notranslate nohighlight">\(z=0\)</span>, and <span class="math notranslate nohighlight">\(w(z)\)</span> is the beam width.</p>
+<p><span class="math notranslate nohighlight">\(R(z) = z(1 + (\frac{z_{R}}{z})^2)\)</span> is the the radius of curvature of the beam’s wavefronts.</p>
+<p><span class="math notranslate nohighlight">\(z_{R}\)</span> is the “Rayleigh distance”: <span class="math notranslate nohighlight">\(\frac{\pi w_{0}^2 n}{\lambda}\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the wavelength and <span class="math notranslate nohighlight">\(n\)</span> is the index of refraction.</p>
+<p><span class="math notranslate nohighlight">\(\phi(z) = \arctan(\frac{z}{z_{R}})\)</span> is the Gouy phase, which has a great name!</p>
+<p>This picture from <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_beam">wikipedia</a> is illuminating:</p>
+<p><img alt="27c3612e5f9b47d09a64fd295c8ad947" class="no-scaled-link" src="../_images/beam_width.png" style="width: 400px;" /></p>
+<p>The intensity profile, or cross section of the beam, at its point of focus, would look like:</p>
+<p><img alt="c730c2c2188a400d9c2f550e3d57b153" class="no-scaled-link" src="../_images/gaussian_intensity.png" style="width: 400px;" /></p>
+<p>In either direction along the direction of propagation, it would look the same, only slowly increasing in size.</p>
+<p>So that’s the simplest case!</p>
+<hr><p>We now turn to structured Gaussian beams.</p>
+<p>Given what I said earlier, and knowing that the energy states of the quantum harmonic oscillator can be written in terms of the Hermite polynomials, it would make sense if we could decompose our classical light beam into the so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_beam#Hermite-Gaussian_modes">Hermite-Gaussian modes</a>, which essentially consist in two Hermite polynomials in x and y multiplied by a Gaussian. Shamelessly ripped from wikipedia:</p>
+<p><img alt="7f1a58b601604b58bc109dc704614a3c" class="no-scaled-link" src="../_images/hermite_gaussian.png" style="width: 400px;" /></p>
+<p>Here <span class="math notranslate nohighlight">\(E_{0}\)</span> hides the normalization and <span class="math notranslate nohighlight">\(\psi(z) = (N+1)\arctan(\frac{z}{z_{R}})\)</span>, the Gouy phase. <span class="math notranslate nohighlight">\(N = l + m\)</span>, where <span class="math notranslate nohighlight">\(l\)</span> and <span class="math notranslate nohighlight">\(m\)</span> denote which Hermite polynomials we’re using.</p>
+<p>Okay. But morally speaking, it’s just a 2D quantum harmonic oscillator state energy state with some bells and whistles.</p>
+<p>Compare the wavefunction for a 1D quantum harmonic oscillator energy state:</p>
+<p><img alt="51dfae836bdc4e11bb4e891eeae05f5b" class="no-scaled-link" src="../_images/hermite.png" style="width: 300px;" /></p>
+<p>The difference is that we’ve got this <span class="math notranslate nohighlight">\(\frac{w_{0}}{w(z)}\)</span> term at the front, we’re dividing things by (powers of) <span class="math notranslate nohighlight">\(w(z)\)</span>, and we have these phase terms. The effect is to make sure we’re describing a beam.</p>
+<hr><p>In what follows, however, we’ll be following <a class="reference external" href="https://arxiv.org/abs/1901.06987">this reference</a>, and so use instead the Laguerre-Gaussian modes, which are closely related.</p>
+<p>We’ll see that the Hermite-Gaussian modes have horizontal/vertical symmetries in the plane, while the Laguerre-Gaussian modes have circular symmetries. And in fact, by using <span class="math notranslate nohighlight">\(X, Y, Z\)</span> rotations, we’ll be able to rotate Hermite-Gaussian modes into Laguerre-Gaussian modes, and vice versa, and even get modes that are in between (Hermite-Laguerre-Gaussian modes). It will be just the same correspondence that we saw before in the relationship between the sphere of a qubit and the polarization
+ellipse.</p>
+<p>The Laguerre-Gauss modes are given by:</p>
+<p><img alt="81c4041faf80411e9462aa7c63ababee" class="no-scaled-link" src="../_images/laguerre_gaussian.png" style="width: 400px;" /></p>
+<p>Here <span class="math notranslate nohighlight">\(\textbf{r}\)</span> is understood as <span class="math notranslate nohighlight">\((r, \phi, w)\)</span>: we’re working in cylindrical coordinates, where <span class="math notranslate nohighlight">\(w\)</span> is <span class="math notranslate nohighlight">\(w(z)\)</span> from above. The index <span class="math notranslate nohighlight">\(N\)</span> takes integer values and <span class="math notranslate nohighlight">\(l\)</span> runs from <span class="math notranslate nohighlight">\(-N\)</span> to <span class="math notranslate nohighlight">\(N\)</span> in steps of two. They parameterize the <a class="reference external" href="https://en.wikipedia.org/wiki/Laguerre_polynomials#Generalized_Laguerre_polynomials">generalized Laguerre polynomials</a>. We have some normalization, some phase terms, and a Gaussian falloff.</p>
+<p>The upshot is that any structured Gaussian beam of total order <span class="math notranslate nohighlight">\(N\)</span> can be decomposed in terms of LG modes as:</p>
+<div class="math notranslate nohighlight">
+\[\mid B \rangle = \sum_{l} c_{l}\mid N, l \rangle\]</div>
+<p>In honor of the classical/quantum crossover, we’ve employed the Dirac notation.</p>
+<p>So for <span class="math notranslate nohighlight">\(N=3\)</span>, say, we’d have states for <span class="math notranslate nohighlight">\(l=-3, -1, 1, 3\)</span>.</p>
+<p>Finally, we simply associate these states with the <span class="math notranslate nohighlight">\(\mid j, m \rangle\)</span> states of a spin-<span class="math notranslate nohighlight">\(\frac{N}{2}\)</span> particle, dividing <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(l\)</span> by <span class="math notranslate nohighlight">\(2\)</span> to get the <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(m\)</span> values. And from the spin state, we have our stars. Easy as pie!</p>
+<div class="math notranslate nohighlight">
+\[\mid 3, -3 \rangle \rightarrow \mid \frac{3}{2}, -\frac{3}{2} \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[\mid 3, -1 \rangle \rightarrow \mid \frac{3}{2}, -\frac{1}{2} \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[\mid 3, 1 \rangle \rightarrow \mid \frac{3}{2}, \frac{1}{2} \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[\mid 3, 3 \rangle \rightarrow \mid \frac{3}{2}, \frac{3}{2} \rangle\]</div>
+<p>We can then describe a structured Gaussian beam of <em>any order</em> as a tower of spin states aka a spin in a superposition of <span class="math notranslate nohighlight">\(j\)</span> values, just as we’ve been doing.</p>
+<hr><p>Alright, enough talk, let’s see it in action!</p>
+<p>First, let’s define our LG modes. Luckily, scipy can help us with our generalized Laguerre polynomials.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">factorial</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="nb">abs</span><span class="p">,</span> <span class="n">angle</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">eval_genlaguerre</span>
+
+<span class="k">def</span> <span class="nf">laguerre_gauss_mode</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="s2">&quot;cartesian&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    N is an integer.</span>
+<span class="sd">    l runs from -N to N in steps of 2.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span> <span class="c1"># cylindrical coordinates</span>
+        <span class="n">w0</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># waist radius</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># index of refraction</span>
+        <span class="n">lmbda</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># wavelength</span>
+        <span class="n">zR</span> <span class="o">=</span> <span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">lmbda</span> <span class="c1"># rayleigh range</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w0</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">zR</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># spot size parameter</span>
+        <span class="k">return</span> \
+            <span class="p">((</span><span class="mi">1</span><span class="n">j</span><span class="o">**</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="n">N</span><span class="p">))</span><span class="o">/</span><span class="n">w</span><span class="p">)</span><span class="o">*</span>\
+            <span class="n">sqrt</span><span class="p">(((</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">factorial</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">l</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span>\
+                    <span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">factorial</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">l</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span><span class="o">*</span>\
+            <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span>\
+            <span class="p">((</span><span class="n">r</span><span class="o">/</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="nb">abs</span><span class="p">(</span><span class="n">l</span><span class="p">))</span><span class="o">*</span>\
+            <span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">l</span><span class="o">*</span><span class="n">phi</span><span class="p">)</span><span class="o">*</span>\
+            <span class="n">eval_genlaguerre</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">l</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">coordinates</span> <span class="o">==</span> <span class="s2">&quot;cylindrical&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mode</span>
+    <span class="k">elif</span> <span class="n">coordinates</span> <span class="o">==</span> <span class="s2">&quot;cartesian&quot;</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">cartesian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span>
+            <span class="n">r</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">angle</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">mode</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cartesian</span>
+</pre></div>
+</div>
+</div>
+<p>Now we need a way to visualize them. The LG modes give us a complex value for each cylindrical coordinate. We’ll be visualizing them in the standard way in the plane, where color will correspond to the phase, and brightness to the magnitude.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">colorsys</span> <span class="kn">import</span> <span class="n">hls_to_rgb</span>
+
+<span class="c1"># Adapted from:</span>
+<span class="c1"># https://stackoverflow.com/questions/17044052/mathplotlib-imshow-complex-2d-array</span>
+<span class="k">def</span> <span class="nf">colorize</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">n</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">c</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">z</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">c</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">z</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">%</span> <span class="mf">1.0</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+    <span class="n">c</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hls_to_rgb</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">c</span>
+
+<span class="k">def</span> <span class="nf">viz_beam</span><span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">colorize</span><span class="p">(</span><span class="n">beam</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">))),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="o">-</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>First, let’s check out <span class="math notranslate nohighlight">\(N=0, l=0\)</span>. That just corresponds to a Gaussian beam. No funky business.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_17_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_17_0.png" />
+</div>
+</div>
+<p>Modes <span class="math notranslate nohighlight">\(N=1, l=-1, 1\)</span> correspond to a corkscrewing beam with a optical vortex in the center.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_19_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_19_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_19_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_19_1.png" />
+</div>
+</div>
+<p>Modes <span class="math notranslate nohighlight">\(N=2, l=-2, 0, 2\)</span>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_21_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_21_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_21_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_21_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_21_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_21_2.png" />
+</div>
+</div>
+<p>Modes <span class="math notranslate nohighlight">\(N=3, l=-3, -1, 1, 3\)</span>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_3.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_23_3.png" />
+</div>
+</div>
+<p>We can see that the LG modes are basically going to give us concentric rings.</p>
+<p>Now let’s incorporate the stars. Given a spin state, we’ll associate its <span class="math notranslate nohighlight">\(\mid j, m \rangle\)</span> components to LG modes, and package up the sum as a single python function. Then we’ll evaluate it–and visualize the constellation as well.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+
+<span class="k">def</span> <span class="nf">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="s2">&quot;cartesian&quot;</span><span class="p">):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+    <span class="n">lg_basis</span> <span class="o">=</span> <span class="p">[</span><span class="n">laguerre_gauss_mode</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">),</span> <span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">coordinates</span> <span class="o">==</span> <span class="s2">&quot;cartesian&quot;</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">beam</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)]</span><span class="o">*</span><span class="n">lg_basis</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)](</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">beam</span>
+    <span class="k">elif</span> <span class="n">coordinates</span> <span class="o">==</span> <span class="s2">&quot;cylindrical&quot;</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">beam</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)]</span><span class="o">*</span><span class="n">lg_basis</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">j</span><span class="p">)](</span><span class="n">r</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">beam</span>
+
+<span class="k">def</span> <span class="nf">viz_spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+    <span class="n">stars</span> <span class="o">=</span> <span class="n">spin_xyz</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+    <span class="n">beam</span> <span class="o">=</span> <span class="n">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figaspect</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+
+    <span class="n">bloch_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+    <span class="n">sphere</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Bloch</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">bloch_ax</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">sphere</span><span class="o">.</span><span class="n">point_size</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sphere</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">stars</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">sphere</span><span class="o">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">stars</span><span class="p">)</span>
+    <span class="n">sphere</span><span class="o">.</span><span class="n">make_sphere</span><span class="p">()</span>
+
+    <span class="n">beam_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">beam_ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">colorize</span><span class="p">(</span><span class="n">beam</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">))),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="o">-</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>As a test, let’s make sure we can reproduce this image from the paper:</p>
+<p><img alt="6b4369a670bf4a5da4b276d8cfd42ce6" src="../_images/sg_reference.png" /></p>
+<p>They start with a spin coherent state at <span class="math notranslate nohighlight">\(\phi = \frac{\pi}{2}, \theta = \frac{\pi}{2}\)</span> in spherical coordiantes, for <span class="math notranslate nohighlight">\(j=3\)</span>. This means <span class="math notranslate nohighlight">\(6\)</span> stars at that point on the sphere.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">star</span> <span class="o">=</span> <span class="n">sph_xyz</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">spin</span> <span class="o">=</span> <span class="n">xyz_spin</span><span class="p">([</span><span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">])</span>
+<span class="n">beam</span> <span class="o">=</span> <span class="n">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_27_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_27_0.png" />
+</div>
+</div>
+<p>Looks good, up to our choice of coloring scheme! So then they consider the spin state with <span class="math notranslate nohighlight">\(5\)</span> stars at that point, and <span class="math notranslate nohighlight">\(1\)</span> star in the opposite direction–and then <span class="math notranslate nohighlight">\(2\)</span> stars in the opposite direction, and so on. (All of which together form a <span class="math notranslate nohighlight">\(\mid j, m \rangle\)</span> basis set, quantized along this particular axis).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">star</span> <span class="o">=</span> <span class="n">sph_xyz</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">spin</span> <span class="o">=</span> <span class="n">xyz_spin</span><span class="p">([</span><span class="o">-</span><span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">])</span>
+<span class="n">beam</span> <span class="o">=</span> <span class="n">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_29_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_29_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">star</span> <span class="o">=</span> <span class="n">sph_xyz</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">spin</span> <span class="o">=</span> <span class="n">xyz_spin</span><span class="p">([</span><span class="o">-</span><span class="n">star</span><span class="p">,</span> <span class="o">-</span><span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">])</span>
+<span class="n">beam</span> <span class="o">=</span> <span class="n">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_30_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_30_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">star</span> <span class="o">=</span> <span class="n">sph_xyz</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">spin</span> <span class="o">=</span> <span class="n">xyz_spin</span><span class="p">([</span><span class="o">-</span><span class="n">star</span><span class="p">,</span> <span class="o">-</span><span class="n">star</span><span class="p">,</span> <span class="o">-</span><span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">,</span> <span class="n">star</span><span class="p">])</span>
+<span class="n">beam</span> <span class="o">=</span> <span class="n">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">beam</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_31_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_31_0.png" />
+</div>
+</div>
+<p>Looks good to me!</p>
+<p>Now let’s check out <span class="math notranslate nohighlight">\(X, Y, Z\)</span> eigenstates for different <span class="math notranslate nohighlight">\(j\)</span> values.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 1/2</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_33_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_33_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_33_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_33_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 1/2</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_34_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_34_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_34_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_34_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 1/2</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_35_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_35_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_35_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_35_1.png" />
+</div>
+</div>
+<p>So: we’re getting horizontally/vertically symmetric states, diagonal/antidiagonal symmetric states, and circularly symmetric states!</p>
+<p>Of course, the convention is a little different from the one we started out with, when we were considering the relationship between a qubit and polarization. Back then, <span class="math notranslate nohighlight">\(X\)</span> corresponded to <span class="math notranslate nohighlight">\(D/A\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> to <span class="math notranslate nohighlight">\(R/L\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span> to <span class="math notranslate nohighlight">\(H/V\)</span>. Here we have <span class="math notranslate nohighlight">\(X\)</span> corresponding to <span class="math notranslate nohighlight">\(H/V\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> to <span class="math notranslate nohighlight">\(D/A\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> to <span class="math notranslate nohighlight">\(R/L\)</span>. But again, it’s just a convention.</p>
+<p>The point is that in this construction, <span class="math notranslate nohighlight">\(Z\)</span> eigenstates correspond to Laguerre-Gauss modes: the circularly symmetric ones. <span class="math notranslate nohighlight">\(X\)</span> eigenstates correspond to Hermite-Gauss modes: horizontal/vertically symmetric ones. And so, as promised the Laguerre/Hermite distinction is just a rotation away!</p>
+<p>Let’s check out <span class="math notranslate nohighlight">\(j=1\)</span>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 1</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_37_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_37_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_37_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_37_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_37_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_37_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 1</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_38_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_38_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_38_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_38_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_38_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_38_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 1</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_39_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_39_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_39_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_39_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_39_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_39_2.png" />
+</div>
+</div>
+<p>And for <span class="math notranslate nohighlight">\(j=\frac{3}{2}\)</span>. Also, for comparison, an actual <em>picture</em>, grainy due to the quantum nature of the photons:</p>
+<p><img alt="688de36d65bd4e0499cee64e9d5b6ff0" class="no-scaled-link" src="../_images/actual_hg_img.png" style="width: 600px;" /></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 3/2</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_3.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_41_3.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 3/2</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_3.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_42_3.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># j = 3/2</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+<span class="n">viz_beam</span><span class="p">(</span><span class="n">spin_beam</span><span class="p">(</span><span class="n">basis</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_3.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_43_3.png" />
+</div>
+</div>
+<p>And then, of course, we can consider arbitrary constellations:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">viz_spin_beam</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">viz_spin_beam</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">viz_spin_beam</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">viz_spin_beam</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">viz_spin_beam</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">viz_spin_beam</span><span class="p">(</span><span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_0.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_1.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_2.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_3.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_4.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_4.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_5.png" src="../_images/notebooks_9.2_Majorana_Stars_and_Structured_Gaussian_Beams_45_5.png" />
+</div>
+</div>
+<p>Finally, let’s see them in motion! Given a spin and a Hamiltonian, the code below will evolve the spin bit by bit, calculating the associated SG beam each step of the way, and visualize everything as an animation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+
+<span class="k">def</span> <span class="nf">animate_spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figaspect</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+
+    <span class="n">bloch_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+    <span class="n">sphere</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">Bloch</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">bloch_ax</span><span class="p">)</span>
+    <span class="n">sphere</span><span class="o">.</span><span class="n">point_size</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sphere</span><span class="o">.</span><span class="n">make_sphere</span><span class="p">()</span>
+
+    <span class="n">beam_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">H</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">.</span><span class="n">expm</span><span class="p">()</span>
+    <span class="n">sphere_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">beam_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">sphere_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spin_xyz</span><span class="p">(</span><span class="n">spin</span><span class="p">))</span>
+        <span class="n">beam</span> <span class="o">=</span> <span class="n">spin_beam</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
+        <span class="n">beam_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">beam</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">))</span>
+        <span class="n">spin</span> <span class="o">=</span> <span class="n">U</span><span class="o">*</span><span class="n">spin</span>
+
+    <span class="n">sphere</span><span class="o">.</span><span class="n">make_sphere</span><span class="p">()</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">beam_ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">colorize</span><span class="p">(</span><span class="n">beam_history</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="o">-</span><span class="n">size</span><span class="p">,</span><span class="n">size</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">sphere</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">sphere</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">sphere_history</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="n">sphere</span><span class="o">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">sphere_history</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+            <span class="n">sphere</span><span class="o">.</span><span class="n">make_sphere</span><span class="p">()</span>
+
+        <span class="n">im</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">colorize</span><span class="p">(</span><span class="n">beam_history</span><span class="p">[</span><span class="n">t</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">bloch_ax</span><span class="p">,</span> <span class="n">im</span><span class="p">]</span>
+
+    <span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">fps</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ani</span>
+</pre></div>
+</div>
+</div>
+<p>Check out the <a class="reference external" href="https://heyredhat.github.io/vids/beams">beam vids</a>: I’ve pre-generated animations systematically for spins of different <span class="math notranslate nohighlight">\(j\)</span> value, visualizing both the stars and the beam profile for:</p>
+<ul class="simple">
+<li><p>All X/Y/Z eigenstates, and how they transform under X/Y/Z rotations, as well as phase evolution (2D oscillator hamiltonian).</p></li>
+<li><p>How a random constellation transforms under X/Y/Z rotations.</p></li>
+<li><p>How a constellation whose stars should approximate a regular polyhedron transforms under X/Y/Z rotations (we allow randomly chosen stars to repel each other for a while until they settle into a nicely regular configuration).</p></li>
+<li><p>How a random constellation transforms under a random Hamiltonian.</p></li>
+</ul>
+<p>Plus, some extra vids for fun.</p>
+<hr><p>To conclude. You might be wondering about the applications of structured Gaussian beams.</p>
+<p>Well, from what I’ve heard: structured Gaussian beams can be used as “optical tweezers” to manipulate macroscopic particles, tweezing them into some desired location; they can be used to “write optical waveguides into atomic vapors”; to produce atomic traps, where atoms get attracted to regions of maximum or minimum light intensity; to make better telescopes; to increase the bandwidth of communication channels, e.g., using “twisted radio beams,” c.f. “orbital angular momentum multiplexing”; as
+qudits in photonic quantum computation; and much more.</p>
+<p>How to make them? Often one starts with a Gaussian beam, and there are various techniques to give the beam a “twist”– see the links for more information!</p>
+<p>Finally, a little philosophy. It’s clear that structured Gaussian beams have some practical value, and naturally they’re of natural interest to us insofar as they represent yet another use of the Majorana stars. But I think most importantly, they show how tricky it is to cleanly separate the “classical” from the “quantum”– the two are always locked in an endless embrace.</p>
+<p>Already, the Majorana stars formalism itself rides the border between classical and quantum in an interesting way. Essentially, one represents quantum spin-<span class="math notranslate nohighlight">\(j\)</span> states in terms of <span class="math notranslate nohighlight">\(2j\)</span> copies of the <em>classical</em> phase space of a spinning object. Moreover, thinking in terms of the “coherent state wavefunction,” we’re representing a spin state in terms of a set of the “most classical states” it <em>isn’t</em>. Moreover, the dynamics of a spin system can be reinterpreted as a classical evolution
+between particles (the stars) confined to the surface of the sphere, experiencing n-body forces whose weights depend on the particular Hamiltonian.</p>
+<p>But now we’re taking this to the next level! Spin states can be embedded in the larger context of the 2D quantum harmonic oscillator, whose energy states miraculously correspond to the <em>classical</em> states of a light beam, so that now the Majorana constellations are picking out classical light beam states, which after second quantization, correspond to modes in which one can find fully quantum photons with some probability.</p>
+<p>Indeed, one might even say that a quantum structured Gaussian light beam could be regarded as the “third quantization” of a qubit:</p>
+<p>We start with a classical spinning object and first quantize it into a qubit. Then we second quantize the qubit to get all the higher representations of SU(2), which correspond to nothing more than <em>copies</em> of the original classical phase space, in terms of the 2D quantum harmonic oscillator. But these quantum states also correspond to classical solutions of the paraxial Maxwell’s equations for a light beam. And so we quantize a third time, introducing a harmonic oscillator to each of those
+modes, which count the number of photons in those states, and end up with a fully quantum beam…</p>
+<p>It really makes you wonder: Could the states of the quantum beam correspond to the states of <em>yet another</em> classical system, allowing us to fourth quantize, and so on… One can dream. Ironically: in the progression, we start with a sphere (spin), then we end up on the plane (2D quantum harmonic oscillator), and finally, we end up with an (approximately) 1 dimensional beam. Maybe we should look for something 0 dimensional next! Food for thought!</p>
+<div class="section" id="References:">
+<h2>References:<a class="headerlink" href="#References:" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/1901.06987">Modal Majorana sphere and hidden symmetries of structured-Gaussian beams</a></p>
+<p><a class="reference external" href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;ved=2ahUKEwjQ_ZigzqPtAhWnQTABHZwdCA0QFjAFegQIBRAC&amp;url=https%3A%2F%2Fwww.colgate.edu%2Fmedia%2F5371%2Fdownload&amp;usg=AOvVaw3dMVH7k1JjDdFf9VVppDoI">Gaussian Beams</a></p>
+<p><a class="reference external" href="http://events.saip.org.za/getFile.py/access?contribId=365&amp;sessionId=18&amp;resId=0&amp;materialId=paper&amp;confId=7">Representation of the quantum and classical states of light carrying orbital angular momentum</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/1612.06804">Quantum metrology at the limit with extremal Majorana constellations</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/1611.10245">Swings and roundabouts: Optical Poincare spheres for polarization and Gaussian beams</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/1903.01304">Geometric phases in 2D and 3D polarized fields: geometrical, dynamical, and topological aspects</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/1908.01363">Generalized Gaussian beams in terms of Jones vectors</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_beam">https://en.wikipedia.org/wiki/Gaussian_beam</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Orbital_angular_momentum_of_light">https://en.wikipedia.org/wiki/Orbital_angular_momentum_of_light</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Optical_vortex">https://en.wikipedia.org/wiki/Optical_vortex</a></p>
+<p><a class="reference external" href="http://www.nhn.ou.edu/~abe/research/lgbeams/">http://www.nhn.ou.edu/~abe/research/lgbeams/</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="9.7_Majorana_for_Mixed_States.html" class="btn btn-neutral float-right" title="Generalizing the Majorana Representation for Mixed States and Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="9.6_Photonic_SpinJ.html" class="btn btn-neutral float-left" title="How To Prepare a Spin-j State on a Photonic Quantum Computer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -15,6 +15,8 @@ spheres.stars.star\_utils
       :toctree:                                          
    
       antipodal
+      basis
+      pauli_eigenstate
       poleflip
       spherical_inner
       spin_coherent

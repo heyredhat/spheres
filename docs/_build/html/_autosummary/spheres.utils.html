@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="spheres.utils.basis" href="spheres.utils.basis.html" />
+    <link rel="next" title="spheres.utils.binomial" href="spheres.utils.binomial.html" />
     <link rel="prev" title="spheres.symplectic.upgrade_two_mode_operator" href="spheres.symplectic.upgrade_two_mode_operator.html" /> 
 </head>
 
@@ -202,6 +202,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.basis.html">spheres.stars.star_utils.basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.pauli_eigenstate.html">spheres.stars.star_utils.pauli_eigenstate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
 <li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
@@ -234,7 +236,6 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">spheres.utils</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="spheres.utils.basis.html">spheres.utils.basis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.binomial.html">spheres.utils.binomial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
@@ -250,7 +251,6 @@
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.normalize.html">spheres.utils.normalize</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spheres.utils.pauli_eigenstate.html">spheres.utils.pauli_eigenstate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.phase.html">spheres.utils.phase</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spheres.utils.polygon_area.html">spheres.utils.polygon_area</a></li>
@@ -297,7 +297,10 @@
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/9_Symmetrized_Qubits.html">How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/9.6_Photonic_SpinJ.html">How To Prepare a Spin-j State on a Photonic Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/9.2_Majorana_Stars_and_Structured_Gaussian_Beams.html">Majorana Stars and Structured Gaussian Beams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/9.7_Majorana_for_Mixed_States.html">Generalizing the Majorana Representation for Mixed States and Operators</a></li>
 </ul>
 
             
@@ -399,56 +402,50 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.basis.html#spheres.utils.basis" title="spheres.utils.basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">basis</span></code></a>(d, i[, up])</p></td>
-<td><p>Similar to <cite>pauli_eigenstate</cite>, only parameterized by dimension.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.binomial.html#spheres.utils.binomial" title="spheres.utils.binomial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binomial</span></code></a>(n, k)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.binomial.html#spheres.utils.binomial" title="spheres.utils.binomial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binomial</span></code></a>(n, k)</p></td>
 <td><p>Binomial coefficient <span class="math notranslate nohighlight">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.bitstring_basis.html#spheres.utils.bitstring_basis" title="spheres.utils.bitstring_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bitstring_basis</span></code></a>(bitstring[, dims])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.bitstring_basis.html#spheres.utils.bitstring_basis" title="spheres.utils.bitstring_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bitstring_basis</span></code></a>(bitstring[, dims])</p></td>
 <td><p>Generates a basis vector corresponding to a given bitstring, which may be a list of integers or a string of integers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.compare_nophase.html#spheres.utils.compare_nophase" title="spheres.utils.compare_nophase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_nophase</span></code></a>(a, b)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.compare_nophase.html#spheres.utils.compare_nophase" title="spheres.utils.compare_nophase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_nophase</span></code></a>(a, b)</p></td>
 <td><p>Compares two vectors disregarding their overall complex phase.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.compare_spinors.html#spheres.utils.compare_spinors" title="spheres.utils.compare_spinors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_spinors</span></code></a>(A, B[, decimals])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.compare_spinors.html#spheres.utils.compare_spinors" title="spheres.utils.compare_spinors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_spinors</span></code></a>(A, B[, decimals])</p></td>
 <td><p>Compares two lists of spinors, disregarding both their phases, as well as their ordering in the list.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.compare_unordered.html#spheres.utils.compare_unordered" title="spheres.utils.compare_unordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_unordered</span></code></a>(A, B[, decimals])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.compare_unordered.html#spheres.utils.compare_unordered" title="spheres.utils.compare_unordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_unordered</span></code></a>(A, B[, decimals])</p></td>
 <td><p>Compares two sets of vectors regardless of their ordering up to some precision.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.components.html#spheres.utils.components" title="spheres.utils.components"><code class="xref py py-obj docutils literal notranslate"><span class="pre">components</span></code></a>(q)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.components.html#spheres.utils.components" title="spheres.utils.components"><code class="xref py py-obj docutils literal notranslate"><span class="pre">components</span></code></a>(q)</p></td>
 <td><p>Extracts components of qt.Qobj, whether bra or ket, as a numpy array.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.density_to_purevec.html#spheres.utils.density_to_purevec" title="spheres.utils.density_to_purevec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_to_purevec</span></code></a>(density)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.density_to_purevec.html#spheres.utils.density_to_purevec" title="spheres.utils.density_to_purevec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_to_purevec</span></code></a>(density)</p></td>
 <td><p>Converts a density matrix to a pure vector if it’s rank-1.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.dirac.html#spheres.utils.dirac" title="spheres.utils.dirac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dirac</span></code></a>(state[, probabilities])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.dirac.html#spheres.utils.dirac" title="spheres.utils.dirac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dirac</span></code></a>(state[, probabilities])</p></td>
 <td><p>Prints a pretty representation of a state in Dirac braket notation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.fix_stars.html#spheres.utils.fix_stars" title="spheres.utils.fix_stars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fix_stars</span></code></a>(old_stars, new_stars)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.fix_stars.html#spheres.utils.fix_stars" title="spheres.utils.fix_stars"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fix_stars</span></code></a>(old_stars, new_stars)</p></td>
 <td><p>Try to adjust the ordering of a list of stars to keep continuity, so that they are in the “same order.” Not always reliable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.flatten.html#spheres.utils.flatten" title="spheres.utils.flatten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten</span></code></a>(to_flatten)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.flatten.html#spheres.utils.flatten" title="spheres.utils.flatten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten</span></code></a>(to_flatten)</p></td>
 <td><p>Flattens list of lists.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.from_pauli_basis.html#spheres.utils.from_pauli_basis" title="spheres.utils.from_pauli_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pauli_basis</span></code></a>(coeffs[, basis])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.from_pauli_basis.html#spheres.utils.from_pauli_basis" title="spheres.utils.from_pauli_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pauli_basis</span></code></a>(coeffs[, basis])</p></td>
 <td><p>Given a dictionary mapping Pauli strings to components, returns the corresponding density matrix/operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.measure.html#spheres.utils.measure" title="spheres.utils.measure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">measure</span></code></a>(state, projectors)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.measure.html#spheres.utils.measure" title="spheres.utils.measure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">measure</span></code></a>(state, projectors)</p></td>
 <td><p>Given a state and a set of projectors, calculates the probability of each outcome, and returns an outcome index with that probability.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.normalize.html#spheres.utils.normalize" title="spheres.utils.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code></a>(v)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.normalize.html#spheres.utils.normalize" title="spheres.utils.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code></a>(v)</p></td>
 <td><p>Normalizes numpy vector.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.normalize_phase.html#spheres.utils.normalize_phase" title="spheres.utils.normalize_phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_phase</span></code></a>(v)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.normalize_phase.html#spheres.utils.normalize_phase" title="spheres.utils.normalize_phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_phase</span></code></a>(v)</p></td>
 <td><p>Normalizes the phase of a complex vector (np.ndarray or qt.Qobj).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.pauli_basis.html#spheres.utils.pauli_basis" title="spheres.utils.pauli_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_basis</span></code></a>(n)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.pauli_basis.html#spheres.utils.pauli_basis" title="spheres.utils.pauli_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_basis</span></code></a>(n)</p></td>
 <td><p>Generates the Pauli basis for n qubits.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="spheres.utils.pauli_eigenstate.html#spheres.utils.pauli_eigenstate" title="spheres.utils.pauli_eigenstate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_eigenstate</span></code></a>(j, m, direction)</p></td>
-<td><p>Returns eigenstates of Pauli operators.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="spheres.utils.phase.html#spheres.utils.phase" title="spheres.utils.phase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">phase</span></code></a>(v)</p></td>
 <td><p>Extracts phase of a complex vector (np.ndarray or qt.Qobj) by finding the first non-zero component and returning its phase.</p></td>
@@ -498,7 +495,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="spheres.utils.basis.html" class="btn btn-neutral float-right" title="spheres.utils.basis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="spheres.utils.binomial.html" class="btn btn-neutral float-right" title="spheres.utils.binomial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="spheres.symplectic.upgrade_two_mode_operator.html" class="btn btn-neutral float-left" title="spheres.symplectic.upgrade_two_mode_operator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
