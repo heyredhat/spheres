@@ -49,3 +49,5 @@ Get started:
 	vsphere.evolve(qt.rand_herm(3))
 
 Special thanks to the `Quantum Open Source Foundation <https://qosf.org/>`_.
+
+For more information and reference material, including jupyter notebooks, check out `heyredhat.github.io <https://heyredhat.github.io>`_.

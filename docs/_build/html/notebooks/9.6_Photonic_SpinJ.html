@@ -1,0 +1,909 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How To Prepare a Spin-j State on a Photonic Quantum Computer &mdash; spheres 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="spheres.visualization.vp_object.VObject" href="../_autosummary/spheres.visualization.vp_object.VObject.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/spheres.html">spheres</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.beams.html">spheres.beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.animate_spin_beam.html">spheres.beams.animate_spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.colorize.html">spheres.beams.colorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.laguerre_gauss_mode.html">spheres.beams.laguerre_gauss_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.spin_beam.html">spheres.beams.spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_beam.html">spheres.beams.viz_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_spin_beam.html">spheres.beams.viz_spin_beam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.coordinates.html">spheres.coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_sph.html">spheres.coordinates.c_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_spinor.html">spheres.coordinates.c_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_xyz.html">spheres.coordinates.c_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_c.html">spheres.coordinates.sph_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_spinor.html">spheres.coordinates.sph_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_xyz.html">spheres.coordinates.sph_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_c.html">spheres.coordinates.spinor_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_sph.html">spheres.coordinates.spinor_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_xyz.html">spheres.coordinates.spinor_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_c.html">spheres.coordinates.xyz_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_sph.html">spheres.coordinates.xyz_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.error_correction.html">spheres.error_correction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.html">spheres.error_correction.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.build_circuit.html">spheres.error_correction.pytket.build_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.process_sym_counts.html">spheres.error_correction.pytket.process_sym_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.random_circuit.html">spheres.error_correction.pytket.random_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.error_correction.pytket.symmetrize_circuit.html">spheres.error_correction.pytket.symmetrize_circuit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.oscillators.html">spheres.oscillators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spinblocks.html">spheres.oscillators.osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spins.html">spheres.oscillators.osc_spins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spintower_map.html">spheres.oscillators.osc_spintower_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc_map.html">spheres.oscillators.spin_osc_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_tower_dimensions.html">spheres.oscillators.spin_tower_dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spinj_xyz_osc.html">spheres.oscillators.spinj_xyz_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spins_osc.html">spheres.oscillators.spins_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.polyhedra.html">spheres.polyhedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.polyhedra.equidistribute_points.html">spheres.polyhedra.equidistribute_points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.relativity.html">spheres.relativity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.relativity.mobius.html">spheres.relativity.mobius</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.html">spheres.spin_circuits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.html">spheres.spin_circuits.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Rk_pytket.html">spheres.spin_circuits.pytket.Rk_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Tkj_pytket.html">spheres.spin_circuits.pytket.Tkj_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.postselect_shots.html">spheres.spin_circuits.pytket.postselect_shots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_sym_pytket.html">spheres.spin_circuits.pytket.spin_sym_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_tomography_pytket.html">spheres.spin_circuits.pytket.spin_tomography_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_circuits_pytket.html">spheres.spin_circuits.pytket.tomography_circuits_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_dm_pytket.html">spheres.spin_circuits.pytket.tomography_dm_pytket</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.html">spheres.spin_circuits.qiskit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Rk_qiskit.html">spheres.spin_circuits.qiskit.Rk_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Tkj_qiskit.html">spheres.spin_circuits.qiskit.Tkj_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.postselect_results_qiskit.html">spheres.spin_circuits.qiskit.postselect_results_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_sym_qiskit.html">spheres.spin_circuits.qiskit.spin_sym_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_tomography_qiskit.html">spheres.spin_circuits.qiskit.spin_tomography_qiskit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.html">spheres.spin_circuits.strawberryfields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields.html">spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields.html">spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.stars.html">spheres.stars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.html">spheres.stars.mixed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spherical_decomposition.html">spheres.stars.mixed.operator_spherical_decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spins.html">spheres.stars.mixed.operator_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_operator.html">spheres.stars.mixed.spherical_decomposition_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_spins.html">spheres.stars.mixed.spherical_decomposition_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor.html">spheres.stars.mixed.spherical_tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor_basis.html">spheres.stars.mixed.spherical_tensor_basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_operator.html">spheres.stars.mixed.spins_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_spherical_decomposition.html">spheres.stars.mixed.spins_spherical_decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.pure.html">spheres.stars.pure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.c_spin.html">spheres.stars.pure.c_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_roots.html">spheres.stars.pure.poly_roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_spin.html">spheres.stars.pure.poly_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.roots_poly.html">spheres.stars.pure.roots_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.sph_spin.html">spheres.stars.pure.sph_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_c.html">spheres.stars.pure.spin_c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_poly.html">spheres.stars.pure.spin_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_sph.html">spheres.stars.pure.spin_sph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_spinors.html">spheres.stars.pure.spin_spinors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_xyz.html">spheres.stars.pure.spin_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spinors_spin.html">spheres.stars.pure.spinors_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.xyz_spin.html">spheres.stars.pure.xyz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symmetrization.html">spheres.symmetrization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrize.html">spheres.symmetrization.symmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrized_basis.html">spheres.symmetrization.symmetrized_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symplectic.html">spheres.symplectic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_complex_symplectic.html">spheres.symplectic.is_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_real_symplectic.html">spheres.symplectic.is_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.utils.html">spheres.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.basis.html">spheres.utils.basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.binomial.html">spheres.utils.binomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_spinors.html">spheres.utils.compare_spinors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_unordered.html">spheres.utils.compare_unordered</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.components.html">spheres.utils.components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.density_to_purevec.html">spheres.utils.density_to_purevec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.dirac.html">spheres.utils.dirac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.flatten.html">spheres.utils.flatten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.measure.html">spheres.utils.measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize.html">spheres.utils.normalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.pauli_eigenstate.html">spheres.utils.pauli_eigenstate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase.html">spheres.utils.phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.polygon_area.html">spheres.utils.polygon_area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.qubits_xyz.html">spheres.utils.qubits_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_c.html">spheres.utils.rand_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_sph.html">spheres.utils.rand_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_xyz.html">spheres.utils.rand_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.random_pairs.html">spheres.utils.random_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.random_unique_pairs.html">spheres.utils.random_unique_pairs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.spinj_xyz.html">spheres.utils.spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.tensor_upgrade.html">spheres.utils.tensor_upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.to_pauli_basis.html">spheres.utils.to_pauli_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.visualization.html">spheres.visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.MajoranaSphere.html">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.SphericalWavefunction.html">spheres.visualization.majorana_sphere.SphericalWavefunction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.html">spheres.visualization.matplotlib_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.animate_spin.html">spheres.visualization.matplotlib_spheres.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.viz_spin.html">spheres.visualization.matplotlib_spheres.viz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.OperatorSphere.html">spheres.visualization.operator_sphere.OperatorSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.OscillatorPlane.html">spheres.visualization.schwinger_spheres.OscillatorPlane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.html">spheres.visualization.vp_object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.VObject.html">spheres.visualization.vp_object.VObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How To Prepare a Spin-j State on a Photonic Quantum Computer</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>How To Prepare a Spin-j State on a Photonic Quantum Computer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/notebooks/9.6_Photonic_SpinJ.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="How-To-Prepare-a-Spin-j-State-on-a-Photonic-Quantum-Computer">
+<h1>How To Prepare a Spin-j State on a Photonic Quantum Computer<a class="headerlink" href="#How-To-Prepare-a-Spin-j-State-on-a-Photonic-Quantum-Computer" title="Permalink to this headline">¶</a></h1>
+<p>By now we all know and love how a spin-j state can be decomposed into 2j “stars” on the sphere. We’ve used this decomposition to prepare spin-j states in the form of 2j permutation symmetric qubits on IBM’s quantum computer. Here we’ll see how we can use the same decomposition to prepare a spin-j state on a photonic quantum computer, in terms of oscillator modes.</p>
+<p>For this, we’ll need to recall the “Schwinger oscillator” formulation of spin, which as we’ve seen can be thought of as the second quantization of a qubit. We introduce two harmonic oscillators for each basis state of a qubit (the fundamental, spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> representation). This actually gives us all the higher spin representations for free. You can think of it like one oscillator counts the number of “<span class="math notranslate nohighlight">\(\uparrow\)</span>” quanta and one oscillator counts the number of
+“<span class="math notranslate nohighlight">\(\downarrow\)</span>” quanta. The resulting Fock space can be interpreted as describing a theory of a variable number of bosonic spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> quanta (aka a theory of symmetric multiqubit states with different numbers of qubits), or more simply as a tower of spin states, one for each <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<hr><p>The easiest way to see this is to rearrange the Fock space of the two oscillators in the follow perspicacious form:</p>
+<p><span class="math notranslate nohighlight">\(\{\mid 00 \rangle, \mid 10 \rangle, \mid 01 \rangle, \mid 20 \rangle, \mid 11 \rangle, \mid 02 \rangle, \mid 30 \rangle, \mid 21 \rangle, \mid 12 \rangle, \mid 03 \rangle, \dots \}\)</span></p>
+<p>In other words, we can consider the subspaces with a fixed total number of quanta:</p>
+<p><span class="math notranslate nohighlight">\(\{ \mid 00 \rangle \}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\{ \mid 10 \rangle, \mid 01 \rangle \}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\{ \mid 20 \rangle, \mid 11 \rangle, \mid 02 \rangle \}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\{ \mid 30 \rangle, \mid 21 \rangle, \mid 12 \rangle, \mid 03 \rangle \}\)</span></p>
+<p>The first subspace is 1 dimensional, and corresponds to a spin-<span class="math notranslate nohighlight">\(0\)</span> state. The second subspace is 2 dimensional, and corresponds to a spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> state. The third subspace is 3 dimensional, and corresponds to a spin-<span class="math notranslate nohighlight">\(1\)</span> state. The fourth subspace is 4 dimensional, and corresponds to a spin-<span class="math notranslate nohighlight">\(\frac{3}{2}\)</span> state. And so on.</p>
+<p>In other words, say, for spin-<span class="math notranslate nohighlight">\(\frac{3}{2}\)</span>, we have the correspondence:</p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, \frac{3}{2} \rangle \rightarrow \mid 30 \rangle\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, \frac{1}{2} \rangle \rightarrow \mid 21 \rangle\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, -\frac{1}{2} \rangle \rightarrow \mid 12 \rangle\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, -\frac{3}{2} \rangle \rightarrow \mid 03 \rangle\)</span></p>
+<p>And indeed, if we visualize these basis states, they correspond to: 3 stars at the North Pole; 2 stars at the North Pole, 1 star at the South Pole; 1 star at the North Pole, 2 stars at the South Pole; and 3 stars at the South Pole.</p>
+<p>For comparison, here’s the same correspondence in terms of symmetric multiqubit states:</p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, \frac{3}{2}\rangle \rightarrow \ \mid \uparrow \uparrow \uparrow\rangle\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, \frac{1}{2}\rangle \rightarrow \frac{1}{\sqrt{3}} \Big{(} \mid \uparrow \uparrow \downarrow\rangle + \mid \uparrow \downarrow \uparrow \rangle + \mid \downarrow \uparrow \uparrow \rangle \Big{)}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, -\frac{1}{2}\rangle \rightarrow \frac{1}{\sqrt{3}} \Big{(} \mid \downarrow \downarrow \uparrow \rangle + \mid \downarrow \uparrow \downarrow \rangle + \mid \uparrow \downarrow \downarrow \rangle \Big{)}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mid \frac{3}{2}, -\frac{3}{2}\rangle \rightarrow \ \mid \downarrow \downarrow \downarrow \rangle\)</span></p>
+<p>We can see the basis states correspond to a sum over all the states where <span class="math notranslate nohighlight">\(n\)</span> qubits are <span class="math notranslate nohighlight">\(\uparrow\)</span> and <span class="math notranslate nohighlight">\(2j-n\)</span> qubits are down. We can upgrade a spin-j state to the symmetric multiqubit representation by exploiting this correspondence between basis states, or by preparing 2j qubits pointed in the Majorana directions and taking the permutation symmetric tensor product.</p>
+<hr><p>The justification for doing this comes from considering the Majorana polynomial.</p>
+<p>Given a spin state in the <span class="math notranslate nohighlight">\(\mid j, m \rangle\)</span> representation: $:nbsphinx-math:<cite>mid `:nbsphinx-math:</cite>psi <cite>:nbsphinx-math:</cite>rangle <a href="#id1"><span class="problematic" id="id2">`</span></a>=</p>
+<p>$, we form a polynomial in a complex variable <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(p(z) = \sum_{m=-j}^{m=j} (-1)^{j+m} \sqrt{\binom{2j}{j-m}} a_{j+m} z^{j-m}\)</span></p>
+<p>Its roots, stereographically projected from the complex plane to the sphere, yield the constellation. And note if you lose a degree, you add a root at “infinity” (conventionally, the South Pole).</p>
+<p>In other words:</p>
+<img alt="Majorana Doodle" src="../_images/majorana_doodle.png" />
+<p>By the fundamental theorem of algebra, a spin-j state factorizes into 2j pieces: clearly the product of the monomials is independent of the order of multiplication. This corresponds to the permutation symmetric tensor product of qubits, one for each star.</p>
+<hr><p>In a second quantization context, we can upgrade a first quantized operator <span class="math notranslate nohighlight">\(\hat{O}\)</span> to a second quantized operator <span class="math notranslate nohighlight">\(\hat{\textbf{O}}\)</span> in an intuitive way:</p>
+<p><span class="math notranslate nohighlight">\(\hat{\textbf{O}} = \sum_{i, j} \hat{a}_{i}^{\dagger}O_{ij}\hat{a}_{j}\)</span></p>
+<p>This can also be interpreting wedging the operator <span class="math notranslate nohighlight">\(\hat{O}\)</span> between a row vector of creation operators and a column vector of annihilation operators.</p>
+<p>We can thus construct second quantized representations of the Pauli matrices, which are the generators of <span class="math notranslate nohighlight">\(SU(2)\)</span> rotations. Given two oscillators with annihilation operators <span class="math notranslate nohighlight">\(\hat{a}_{0}\)</span> and <span class="math notranslate nohighlight">\(\hat{a}_{1}\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\hat{\sigma_{X}} \rightarrow \hat{a}_{1}^{\dagger}\hat{a}_{0} + \hat{a}_{0}^{\dagger}\hat{a}_{1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\hat{\sigma_{Y}} \rightarrow i(\hat{a}_{1}^{\dagger}\hat{a}_{0} - \hat{a}_{0}^{\dagger}\hat{a}_{1})\)</span></p>
+<p><span class="math notranslate nohighlight">\(\hat{\sigma_{Z}} \rightarrow \hat{a}_{0}^{\dagger}\hat{a}_{0} - \hat{a}_{1}^{\dagger}\hat{a}_{1}\)</span></p>
+<p>The resulting operators will be block diagonal in terms of the different spin sectors, and perform separate rotations in each sector.</p>
+<p>We can also construct creation operators which add a “star.”</p>
+<p>Specifically, given a spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> state <span class="math notranslate nohighlight">\(\begin{pmatrix}\alpha \\ \beta \end{pmatrix}\)</span>, we can upgrade it to the operator <span class="math notranslate nohighlight">\(\alpha \hat{a}_{0}^{\dagger} + \beta \hat{a}_{1}^{\dagger}\)</span>.</p>
+<p>Repeated applications of such star operators allow one to build up a constellation one star at a time. Another way of thinking about this is that we can build an operator which raises an entire constellation in the form of a polynomial in the creation and annihilation operators:</p>
+<p><span class="math notranslate nohighlight">\((\alpha_{0} \hat{a}^{\dagger} + \beta_{0} \hat{b}^{\dagger})(\alpha_{1} \hat{a}^{\dagger} + \beta_{1} \hat{b}^{\dagger})(\alpha_{2} \hat{a}^{\dagger} + \beta_{2} \hat{b}^{\dagger})\dots\)</span></p>
+<p>And this turns out to be the Majorana polynomial in disguise:</p>
+<p><span class="math notranslate nohighlight">\(\sum_{m=-j}^{m=j} \sqrt{\binom{2j}{j-m}} a_{j+m} (\hat{a}^{\dagger})^{j-m}(\hat{b}^{\dagger})^{j+m}\)</span></p>
+<p>Note the <span class="math notranslate nohighlight">\((-1)^{j+m}\)</span> factor dissapears. Why? Consider that if we have <span class="math notranslate nohighlight">\(\alpha z + \beta = z + \frac{\beta}{\alpha} = 0\)</span>, we have a root at <span class="math notranslate nohighlight">\(-\frac{\beta}{\alpha}\)</span>, and the <span class="math notranslate nohighlight">\((-1)^{j+m}\)</span> corrects for this negative sign. So we need the <span class="math notranslate nohighlight">\((-1)^{j+m}\)</span> when we’re converting from a spin state to a polynomial to get the correct results. But here we’re working directly with spin states, first and second quantized, so no need for the <span class="math notranslate nohighlight">\((-1)^{j+m}\)</span>.</p>
+<hr><p>So that’s all well and good, we can “raise” a spin-j state from the vacuum of two harmonic oscillators using a special “constellation creation operator.” But how do we actually prepare such states in practice on a photonic quantum computer? We can’t just arbitrarily apply creation and annihilation operators–after all, they are neither Hermitian, nor unitary! We need a way of formulating this entirely in terms of what a photonic quantum computer gives us: the ability to start with a certain Fock
+state, the ability to apply unitary transformations, and the ability to make measurements (for example, photon number measurements).</p>
+<p>Intuitively, what we need to do is prepare our 2j “single star” states separately and then somehow combine them together into a single constellation.</p>
+<hr><p>The first thing to realize is that we can perform <span class="math notranslate nohighlight">\(SU(2)\)</span> rotations with beamsplitters.</p>
+<p>The beamsplitter gate can be written:</p>
+<p><span class="math notranslate nohighlight">\(BS(\theta, \phi) = e^{\theta(e^{i\phi}\hat{a}_{0}\hat{a}_{1}^{\dagger} - e^{-i\phi}\hat{a}_{0}^{\dagger}\hat{a}_{1})}\)</span></p>
+<p>Here <span class="math notranslate nohighlight">\(\hat{a}_{0}\)</span> and <span class="math notranslate nohighlight">\(\hat{a}_{1}\)</span> refer to two photonic modes. <span class="math notranslate nohighlight">\(\theta\)</span> is the transmittivity angle. Then the transmission amplitude is <span class="math notranslate nohighlight">\(T=\cos{\theta}\)</span>. For <span class="math notranslate nohighlight">\(\theta = \frac{\pi}{4}\)</span>, we have the 50/50 beamsplitter. <span class="math notranslate nohighlight">\(\phi\)</span> is the phase angle. The reflection amplitude is then <span class="math notranslate nohighlight">\(r=e^{i\phi}\sin{\theta}\)</span>, and <span class="math notranslate nohighlight">\(\phi=0\)</span> gives the 50/50 beamsplitter.</p>
+<img alt="Beamsplitter" src="../_images/beam_splitter_two_inputs.png" />
+<p>Now suppose we have a star whose coordinates on the sphere are written in terms of spherical coordinates <span class="math notranslate nohighlight">\(\theta, \phi\)</span>. If we start in the Fock state of two oscillators <span class="math notranslate nohighlight">\(\mid 1 0 \rangle\)</span>, which corresponds to a single star at the North Pole, aka the <span class="math notranslate nohighlight">\(\mid \uparrow \rangle\)</span> state, then applying the beamsplitter <span class="math notranslate nohighlight">\(BS(\frac{\theta}{2}, \phi)\)</span> will rotate the star into the desired direction.</p>
+<p>Let’s check it out with StrawberryFields!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">strawberryfields</span> <span class="k">as</span> <span class="nn">sf</span>
+<span class="kn">from</span> <span class="nn">strawberryfields.ops</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">star</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">spinor_sph</span><span class="p">(</span><span class="n">star</span><span class="p">)</span>
+
+<span class="n">prog</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">prog</span><span class="o">.</span><span class="n">context</span> <span class="k">as</span> <span class="n">q</span><span class="p">:</span>
+    <span class="n">Fock</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">BSgate</span><span class="p">(</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">eng</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">Engine</span><span class="p">(</span><span class="s2">&quot;fock&quot;</span><span class="p">,</span> <span class="n">backend_options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cutoff_dim&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span><span class="o">.</span><span class="n">state</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;qubit xyz: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">spinj_xyz</span><span class="p">(</span><span class="n">star</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;oscillator xyz: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">spinj_xyz_strawberryfields</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+qubit xyz: [-0.48754591  0.11075614  0.00566234]
+oscillator xyz: [-0.48754591  0.11075614  0.00566234]
+</pre></div></div>
+</div>
+<p>Here in order to calculate the <span class="math notranslate nohighlight">\(X, Y, Z\)</span> expectation values, we use a trick: refer to the notes on <a class="reference external" href="https://heyredhat.github.io/9.1_Gaussian_QM_and_Negative_Probabilities.html">Gaussian Quantum Mechanics</a> for more information. In short:</p>
+<p>The idea is to take the Pauli matrices (divided by <span class="math notranslate nohighlight">\(\frac{1}{8}\)</span> actually, for normalization), and first upgrade them to the form: <span class="math notranslate nohighlight">\(\textbf{H} = \begin{pmatrix} O &amp; 0 \\ 0 &amp; O^{*} \end{pmatrix}\)</span>, where <span class="math notranslate nohighlight">\(O\)</span> is the Pauli matrix, so that we can represent them in the general form for Gaussian operators (ignoring displacements):</p>
+<div class="math notranslate nohighlight">
+\[H = \frac{1}{2}\xi^{\dagger}\textbf{H}\xi\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\xi = \begin{pmatrix}\hat{a}_{0} \\ \hat{a}_{1} \\ \vdots \\ \hat{a}_{0}^{\dagger} \\ \hat{a}_{1}^{\dagger} \\ \vdots \end{pmatrix}\)</span> is a vector of annihilation and creation operators.</p>
+<p>The action of <span class="math notranslate nohighlight">\(H\)</span> can also be written:</p>
+<div class="math notranslate nohighlight">
+\[e^{iH} \xi e^{-iH} = \textbf{S}\xi\]</div>
+<p>Where <span class="math notranslate nohighlight">\(S\)</span> is a complex symplectic matrix: <span class="math notranslate nohighlight">\(\textbf{S} = e^{-i\Omega_{c}\textbf{H}}\)</span> and <span class="math notranslate nohighlight">\(\Omega_{c} = \begin{pmatrix}I_{n} &amp; 0 \\ 0 &amp; -I_{n} \end{pmatrix}\)</span>, the complex symplectic form. (And actually, since we’re here only concerned with the Pauli matrices themselves, we don’t need to take the exponential.)</p>
+<p><span class="math notranslate nohighlight">\(S\)</span> can be converted into a real symplectic matrix acting on a vector of position and momentum operators, <span class="math notranslate nohighlight">\(\begin{pmatrix} \hat{Q_{0}} \\ \hat{Q_{1}} \\ \hat{Q_{2}} \\ \vdots \\ \hat{P_{0}} \\ \hat{P_{1}} \\ \hat{P_{2}} \\ \vdots \end{pmatrix}\)</span> via:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{R} = L\textbf{S}L^{\dagger}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(L = \frac{1}{\sqrt{2}}\begin{pmatrix} I_{n} &amp; I_{n} \\ -iI_{n} &amp; iI_{n} \end{pmatrix}\)</span>.</p>
+<p>Once we have <span class="math notranslate nohighlight">\(R\)</span>, we can feed it into StrawberryField’s method <code class="docutils literal notranslate"><span class="pre">state.poly_quad_expectations</span></code>, which calculates the expectation value for operators built out of position and momentum operators, to obtain <span class="math notranslate nohighlight">\(\langle \hat{X} \rangle, \langle \hat{Y} \rangle, \langle \hat{Z} \rangle\)</span>. This is what the function <code class="docutils literal notranslate"><span class="pre">sf_state_xyz</span></code> does.</p>
+<hr><p>Okay, so we can load in a spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> state. But how do we generalize this for any spin-<span class="math notranslate nohighlight">\(j\)</span>?</p>
+<p>The idea is we’re going to use <span class="math notranslate nohighlight">\(2j\)</span> <em>pairs</em> of oscillators, one pair for each star. Each pair is going to begin in the <span class="math notranslate nohighlight">\(\mid 10 \rangle\)</span> state, aka the spin-<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> <span class="math notranslate nohighlight">\(\mid \uparrow \rangle\)</span> state, and we’ll use a beamsplitter on each pair to rotate them to point in the direction of one of the 2j stars of the constellation.</p>
+<p>Then we’ll pick one pair of oscillators to be special: this is the pair we’re going to load our spin-<span class="math notranslate nohighlight">\(j\)</span> state into. Let’s call its modes <span class="math notranslate nohighlight">\(a_{0}\)</span> and <span class="math notranslate nohighlight">\(a_{1}\)</span>. We’re going apply 50/50 beamsplitters to the first of each (other) pair and <span class="math notranslate nohighlight">\(a_{0}\)</span>, and also 50/50 beamsplitters to the second of each (other) pair and <span class="math notranslate nohighlight">\(a_{1}\)</span>. This combines the modes in an even-handed way. Then we’re going to post-select on all the other modes (that is, all the modes except <span class="math notranslate nohighlight">\(a_{0}\)</span>
+and <span class="math notranslate nohighlight">\(a_{1}\)</span>) having 0 photons. If none of those other modes have any photons after going through the 50/50 beamsplitters, then all the photons must have ended up in <span class="math notranslate nohighlight">\(a_{0}\)</span> and <span class="math notranslate nohighlight">\(a_{1}\)</span>, and indeed: we find that <span class="math notranslate nohighlight">\(a_{0}\)</span> and <span class="math notranslate nohighlight">\(a_{1}\)</span> are then in the desired state, encoding the spin-<span class="math notranslate nohighlight">\(j\)</span> constellation.</p>
+<p>There’s no getting around the post-selection, which is analogous to the post-selection necessary in the symmetric multiqubit circuit we discussed before. What’s nice in this case, however, is that the permutation symmetry itself is handled automatically for us, so no need for all those controlled swaps!</p>
+<p>As a tabletop experiment, it might look something like this:</p>
+<img alt="Tabletop" src="../_images/tabletop_spin.png" />
+<p>Depicted is a photonic preparation of a spin-<span class="math notranslate nohighlight">\(\frac{3}{2}\)</span> state. The state is determined (up to phase) by three stars given in spherical coordinates by <span class="math notranslate nohighlight">\((\theta_{0}, \phi_{0}), (\theta_{1}, \phi_{1}), (\theta_{2}, \phi_{2})\)</span>. These values determine the parameters of the three beamsplitters in blue along the diagonal: <span class="math notranslate nohighlight">\(BS(\frac{\theta_{0}}{2}, \phi_{0}), BS(\frac{\theta_{1}}{2}, \phi_{1}), BS(\frac{\theta_{2}}{2}, \phi_{2})\)</span>. On the other hand, the green beamsplitters are 50/50
+beamsplitters: <span class="math notranslate nohighlight">\(BS(\frac{\pi}{4}, 0)\)</span>. Each pair of modes (<span class="math notranslate nohighlight">\(a_{0}/a_{1}\)</span>, <span class="math notranslate nohighlight">\(a_{2}/a_{3}\)</span>, <span class="math notranslate nohighlight">\(a_{4}/a_{5}\)</span>) starts off in the <span class="math notranslate nohighlight">\(\mid 10 \rangle\)</span> state, and each pair is sent through a corresponding beamsplitter to rotate in a star. Then all the even numbered modes (if you like) are 50/50’d with <span class="math notranslate nohighlight">\(a_{0}\)</span>, and all the odd numbered modes are 50/50’d with <span class="math notranslate nohighlight">\(a_{1}\)</span>. Then <span class="math notranslate nohighlight">\(a_{2}, a_{3}, a_{4}, a_{5}\)</span> are all sent into photon detectors, and we throw out the
+experiment unless all the photon counts are 0. Then the spin-<span class="math notranslate nohighlight">\(\frac{3}{2}\)</span> state given by the three stars will be encoded in the two modes <span class="math notranslate nohighlight">\(a_{0}\)</span> and <span class="math notranslate nohighlight">\(a_{1}\)</span>. One can then easily imagine the corresponding diagram for any spin-<span class="math notranslate nohighlight">\(j\)</span>: just add more blue beamsplitters corresponding to stars along the diagonal, etc.</p>
+<p>In StrawberryFields code:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">strawberryfields</span> <span class="k">as</span> <span class="nn">sf</span>
+<span class="kn">from</span> <span class="nn">strawberryfields.ops</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">spin</span> <span class="o">=</span> <span class="n">qt</span><span class="o">.</span><span class="n">rand_ket</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">sph</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">theta_phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">theta_phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">theta_phi</span> <span class="ow">in</span> <span class="n">spin_sph</span><span class="p">(</span><span class="n">spin</span><span class="p">)]</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">spin</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">n_modes</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+<span class="n">cutoff_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">prog</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="n">n_modes</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">prog</span><span class="o">.</span><span class="n">context</span> <span class="k">as</span> <span class="n">q</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_modes</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">Fock</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">sph</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+        <span class="n">BSgate</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_modes</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">BSgate</span><span class="p">()</span> <span class="o">|</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">BSgate</span><span class="p">()</span> <span class="o">|</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_modes</span><span class="p">):</span>
+        <span class="n">MeasureFock</span><span class="p">(</span><span class="n">select</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">eng</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">Engine</span><span class="p">(</span><span class="s2">&quot;fock&quot;</span><span class="p">,</span> <span class="n">backend_options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cutoff_dim&quot;</span><span class="p">:</span> <span class="n">cutoff_dim</span><span class="p">})</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span><span class="o">.</span><span class="n">state</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s confirm that our expected spin axis is correct:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spin xyz: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">spinj_xyz</span><span class="p">(</span><span class="n">spin</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;oscillator xyz: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">spinj_xyz_strawberryfields</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+spin xyz: [-0.3972139   0.59242125  0.08100696]
+oscillator xyz: [-0.3972139   0.59242125  0.08100696]
+</pre></div></div>
+</div>
+<p>And that we get the correct probabilities:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;correct probabilities:&quot;</span><span class="p">)</span>
+<span class="n">dirac</span><span class="p">(</span><span class="n">spin_osc</span><span class="p">(</span><span class="n">spin</span><span class="p">,</span> <span class="n">cutoff_dim</span><span class="o">=</span><span class="n">cutoff_dim</span><span class="p">),</span> <span class="n">probabilities</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">sf probabilities:&quot;</span><span class="p">)</span>
+<span class="n">fock_probs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cutoff_dim</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cutoff_dim</span><span class="p">):</span>
+        <span class="n">fock_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n_modes</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">fock_probs</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">fock_prob</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">fock_state</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fock_probs</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|</span><span class="si">%s%s</span><span class="s2">&gt;: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">fock_probs</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+correct probabilities:
+|03&gt;: 0.132
+|12&gt;: 0.315
+|21&gt;: 0.393
+|30&gt;: 0.160
+
+sf probabilities:
+|03&gt;: 0.132
+|12&gt;: 0.315
+|21&gt;: 0.393
+|30&gt;: 0.160
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">spheres.spin_circuits.strawberryfields</span></code> provides the function <code class="docutils literal notranslate"><span class="pre">spin_osc_strawberryfields(spin)</span></code>, which takes a spin as input and returns the StrawberryField program above, as well as <code class="docutils literal notranslate"><span class="pre">spinj_xyz_strawberryfields(state,</span> <span class="pre">on_modes=[0,1])</span></code> which takes a StrawberryFields state and a list of two modes for which to calculate the <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(Z\)</span> expectation values.</p>
+<p>And there you have it! Now all you need is access to a real photonic quantum computer and the sky’s the limit.</p>
+<hr><div class="section" id="Bibliography">
+<h2>Bibliography<a class="headerlink" href="#Bibliography" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/1302.2475">Synthesis of arbitrary, two-mode, high visibility N-photon interference patterns</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/quant-ph/0110138">Conditional generation of N-photon entangled states of light</a></p>
+<p><a class="reference external" href="https://arxiv.org/abs/quant-ph/0110149">Generation of entangled states of two traveling modes for fixed number of photon</a></p>
+<p><a class="reference external" href="https://www.diva-portal.org/smash/get/diva2:1091994/FULLTEXT01.pdf">Majorana Representation in Quantum Optics</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../_autosummary/spheres.visualization.vp_object.VObject.html" class="btn btn-neutral float-left" title="spheres.visualization.vp_object.VObject" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

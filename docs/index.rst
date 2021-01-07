@@ -10,6 +10,14 @@ Welcome to the documentation for spheres!
 
 .. include:: ../README.rst
 
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :caption: Tutorials
+   :name: tutorials
+
+   notebooks/9.6_Photonic_SpinJ
+
 Indices and tables
 ==================
 

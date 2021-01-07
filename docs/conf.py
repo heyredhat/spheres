@@ -23,7 +23,6 @@ author = 'Matthew Weiss'
 # The full version, including alpha/beta/rc tags
 release = '0.0.1'
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -34,9 +33,12 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.coverage',
-    'sphinx.ext.autosummary'
+    'sphinx.ext.autosummary',
+    'nbsphinx',
+    'sphinx.ext.mathjax'
 ]
 
+nbsphinx_execute = 'never'
 autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
