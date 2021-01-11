@@ -19,6 +19,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires = ['numpy', 'qutip', 'matplotlib', 'vpython', 'sympy',\
+    install_requires = ['numpy', 'qutip', 'matplotlib', 'vpython', 'sympy', 'quadpy',\
                         'pytket', 'pytket-qiskit', 'qiskit', 'strawberryfields']
 )
