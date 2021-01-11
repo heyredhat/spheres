@@ -48,6 +48,9 @@ Get started:
 	vsphere = MajoranaSphere(qt.rand_ket(3))
 	vsphere.evolve(qt.rand_herm(3))
 
+Check out the `documentation <https://spheres.readthedocs.io/>`_.
+
+For more information and reference material, including jupyter notebooks, visit `heyredhat.github.io <https://heyredhat.github.io>`_.
+
 Special thanks to the `Quantum Open Source Foundation <https://qosf.org/>`_.
 
-For more information and reference material, including jupyter notebooks, check out `heyredhat.github.io <https://heyredhat.github.io>`_.

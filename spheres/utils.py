@@ -476,7 +476,7 @@ def tensor_upgrade(O, i, n):
     """
     return qt.tensor(*[O if i==j else qt.identity(O.shape[0]) for j in range(n)])
 
-def dirac(state, probabilities=True):
+def dirac(state, probabilities=False):
     """
     Prints a pretty representation of a state in Dirac braket notation.
 

@@ -2,5 +2,5 @@
 __pycache__
 build/
 dist/
-spheres.egg-info
-.vscode
+spheres.egg-info/
+.vscode/
