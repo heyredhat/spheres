@@ -33,6 +33,7 @@
    spheres.error_correction
    spheres.oscillators
    spheres.polyhedra
+   spheres.qbism
    spheres.relativity
    spheres.spin_circuits
    spheres.stars

@@ -4,6 +4,7 @@ spheres/__init__.py
 spheres/beams.py
 spheres/coordinates.py
 spheres/oscillators.py
+spheres/qbism.py
 spheres/relativity.py
 spheres/symmetrization.py
 spheres/symplectic.py

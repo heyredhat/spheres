@@ -16,6 +16,7 @@ Welcome to the documentation for spheres!
    :caption: Tutorials
    :name: tutorials
 
+   notebooks/10_Introduction_to_Majorana_Stars
    notebooks/9_Symmetrized_Qubits
    notebooks/9.6_Photonic_SpinJ
    notebooks/9.2_Majorana_Stars_and_Structured_Gaussian_Beams
