@@ -1,9 +1,0 @@
-numpy
-qutip
-matplotlib
-vpython
-sympy
-pytket
-pytket-qiskit
-qiskit
-strawberryfields
