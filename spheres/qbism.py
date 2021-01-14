@@ -18,7 +18,7 @@ def displace(d, a, b):
 def displacement_operators(d):
     return dict([((a, b), displace(d, a, b)) for b in range(d) for a in range(d)])
 
-def load_sic_states(d):
+def load_fiducial(d):
     """
     http://www.physics.umb.edu/Research/QBism/solutions.html
     """
@@ -29,7 +29,10 @@ def load_sic_states(d):
         if line.strip() != "":
             re, im = [float(v) for v in line.split()]
             fiducial.append(re + 1j*im)
-    fiducial = qt.Qobj(np.array(fiducial)).unit()
+    return qt.Qobj(np.array(fiducial)).unit()
+
+def load_sic_states(d):
+    fiducial = load_fiducial(d)
     return [D*fiducial for index, D in displacement_operators(d).items()]
 
 def sic_test(sic):
@@ -116,10 +119,11 @@ def quantum_inner_product(p, s):
 
 def povm_implementation(povm):
     n = len(povm["elements"])
+    d = int(np.sqrt(n))
     aux_projectors = [qt.tensor(qt.identity(d), qt.basis(n, i)*qt.basis(n, i).dag()) for i in range(n)]
-    V = sum([qt.tensor(my_povm["elements"][i].sqrtm(), qt.basis(n, i)) for i in range(n)])
+    V = sum([qt.tensor(povm["elements"][i].sqrtm(), qt.basis(n, i)) for i in range(n)])
     povm_elements = [V.dag()*aux_projectors[i]*V for i in range(n)]
-    assert np.all([np.allclose(my_povm["elements"][i], povm_elements[i]) for i in range(n)])
+    assert np.all([np.allclose(povm["elements"][i], povm_elements[i]) for i in range(n)])
     Q, R = np.linalg.qr(V, mode="complete")
     for i in range(d):
         Q.T[[i,n*i]] = Q.T[[n*i,i]]

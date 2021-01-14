@@ -1,4 +1,4 @@
-spheres.qbism
+﻿spheres.qbism
 =============
 
 .. automodule:: spheres.qbism
@@ -17,6 +17,7 @@ spheres.qbism
       clock
       displace
       displacement_operators
+      load_fiducial
       load_sic_states
       povm_born
       povm_born_matrix
