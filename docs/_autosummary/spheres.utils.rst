@@ -36,8 +36,6 @@ spheres.utils
       rand_c
       rand_sph
       rand_xyz
-      random_pairs
-      random_unique_pairs
       spinj_xyz
       tensor_upgrade
       to_pauli_basis

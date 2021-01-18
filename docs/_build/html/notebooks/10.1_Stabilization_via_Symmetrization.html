@@ -1,0 +1,1074 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stablization via Symmetrization &mdash; spheres 0.3.0.9 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Generalizing the Majorana Representation for Mixed States and Operators" href="9.7_Majorana_for_Mixed_States.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../_autosummary/spheres.html">spheres</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.beams.html">spheres.beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.animate_spin_beam.html">spheres.beams.animate_spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.colorize.html">spheres.beams.colorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.laguerre_gauss_mode.html">spheres.beams.laguerre_gauss_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.spin_beam.html">spheres.beams.spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_beam.html">spheres.beams.viz_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.beams.viz_spin_beam.html">spheres.beams.viz_spin_beam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.coordinates.html">spheres.coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_sph.html">spheres.coordinates.c_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_spinor.html">spheres.coordinates.c_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.c_xyz.html">spheres.coordinates.c_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_c.html">spheres.coordinates.sph_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_spinor.html">spheres.coordinates.sph_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.sph_xyz.html">spheres.coordinates.sph_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_c.html">spheres.coordinates.spinor_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_sph.html">spheres.coordinates.spinor_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.spinor_xyz.html">spheres.coordinates.spinor_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_c.html">spheres.coordinates.xyz_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_sph.html">spheres.coordinates.xyz_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.oscillators.html">spheres.oscillators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spinblocks.html">spheres.oscillators.osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spins.html">spheres.oscillators.osc_spins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.osc_spintower_map.html">spheres.oscillators.osc_spintower_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_osc_map.html">spheres.oscillators.spin_osc_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spin_tower_dimensions.html">spheres.oscillators.spin_tower_dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spinj_xyz_osc.html">spheres.oscillators.spinj_xyz_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.spins_osc.html">spheres.oscillators.spins_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.polyhedra.html">spheres.polyhedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.polyhedra.equidistribute_points.html">spheres.polyhedra.equidistribute_points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.relativity.html">spheres.relativity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.relativity.mobius.html">spheres.relativity.mobius</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.html">spheres.spin_circuits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.html">spheres.spin_circuits.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Rk_pytket.html">spheres.spin_circuits.pytket.Rk_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.Tkj_pytket.html">spheres.spin_circuits.pytket.Tkj_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.postselect_shots.html">spheres.spin_circuits.pytket.postselect_shots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_sym_pytket.html">spheres.spin_circuits.pytket.spin_sym_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.spin_tomography_pytket.html">spheres.spin_circuits.pytket.spin_tomography_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_circuits_pytket.html">spheres.spin_circuits.pytket.tomography_circuits_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.pytket.tomography_dm_pytket.html">spheres.spin_circuits.pytket.tomography_dm_pytket</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.html">spheres.spin_circuits.qiskit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Rk_qiskit.html">spheres.spin_circuits.qiskit.Rk_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.Tkj_qiskit.html">spheres.spin_circuits.qiskit.Tkj_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.postselect_results_qiskit.html">spheres.spin_circuits.qiskit.postselect_results_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_sym_qiskit.html">spheres.spin_circuits.qiskit.spin_sym_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.qiskit.spin_tomography_qiskit.html">spheres.spin_circuits.qiskit.spin_tomography_qiskit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.html">spheres.spin_circuits.strawberryfields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields.html">spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields.html">spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.stabilization.html">spheres.stabilization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.html">spheres.stabilization.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.bitflip_noise_model.html">spheres.stabilization.pytket.bitflip_noise_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.build_pytket_circuit.html">spheres.stabilization.pytket.build_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.eval_pytket_circuit_ibm.html">spheres.stabilization.pytket.eval_pytket_circuit_ibm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.eval_pytket_symmetrization_performance.html">spheres.stabilization.pytket.eval_pytket_symmetrization_performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.eval_symmetrized_pytket_circuit.html">spheres.stabilization.pytket.eval_symmetrized_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.ibmq_16_melbourne_noise_model.html">spheres.stabilization.pytket.ibmq_16_melbourne_noise_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.plot_symmetrization_performance.html">spheres.stabilization.pytket.plot_symmetrization_performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.process_symmetrized_pytket_counts.html">spheres.stabilization.pytket.process_symmetrized_pytket_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.pytket_qiskit_counts.html">spheres.stabilization.pytket.pytket_qiskit_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.qiskit_error_calibration.html">spheres.stabilization.pytket.qiskit_error_calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.qiskit_pytket_counts.html">spheres.stabilization.pytket.qiskit_pytket_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.random_pairs.html">spheres.stabilization.pytket.random_pairs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.random_pytket_circuit.html">spheres.stabilization.pytket.random_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.random_unique_pairs.html">spheres.stabilization.pytket.random_unique_pairs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.symmetrize_pytket_circuit.html">spheres.stabilization.pytket.symmetrize_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stabilization.pytket.thermal_noise_model.html">spheres.stabilization.pytket.thermal_noise_model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.stars.html">spheres.stars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.html">spheres.stars.mixed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spherical_decomposition.html">spheres.stars.mixed.operator_spherical_decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.operator_spins.html">spheres.stars.mixed.operator_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_operator.html">spheres.stars.mixed.spherical_decomposition_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_decomposition_spins.html">spheres.stars.mixed.spherical_decomposition_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor.html">spheres.stars.mixed.spherical_tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spherical_tensor_basis.html">spheres.stars.mixed.spherical_tensor_basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_operator.html">spheres.stars.mixed.spins_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.mixed.spins_spherical_decomposition.html">spheres.stars.mixed.spins_spherical_decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.pure.html">spheres.stars.pure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.c_spin.html">spheres.stars.pure.c_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_roots.html">spheres.stars.pure.poly_roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.poly_spin.html">spheres.stars.pure.poly_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.roots_poly.html">spheres.stars.pure.roots_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.sph_spin.html">spheres.stars.pure.sph_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_c.html">spheres.stars.pure.spin_c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_poly.html">spheres.stars.pure.spin_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_sph.html">spheres.stars.pure.spin_sph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_spinors.html">spheres.stars.pure.spin_spinors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spin_xyz.html">spheres.stars.pure.spin_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.spinors_spin.html">spheres.stars.pure.spinors_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.pure.xyz_spin.html">spheres.stars.pure.xyz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.basis.html">spheres.stars.star_utils.basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.pauli_eigenstate.html">spheres.stars.star_utils.pauli_eigenstate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symmetrization.html">spheres.symmetrization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrize.html">spheres.symmetrization.symmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symmetrization.symmetrized_basis.html">spheres.symmetrization.symmetrized_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.symplectic.html">spheres.symplectic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_complex_symplectic.html">spheres.symplectic.is_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.is_real_symplectic.html">spheres.symplectic.is_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.utils.html">spheres.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.binomial.html">spheres.utils.binomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_spinors.html">spheres.utils.compare_spinors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.compare_unordered.html">spheres.utils.compare_unordered</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.components.html">spheres.utils.components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.density_to_purevec.html">spheres.utils.density_to_purevec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.dirac.html">spheres.utils.dirac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.flatten.html">spheres.utils.flatten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.measure.html">spheres.utils.measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize.html">spheres.utils.normalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase.html">spheres.utils.phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.polygon_area.html">spheres.utils.polygon_area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.qubits_xyz.html">spheres.utils.qubits_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_c.html">spheres.utils.rand_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_sph.html">spheres.utils.rand_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.rand_xyz.html">spheres.utils.rand_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.spinj_xyz.html">spheres.utils.spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.tensor_upgrade.html">spheres.utils.tensor_upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.utils.to_pauli_basis.html">spheres.utils.to_pauli_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_autosummary/spheres.visualization.html">spheres.visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.MajoranaSphere.html">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.majorana_sphere.SphericalWavefunction.html">spheres.visualization.majorana_sphere.SphericalWavefunction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.html">spheres.visualization.matplotlib_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.animate_spin.html">spheres.visualization.matplotlib_spheres.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.matplotlib_spheres.viz_spin.html">spheres.visualization.matplotlib_spheres.viz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.operator_sphere.OperatorSphere.html">spheres.visualization.operator_sphere.OperatorSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.OscillatorPlane.html">spheres.visualization.schwinger_spheres.OscillatorPlane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.html">spheres.visualization.vp_object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_autosummary/spheres.visualization.vp_object.VObject.html">spheres.visualization.vp_object.VObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="10_Introduction_to_Majorana_Stars.html">An Introduction to Majorana’s “Stellar” Representation of Spin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_Symmetrized_Qubits.html">How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.6_Photonic_SpinJ.html">How To Prepare a Spin-j State on a Photonic Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.2_Majorana_Stars_and_Structured_Gaussian_Beams.html">Majorana Stars and Structured Gaussian Beams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9.7_Majorana_for_Mixed_States.html">Generalizing the Majorana Representation for Mixed States and Operators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stablization via Symmetrization</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Stablization via Symmetrization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/notebooks/10.1_Stabilization_via_Symmetrization.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Stablization-via-Symmetrization">
+<h1>Stablization via Symmetrization<a class="headerlink" href="#Stablization-via-Symmetrization" title="Permalink to this headline">¶</a></h1>
+<p>We’ve seen how we can implement the “symmetrized tensor product” of several qubits in terms of a quantum circuit: depending on the number of qubits we want to symmetrize, we adjoint a number of auxilliary qubits, prepare them in a special initial state, apply a sequence of controlled swaps on the auxilliaries and the original qubits, undo the initialization, and postselect on the auxilliary qubits all being <span class="math notranslate nohighlight">\(0/\uparrow\)</span>. The key was that the algorithm requires post-selection, and so is
+only successful part of the time. By preparing our original qubits in the directions provided by a constellation of “Majorana stars”, we were thus able to prepare spin-<span class="math notranslate nohighlight">\(j\)</span> states in the guise of <span class="math notranslate nohighlight">\(2j\)</span> symmetrized qubits.</p>
+<p>But nothing limits us to symmetrizing qubits. In fact, we can apply the same algorithm to symmetrize quantum systems consisting of several qubits: we simply repeat the controlled swaps on however many qubits comprise each subsystem. In fact, this played a role in the motivation behind the paper which provided our symmetrization algorithm: “Stabilization Of Quantum Computations by Symmetrization”.</p>
+<p>The idea is the following: Suppose we have a quantum computer, and we’re worried about noise. Instead of just running our quantum circuit, we could run <span class="math notranslate nohighlight">\(n\)</span> copies of the circuit in parallel, while periodically using the symmetrization algorithm to project the <span class="math notranslate nohighlight">\(n\)</span> copies as a whole into the permutation symmetric subspace. Suppose there were no errors: then naturally, each copy of the circuit would be precisely the same, and symmetrizing across them would have no effect. But if there
+are some errors that asymmetrically affect the different copies, then it’s possible that projecting the copies into the permutation symmetric subspace will project off these errors! Indeed, the permutation symmetric subspace “is the smallest subspace containing all possible error-free states. It thus corresponds to the ‘most probing’ test we can legitimately apply, which will be passed by all error-free states,” since we can’t just do any probe we like, since such poking around will generally
+disturb the quantum computation. Moreover, if we rapidly and periodically do this projection, which is probabilistic, then due to the “quantum Zeno effect,” we should be able to stay within the subspace with high probability.</p>
+<p>The problem, however, is that to do the symmetrization at all, we need to add in extra qubits and perform highly entangling operations, again and again. Given that NISQ-era quantum computers are notoriously unreliable about things like controlled swap operations, one might wonder if the errors introduced by the symmetrization algorithm itself would outweight the errors corrected by symmetrization! And in fact, that sadly seems to be the case–for now!</p>
+<p>But with an eye to the future, let’s check out how it might work.</p>
+<p>(Incidentally, depending on one’s particular quantum circuit, there may be other relevant subspaces that one could project into, without disturbing the computation, and which would provide some much needed stabliziation. The “stabilization via symmetrization” technique, however is nice insofar as it can help independently of the structure of one’s circuits. Indeed, if such stabilization could be provided by the quantum computer itself that would be ideal.)</p>
+<hr><p>Let’s start off with a simple random circuit consisting of two qubits and two layers of gates. Note that we’re using the library <code class="docutils literal notranslate"><span class="pre">pytket</span></code> for our circuits. <code class="docutils literal notranslate"><span class="pre">random_pytket_circuit</span></code> returns a dictionary specifying the circuit (for easy manipulation), and requires <code class="docutils literal notranslate"><span class="pre">build_pytket_circuit</span></code> to actually construct the circuit.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">circ_info</span> <span class="o">=</span> <span class="n">random_pytket_circuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="o">=</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
+<span class="n">circ</span> <span class="o">=</span> <span class="n">build_pytket_circuit</span><span class="p">(</span><span class="n">circ_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div id="glowscript" class="glowscript"></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="output_javascript"></div>
+<script type="text/javascript">
+var element = document.currentScript.previousSibling.previousSibling;
+if (typeof Jupyter !== "undefined") { window.__context = { glowscript_container: $("#glowscript").removeAttr("id")};}else{ element.textContent = ' ';}
+</script></div>
+</div>
+<p>The resulting circuit will look something like this (the image below was pregenerated, since <code class="docutils literal notranslate"><span class="pre">pytket</span></code> won’t display its latex output to jupyter notebooks):</p>
+<p><img alt="294a2ad7d9374454bf96dccf1a56970a" src="../_images/circ_tex.png" /></p>
+<p>Each layer consists of some single qubit gates and a CNOT.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sym_circ_info</span> <span class="o">=</span> <span class="n">symmetrize_pytket_circuit</span><span class="p">(</span><span class="n">circ_info</span><span class="p">,</span>
+                                          <span class="n">n_copies</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                          <span class="n">every</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                          <span class="n">pairwise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sym_circ</span> <span class="o">=</span> <span class="n">sym_circ_info</span><span class="p">[</span><span class="s2">&quot;circuit&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>The symmetrized circuit might look something like this:</p>
+<p><img alt="50c5b67a46b6477498346fc85f77efc1" src="../_images/sym_circ_tex.png" /></p>
+<p>We have two copies of the circuit running in parallel, and we do symmetrization after each of the two layers.</p>
+<p>First, let’s evaluate the original circuit analytically to see what the answers should be.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">basis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">repeat</span><span class="o">=</span><span class="n">n_qubits</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">display_dist</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">basis</span>
+    <span class="k">for</span> <span class="n">bitstr</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">:</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">bitstr</span><span class="p">]</span> <span class="k">if</span> <span class="n">bitstr</span> <span class="ow">in</span> <span class="n">dist</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">%s</span><span class="s2">: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bitstr</span><span class="p">]),</span> <span class="n">val</span><span class="p">))</span>
+
+<span class="n">circ_dist</span> <span class="o">=</span> <span class="n">eval_pytket_circuit_ibm</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="n">analytic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;analytical dist for original circuit:&quot;</span><span class="p">)</span>
+<span class="n">display_dist</span><span class="p">(</span><span class="n">circ_dist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+analytical dist for original circuit:
+  00: 0.500000
+  01: 0.000000
+  10: 0.500000
+  11: 0.000000
+</pre></div></div>
+</div>
+<p>Now let’s add in some noise. We can choose between <code class="docutils literal notranslate"><span class="pre">thermal_noise_model</span></code>, <code class="docutils literal notranslate"><span class="pre">bitflip_noise_model</span></code> and <code class="docutils literal notranslate"><span class="pre">ibmq_16_melbourne_noise_model</span></code> model, or add in a new one!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">circ_noise_model</span> <span class="o">=</span> <span class="n">thermal_noise_model</span><span class="p">(</span><span class="n">n_qubits</span><span class="o">=</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">on_qubits</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)))</span>
+<span class="n">noisy_circ_counts</span> <span class="o">=</span> <span class="n">eval_pytket_circuit_ibm</span><span class="p">(</span><span class="n">circ</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">measure_all</span><span class="p">(),</span> <span class="n">noise_model</span><span class="o">=</span><span class="n">circ_noise_model</span><span class="p">)</span>
+<span class="n">noisy_circ_dist</span> <span class="o">=</span> <span class="n">probs_from_counts</span><span class="p">(</span><span class="n">noisy_circ_counts</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;noisy dist for original circuit:&quot;</span><span class="p">)</span>
+<span class="n">display_dist</span><span class="p">(</span><span class="n">noisy_circ_dist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+noisy dist for original circuit:
+  00: 0.512625
+  01: 0.002875
+  10: 0.482500
+  11: 0.002000
+</pre></div></div>
+</div>
+<p>We could try to do error mitigation:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">circ_meas_filter</span> <span class="o">=</span> <span class="n">qiskit_error_calibration</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">circ_noise_model</span><span class="p">)</span>
+<span class="n">mitigated_circ_dist</span> <span class="o">=</span> <span class="n">probs_from_counts</span><span class="p">(</span><span class="n">qiskit_pytket_counts</span><span class="p">(</span><span class="n">circ_meas_filter</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pytket_qiskit_counts</span><span class="p">(</span><span class="n">noisy_circ_counts</span><span class="p">))))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mitigated dist for original circuit:&quot;</span><span class="p">)</span>
+<span class="n">display_dist</span><span class="p">(</span><span class="n">mitigated_circ_dist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mitigated dist for original circuit:
+  00: 0.504593
+  01: 0.002901
+  10: 0.490434
+  11: 0.002073
+</pre></div></div>
+</div>
+<p>Now let’s look at the symmetrized circuit. We evaluate the circuit, do the postselection, and average the results across the copies. Here we haven’t included any noise, so this won’t be any different from simply running the original circuit with a higher number of shots.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">display_sym_dists</span><span class="p">(</span><span class="n">sym_dists</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">basis</span>
+    <span class="n">exp_dists</span><span class="p">,</span> <span class="n">avg_dist</span> <span class="o">=</span> <span class="n">sym_dists</span><span class="p">[</span><span class="s2">&quot;exp_dists&quot;</span><span class="p">],</span> <span class="n">sym_dists</span><span class="p">[</span><span class="s2">&quot;avg_dist&quot;</span><span class="p">],</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  postselected dists:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dist</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">exp_dists</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    circuit </span><span class="si">%d</span><span class="s2">:&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">bitstr</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      </span><span class="si">%s</span><span class="s2">: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bitstr</span><span class="p">]),</span> <span class="n">dist</span><span class="p">[</span><span class="n">bitstr</span><span class="p">]))</span> <span class="k">if</span> <span class="n">bitstr</span> <span class="ow">in</span> <span class="n">dist</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  averaged dists:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">bitstr</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    </span><span class="si">%s</span><span class="s2">: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bitstr</span><span class="p">]),</span> <span class="n">avg_dist</span><span class="p">[</span><span class="n">bitstr</span><span class="p">]))</span> <span class="k">if</span> <span class="n">bitstr</span> <span class="ow">in</span> <span class="n">avg_dist</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="n">clean_sym_circ_counts</span> <span class="o">=</span> <span class="n">eval_pytket_circuit_ibm</span><span class="p">(</span><span class="n">sym_circ</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;clean sym circ dists:&quot;</span><span class="p">)</span>
+<span class="n">display_sym_dists</span><span class="p">(</span><span class="n">process_symmetrized_pytket_counts</span><span class="p">(</span><span class="n">sym_circ_info</span><span class="p">,</span> <span class="n">clean_sym_circ_counts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+clean sym circ dists:
+  postselected dists:
+    circuit 0:
+      00: 0.502000
+      10: 0.498000
+    circuit 1:
+      00: 0.514375
+      10: 0.485625
+  averaged dists:
+    00: 0.508188
+    10: 0.491812
+</pre></div></div>
+</div>
+<p>Now let’s look at the performance of the symmetrized circuits with some noise.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sym_circ_noise_model</span> <span class="o">=</span> <span class="n">thermal_noise_model</span><span class="p">(</span><span class="n">n_qubits</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sym_circ</span><span class="o">.</span><span class="n">qubits</span><span class="p">),</span> <span class="n">on_qubits</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sym_circ</span><span class="o">.</span><span class="n">qubits</span><span class="p">))))</span>
+<span class="n">noisy_sym_circ_counts</span> <span class="o">=</span> <span class="n">eval_pytket_circuit_ibm</span><span class="p">(</span><span class="n">sym_circ</span><span class="p">,</span> <span class="n">noise_model</span><span class="o">=</span><span class="n">sym_circ_noise_model</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;noisy sym circ dists:&quot;</span><span class="p">)</span>
+<span class="n">noisy_sym_circ_dists</span> <span class="o">=</span> <span class="n">process_symmetrized_pytket_counts</span><span class="p">(</span><span class="n">sym_circ_info</span><span class="p">,</span> <span class="n">noisy_sym_circ_counts</span><span class="p">)</span>
+<span class="n">display_sym_dists</span><span class="p">(</span><span class="n">noisy_sym_circ_dists</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+noisy sym circ dists:
+  postselected dists:
+    circuit 0:
+      00: 0.506192
+      01: 0.015902
+      10: 0.460597
+      11: 0.017309
+    circuit 1:
+      00: 0.506192
+      01: 0.020124
+      10: 0.458204
+      11: 0.015480
+  averaged dists:
+    00: 0.506192
+    01: 0.018013
+    10: 0.459401
+    11: 0.016395
+</pre></div></div>
+</div>
+<p>We could try doing error mitigation:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sym_circ_meas_filter</span> <span class="o">=</span> <span class="n">qiskit_error_calibration</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sym_circ</span><span class="o">.</span><span class="n">qubits</span><span class="p">),</span> <span class="n">sym_circ_noise_model</span><span class="p">)</span>
+<span class="n">mitigated_sym_circ_counts</span> <span class="o">=</span> <span class="n">qiskit_pytket_counts</span><span class="p">(</span><span class="n">sym_circ_meas_filter</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pytket_qiskit_counts</span><span class="p">(</span><span class="n">noisy_sym_circ_counts</span><span class="p">)))</span>
+<span class="n">mitigated_sym_circ_dists</span> <span class="o">=</span> <span class="n">process_symmetrized_pytket_counts</span><span class="p">(</span><span class="n">sym_circ_info</span><span class="p">,</span> <span class="n">mitigated_sym_circ_counts</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mitigated sym circ dists:&quot;</span><span class="p">)</span>
+<span class="n">display_sym_dists</span><span class="p">(</span><span class="n">mitigated_sym_circ_dists</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mitigated sym circ dists:
+  postselected dists:
+    circuit 0:
+      00: 0.494203
+      01: 0.015483
+      10: 0.472539
+      11: 0.017775
+    circuit 1:
+      00: 0.498741
+      01: 0.020111
+      10: 0.465265
+      11: 0.015883
+  averaged dists:
+    00: 0.496472
+    01: 0.017797
+    10: 0.468902
+    11: 0.016829
+</pre></div></div>
+</div>
+<p>And now let’s look at how well we did.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">expected_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">circ_dist</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="k">if</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">circ_dist</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">])</span>
+<span class="n">actual_circ_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mitigated_circ_dist</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="k">if</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mitigated_circ_dist</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">])</span>
+<span class="n">actual_sym_circ_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mitigated_sym_circ_dists</span><span class="p">[</span><span class="s2">&quot;avg_dist&quot;</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="k">if</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mitigated_sym_circ_dists</span><span class="p">[</span><span class="s2">&quot;avg_dist&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;expected results: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">expected_probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;actual circ results: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">actual_circ_probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;actual sym_circ results: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">actual_sym_circ_probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;circ error: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">actual_circ_probs</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected_probs</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sym circ error: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">actual_sym_circ_probs</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected_probs</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+expected results: [0.5 0.  0.5 0. ]
+actual circ results: [0.50459295 0.00290095 0.49043356 0.00207255]
+actual sym_circ results: [0.496472   0.01779701 0.46890165 0.01682934]
+
+circ error: 0.011195
+sym circ error: 0.039743
+</pre></div></div>
+</div>
+<p>To get a better sense of under what conditions the algorithm might be helpful, we can easily run experiments in batches. For example, below we evaluate circuits with two qubits, with two copies to symmetrize over, where we symmetrize every two layers, randomly pairwise instead of across all the circuits, with thermal noise, and where the errors apply to auxilliary qubits as much as the other qubits. We evaluate such circuits for depths from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(8\)</span>, averaging over many randomly
+generated circuits for each depth, and graph the results (we could have chosen another parameter to vary, besides depth)!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spheres</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>\
+          <span class="c1">#&quot;depth&quot;: 2,\</span>
+          <span class="s2">&quot;n_copies&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>\
+          <span class="s2">&quot;every&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>\
+          <span class="s2">&quot;pairwise&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>\
+          <span class="s2">&quot;noise_model&quot;</span><span class="p">:</span> <span class="n">thermal_noise_model</span><span class="p">,</span>\
+          <span class="s2">&quot;noise_model_name&quot;</span><span class="p">:</span> <span class="n">thermal_noise_model</span><span class="p">,</span>\
+          <span class="s2">&quot;error_on_all&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>\
+          <span class="s2">&quot;backend&quot;</span><span class="p">:</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;qasm_simulator&quot;</span><span class="p">),</span>\
+          <span class="s2">&quot;shots&quot;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">}</span>
+
+<span class="n">depths</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">n_runs</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">experiments</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">depth</span> <span class="ow">in</span> <span class="n">depths</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;depth: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">depth</span> <span class="p">)</span>
+    <span class="n">circ_errors</span><span class="p">,</span> <span class="n">sym_circ_errors</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_runs</span><span class="p">):</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="n">eval_pytket_symmetrization_performance</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
+        <span class="n">circ_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">experiment</span><span class="p">[</span><span class="s2">&quot;circ_error&quot;</span><span class="p">])</span>
+        <span class="n">sym_circ_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">experiment</span><span class="p">[</span><span class="s2">&quot;sym_circ_error&quot;</span><span class="p">])</span>
+    <span class="n">experiments</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="o">**</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;depth&quot;</span><span class="p">:</span> <span class="n">depth</span><span class="p">,</span>\
+                                     <span class="s2">&quot;circ_error&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">circ_errors</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">circ_errors</span><span class="p">),</span>\
+                                     <span class="s2">&quot;sym_circ_error&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sym_circ_errors</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">sym_circ_errors</span><span class="p">)}})</span>
+
+<span class="n">plot_symmetrization_performance</span><span class="p">(</span><span class="s2">&quot;depth&quot;</span><span class="p">,</span> <span class="n">experiments</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+depth: 1
+depth: 2
+depth: 3
+depth: 4
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_10.1_Stabilization_via_Symmetrization_22_1.png" src="../_images/notebooks_10.1_Stabilization_via_Symmetrization_22_1.png" />
+</div>
+</div>
+<p>Some results, picked somewhat arbitrarily:</p>
+<img alt="result1" src="../_images/sym_circ_result1.png" />
+<img alt="result2" src="../_images/sym_circ_result2.png" />
+<img alt="result3" src="../_images/sym_circ_result3.png" />
+<img alt="result4" src="../_images/sym_circ_result4.png" />
+<p><img alt="6026f4fb513740249480ba1801a3ba6c" class="no-scaled-link" src="../_images/sym_circ_result5.png" style="width: 450px;" /></p>
+<hr><p>Clearly, it’s not a given that this method of “stablization” will deliver results at least at the moment. It would be interesting to find some set of conditions that would make this algorithm relevant. The difficulties are, of course, errors in the symmetrization procedure itself, and also the scaling of the auxilliary qubits. Unless intermediate measurements are possible, allowing one to reuse auxilliary qubits, the cost of applying the algorithm quickly becomes prohibitive–and there aren’t
+enough gains at the small scale, it seems, to make it worth using. In the future, however, one could imagine having thousands of qubits, as well as reliable CSWAP gates, so that one could reliably symmetrize over hundreds copies of the circuit, etc. See the attached papers for some discussion of the types of errors that this method is best at dealing with.</p>
+<hr><div class="section" id="Bibliography">
+<h2>Bibliography<a class="headerlink" href="#Bibliography" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/quant-ph/9611046">Error Symmetrization in Quantum Computers</a></p>
+<p><a class="reference external" href="https://heyredhat.github.io/refs/Stabilization_of_Quantum_Compu.pdf">Stabilization of Quantum Computations By Symmetrization</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="9.7_Majorana_for_Mixed_States.html" class="btn btn-neutral float-left" title="Generalizing the Majorana Representation for Mixed States and Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

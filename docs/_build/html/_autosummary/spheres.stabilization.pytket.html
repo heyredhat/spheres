@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spheres.stabilization.pytket &mdash; spheres 0.3.0.9 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="spheres.stabilization.pytket.bitflip_noise_model" href="spheres.stabilization.pytket.bitflip_noise_model.html" />
+    <link rel="prev" title="spheres.stabilization" href="spheres.stabilization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> spheres
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="spheres.html">spheres</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="spheres.beams.html">spheres.beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.beams.animate_spin_beam.html">spheres.beams.animate_spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.beams.colorize.html">spheres.beams.colorize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.beams.laguerre_gauss_mode.html">spheres.beams.laguerre_gauss_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.beams.spin_beam.html">spheres.beams.spin_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.beams.viz_beam.html">spheres.beams.viz_beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.beams.viz_spin_beam.html">spheres.beams.viz_spin_beam</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.coordinates.html">spheres.coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.c_sph.html">spheres.coordinates.c_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.c_spinor.html">spheres.coordinates.c_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.c_xyz.html">spheres.coordinates.c_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.sph_c.html">spheres.coordinates.sph_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.sph_spinor.html">spheres.coordinates.sph_spinor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.sph_xyz.html">spheres.coordinates.sph_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.spinor_c.html">spheres.coordinates.spinor_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.spinor_sph.html">spheres.coordinates.spinor_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.spinor_xyz.html">spheres.coordinates.spinor_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.xyz_c.html">spheres.coordinates.xyz_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.xyz_sph.html">spheres.coordinates.xyz_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.coordinates.xyz_spinor.html">spheres.coordinates.xyz_spinor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.oscillators.html">spheres.oscillators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.annihilators.html">spheres.oscillators.annihilators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spin.html">spheres.oscillators.osc_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spinblocks.html">spheres.oscillators.osc_spinblocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spins.html">spheres.oscillators.osc_spins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.osc_spintower_map.html">spheres.oscillators.osc_spintower_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantize_operator.html">spheres.oscillators.second_quantize_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantize_spin_state.html">spheres.oscillators.second_quantize_spin_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantize_state.html">spheres.oscillators.second_quantize_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.second_quantized_paulis.html">spheres.oscillators.second_quantized_paulis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spin_osc.html">spheres.oscillators.spin_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spin_osc_map.html">spheres.oscillators.spin_osc_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spin_tower_dimensions.html">spheres.oscillators.spin_tower_dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spinj_xyz_osc.html">spheres.oscillators.spinj_xyz_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.spins_osc.html">spheres.oscillators.spins_osc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.oscillators.vacuum.html">spheres.oscillators.vacuum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.polyhedra.html">spheres.polyhedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.polyhedra.equidistribute_points.html">spheres.polyhedra.equidistribute_points</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.relativity.html">spheres.relativity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.relativity.mobius.html">spheres.relativity.mobius</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.spin_circuits.html">spheres.spin_circuits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.spin_circuits.pytket.html">spheres.spin_circuits.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.Rk_pytket.html">spheres.spin_circuits.pytket.Rk_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.Tkj_pytket.html">spheres.spin_circuits.pytket.Tkj_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.postselect_shots.html">spheres.spin_circuits.pytket.postselect_shots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.spin_sym_pytket.html">spheres.spin_circuits.pytket.spin_sym_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.spin_tomography_pytket.html">spheres.spin_circuits.pytket.spin_tomography_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.tomography_circuits_pytket.html">spheres.spin_circuits.pytket.tomography_circuits_pytket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.pytket.tomography_dm_pytket.html">spheres.spin_circuits.pytket.tomography_dm_pytket</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.spin_circuits.qiskit.html">spheres.spin_circuits.qiskit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.qiskit.Rk_qiskit.html">spheres.spin_circuits.qiskit.Rk_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.qiskit.Tkj_qiskit.html">spheres.spin_circuits.qiskit.Tkj_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.qiskit.postselect_results_qiskit.html">spheres.spin_circuits.qiskit.postselect_results_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.qiskit.spin_sym_qiskit.html">spheres.spin_circuits.qiskit.spin_sym_qiskit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.qiskit.spin_tomography_qiskit.html">spheres.spin_circuits.qiskit.spin_tomography_qiskit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.spin_circuits.strawberryfields.html">spheres.spin_circuits.strawberryfields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields.html">spheres.spin_circuits.strawberryfields.spin_osc_strawberryfields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields.html">spheres.spin_circuits.strawberryfields.spinj_xyz_strawberryfields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="spheres.stabilization.html">spheres.stabilization</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">spheres.stabilization.pytket</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.bitflip_noise_model.html">spheres.stabilization.pytket.bitflip_noise_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.build_pytket_circuit.html">spheres.stabilization.pytket.build_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.eval_pytket_circuit_ibm.html">spheres.stabilization.pytket.eval_pytket_circuit_ibm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.eval_pytket_symmetrization_performance.html">spheres.stabilization.pytket.eval_pytket_symmetrization_performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.eval_symmetrized_pytket_circuit.html">spheres.stabilization.pytket.eval_symmetrized_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.ibmq_16_melbourne_noise_model.html">spheres.stabilization.pytket.ibmq_16_melbourne_noise_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.plot_symmetrization_performance.html">spheres.stabilization.pytket.plot_symmetrization_performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.process_symmetrized_pytket_counts.html">spheres.stabilization.pytket.process_symmetrized_pytket_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.pytket_qiskit_counts.html">spheres.stabilization.pytket.pytket_qiskit_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.qiskit_error_calibration.html">spheres.stabilization.pytket.qiskit_error_calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.qiskit_pytket_counts.html">spheres.stabilization.pytket.qiskit_pytket_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.random_pairs.html">spheres.stabilization.pytket.random_pairs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.random_pytket_circuit.html">spheres.stabilization.pytket.random_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.random_unique_pairs.html">spheres.stabilization.pytket.random_unique_pairs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.symmetrize_pytket_circuit.html">spheres.stabilization.pytket.symmetrize_pytket_circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stabilization.pytket.thermal_noise_model.html">spheres.stabilization.pytket.thermal_noise_model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.stars.html">spheres.stars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.stars.mixed.html">spheres.stars.mixed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.operator_spherical_decomposition.html">spheres.stars.mixed.operator_spherical_decomposition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.operator_spins.html">spheres.stars.mixed.operator_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.spherical_decomposition_operator.html">spheres.stars.mixed.spherical_decomposition_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.spherical_decomposition_spins.html">spheres.stars.mixed.spherical_decomposition_spins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.spherical_tensor.html">spheres.stars.mixed.spherical_tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.spherical_tensor_basis.html">spheres.stars.mixed.spherical_tensor_basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.spins_operator.html">spheres.stars.mixed.spins_operator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.mixed.spins_spherical_decomposition.html">spheres.stars.mixed.spins_spherical_decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.stars.pure.html">spheres.stars.pure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.c_spin.html">spheres.stars.pure.c_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.poly_roots.html">spheres.stars.pure.poly_roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.poly_spin.html">spheres.stars.pure.poly_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.roots_poly.html">spheres.stars.pure.roots_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.sph_spin.html">spheres.stars.pure.sph_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.spin_c.html">spheres.stars.pure.spin_c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.spin_poly.html">spheres.stars.pure.spin_poly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.spin_sph.html">spheres.stars.pure.spin_sph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.spin_spinors.html">spheres.stars.pure.spin_spinors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.spin_xyz.html">spheres.stars.pure.spin_xyz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.spinors_spin.html">spheres.stars.pure.spinors_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.pure.xyz_spin.html">spheres.stars.pure.xyz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.stars.star_utils.html">spheres.stars.star_utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.antipodal.html">spheres.stars.star_utils.antipodal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.basis.html">spheres.stars.star_utils.basis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.pauli_eigenstate.html">spheres.stars.star_utils.pauli_eigenstate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.poleflip.html">spheres.stars.star_utils.poleflip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.spherical_inner.html">spheres.stars.star_utils.spherical_inner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.stars.star_utils.spin_coherent.html">spheres.stars.star_utils.spin_coherent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.symmetrization.html">spheres.symmetrization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.spin_sym.html">spheres.symmetrization.spin_sym</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.spin_sym_map.html">spheres.symmetrization.spin_sym_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.sym_spin.html">spheres.symmetrization.sym_spin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.symmetrize.html">spheres.symmetrization.symmetrize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symmetrization.symmetrized_basis.html">spheres.symmetrization.symmetrized_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.symplectic.html">spheres.symplectic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.complex_real_symplectic.html">spheres.symplectic.complex_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.complex_real_symplectic2.html">spheres.symplectic.complex_real_symplectic2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.gaussian_complex_symplectic.html">spheres.symplectic.gaussian_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.is_complex_symplectic.html">spheres.symplectic.is_complex_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.is_real_symplectic.html">spheres.symplectic.is_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.make_gaussian_operator.html">spheres.symplectic.make_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.omega_c.html">spheres.symplectic.omega_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.omega_r.html">spheres.symplectic.omega_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.operator_real_symplectic.html">spheres.symplectic.operator_real_symplectic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.random_gaussian_operator.html">spheres.symplectic.random_gaussian_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.symplectic_xyz.html">spheres.symplectic.symplectic_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.upgrade_single_mode_operator.html">spheres.symplectic.upgrade_single_mode_operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.symplectic.upgrade_two_mode_operator.html">spheres.symplectic.upgrade_two_mode_operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.utils.html">spheres.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.binomial.html">spheres.utils.binomial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.bitstring_basis.html">spheres.utils.bitstring_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.compare_nophase.html">spheres.utils.compare_nophase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.compare_spinors.html">spheres.utils.compare_spinors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.compare_unordered.html">spheres.utils.compare_unordered</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.components.html">spheres.utils.components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.density_to_purevec.html">spheres.utils.density_to_purevec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.dirac.html">spheres.utils.dirac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.fix_stars.html">spheres.utils.fix_stars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.flatten.html">spheres.utils.flatten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.from_pauli_basis.html">spheres.utils.from_pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.measure.html">spheres.utils.measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.normalize.html">spheres.utils.normalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.normalize_phase.html">spheres.utils.normalize_phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.pauli_basis.html">spheres.utils.pauli_basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.phase.html">spheres.utils.phase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.phase_angle.html">spheres.utils.phase_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.polygon_area.html">spheres.utils.polygon_area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.qubits_xyz.html">spheres.utils.qubits_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.rand_c.html">spheres.utils.rand_c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.rand_sph.html">spheres.utils.rand_sph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.rand_xyz.html">spheres.utils.rand_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.spinj_xyz.html">spheres.utils.spinj_xyz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.tensor_upgrade.html">spheres.utils.tensor_upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.utils.to_pauli_basis.html">spheres.utils.to_pauli_basis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spheres.visualization.html">spheres.visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.majorana_sphere.html">spheres.visualization.majorana_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.majorana_sphere.tangent_plane_rotation.html">spheres.visualization.majorana_sphere.tangent_plane_rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.majorana_sphere.MajoranaSphere.html">spheres.visualization.majorana_sphere.MajoranaSphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.majorana_sphere.SphericalWavefunction.html">spheres.visualization.majorana_sphere.SphericalWavefunction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.matplotlib_spheres.html">spheres.visualization.matplotlib_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.matplotlib_spheres.animate_spin.html">spheres.visualization.matplotlib_spheres.animate_spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.matplotlib_spheres.viz_spin.html">spheres.visualization.matplotlib_spheres.viz_spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.operator_sphere.html">spheres.visualization.operator_sphere</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.operator_sphere.OperatorSphere.html">spheres.visualization.operator_sphere.OperatorSphere</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.schwinger_spheres.html">spheres.visualization.schwinger_spheres</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.schwinger_spheres.OscillatorPlane.html">spheres.visualization.schwinger_spheres.OscillatorPlane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.schwinger_spheres.SchwingerSpheres.html">spheres.visualization.schwinger_spheres.SchwingerSpheres</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spheres.visualization.vp_object.html">spheres.visualization.vp_object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spheres.visualization.vp_object.VObject.html">spheres.visualization.vp_object.VObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10_Introduction_to_Majorana_Stars.html">An Introduction to Majorana’s “Stellar” Representation of Spin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/9_Symmetrized_Qubits.html">How to Prepare a Permutation Symmetric Multiqubit State on an Actual Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/9.6_Photonic_SpinJ.html">How To Prepare a Spin-j State on a Photonic Quantum Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/9.2_Majorana_Stars_and_Structured_Gaussian_Beams.html">Majorana Stars and Structured Gaussian Beams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/9.7_Majorana_for_Mixed_States.html">Generalizing the Majorana Representation for Mixed States and Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10.1_Stabilization_via_Symmetrization.html">Stablization via Symmetrization</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spheres</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="spheres.html">spheres</a> &raquo;</li>
+        
+          <li><a href="spheres.stabilization.html">spheres.stabilization</a> &raquo;</li>
+        
+      <li>spheres.stabilization.pytket</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autosummary/spheres.stabilization.pytket.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-spheres.stabilization.pytket">
+<span id="spheres-stabilization-pytket"></span><h1>spheres.stabilization.pytket<a class="headerlink" href="#module-spheres.stabilization.pytket" title="Permalink to this headline">¶</a></h1>
+<p>Pytket circuits for error stabilization via symmetrization.</p>
+<p class="rubric">Functions</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.bitflip_noise_model.html#spheres.stabilization.pytket.bitflip_noise_model" title="spheres.stabilization.pytket.bitflip_noise_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bitflip_noise_model</span></code></a>([n_qubits, on_qubits])</p></td>
+<td><p>Bitflip noise model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.build_pytket_circuit.html#spheres.stabilization.pytket.build_pytket_circuit" title="spheres.stabilization.pytket.build_pytket_circuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_pytket_circuit</span></code></a>(circuit_info)</p></td>
+<td><p>Given a circuit specification (from <cite>random_circuit()</cite>), constructs the actual pytket circuit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.eval_pytket_circuit_ibm.html#spheres.stabilization.pytket.eval_pytket_circuit_ibm" title="spheres.stabilization.pytket.eval_pytket_circuit_ibm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval_pytket_circuit_ibm</span></code></a>(circuit[, …])</p></td>
+<td><p>Evaluates pytket circuit on IBM backend.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.eval_pytket_symmetrization_performance.html#spheres.stabilization.pytket.eval_pytket_symmetrization_performance" title="spheres.stabilization.pytket.eval_pytket_symmetrization_performance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval_pytket_symmetrization_performance</span></code></a>([…])</p></td>
+<td><p>Compares the performance of a random circuit with and without symmetrization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.eval_symmetrized_pytket_circuit.html#spheres.stabilization.pytket.eval_symmetrized_pytket_circuit" title="spheres.stabilization.pytket.eval_symmetrized_pytket_circuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval_symmetrized_pytket_circuit</span></code></a>(circ_info[, …])</p></td>
+<td><p>Evaluates a symmetrized version of the provided circuit in the form of a dictionary (cf.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.ibmq_16_melbourne_noise_model.html#spheres.stabilization.pytket.ibmq_16_melbourne_noise_model" title="spheres.stabilization.pytket.ibmq_16_melbourne_noise_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ibmq_16_melbourne_noise_model</span></code></a>([n_qubits, …])</p></td>
+<td><p>ibmq_16_melbourne_noise_model noise model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.plot_symmetrization_performance.html#spheres.stabilization.pytket.plot_symmetrization_performance" title="spheres.stabilization.pytket.plot_symmetrization_performance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_symmetrization_performance</span></code></a>(parameter, …)</p></td>
+<td><p>Given a parameter (e.g.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.process_symmetrized_pytket_counts.html#spheres.stabilization.pytket.process_symmetrized_pytket_counts" title="spheres.stabilization.pytket.process_symmetrized_pytket_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_symmetrized_pytket_counts</span></code></a>(…)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param sym_circ_info</dt>
+<dd class="field-odd"><p>Symmetrized circuit info, i.e. from <cite>symmetrize_pytket_circuit</cite>.</p>
+</dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.pytket_qiskit_counts.html#spheres.stabilization.pytket.pytket_qiskit_counts" title="spheres.stabilization.pytket.pytket_qiskit_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pytket_qiskit_counts</span></code></a>(counts)</p></td>
+<td><p>Converts pytket counts into qiskit format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.qiskit_error_calibration.html#spheres.stabilization.pytket.qiskit_error_calibration" title="spheres.stabilization.pytket.qiskit_error_calibration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qiskit_error_calibration</span></code></a>(n_qubits, noise_model)</p></td>
+<td><p>Initializes Qiskit error calibration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.qiskit_pytket_counts.html#spheres.stabilization.pytket.qiskit_pytket_counts" title="spheres.stabilization.pytket.qiskit_pytket_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qiskit_pytket_counts</span></code></a>(counts)</p></td>
+<td><p>Converts qiskit counts into pytket format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.random_pairs.html#spheres.stabilization.pytket.random_pairs" title="spheres.stabilization.pytket.random_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_pairs</span></code></a>(n)</p></td>
+<td><p>Generates a random list of pairs of n elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.random_pytket_circuit.html#spheres.stabilization.pytket.random_pytket_circuit" title="spheres.stabilization.pytket.random_pytket_circuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_pytket_circuit</span></code></a>([n_qubits, depth])</p></td>
+<td><p>Generates a random circuit specification with a specified number of qubits and depth.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.random_unique_pairs.html#spheres.stabilization.pytket.random_unique_pairs" title="spheres.stabilization.pytket.random_unique_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_unique_pairs</span></code></a>(n)</p></td>
+<td><p>Generates a random list of pairs of n elements with no pair sharing an element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="spheres.stabilization.pytket.symmetrize_pytket_circuit.html#spheres.stabilization.pytket.symmetrize_pytket_circuit" title="spheres.stabilization.pytket.symmetrize_pytket_circuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">symmetrize_pytket_circuit</span></code></a>(circuit_info[, …])</p></td>
+<td><p>Given a circuit specification, constructs a symmetrized version of the circuit for error correction.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="spheres.stabilization.pytket.thermal_noise_model.html#spheres.stabilization.pytket.thermal_noise_model" title="spheres.stabilization.pytket.thermal_noise_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">thermal_noise_model</span></code></a>([n_qubits, on_qubits])</p></td>
+<td><p>Thermal noise model.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spheres.stabilization.pytket.bitflip_noise_model.html" class="btn btn-neutral float-right" title="spheres.stabilization.pytket.bitflip_noise_model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="spheres.stabilization.html" class="btn btn-neutral float-left" title="spheres.stabilization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Matthew Weiss
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

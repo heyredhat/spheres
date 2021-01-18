@@ -405,58 +405,6 @@ def from_pauli_basis(coeffs, basis=None):
     return sum([coeffs[pauli_str]*pauli_op/(2**n)
                     for pauli_str, pauli_op in basis.items()])
 
-def random_pairs(n):
-    """
-    Generates a random list of pairs of n elements. 
-
-    Parameters
-    ----------
-        n : int
-
-    Returns
-    -------
-        list : list
-    """
-    pairs = list(combinations(list(range(n)), 2))
-    np.random.shuffle(pairs) 
-    final_pairs = []
-    for p in pairs:
-        pair = np.array(p)
-        np.random.shuffle(pair)
-        final_pairs.append(pair)
-    return final_pairs 
-
-def random_unique_pairs(n):
-    """
-    Generates a random list of pairs of n elements with no pair sharing an element.
-
-    Parameters
-    ----------
-        n : int
-
-    Returns
-    -------
-        list : list
-    """
-    pairs = list(combinations(list(range(n)), 2))
-    pick = pairs[np.random.choice(len(pairs))]
-    good_pairs = [pick]
-    used = [*pick]
-    def clean_pairs(pairs, used):
-        to_remove = []
-        for i, pair in enumerate(pairs):
-            for u in used:
-                if u in pair:
-                    to_remove.append(i)
-        return [i for j, i in enumerate(pairs) if j not in to_remove]
-    pairs = clean_pairs(pairs, used)
-    while len(pairs) > 0 and len(pairs) != clean_pairs(pairs, used):
-        pick = pairs[np.random.choice(len(pairs))]
-        good_pairs.append(pick)
-        used.extend(pick)
-        pairs = clean_pairs(pairs, used)
-    return good_pairs
-
 def tensor_upgrade(O, i, n):
     """
     Upgrades an operator to act on the i'th subspace of n subsystems.

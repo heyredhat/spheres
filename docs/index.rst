@@ -21,6 +21,7 @@ Welcome to the documentation for spheres!
    notebooks/9.6_Photonic_SpinJ
    notebooks/9.2_Majorana_Stars_and_Structured_Gaussian_Beams
    notebooks/9.7_Majorana_for_Mixed_States
+   notebooks/10.1_Stabilization_via_Symmetrization
 
 Indices and tables
 ==================

@@ -10,14 +10,13 @@ from .symplectic import *
 from .symmetrization import *
 from .relativity import *
 from .oscillators import *
-from .qbism import *
 from .coordinates import *
 from .beams import *
 from .visualization import *
-from .error_correction import *
 from .stars import *
 from .polyhedra import *
 from .spin_circuits import *
+from .stabilization import *
 
 __version__ = "0.3.0.9"
  

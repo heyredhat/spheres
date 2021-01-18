@@ -30,12 +30,11 @@
 
    spheres.beams
    spheres.coordinates
-   spheres.error_correction
    spheres.oscillators
    spheres.polyhedra
-   spheres.qbism
    spheres.relativity
    spheres.spin_circuits
+   spheres.stabilization
    spheres.stars
    spheres.symmetrization
    spheres.symplectic
