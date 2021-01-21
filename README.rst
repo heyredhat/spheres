@@ -34,7 +34,7 @@ toolbox for higher spin and symmetrization
 
 3. The "Schwinger oscillator" representation of a spin-j state as the total energy 2j subspace of two quantum harmonic oscillators. Indeed, the full space of the two oscillators furnishes a representation of spin with a variable j value: a superposition of j values. This construction can be interpreted as the "second quantization" of qubit, and is appropriate for implementation of photonic quantum computers.
 
-In addition, we provide many useful tools for dealing with oscillators and spin more generally: coherent state polynomials for oscillators, quantum polyhedra, a little spinorial special relativity, and much more. Everything is accompanied by 3D visualizations thanks to `vpython`, and interfaces to popular quantum computing libraries from `qutip` to `StrawberryFields`.
+Everything is accompanied by 3D visualizations thanks to `vpython` (and `matplotlib`) and interfaces to popular quantum computing libraries from `qutip` to `StrawberryFields`.
 
 Finally, we provide tools for implementing a form of quantum error correction or "stablization" by harnessing the power of symmetrization. We provide automatic generation of circuits which perform a given quantum experiment multiple times in parallel while periodically projecting them all jointly into the symmetric subspace, which in principle increases the reliability of the computation under noisy conditions.
 

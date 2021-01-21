@@ -691,7 +691,7 @@ if (typeof Jupyter !== "undefined") { window.__context = { glowscript_container:
 </script></div>
 </div>
 <p>The resulting circuit will look something like this (the image below was pregenerated, since <code class="docutils literal notranslate"><span class="pre">pytket</span></code> won’t display its latex output to jupyter notebooks):</p>
-<p><img alt="294a2ad7d9374454bf96dccf1a56970a" src="../_images/circ_tex.png" /></p>
+<p><img alt="6147092b688440ec9ed43c6e9380b35a" src="../_images/circ_tex.png" /></p>
 <p>Each layer consists of some single qubit gates and a CNOT.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -707,7 +707,7 @@ if (typeof Jupyter !== "undefined") { window.__context = { glowscript_container:
 </div>
 </div>
 <p>The symmetrized circuit might look something like this:</p>
-<p><img alt="50c5b67a46b6477498346fc85f77efc1" src="../_images/sym_circ_tex.png" /></p>
+<p><img alt="9b0e896987a740ac83f46d20918d34b4" src="../_images/sym_circ_tex.png" /></p>
 <p>We have two copies of the circuit running in parallel, and we do symmetrization after each of the two layers.</p>
 <p>First, let’s evaluate the original circuit analytically to see what the answers should be.</p>
 <div class="nbinput docutils container">
@@ -1007,7 +1007,7 @@ depth: 4
 <img alt="result2" src="../_images/sym_circ_result2.png" />
 <img alt="result3" src="../_images/sym_circ_result3.png" />
 <img alt="result4" src="../_images/sym_circ_result4.png" />
-<p><img alt="6026f4fb513740249480ba1801a3ba6c" class="no-scaled-link" src="../_images/sym_circ_result5.png" style="width: 450px;" /></p>
+<p><img alt="c0eda03f7fa0440a9925f9cdce36c1ca" class="no-scaled-link" src="../_images/sym_circ_result5.png" style="width: 450px;" /></p>
 <hr><p>Clearly, it’s not a given that this method of “stablization” will deliver results at least at the moment. It would be interesting to find some set of conditions that would make this algorithm relevant. The difficulties are, of course, errors in the symmetrization procedure itself, and also the scaling of the auxilliary qubits. Unless intermediate measurements are possible, allowing one to reuse auxilliary qubits, the cost of applying the algorithm quickly becomes prohibitive–and there aren’t
 enough gains at the small scale, it seems, to make it worth using. In the future, however, one could imagine having thousands of qubits, as well as reliable CSWAP gates, so that one could reliably symmetrize over hundreds copies of the circuit, etc. See the attached papers for some discussion of the types of errors that this method is best at dealing with.</p>
 <hr><div class="section" id="Bibliography">
